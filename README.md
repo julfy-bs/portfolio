@@ -1,29 +1,64 @@
-# portfolio
+# [My][git-repo-url] new [Portfolio project][old-portfolio]
 
-## Project setup
-```
-npm install
-```
+---
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Tech
 
-### Compiles and minifies for production
-```
-npm run build
-```
+Portfolio uses a number of open source projects to work properly:
 
-### Run your unit tests
-```
-npm run test:unit
-```
+- [Vue CLI][vue-cli]
+- [Vue 3][vue3]
+- [Postcss][postcss]
+- [ESLint][eslint]
+- [Prettier][prettier]
 
-### Lints and fixes files
-```
-npm run lint
-```
+## How to launch this project
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+---
+
+    # clone this repo to local machine
+    git clone https://github.com/julfy-bs/portfolio
+
+    # install dependencies
+    npm install
+
+    # serve with hot reload at localhost:3000
+    npm run serve to init dev server
+
+## Build Setup
+
+---
+
+    # install dependencies
+    $ npm install
+    
+    # serve with hot reload at localhost:3000
+    $ npm run serve
+    
+    # build for production and launch server
+    $ npm run build
+    $ npm run preview
+
+[//]: # (
+    ### Customize configuration
+    Для добавления svg в проект, необходимо следовать ряду правил во избежание ошибок компилятора:
+    1. SVG должны быть размещены в папке src/assets/icons/
+    2. название файла должно быть написано в нижнем регистре
+)
+
+
+[//]: # 'Variables for links down bellow'
+
+[git-repo-url]: https://github.com/joemccann/dillinger.git
+
+[old-portfolio]: https://julfy-bs.github.io/portfolio__project/
+
+[vue-cli]: https://cli.vuejs.org/
+
+[vue3]: https://v3.vuejs.org/
+
+[postcss]: https://postcss.org/
+
+[eslint]: https://eslint.org/
+
+[prettier]: https://prettier.io/

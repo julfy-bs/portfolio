@@ -1,0 +1,22 @@
+.icon {
+  transition: fill .2s ease, stroke .2s ease;
+  position: absolute;
+  top: 38px;
+  left: 9px;
+  fill: $gray-svg;
+  width: 32px;
+  height: 32px;
+
+  &--success {
+    fill: $success-main
+  }
+
+  &--error {
+    fill: $error-main;
+  }
+
+  &--password {
+    width: 30px;
+    height: 30px;
+  }
+}

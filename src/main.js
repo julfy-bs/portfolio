@@ -1,6 +1,19 @@
-import { createApp } from 'vue';
-import App from './App.vue';
-import router from './router';
-import store from './store';
+import { createApp } from 'vue'
+import App from '@/App.vue'
+import store from '@/store'
+import router from '@/router'
+import components from '@/components/UI'
+import InlineSvg from 'vue-inline-svg'
+import '@/assets/styles/main.scss'
 
-createApp(App).use(store).use(router).mount('#app');
+const app = createApp(App)
+
+components.forEach(component => {
+  app.component(component.name, component)
+})
+
+app
+  .component('InlineSvg', InlineSvg)
+  .use(router)
+  .use(store)
+  .mount('#app')
