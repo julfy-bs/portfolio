@@ -61,10 +61,4 @@ export default {
 .input:focus {
   outline-color: $focus-color;
 }
-
-.input:focus {
-  .input+.icon {
-    fill: $focus-color;
-  }
-}
 </style>

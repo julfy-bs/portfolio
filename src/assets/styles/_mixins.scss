@@ -1,9 +1,3 @@
-@mixin super-wide() {
-  @media screen and (min-width: $bp-super-wide) {
-    @content;
-  }
-}
-
 @mixin desktopHd() {
   @media screen and (max-width: $bp-desktop-hd) {
     @content;
