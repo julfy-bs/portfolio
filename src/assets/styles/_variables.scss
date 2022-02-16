@@ -2,14 +2,19 @@ $bp-desktop-hd: 1800px;
 $bp-desktop: 1280px;
 $bp-tablets: 768px;
 $bp-phones: 480px;
+
+// primitive color
 $white: #FFFFFF;
+$black: #000000;
 $gray: #414C63;
 $gray-svg: #A9AEB9;
-$black: #000000;
+$dark-blue: #3e3e59;
 
+//interactive hover, focus
 $focus-color: #5500F2;
 $hover-color: #5500F2;
 
+// status color
 $error: #FFD2D2;
 $error-main: #D8000C;
 $success: #DFF2BF;
@@ -18,3 +23,5 @@ $info: #BDE5F8;
 $info-main: #00529B;
 $warning: #FEEFB3;
 $warning-main: #9F6000;
+
+$dialog-gradient: linear-gradient(rgba(45, 60, 78, .9), rgba(45, 60, 78, .9)), 100% 20% / cover no-repeat url("../../static/images/dialog-background.png");
