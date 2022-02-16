@@ -28,7 +28,7 @@ export default {
   right: 0;
   bottom: 0;
   left: 0;
-  background: $dialog-gradient;
+  background: $dialog-gradient, 100% 20% / cover no-repeat url("../../static/images/dialog-background.png");
   display: flex;
 
   &__content {

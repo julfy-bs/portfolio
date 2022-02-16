@@ -14,13 +14,14 @@
           <span class="user__second-name">Сутужко</span>
         </div>
       </div>
-      <div class="nav">
-        <div class="nav__location">
+      <div class="header__nav">
+        <div class="header__nav-location">
           Панель администрирования
         </div>
         <button
           type="button"
-          class="nav__logout"
+          class="header__nav-logout"
+          @click="logout"
         >
           Выйти
         </button>
@@ -31,7 +32,12 @@
 
 <script>
 export default {
-  name: 'AdminHeader'
+  name: 'AdminHeader',
+  methods: {
+    logout() {
+      this.$router.push('/admin')
+    }
+  }
 }
 </script>
 
@@ -51,7 +57,7 @@ export default {
   align-items: center;
 }
 
-.user, .nav {
+.user, .header__nav {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -80,18 +86,18 @@ export default {
   margin-right: 5px;
 }
 
-.nav {
+.header__nav {
   justify-content: space-between;
   flex: 1 1 80%;
   font-size: 14px;
   font-weight: 400;
 }
 
-.nav__location {
+.header__nav-location {
   opacity: .5;
 }
 
-.nav__logout {
+.header__nav-logout {
   background: transparent;
   border: none;
   color: $white;

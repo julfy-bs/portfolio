@@ -24,4 +24,5 @@ $info-main: #00529B;
 $warning: #FEEFB3;
 $warning-main: #9F6000;
 
-$dialog-gradient: linear-gradient(rgba(45, 60, 78, .9), rgba(45, 60, 78, .9)), 100% 20% / cover no-repeat url("../../static/images/dialog-background.png");
+$dialog-gradient: linear-gradient(rgba(45, 60, 78, .9), rgba(45, 60, 78, .9));
+$admin-gradient: linear-gradient(rgba(252, 252, 254, .89), rgba(252, 252, 254, .99))
