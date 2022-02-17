@@ -1,11 +1,17 @@
 .icon {
   transition: fill .2s ease, stroke .2s ease;
-  position: absolute;
-  top: 38px;
-  left: 9px;
-  fill: $gray-svg;
-  width: 32px;
-  height: 32px;
+
+  &--input {
+    position: absolute;
+    top: 38px;
+    left: 9px;
+    fill: $gray-svg;
+  }
+  &--plus {
+    position: absolute;
+    top: 6px;
+    left: 2px;
+  }
 
   &--success {
     fill: $success-main
@@ -18,5 +24,29 @@
   &--password {
     width: 30px;
     height: 30px;
+  }
+}
+
+.input:focus + .icon {
+  fill: $focus-color;
+}
+
+.button:focus, .button:hover {
+  .icon {
+    &--skill {
+      fill: $focus-color;
+    }
+
+    &--save {
+      fill: $success-main;
+    }
+
+    &--edit {
+      fill: $warning-main;
+    }
+
+    &--remove {
+      fill: $error-main;
+    }
   }
 }

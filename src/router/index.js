@@ -33,14 +33,14 @@ const routes = [
       }
       ,
       {
-        path: '/admin/skills',
-        name: 'Admin skills',
-        component: () => import('@/views/AdminWorks.vue')
+        path: '/admin/about',
+        name: 'Admin about',
+        component: () => import('@/views/AdminAbout.vue')
       },
       {
         path: '/admin/reviews',
         name: 'Admin reviews',
-        component: () => import('@/views/AdminWorks.vue')
+        component: () => import('@/views/AdminReviews.vue')
       }
     ]
   }

@@ -1,13 +1,17 @@
 <template>
-  <h1>works</h1>
+  <div>
+    <h1>reviews</h1>
+  </div>
 </template>
-<script>
 
+<script>
 export default {
-  name: 'AdminWorksPage'
+  name: 'AdminReviews'
 }
 </script>
 
 <style lang='scss' scoped>
 
 </style>
+
+

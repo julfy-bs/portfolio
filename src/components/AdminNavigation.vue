@@ -4,10 +4,10 @@
       <ul class="nav__list">
         <li class="nav__item">
           <router-link
-            to="/admin/skills"
+            to="/admin/about"
             class="nav__link"
           >
-            Навыки
+            Обо мне
           </router-link>
         </li>
         <li class="nav__item">
@@ -55,12 +55,11 @@ export default {
 }
 
 .nav__item {
-  width: 125px;
   text-align: center;
 }
 
 .nav__link {
-  width: 125px;
+  min-width: 125px;
   padding: 25px 35px;
   border-bottom: 3px solid transparent;
   text-decoration: none;

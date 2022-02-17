@@ -12,22 +12,30 @@
           label-title="Логин"
           input-placeholder="Введите логин"
           input-required="required"
+          input-class="text-with-svg"
         >
-          <element-svg file-name="user" />
+          <element-svg
+            file-name="user"
+            class-name="icon icon--input"
+          />
         </input-group>
         <input-group
           label-title="Пароль"
           input-type="password"
           input-placeholder="Введите пароль"
           input-required="required"
+          input-class="text-with-svg"
         >
-          <element-svg file-name="password" />
+          <element-svg
+            file-name="password"
+            class-name="icon icon--input icon--password"
+          />
         </input-group>
         <element-button
           button-name="login"
           button-type="submit"
           button-value="login"
-          button-class="login"
+          button-class="gradient"
         >
           Отправить
         </element-button>
