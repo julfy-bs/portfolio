@@ -4,6 +4,7 @@ module.exports = {
     node: true
   },
   extends: [
+    'airbnb-base',
     '@vue/airbnb',
     'prettier',
     'plugin:vue/vue3-recommended'
@@ -14,7 +15,11 @@ module.exports = {
   plugins: ['prettier'],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'class-methods-use-this': 'off',
+    'import/extensions': 'off',
+    'consistent-return': 'off',
+    'no-underscore-dangle': 'off'
   },
   overrides: [
     {
