@@ -37,7 +37,6 @@ Portfolio uses a number of open source projects to work properly:
     
     # build for production and launch server
     $ npm run build
-    $ npm run preview
 
 [//]: # (
     ### Customize configuration
@@ -49,7 +48,7 @@ Portfolio uses a number of open source projects to work properly:
 
 [//]: # 'Variables for links down bellow'
 
-[git-repo-url]: https://github.com/joemccann/dillinger.git
+[git-repo-url]: https://github.com/julfy-bs
 
 [old-portfolio]: https://julfy-bs.github.io/portfolio__project/
 

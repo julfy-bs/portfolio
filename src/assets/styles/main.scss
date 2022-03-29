@@ -2,4 +2,6 @@
 @import "variables";
 @import 'mixins';
 
-@import "icons";
+@import "./global.scss";
+@import "./input.scss";
+@import "./icons.scss";

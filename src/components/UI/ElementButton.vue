@@ -36,22 +36,33 @@ export default {
 
 <style lang='scss' scoped>
 .button {
-  padding: 30px 120px;
-  border: none;
-  border-radius: 40px 5px;
-  background-image: linear-gradient(90deg,#9300e7,#4900ed);
-  text-transform: uppercase;
-  font-size: 18px;
-  font-weight: 700;
-  color: #fff;
   cursor: pointer;
-}
+  border: none;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-.button:hover {
-  background-image: linear-gradient(90deg,#b0f,#5900ff);
-}
+  &--svg {
+    padding: 5px;
+  }
 
-.button:focus {
-  outline-color: $focus-color;
+  &--gradient {
+    padding: 30px 120px;
+    border-radius: 40px 5px;
+    background-image: linear-gradient(90deg,#9300e7,#4900ed);
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+
+    &:hover {
+      background-image: linear-gradient(90deg,#b0f,#5900ff);
+    }
+  }
+
+  :focus {
+    outline-color: $focus-color;
+  }
 }
 </style>

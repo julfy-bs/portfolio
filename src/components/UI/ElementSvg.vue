@@ -5,8 +5,7 @@
     :width="currentWidth + 'px'"
     :height="currentHeight + 'px'"
     :fill="currentFill"
-    class="icon"
-    :class="`icon--${fileName}`"
+    :class="className"
   />
 </template>
 
@@ -34,6 +33,10 @@ export default {
     currentFill: {
       type: String,
       default: 'currentColor'
+    },
+    className: {
+      type: String,
+      default: ''
     }
   },
   methods: {

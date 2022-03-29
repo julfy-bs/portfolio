@@ -28,7 +28,7 @@ export default {
   right: 0;
   bottom: 0;
   left: 0;
-  background: linear-gradient(rgba(45, 60, 78, .9), rgba(45, 60, 78, .9)), 100% 20% / cover no-repeat url("../../static/images/dialog-background.png");
+  background: $dialog-gradient, 100% 20% / cover no-repeat url("../../static/images/dialog-background.png");
   display: flex;
 
   &__content {

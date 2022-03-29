@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeComponent from '@/views/HomePage.vue'
+import HomeComponent from '@/views/Home.vue'
 
 const routes = [
   {
@@ -10,21 +10,35 @@ const routes = [
   {
     path: '/admin',
     name: 'Admin',
-    component: () => import(/* webpackChunkName: "about" */ '@/views/AdminLoginPage.vue'),
+    component: () => import('@/views/Admin.vue'),
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    redirect: '/admin/login',
     children: [
+      {
+        path: '',
+        redirect: '/admin/login'
+      },
       {
         path: '/admin/login',
         name: 'Login to Admin',
-        component: () => import(/* webpackChunkName: "about" */ '@/views/AdminLoginPage.vue')
+        component: () => import('@/views/AdminLogin.vue')
       },
       {
         path: '/admin/works',
         name: 'Admin works',
-        component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue')
+        component: () => import('@/views/AdminWorks.vue')
+      }
+      ,
+      {
+        path: '/admin/about',
+        name: 'Admin about',
+        component: () => import('@/views/AdminAbout.vue')
+      },
+      {
+        path: '/admin/reviews',
+        name: 'Admin reviews',
+        component: () => import('@/views/AdminReviews.vue')
       }
     ]
   }

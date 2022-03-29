@@ -9,30 +9,22 @@
       :input-type="inputType"
       :input-placeholder="inputPlaceholder"
       :input-required="inputRequired"
+      :class="`input--${inputClass}`"
     />
     <slot />
   </div>
 </template>
 
 <script>
+import ElementInput from '@/mixins/UI/ElementInput'
+
 export default {
   name: 'InputGroup',
+  mixins: [ElementInput],
   props: {
-    inputType: {
-      type: String,
-      default: 'text'
-    },
-    inputPlaceholder: {
-      type: String,
-      required: true
-    },
     labelTitle: {
       type: String,
       required: true
-    },
-    inputRequired: {
-      type: String,
-      default: ''
     }
   }
 }

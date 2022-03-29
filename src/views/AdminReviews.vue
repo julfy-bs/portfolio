@@ -1,15 +1,17 @@
 <template>
-  <header class="header">
-    i am header
-  </header>
+  <div>
+    <h1>reviews</h1>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'TheHeader',
+  name: 'AdminReviews'
 }
 </script>
 
 <style lang='scss' scoped>
 
 </style>
+
+
