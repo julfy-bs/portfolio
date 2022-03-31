@@ -4,9 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7da6f0e7-9c26-4747-b429-fd0a6561fc25" name="Changes" comment="">
+    <list default="true" id="e1482338-dd30-47d1-93f8-6d5e7176c7ae" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/.eslintrc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/app.module.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/dist/app.module.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/app.module.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/server/dist/app.module.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/dist/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/server/dist/main.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/tsconfig.build.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/server/dist/tsconfig.build.tsbuildinfo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/app.controller.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/app.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,14 +25,21 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/server" />
-    <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="273efSDxNxCeuuq4of10FZWEtTe" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+  <component name="ProjectId" id="276K3lB6P7vr1d2ti5L5HL6Tgdb" />
+  <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -32,6 +50,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/server/src/roles" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -43,7 +62,23 @@
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/client/node_modules/typescript/lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/server/src/roles" />
+      <recent name="$PROJECT_DIR$/server" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.start:dev">
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/server/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <configuration name="start:dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/server/package.json" />
       <command value="run" />
@@ -57,46 +92,25 @@
     <recent_temporary>
       <list>
         <item itemvalue="npm.start:dev" />
+        <item itemvalue="npm.start" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="7da6f0e7-9c26-4747-b429-fd0a6561fc25" name="Changes" comment="" />
-      <created>1648553300176</created>
+      <changelist id="e1482338-dd30-47d1-93f8-6d5e7176c7ae" name="Changes" comment="" />
+      <created>1648634898618</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1648553300176</updated>
-      <workItem from="1648553301453" duration="2554000" />
+      <updated>1648634898618</updated>
+      <workItem from="1648634900524" duration="13770000" />
+      <workItem from="1648701547934" duration="10137000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="feature/server" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

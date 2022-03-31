@@ -8,14 +8,36 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
-const app_controller_1 = require("./app.controller");
-const app_service_1 = require("./app.service");
+const sequelize_1 = require("@nestjs/sequelize");
+const users_module_1 = require("./users/users.module");
+const roles_module_1 = require("./roles/roles.module");
+const config_1 = require("@nestjs/config");
+const users_model_1 = require("./users/users.model");
+const roles_model_1 = require("./roles/roles.model");
+const user_roles_model_1 = require("./roles/user-roles.model");
+const auth_module_1 = require("./auth/auth.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-        controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService]
+        imports: [
+            config_1.ConfigModule.forRoot({
+                envFilePath: `.${process.env.NODE_ENV}.env`
+            }),
+            sequelize_1.SequelizeModule.forRoot({
+                dialect: 'postgres',
+                host: process.env.POSTGRES_HOST,
+                port: Number(process.env.POSTGRES_PORT),
+                username: process.env.POSTGRES_USER,
+                password: process.env.POSTGRES_PASSWORD.toString(),
+                database: process.env.POSTGRES_DB,
+                models: [users_model_1.User, roles_model_1.Role, user_roles_model_1.UserRoles],
+                autoLoadModels: true
+            }),
+            users_module_1.UsersModule,
+            roles_module_1.RolesModule,
+            auth_module_1.AuthModule,
+        ],
     })
 ], AppModule);
 exports.AppModule = AppModule;
