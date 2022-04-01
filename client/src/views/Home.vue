@@ -1,13 +1,26 @@
 <template>
-  <main>
-    <h1>home page</h1>
+  <HomeHeader />
+  <main id="main">
+    <div class="container">
+      <h1>home page</h1>
+    </div>
   </main>
 </template>
 <script>
+import HomeHeader from '@/components/HomeHeader/index.ts'
 
 export default {
   name: 'HomePage',
-  components: {}
+  components: {
+    HomeHeader
+  }
 
 }
 </script>
+
+<style lang='scss' scoped>
+
+#main {
+  padding-top: 200vh;
+}
+</style>

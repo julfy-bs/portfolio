@@ -8,6 +8,7 @@ $white: #FFFFFF;
 $black: #000000;
 $gray: #414C63;
 $gray-svg: #A9AEB9;
+$blue: #464D62;
 $dark-blue: #3e3e59;
 
 //interactive hover, focus
@@ -23,6 +24,13 @@ $info: #BDE5F8;
 $info-main: #00529B;
 $warning: #FEEFB3;
 $warning-main: #9F6000;
+
+//
+$header-height: 55px;
+
+//logo
+$logo-font-size: 36px;
+$logo-font-weight: 800;
 
 $dialog-gradient: linear-gradient(rgba(45, 60, 78, .9), rgba(45, 60, 78, .9));
 $admin-gradient: linear-gradient(rgba(252, 252, 254, .89), rgba(252, 252, 254, .99))

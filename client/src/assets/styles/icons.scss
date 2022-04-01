@@ -7,6 +7,7 @@
     left: 9px;
     fill: $gray-svg;
   }
+
   &--plus {
     position: absolute;
     top: 6px;
@@ -24,6 +25,10 @@
   &--password {
     width: 30px;
     height: 30px;
+  }
+
+  &--socials {
+    fill: $gray;
   }
 }
 
@@ -48,5 +53,11 @@
     &--remove {
       fill: $error-main;
     }
+  }
+}
+
+a:hover {
+  .icon--socials {
+      fill: $focus-color;
   }
 }
