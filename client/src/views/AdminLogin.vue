@@ -56,6 +56,8 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+@import "src/assets/styles/_variables.scss";
+
 .login {
   display: flex;
   flex-flow: column nowrap;
@@ -65,7 +67,7 @@ export default {
   &__title {
     font-size: 36px;
     font-weight: 500;
-    color: $gray;
+    color: $text-default-color;
     margin-bottom: 34px;
   }
 }

@@ -1,3 +1,68 @@
 <template id="app">
-  <router-view />
+  <div class="app__container">
+    <router-view />
+  </div>
 </template>
+
+<style lang='scss'>
+@import "src/assets/styles/_variables.scss";
+
+.app__container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: $bg;
+  transition: background-color .5s;
+  padding-top: $banner-height;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: $font-family-base;
+  letter-spacing: .2px;
+  line-height: 24px;
+  font-size: 16px;
+  font-weight: 400;
+  color: $text-light-1;
+  background-color: $bg;
+  direction: ltr;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  transition: color .5s, background-color .5s;
+  -webkit-font-smoothing: antialiased;
+}
+
+button, input, optgroup, select, textarea {
+  border: 0;
+  padding: 0;
+  line-height: inherit;
+  color: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+button {
+  padding: 0;
+  background-color: transparent;
+  background-image: none;
+}
+
+button, [role=button] {
+  cursor: pointer;
+}
+</style>

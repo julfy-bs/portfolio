@@ -31,6 +31,8 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+@import "src/assets/styles/_variables.scss";
+
 .skill__header {
   display: flex;
   flex-flow: row nowrap;
@@ -38,6 +40,7 @@ export default {
   align-items: center;
   width: 100%;
   padding-bottom: 15px;
+  // todo: var
   border-bottom: 1px solid #1f232d1a;
   margin-bottom: 30px;
 }

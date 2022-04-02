@@ -22,6 +22,8 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+@import "src/assets/styles/_variables.scss";
+
 .dialog {
   position: fixed;
   top: 0;
@@ -33,7 +35,8 @@ export default {
 
   &__content {
     margin: auto;
-    background: $white;
+    // todo: сменить переменную
+    //background: $white;
     padding: 30px 80px;
     border-radius: 14px;
     box-shadow: 10px 10px 5px rgba(45, 60, 78, .3);

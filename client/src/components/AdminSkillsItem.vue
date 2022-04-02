@@ -21,11 +21,14 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+@import "src/assets/styles/_variables.scss";
+
 .skill {
   width: 50%;
   min-height: 400px;
   padding: 30px 20px;
-  background: $white;
+  // todo: color
+  //background: $white;
   border-radius: 14px;
   box-shadow: 10px 10px 5px rgba(45, 60, 78, .3);
   display: flex;

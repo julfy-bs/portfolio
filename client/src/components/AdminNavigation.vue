@@ -38,6 +38,8 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+@import "src/assets/styles/_variables.scss";
+
 .nav {
   height: 78px;
 }
@@ -65,7 +67,7 @@ export default {
   text-decoration: none;
 
   &:-webkit-any-link {
-    color: $gray;
+    color: inherit;
   }
 }
 

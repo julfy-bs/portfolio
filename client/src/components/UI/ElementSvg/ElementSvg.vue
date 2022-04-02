@@ -2,10 +2,10 @@
   <inline-svg
     :title="addTitle(fileName)"
     :src="require(`@/assets/icons/${checkFileName(fileName)}.svg`)"
-    :width="currentWidth + 'px'"
-    :height="currentHeight + 'px'"
     :fill="currentFill"
     :class="className"
+    :width="currentWidth + 'px'"
+    :height="currentHeight + 'px'"
   />
 </template>
 
@@ -22,17 +22,17 @@ export default {
       type: String,
       required: true
     },
-    currentWidth: {
-      type: Number,
-      default: 30
-    },
-    currentHeight: {
-      type: Number,
-      default: 30
-    },
     currentFill: {
       type: String,
       default: 'currentColor'
+    },
+    currentWidth: {
+      type: Number,
+      default: 10
+    },
+    currentHeight: {
+      type: Number,
+      default: 10
     },
     className: {
       type: String,

@@ -20,10 +20,12 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+@import "src/assets/styles/_variables.scss";
+
 .title {
   font-weight: 600;
   font-size: 21px;
-  color: $gray;
+  color: $text-default-color;
 
 }
 </style>
