@@ -35,6 +35,8 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+@import "src/assets/styles/_variables.scss";
+
 .button {
   cursor: pointer;
   border: none;
@@ -47,6 +49,7 @@ export default {
     padding: 5px;
   }
 
+  //todo: var
   &--gradient {
     padding: 30px 120px;
     border-radius: 40px 5px;

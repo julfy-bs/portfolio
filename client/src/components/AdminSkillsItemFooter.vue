@@ -41,6 +41,8 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+@import "src/assets/styles/_variables.scss";
+
 .skill__footer {
   border-top: 1px solid #1f232d1a;
   margin: auto 0 0;
@@ -71,7 +73,7 @@ export default {
     bottom: 50%;
     font-weight: 700;
     font-size: 18px;
-    color: $gray;
+    color: $text-default-color;
     width: 10px;
     height: 10px;
     transform: translateY(-50%);

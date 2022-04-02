@@ -1,3 +1,5 @@
+@import "variables";
+
 .icon {
   transition: fill .2s ease, stroke .2s ease;
 
@@ -7,6 +9,7 @@
     left: 9px;
     fill: $gray-svg;
   }
+
   &--plus {
     position: absolute;
     top: 6px;

@@ -1,18 +1,107 @@
-$bp-desktop-hd: 1800px;
-$bp-desktop: 1280px;
-$bp-tablets: 768px;
-$bp-phones: 480px;
+@function header-line-height() {
+  @return $header-height - 1px;
+}
 
-// primitive color
-$white: #FFFFFF;
-$black: #000000;
-$gray: #414C63;
-$gray-svg: #A9AEB9;
+@function nav-screen-top() {
+  @return $header-height + $banner-height
+}
+
+@function main-padding-top($padding) {
+  @return $header-height + $banner-height + $padding;
+}
+
+// media
+$screen-max-width: 1376px;
+$desktop-hd: 1800px;
+$desktop: 1280px;
+$tablets: 768px;
+$phones: 480px;
+
+//font
+$font-family-base: Inter, -apple-system, sans-serif;
+
+
+// primary colors
+$white: #ffffff;
+$white-soft: #f9f9f9;
+$white-mute: #f1f1f1;
+$black: #1a1a1a;
+$black-pure: #000000;
+$black-soft: #242424;
+$black-mute: #2f2f2f;
+$indigo: #213547;
+$indigo-soft: #476582;
+$indigo-light: #aac8e4;
+$gray: #8e8e8e;
+$gray-light-1: #aeaeae;
+$gray-light-2: #c7c7c7;
+$gray-light-3: #d1d1d1;
+$gray-light-4: #e5e5e5;
+$gray-light-5: #f2f2f2;
+$gray-dark-1: #636363;
+$gray-dark-2: #484848;
+$gray-dark-3: #3a3a3a;
+$gray-dark-4: #282828;
+$gray-dark-5: #202020;
+$divider-light-1: rgba(60, 60, 60, .29);
+$divider-light-2: rgba(60, 60, 60, .12);
+$divider-dark-1: rgba(84, 84, 84, .65);
+$divider-dark-2: rgba(84, 84, 84, .48);
+$text-light-1: $indigo;
+$text-light-2: rgba(60, 60, 60, .7);
+$text-light-3: rgba(60, 60, 60, .33);
+$text-light-4: rgba(60, 60, 60, .18);
+$text-light-code: $indigo-soft;
+$text-dark-1: rgba(255, 255, 255, .87);
+$text-dark-2: rgba(235, 235, 235, .6);
+$text-dark-3: rgba(235, 235, 235, .38);
+$text-dark-4: rgba(235, 235, 235, .18);
+$text-dark-code: $indigo-light;
+$green: #42b883;
+$green-light: #42d392;
+$green-lighter: #35eb9a;
+$green-dark: #33a06f;
+$green-darker: #155f3e;
+$blue: #3b8eed;
+$blue-light: #549ced;
+$blue-lighter: #50a2ff;
+$blue-dark: #3468a3;
+$blue-darker: #255489;
+$yellow: #ffc517;
+$yellow-light: #ffe417;
+$yellow-lighter: #ffff17;
+$yellow-dark: #e0ad15;
+$yellow-darker: #bc9112;
+$red: #ed3c50;
+$red-light: #f43771;
+$red-lighter: #fd1d7c;
+$red-dark: #cd2d3f;
+$red-darker: #ab2131;
+$purple: #de41e0;
+$purple-light: #e936eb;
+$purple-lighter: #f616f8;
+$purple-dark: #823c83;
+$purple-darker: #602960;
+
+// background color
+$bg: $white;
+$bg-soft: $white-soft;
+$bg-mute: $white-mute;
+
+// text color
+$text-default-color: $text-light-2;
+$text-default-color-dark: #ffffffde;
+$text-link-default-color: $text-light-1;
+
+$blue: #464D62;
 $dark-blue: #3e3e59;
+// todo: $gray-svg сменить название на понятное
+$gray-svg: #A9AEB9;
 
 //interactive hover, focus
 $focus-color: #5500F2;
-$hover-color: #5500F2;
+$hover-color: #213547;
+$link-hover-color: #42b883;
 
 // status color
 $error: #FFD2D2;
@@ -24,5 +113,28 @@ $info-main: #00529B;
 $warning: #FEEFB3;
 $warning-main: #9F6000;
 
+// header
+$header-background-color: #fff;
+$header-height: 55px;
+$header-line-height: header-line-height();
+$header-border: 1px solid #3c3c3c1f;
+
+//logo
+$logo-font-weight: 600;
+$logo-font-size-small: 20px;
+$logo-font-weight-small: 500;
+
+// z-index
+$z-index-local-nav: 10;
+$z-index-nav: 20;
+$z-index-banner: 30;
+$z-index-backdrop: 40;
+$z-index-sidebar: 50;
+
+// banner
+$banner-height: 0;
+
+// gradient
 $dialog-gradient: linear-gradient(rgba(45, 60, 78, .9), rgba(45, 60, 78, .9));
-$admin-gradient: linear-gradient(rgba(252, 252, 254, .89), rgba(252, 252, 254, .99))
+$admin-gradient: linear-gradient(rgba(252, 252, 254, .89), rgba(252, 252, 254, .99));
+$vue-gradient: linear-gradient(315deg,#42d392 25%,#647eff);

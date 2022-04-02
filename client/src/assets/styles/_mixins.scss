@@ -1,23 +1,23 @@
 @mixin desktopHd() {
-  @media screen and (max-width: $bp-desktop-hd) {
+  @media screen and (max-width: $desktop-hd) {
     @content;
   }
 }
 
 @mixin desktop() {
-  @media screen and (max-width: $bp-desktop) {
+  @media screen and (max-width: $desktop) {
     @content;
   }
 }
 
 @mixin tablets() {
-  @media screen and (max-width: $bp-tablets) {
+  @media screen and (max-width: $tablets) {
     @content;
   }
 }
 
 @mixin phones() {
-  @media screen and (max-width: $bp-phones) {
+  @media screen and (max-width: $phones) {
     @content;
   }
 }
