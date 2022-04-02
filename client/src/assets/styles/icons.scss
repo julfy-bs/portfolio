@@ -1,3 +1,5 @@
+@import "variables";
+
 .icon {
   transition: fill .2s ease, stroke .2s ease;
 
@@ -26,10 +28,6 @@
     width: 30px;
     height: 30px;
   }
-
-  &--socials {
-    fill: $gray;
-  }
 }
 
 .input:focus + .icon {
@@ -53,11 +51,5 @@
     &--remove {
       fill: $error-main;
     }
-  }
-}
-
-a:hover {
-  .icon--socials {
-      fill: $focus-color;
   }
 }

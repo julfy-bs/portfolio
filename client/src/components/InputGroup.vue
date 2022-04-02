@@ -31,6 +31,8 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+@import "src/assets/styles/_variables.scss";
+
 .input__group {
   position: relative;
   display: flex;
@@ -42,6 +44,7 @@ export default {
 .input__label {
   font-weight: 600;
   margin-bottom: 10px;
+  // todo: var
   color: $gray-svg;
   padding-left: 45px;
 }

@@ -1,47 +1,35 @@
 <template>
   <nav class="navigation">
-    <ul class="navigation__list">
-      <li class="navigation__item">
-        <a
-          href="#header"
-          class="navigation__link"
-        >
-          Главная
-        </a>
-      </li>
-      <li class="navigation__item">
-        <a
-          href="#main"
-          class="navigation__link"
-        >
-          Обо мне
-        </a>
-      </li>
-      <li class="navigation__item">
-        <a
-          href=""
-          class="navigation__link"
-        >
-          Навыки
-        </a>
-      </li>
-      <li class="navigation__item">
-        <a
-          href=""
-          class="navigation__link"
-        >
-          Работы
-        </a>
-      </li>
-      <li class="navigation__item">
-        <a
-          href=""
-          class="navigation__link"
-        >
-          Отзывы
-        </a>
-      </li>
-    </ul>
+    <a
+      href="#header"
+      class="navigation__link"
+    >
+      Главная
+    </a>
+    <a
+      href="#main"
+      class="navigation__link"
+    >
+      Обо мне
+    </a>
+    <a
+      href=""
+      class="navigation__link"
+    >
+      API
+    </a>
+    <a
+      href=""
+      class="navigation__link"
+    >
+      Работы
+    </a>
+    <a
+      href=""
+      class="navigation__link"
+    >
+      Отзывы
+    </a>
   </nav>
 </template>
 
@@ -52,19 +40,27 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-.navigation__list {
-  display: flex;
-}
+@import "src/assets/styles/_variables.scss";
 
-.navigation__item {
-  padding: 0 30px;
+.navigation {
+  display: none;
+
+  @media (min-width: $bp-desktop) {
+    display: flex;
+  }
 }
 
 .navigation__link {
+  display: block;
+  padding: 0 12px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: $header-line-height;
+  color: $text-link-default-color;
   transition: color .25s;
 
   &:hover {
-    color: $hover-color;
+    color: $link-hover-color;
   }
 }
 </style>

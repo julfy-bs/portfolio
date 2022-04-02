@@ -75,6 +75,8 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+@import "src/assets/styles/_variables.scss";
+
 .skill__buttons-list {
   display: flex;
   flex-flow: row nowrap;

@@ -42,11 +42,14 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+@import "src/assets/styles/_variables.scss";
+
 .header {
   width: 100%;
   height: 80px;
   background-color: $dark-blue;
-  color: $white;
+  // todo: color
+  //color: $white;
 }
 
 .header__container {
@@ -100,7 +103,7 @@ export default {
 .header__nav-logout {
   background: transparent;
   border: none;
-  color: $white;
+  color: $text-default-color-dark;
   padding: 5px;
 
   &:hover {

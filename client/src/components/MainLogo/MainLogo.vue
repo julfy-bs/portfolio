@@ -1,5 +1,7 @@
 <template>
-  <div class="logo">
+  <div
+    class="logo"
+  >
     BS
   </div>
 </template>
@@ -11,8 +13,16 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+@import "src/assets/styles/_variables.scss";
+
 .logo {
-  font-size: $logo-font-size;
-  font-weight: $logo-font-weight;
+  display: flex;
+  align-items: center;
+  padding-top: 1px;
+  height: $header-height;
+  transition: opacity .25s;
+
+  font-size: 16px;
+  font-weight: 500;
 }
 </style>
