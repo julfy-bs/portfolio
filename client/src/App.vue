@@ -40,6 +40,13 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+button, input, optgroup, select, textarea {
+  border: 0;
+  padding: 0;
+  line-height: inherit;
+  color: inherit;
+}
+
 ul, ol {
   list-style: none;
 }
@@ -49,4 +56,13 @@ a {
   text-decoration: inherit;
 }
 
+button {
+  padding: 0;
+  background-color: transparent;
+  background-image: none;
+}
+
+button, [role=button] {
+  cursor: pointer;
+}
 </style>

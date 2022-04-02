@@ -1,7 +1,10 @@
 <template>
-  <div class="socials">
+  <div
+    class="socials"
+    :class="isBurgerActive ? 'socials--burger-is-active' : ''"
+  >
     <a
-      href="https://github.com/julfy-bs"
+      href="https://t.me/julfy_bs"
       class="socials__link socials__link--is-small"
       target="_blank"
     >
@@ -21,7 +24,7 @@
       />
     </a>
     <a
-      href="https://t.me/julfy_bs"
+      href="https://discordapp.com/users/236551328313114635/"
       class="socials__link socials__link--is-small"
       target="_blank"
     >
@@ -40,6 +43,12 @@ export default {
   name: 'MainSocials',
   components: {
     elementSvg
+  },
+  props: {
+    isBurgerActive: {
+      type: Boolean,
+      default: false
+    }
   }
 }
 </script>
@@ -49,13 +58,20 @@ export default {
 
 .socials {
   display: none;
+  justify-content: center;
   margin-right: -10px;
   margin-left: 12px;
 
-  @media (min-width: $bp-desktop) {
+  @media (min-width: $desktop) {
     display: flex;
   }
+
+  &--burger-is-active {
+    display: flex;
+    margin: 12px 0 0;
+  }
 }
+
 
 .socials__link {
   display: flex;

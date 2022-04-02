@@ -2,12 +2,20 @@
   @return $header-height - 1px;
 }
 
+@function nav-screen-top() {
+  @return $header-height + $banner-height
+}
+
+@function main-padding-top($padding) {
+  @return $header-height + $banner-height + $padding;
+}
+
 // media
 $screen-max-width: 1376px;
-$bp-desktop-hd: 1800px;
-$bp-desktop: 1280px;
-$bp-tablets: 768px;
-$bp-phones: 480px;
+$desktop-hd: 1800px;
+$desktop: 1280px;
+$tablets: 768px;
+$phones: 480px;
 
 //font
 $font-family-base: Inter, -apple-system, sans-serif;

@@ -1,9 +1,16 @@
 <template>
   <HomeHeader />
   <main id="main">
-    <div class="container">
-      <h1>home page</h1>
-    </div>
+    <section id="hero">
+      <h1 class="hero-title">
+        Личный сайт
+        <br>
+        <span class="gradient">
+          Frontend
+        </span>
+        разработчика
+      </h1>
+    </section>
   </main>
 </template>
 <script>
@@ -21,6 +28,6 @@ export default {
 <style lang='scss' scoped>
 
 #main {
-  padding-top: 200vh;
+  padding-top: main-padding-top(40);
 }
 </style>
