@@ -6,16 +6,17 @@
   @return $header-height + $banner-height
 }
 
-@function main-padding-top($padding) {
-  @return $header-height + $banner-height + $padding;
+@function main-padding-top() {
+  @return $header-height + $banner-height;
 }
 
 // media
 $screen-max-width: 1376px;
 $desktop-hd: 1800px;
 $desktop: 1280px;
+$tablets-big: 960;
 $tablets: 768px;
-$phones: 480px;
+$phones: 370px;
 
 //font
 $font-family-base: Inter, -apple-system, sans-serif;
