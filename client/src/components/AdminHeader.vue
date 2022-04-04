@@ -103,7 +103,7 @@ export default {
 .header__nav-logout {
   background: transparent;
   border: none;
-  color: $text-default-color-dark;
+  color: $text-2;
   padding: 5px;
 
   &:hover {

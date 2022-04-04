@@ -73,7 +73,7 @@ export default {
     bottom: 50%;
     font-weight: 700;
     font-size: 18px;
-    color: $text-default-color;
+    color: $text-2;
     width: 10px;
     height: 10px;
     transform: translateY(-50%);

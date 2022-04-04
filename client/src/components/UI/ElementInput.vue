@@ -27,7 +27,7 @@ export default {
   border-radius: 12px;
   font-weight: 700;
   font-size: 18px;
-  color: $text-default-color;
+  color: $text-2;
   border-bottom: 1px solid transparent;
   border-image: linear-gradient(to left, transparent 15%, black 15%, black 85%, transparent 85%) 20;
 
