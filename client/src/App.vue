@@ -16,7 +16,7 @@
   padding-top: $banner-height;
 }
 
-* {
+*, :before, :after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -31,7 +31,7 @@ body {
   line-height: 24px;
   font-size: 16px;
   font-weight: 400;
-  color: $text-light-1;
+  color: $text-1;
   background-color: $bg;
   direction: ltr;
   font-synthesis: none;

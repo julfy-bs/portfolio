@@ -25,7 +25,7 @@ export default {
 .title {
   font-weight: 600;
   font-size: 21px;
-  color: $text-default-color;
+  color: $text-2;
 
 }
 </style>

@@ -25,6 +25,7 @@ export default {
 
 .admin-main {
   background: $admin-gradient, 100% 34% / cover no-repeat url("../static/images/dialog-background.png");;
+  // todo: var
   min-height: calc(100vh - 80px - 80px);
   padding-top: 60px;
 }

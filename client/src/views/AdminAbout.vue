@@ -13,7 +13,3 @@ export default {
   components: { AdminSkillsGroup }
 }
 </script>
-
-<style lang='scss' scoped>
-
-</style>
