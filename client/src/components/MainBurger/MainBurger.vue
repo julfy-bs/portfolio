@@ -38,7 +38,7 @@ export default {
   width: 40px;
   height: $header-height;
 
-  @media (min-width: $desktop) {
+  @media (min-width: $tablets) {
     display: none;
   }
 }
@@ -54,7 +54,7 @@ export default {
   position: absolute;
   width: 16px;
   height: 2px;
-  background-color: $text-light-1;
+  background-color: $text-1;
   transition: top .25s, background-color .5s, transform .25s;
 }
 

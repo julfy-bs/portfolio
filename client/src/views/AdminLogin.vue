@@ -67,7 +67,7 @@ export default {
   &__title {
     font-size: 36px;
     font-weight: 500;
-    color: $text-default-color;
+    color: $text-2;
     margin-bottom: 34px;
   }
 }

@@ -12,7 +12,7 @@
         разработчика
       </h1>
     </section>
-    <canvas id="canvas" />
+    <div class="divider" />
   </main>
 </template>
 <script>
@@ -29,23 +29,14 @@ export default {
 <style lang='scss' scoped>
 @import "src/assets/styles/_variables.scss";
 
-#canvas {
-  display: block;
-  width: 100vw;
-  height: 62px;
-  background: $bg;
-  border-top: 1px solid $divider-light-2;
-  border-bottom: 1px solid $divider-light-2;
-}
-
 #main {
   @media (min-width: 960px) {
-    padding-top: main-padding-top();
+    padding-top: $header-height;
   }
 }
 
 #hero {
-  padding: 96px 32px;
+  padding: 150px 32px;
   text-align: center;
 }
 
@@ -69,6 +60,16 @@ export default {
   @media (max-width: $phones) {
     font-size: 36px;
   }
+}
+
+.divider {
+  display: block;
+  width: 100vw;
+  height: $hero-divider-height;
+  background: $bg;
+  border-top: 1px solid $divider-2;
+  border-bottom: 1px solid $divider-2;
+  transition: background-color 0.5s;
 }
 
 .gradient {

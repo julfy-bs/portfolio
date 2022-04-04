@@ -72,12 +72,20 @@ export default {
   }
 }
 
+.menu__group .socials {
+  display: flex;
+  margin: 0;
+}
+
+.appearance + .socials {
+  margin-left: 12px;
+}
 
 .socials__link {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: $text-default-color;
+  color: $text-2;
   transition: fill .2s ease, stroke .2s ease;
 
   &--is-small {

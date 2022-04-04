@@ -19,7 +19,8 @@ module.exports = {
     'class-methods-use-this': 'off',
     'import/extensions': 'off',
     'consistent-return': 'off',
-    'no-underscore-dangle': 'off'
+    'no-underscore-dangle': 'off',
+    'no-unused-expressions': 'off'
   },
   overrides: [
     {

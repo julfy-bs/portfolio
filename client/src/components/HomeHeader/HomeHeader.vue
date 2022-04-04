@@ -9,7 +9,9 @@
         <div class="content">
           <!--todo: поиск-->
           <home-navigation :close-burger="closeMenu" />
+          <change-appearance />
           <main-socials />
+          <main-extra />
           <main-burger
             :is-active="isBurgerActive"
             :toggle-burger="toggleBurger"
@@ -37,6 +39,8 @@ import MainLogo from '@/components/MainLogo/MainLogo.vue'
 import HomeNavigation from '@/components/HomeNavigation/HomeNavigation.vue'
 import MainSocials from '@/components/MainSocials/MainSocials.vue'
 import MainBurger from '@/components/MainBurger/MainBurger'
+import ChangeAppearance from '@/components/MainAppearance/ChangeAppearance'
+import MainExtra from '@/components/MainExtra/MainExtra'
 import { ref } from 'vue'
 
 export default {
@@ -45,7 +49,9 @@ export default {
     MainLogo,
     HomeNavigation,
     MainSocials,
-    MainBurger
+    ChangeAppearance,
+    MainBurger,
+    MainExtra
   },
   setup() {
     const isBurgerActive = ref(false)
@@ -83,10 +89,10 @@ export default {
 
 .navbar {
   position: relative;
-  border-bottom: $header-border;
+  border-bottom: 1px solid $divider-2;
   padding: 0 12px 0 24px;
   height: $header-height;
-  background-color: $header-background-color;
+  background-color: $bg;
   transition: border-color .5s, background-color .5s;
 
   @media (min-width: 768px) {
@@ -115,7 +121,7 @@ export default {
 
 .nav-screen {
   position: fixed;
-  top: nav-screen-top();
+  top: $header-height;
   right: 0;
   bottom: 0;
   left: 0;

@@ -69,7 +69,7 @@ export default {
   display: none;
   justify-content: center;
 
-  @media (min-width: $desktop) {
+  @media (min-width: $tablets) {
     display: flex;
   }
 
@@ -85,11 +85,11 @@ export default {
   font-size: 13px;
   font-weight: 500;
   line-height: $header-line-height;
-  color: $text-link-default-color;
+  color: $text-1;
   transition: color .25s;
 
   &--burger-is-active {
-    border-bottom: 1px solid $divider-light-2;
+    border-bottom: 1px solid $divider-2;
     padding: 12px 0 11px;
     line-height: 24px;
     font-size: 14px;
@@ -97,7 +97,7 @@ export default {
   }
 
   &:hover {
-    color: $link-hover-color;
+    color: $hover-link-color;
   }
 }
 </style>

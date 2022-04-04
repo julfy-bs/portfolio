@@ -7,7 +7,3 @@ export default {
   name: 'AdminWorksPage'
 }
 </script>
-
-<style lang='scss' scoped>
-
-</style>
