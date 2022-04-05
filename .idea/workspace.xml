@@ -4,26 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4f7b4735-eed6-4732-b938-7618c56a1a96" name="Changes" comment="">
+    <list default="true" id="e95b890a-1bae-476e-90ca-49b18bf09146" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/.eslintrc.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/icons/darkmode.svg" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/icons/moon.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/icons/lightmode.svg" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/icons/sun.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/styles/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/styles/_variables.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/AdminHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminHeader.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/AdminSkillsItemFooter.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminSkillsItemFooter.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeHeader/HomeHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeHeader/HomeHeader.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeNavigation/HomeNavigation.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeNavigation/HomeNavigation.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/MainBurger/MainBurger.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MainBurger/MainBurger.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/MainSocials/MainSocials.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MainSocials/MainSocials.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/ElementInput.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementTitle.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/ElementTitle.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/Admin.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/Admin.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/AdminAbout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/AdminAbout.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/AdminLogin.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/AdminLogin.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/AdminReviews.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/AdminReviews.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/AdminWorks.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/AdminWorks.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/Home.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -42,7 +24,7 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="27KUxa1tCGT7Kn25NygHWzVj28A" />
+  <component name="ProjectId" id="27O4bTOb8ny6OaRzIySvvBXef4o" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
@@ -58,10 +40,21 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/client/node_modules/typescript/lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager">
-    <configuration name="serve" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="npm.serve (1)">
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/server/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="serve (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/client/package.json" />
       <command value="run" />
       <scripts>
@@ -71,21 +64,55 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="serve" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="serve" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="server (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/server/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="server" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="server" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="server" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.serve (1)" />
+        <item itemvalue="npm.server (1)" />
+        <item itemvalue="npm.server" />
         <item itemvalue="npm.serve" />
+        <item itemvalue="npm.dev" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="4f7b4735-eed6-4732-b938-7618c56a1a96" name="Changes" comment="" />
-      <created>1649068521715</created>
+      <changelist id="e95b890a-1bae-476e-90ca-49b18bf09146" name="Changes" comment="" />
+      <created>1649177872356</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1649068521715</updated>
-      <workItem from="1649068523959" duration="26938000" />
+      <updated>1649177872356</updated>
+      <workItem from="1649177874751" duration="182000" />
     </task>
     <servers />
   </component>
@@ -97,19 +124,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="feature/hero" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>

@@ -13,6 +13,9 @@
       </h1>
     </section>
     <div class="divider" />
+    <section class="about">
+      obo mne
+    </section>
   </main>
 </template>
 <script>
