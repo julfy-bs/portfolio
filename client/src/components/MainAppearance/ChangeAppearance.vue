@@ -84,6 +84,10 @@ export default {
   }
 }
 
+.appearance--burger > .appearance {
+  display: flex;
+}
+
 .navigation + .appearance {
   margin-left: 8px;
 }

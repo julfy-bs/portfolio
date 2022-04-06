@@ -28,6 +28,12 @@
           :close-burger="closeMenu"
           :is-burger-active="isBurgerActive"
         />
+        <div class="appearance--burger">
+          <p class="appearance__text">
+            Сменить тему
+          </p>
+          <change-appearance />
+        </div>
         <main-socials :is-burger-active="isBurgerActive" />
       </div>
     </div>
@@ -80,7 +86,7 @@ export default {
   z-index: $z-index-nav;
 
 
-  @media (min-width: 960px) {
+  @media (min-width: $tablets-big) {
     position: fixed;
     top: $banner-height;
     width: 100%;
@@ -136,5 +142,24 @@ export default {
   margin: 0 auto;
   padding: 24px 0 96px;
   max-width: 288px;
+}
+
+.navigation--burger-is-active + .appearance--burger {
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+  padding: 12px 14px 12px 16px;
+  background-color: $bg-soft;
+  transition: background-color .5s;
+}
+
+.appearance__text {
+  line-height: 24px;
+  font-size: 12px;
+  font-weight: 500;
+  color: $text-2;
+  transition: color .5s;
 }
 </style>

@@ -4,7 +4,7 @@
     :class="isBurgerActive ? 'navigation--burger-is-active' : ''"
   >
     <a
-      href="#top"
+      href="#hero"
       class="navigation__link"
       :class="isBurgerActive ? 'navigation__link--burger-is-active' : ''"
       @click="closeBurger"
