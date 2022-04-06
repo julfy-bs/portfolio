@@ -80,7 +80,7 @@ export default {
   z-index: $z-index-nav;
 
 
-  @media (min-width: 960px) {
+  @media (min-width: $tablets-big) {
     position: fixed;
     top: $banner-height;
     width: 100%;

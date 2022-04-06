@@ -65,4 +65,8 @@ button {
 button, [role=button] {
   cursor: pointer;
 }
+
+section {
+  padding: 42px 32px;
+}
 </style>

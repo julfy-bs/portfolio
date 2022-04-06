@@ -1,7 +1,12 @@
 <template>
   <HomeHeader />
-  <main id="main">
-    <section id="hero">
+  <main
+    id="hero"
+    class="main"
+  >
+    <section
+      class="hero"
+    >
       <h1 class="hero-title">
         Личный сайт
         <br>
@@ -13,18 +18,18 @@
       </h1>
     </section>
     <div class="divider" />
-    <section class="about">
-      obo mne
-    </section>
+    <home-about />
   </main>
 </template>
 <script>
 import HomeHeader from '@/components/HomeHeader/HomeHeader.vue'
+import HomeAbout from '@/components/HomeAbout/HomeAbout.vue'
 
 export default {
   name: 'HomePage',
   components: {
-    HomeHeader
+    HomeHeader,
+    HomeAbout
   }
 }
 </script>
@@ -32,15 +37,30 @@ export default {
 <style lang='scss' scoped>
 @import "src/assets/styles/_variables.scss";
 
-#main {
+.main {
   @media (min-width: 960px) {
     padding-top: $header-height;
   }
 }
 
-#hero {
-  padding: 150px 32px;
+.hero {
+  padding: 209px 32px;
   text-align: center;
+
+  @media (max-width: $tablets-big) {
+    padding-top: 229px;
+    padding-bottom: 229px;
+  }
+
+  @media (max-width: $tablets) {
+    padding-top: 262px;
+    padding-bottom: 262px;
+  }
+
+  @media (max-width: $phones) {
+    padding-top: 275px;
+    padding-bottom: 275px;
+  }
 }
 
 .hero-title {
@@ -66,13 +86,11 @@ export default {
 }
 
 .divider {
-  display: block;
-  width: 100vw;
-  height: $hero-divider-height;
-  background: $bg;
-  border-top: 1px solid $divider-2;
-  border-bottom: 1px solid $divider-2;
-  transition: background-color 0.5s;
+  height: 65px;
+  border-top: 1px solid $divider-1;
+  border-bottom: 1px solid $divider-1;
+  padding: 12px 24px;
+  text-align: center;
 }
 
 .gradient {

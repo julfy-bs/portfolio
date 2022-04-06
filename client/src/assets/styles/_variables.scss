@@ -51,11 +51,11 @@
   --bg-soft: var(--c-white-soft);
   --bg-mute: var(--c-white-mute);
 
-  --c-gray-1: var(--gray-light-1);
-  --c-gray-2: var(--gray-light-2);
-  --c-gray-3: var(--gray-light-3);
-  --c-gray-4: var(--gray-light-4);
-  --c-gray-5: var(--gray-light-5);
+  --c-gray-1: var(--c-gray-light-1);
+  --c-gray-2: var(--c-gray-light-2);
+  --c-gray-3: var(--c-gray-light-3);
+  --c-gray-4: var(--c-gray-light-4);
+  --c-gray-5: var(--c-gray-light-5);
   --c-divider-1: var(--c-divider-light-1);
   --c-divider-2: var(--c-divider-light-2);
 
@@ -80,11 +80,11 @@
   --bg-soft: var(--c-black-soft);
   --bg-mute: var(--c-black-mute);
 
-  --c-gray-1: var(--gray-dark-1);
-  --c-gray-2: var(--gray-dark-2);
-  --c-gray-3: var(--gray-dark-3);
-  --c-gray-4: var(--gray-dark-4);
-  --c-gray-5: var(--gray-dark-5);
+  --c-gray-1: var(--c-gray-dark-1);
+  --c-gray-2: var(--c-gray-dark-2);
+  --c-gray-3: var(--c-gray-dark-3);
+  --c-gray-4: var(--c-gray-dark-4);
+  --c-gray-5: var(--c-gray-dark-5);
   --c-divider-1: var(--c-divider-dark-1);
   --c-divider-2: var(--c-divider-dark-2);
 
@@ -101,7 +101,7 @@
 $screen-max-width: var(--screen-max-width);
 $desktop-hd: 1800px;
 $desktop: 1280px;
-$tablets-big: 960;
+$tablets-big: 960px;
 $tablets: 768px;
 $phones: 370px;
 
