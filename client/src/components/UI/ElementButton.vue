@@ -20,7 +20,7 @@ export default {
     },
     buttonValue: {
       type: String,
-      required: true
+      default: ''
     },
     buttonType: {
       type: String,
