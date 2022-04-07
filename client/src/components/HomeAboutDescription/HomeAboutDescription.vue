@@ -13,7 +13,7 @@
     <div class="description__block">
       <button class="home-button">
         <router-link
-          to="/resume"
+          to="/cv"
           target="_blank"
           class="description__link"
         >
@@ -24,10 +24,7 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'HomeAboutDescription'
-}
+<script setup lang='ts'>
 </script>
 
 <style lang='scss' scoped>
@@ -39,7 +36,7 @@ export default {
   background-color: transparent;
   transition: color .5s, background-color .5s;
   border-radius: 8px;
-  flex: 1;
+  flex-grow: 1;
   font-size: 14px;
   font-weight: 500;
   padding: 0 3vw;

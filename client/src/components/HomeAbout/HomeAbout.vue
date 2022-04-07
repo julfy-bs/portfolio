@@ -38,6 +38,7 @@ export default {
 
   @media (min-width: $tablets) {
     flex-direction: row;
+    flex-wrap: nowrap;
   }
 }
 
