@@ -67,6 +67,6 @@ button, [role=button] {
 }
 
 section {
-  padding: 42px 32px;
+  padding: 100px 32px;
 }
 </style>

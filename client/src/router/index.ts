@@ -13,6 +13,11 @@ const routes = [
     component: HomeComponent
   },
   {
+    path: '/skills/:skill',
+    name: 'Skill page',
+    component: HomeComponent
+  },
+  {
     path: '/admin',
     name: 'Admin',
     component: () => import('@/views/Admin.vue'),

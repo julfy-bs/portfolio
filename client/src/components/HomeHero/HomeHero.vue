@@ -24,7 +24,7 @@ export default {
 @import "src/assets/styles/_variables.scss";
 
 .hero {
-  padding: 209px 32px;
+  padding: 219px 32px;
   text-align: center;
 
   @media (max-width: $tablets-big) {

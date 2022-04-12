@@ -1,0 +1,40 @@
+<template>
+  <div
+    class="skills__item"
+  >
+    {{ skill.title }}
+  </div>
+</template>
+
+<script lang='ts'>
+export default {
+  name: 'HomeSkillsItem',
+  props: {
+    skill: {
+      type: Object,
+      required: true
+    }
+  }
+}
+</script>
+
+<style lang='scss' scoped>
+@import "src/assets/styles/_variables.scss";
+
+.skills__item {
+  text-align: center;
+  display: inline-block;
+  background-color: $bg-mute;
+  padding: 8px 18px;
+  font-weight: 500;
+  border-radius: 4px;
+  transition: background-color .5s, color .5s;
+  font-size: 12px;
+  margin: 2px 2px;
+
+  &:hover {
+    background-color: $gray-4;
+    transition-duration: .2s;
+  }
+}
+</style>

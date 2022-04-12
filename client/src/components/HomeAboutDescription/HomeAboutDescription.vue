@@ -11,20 +11,16 @@
       современные проекты.
     </div>
     <div class="description__block">
-      <button class="home-button">
-        <router-link
-          to="/cv"
-          target="_blank"
-          class="description__link"
-        >
-          Ссылка на резюме
-        </router-link>
-      </button>
+      <ui-link link="cv">
+        Ссылка на резюме
+      </ui-link>
     </div>
   </div>
 </template>
 
 <script setup lang='ts'>
+import UiLink from '@/components/UI/UiLink/UiLink.vue'
+
 </script>
 
 <style lang='scss' scoped>
@@ -82,20 +78,6 @@
 
     @media (min-width: $tablets) {
       text-align: left;
-    }
-
-    .description__link {
-      display: inline-block;
-      background-color: $bg-mute;
-      padding: 8px 18px;
-      font-weight: 500;
-      border-radius: 8px;
-      transition: background-color .5s, color .5s;
-
-      &:hover {
-        background-color: $gray-4;
-        transition-duration: .2s;
-      }
     }
   }
 
