@@ -37,6 +37,11 @@ import UiLink from '@/components/UI/UiLink/UiLink.vue'
   font-weight: 500;
   padding: 0 3vw;
 
+
+  @media (min-width: $phones) {
+    padding: 0 15vw;
+  }
+
   @media (min-width: $tablets) {
     padding: 0;
   }

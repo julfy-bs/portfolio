@@ -6,60 +6,75 @@
     <h2 class="skills__heading">
       My Skills
     </h2>
-    <div class="skills__list">
-      <home-skills-item
-        v-for="skill in skillsList"
-        :key="skill.id"
-        :skill="skill"
-        draggable="true"
-        @click="skillOpen(skill.title)"
+    <home-skills-list
+      :skills-list="skillsList"
+      :skill-detail-open="skillDetailOpen"
+    />
+    <transition
+      name="modal-animation"
+    >
+      <home-skills-modal
+        v-if="isSkillOpened"
+        :skill-detail-close="skillDetailClose"
       />
-    </div>
+    </transition>
   </section>
 </template>
 
-<script lang='ts'>
-import { useRouter } from 'vue-router'
-import { ref } from 'vue'
-import HomeSkillsItem from '@/components/HomeSkillsItem/HomeSkillsItem.vue'
+<script>
+import HomeSkillsList from '@/components/HomeSkillsList/HomeSkillsList.vue'
+import HomeSkillsModal from '@/components/HomeSkillsModal/HomeSkillsModal'
+import { computed } from 'vue'
+import { onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 
 export default {
   name: 'HomeSkills',
   components: {
-    HomeSkillsItem
+    HomeSkillsList,
+    HomeSkillsModal
   },
-
   setup() {
-
-    const skillsList = ref([
-      { id: 0, title: 'skill-1' },
-      { id: 1, title: 'skill-2' },
-      { id: 2, title: 'skill-3' },
-      { id: 3, title: 'skill-4' },
-      { id: 4, title: 'skill-5' },
-      { id: 5, title: 'skill-6' },
-      { id: 6, title: 'skill-7' },
-      { id: 7, title: 'skill-8' },
-      { id: 8, title: 'skill-9' },
-      { id: 9, title: 'skill-10' },
-      { id: 10, title: 'skill-11' },
-      { id: 11, title: 'skill-12' }, { id: 8, title: 'skill-9' },
-      { id: 9, title: 'skill-10' },
-      { id: 10, title: 'skill-11' },
-      { id: 11, title: 'skill-12' }, { id: 8, title: 'skill-9' },
-      { id: 9, title: 'skill-10' },
-      { id: 10, title: 'skill-11' },
-      { id: 11, title: 'skill-12' }
-    ])
-
     const router = useRouter()
+    const route = useRoute()
+    const store = useStore()
 
-    const skillOpen = (skill: any): void => {
-      router.push({ query: { skill } })
+    const skillsList = computed(() => store.state.skills.skillsList)
+    const isSkillOpened = computed(() => store.state.skills.isSkillOpened)
+    const skillOpened = computed(() => store.state.skills.skillOpened)
+    const switchSkillCondition = async (value) => await store.dispatch('skills/switchSkillCondition', value)
+    const switchOpenedSkill = async (value) => await store.dispatch('skills/switchOpenedSkill', value)
+
+    onBeforeRouteUpdate(async (to, from) => {
+      if (to.query !== from.query) {
+        await switchOpenedSkill(to.query)
+      }
+    })
+
+    if (route.query.skill) {
+      switchSkillCondition()
+      document.body.classList.add('modal-open')
+      switchOpenedSkill(route.query)
+    }
+
+    const skillDetailOpen = (skill) => {
+      router.push({ query: { skill: skill.url } })
+      switchSkillCondition()
+      document.body.classList.add('modal-open')
+    }
+
+    const skillDetailClose = () => {
+      switchSkillCondition()
+      document.body.classList.remove('modal-open')
+      router.push({ path: '/' })
     }
 
     return {
-      skillsList, skillOpen
+      skillDetailOpen,
+      skillDetailClose,
+      skillsList,
+      isSkillOpened,
+      skillOpened
     }
   }
 }
@@ -77,11 +92,6 @@ export default {
   justify-content: space-between;
   background-color: $bg;
   transition: color .5s, background-color .5s;
-  //
-  //@media (min-width: $tablets) {
-  //  flex-direction: row;
-  //  flex-wrap: nowrap;
-  //}
 }
 
 .skills__heading {
@@ -91,10 +101,31 @@ export default {
   color: $text-1;
 }
 
-.skills__list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: stretch;
-  margin: 0 -4px;
+.modal-animation-enter-active {
+  transition: all 0.2s ease-out;
+}
+
+.modal-animation-leave-active {
+  transition: all 0.2s ease-out;
+}
+
+.modal-animation-leave-to {
+  transform: translateY(-90px);
+  opacity: 0;
+}
+
+.modal-animation-enter-from {
+  opacity: .3;
+  transform: translateY(-40px);
+}
+
+.modal-animation-enter {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+.modal-animation-enter-to {
+  opacity: 1;
+  transform: translateY(0px);
 }
 </style>

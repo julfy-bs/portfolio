@@ -8,16 +8,13 @@
   </router-link>
 </template>
 
-<script lang='ts'>
+<script>
 export default {
   props: {
     link: {
       type: String,
       required: true
     }
-  },
-  setup() {
-
   }
 }
 </script>

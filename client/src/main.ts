@@ -1,9 +1,9 @@
 import { createApp } from 'vue'
 import App from '@/App.vue'
 import InlineSvg from 'vue-inline-svg'
-import store from '@/store/index.ts'
-import router from '@/router/index.ts'
-import components from '@/components/UI/index.ts'
+import store from '@/store/index.js'
+import router from '@/router/index.js'
+import components from '@/components/UI'
 import '@/assets/styles/main.scss'
 
 const app = createApp(App)

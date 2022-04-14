@@ -13,7 +13,7 @@ const routes = [
     component: HomeComponent
   },
   {
-    path: '/skills/:skill',
+    path: '/modules/:skill',
     name: 'Skill page',
     component: HomeComponent
   },

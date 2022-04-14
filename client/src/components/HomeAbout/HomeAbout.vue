@@ -48,7 +48,7 @@ export default {
 }
 
 .info + .description {
-  margin-bottom: 48px;
+  margin-bottom: 88px;
 
   @media (min-width: $tablets) {
     margin-left: 48px;

@@ -10,11 +10,11 @@ module.exports = {
   },
 
   'extends': [
-    'airbnb-base',
-    '@vue/airbnb',
-    'prettier',
+    // 'airbnb-base',
+    // '@vue/airbnb',
     'plugin:vue/vue3-recommended',
-    '@vue/typescript'
+    // '@vue/typescript',
+    'prettier'
   ],
 
   plugins: ['prettier'],
@@ -26,7 +26,8 @@ module.exports = {
     'import/extensions': 'off',
     'consistent-return': 'off',
     'no-underscore-dangle': 'off',
-    'no-unused-expressions': 'off'
+    'no-unused-expressions': 'off',
+    'no-param-reassign': [2, { 'props': false }]
   },
 
   overrides: [
@@ -42,9 +43,9 @@ module.exports = {
   ],
 
   settings: {
-    "import/resolver": {
-      "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+    'import/resolver': {
+      'node': {
+        'extensions': ['.js', '.jsx', '.ts', '.tsx']
       }
     }
   }

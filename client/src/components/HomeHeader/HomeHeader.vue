@@ -8,13 +8,14 @@
         <main-logo />
         <div class="content">
           <!--todo: поиск-->
-          <home-navigation :close-burger="closeMenu" />
+          <home-navigation :close-burger="closeBurger" />
           <change-appearance />
           <main-socials />
           <main-extra />
           <main-burger
             :is-active="isBurgerActive"
-            :toggle-burger="toggleBurger"
+            :open-burger="openBurger"
+            :close-burger="closeBurger"
           />
         </div>
       </div>
@@ -25,7 +26,7 @@
     >
       <div class="nav-screen__container">
         <home-navigation
-          :close-burger="closeMenu"
+          :close-burger="closeBurger"
           :is-burger-active="isBurgerActive"
         />
         <div class="appearance--burger">
@@ -51,10 +52,12 @@ import { ref } from 'vue'
 
 const isBurgerActive = ref<boolean>(false)
 
-const toggleBurger = (): void => {
+const openBurger = (): void => {
+  document.body.classList.add('modal-open')
   isBurgerActive.value = !isBurgerActive.value
 }
-const closeMenu = (): void => {
+const closeBurger = (): void => {
+  document.body.classList.remove('modal-open')
   isBurgerActive.value = false
 }
 </script>

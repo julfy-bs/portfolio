@@ -38,6 +38,10 @@ body {
   text-rendering: optimizeLegibility;
   transition: color .5s, background-color .5s;
   -webkit-font-smoothing: antialiased;
+
+  &.modal-open {
+    overflow: hidden;
+  }
 }
 
 button, input, optgroup, select, textarea {

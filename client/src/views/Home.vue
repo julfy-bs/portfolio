@@ -21,7 +21,9 @@ import HomeSkills from '@/components/HomeSkills/HomeSkills.vue'
 
 <style lang='scss' scoped>
 @import "src/assets/styles/_variables.scss";
-
+.main {
+  position: relative;
+}
 .divider {
   border-top: 1px solid $divider-1;
   border-bottom: 1px solid $divider-1;
