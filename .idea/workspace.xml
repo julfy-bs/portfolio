@@ -5,30 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e95b890a-1bae-476e-90ca-49b18bf09146" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/store/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/.eslintrc.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.storybook/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/.storybook/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.storybook/preview.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/.storybook/preview.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/styles/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/styles/_variables.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeAbout/HomeAbout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeAbout/HomeAbout.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeAboutDescription/HomeAboutDescription.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeAboutDescription/HomeAboutDescription.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeHeader/HomeHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeHeader/HomeHeader.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeNavigation/HomeNavigation.stories.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeNavigation/HomeNavigation.stories.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeNavigation/HomeNavigation.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeNavigation/HomeNavigation.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/HomeSkills/HomeSkills.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeSkills/HomeSkills.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeSkillsItem/HomeSkillsItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeSkillsItem/HomeSkillsItem.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/MainBurger/MainBurger.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MainBurger/MainBurger.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/MainLogo/MainLogo.stories.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MainLogo/MainLogo.stories.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementSvg/ElementSvg.stories.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/ElementSvg/ElementSvg.stories.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/UiLink/UiLink.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/UiLink/UiLink.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/mixins/UI/ElementInput.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/mixins/UI/ElementInput.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeSkillsModal/HomeSkillsModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeSkillsModal/HomeSkillsModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/router/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/Home.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/tests/unit/example.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/tests/unit/example.spec.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,7 +136,7 @@
       <workItem from="1649782502576" duration="12292000" />
       <workItem from="1649857190846" duration="30820000" />
       <workItem from="1649944912919" duration="6075000" />
-      <workItem from="1649951008442" duration="48000" />
+      <workItem from="1649951008442" duration="5038000" />
     </task>
     <servers />
   </component>

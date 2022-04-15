@@ -16,7 +16,6 @@ import HomeHeader from '@/components/HomeHeader/HomeHeader.vue'
 import HomeHero from '@/components/HomeHero/HomeHero.vue'
 import HomeAbout from '@/components/HomeAbout/HomeAbout.vue'
 import HomeSkills from '@/components/HomeSkills/HomeSkills.vue'
-
 </script>
 
 <style lang='scss' scoped>

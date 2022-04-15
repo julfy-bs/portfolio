@@ -7,6 +7,10 @@
 <style lang='scss'>
 @import "src/assets/styles/_variables.scss";
 
+html {
+  scroll-behavior: smooth;
+}
+
 .app__container {
   display: flex;
   flex-direction: column;

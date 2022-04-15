@@ -51,6 +51,8 @@ export default {
       }
     })
 
+    console.log(route.hash)
+
     if (route.query.skill) {
       switchSkillCondition()
       document.body.classList.add('modal-open')
@@ -58,7 +60,7 @@ export default {
     }
 
     const skillDetailOpen = (skill) => {
-      router.push({ query: { skill: skill.url } })
+      router.push({ query: { skill: skill.url }, hash: route.hash })
       switchSkillCondition()
       document.body.classList.add('modal-open')
     }
@@ -66,7 +68,7 @@ export default {
     const skillDetailClose = () => {
       switchSkillCondition()
       document.body.classList.remove('modal-open')
-      router.push({ path: '/' })
+      router.push({ path: '/', hash: route.hash })
     }
 
     return {
