@@ -76,5 +76,17 @@ button, [role=button] {
 
 section {
   padding: 100px 32px;
+
+  @media (max-width: $tablets-big) {
+    padding: 100px 64px;
+  }
+
+  @media (max-width: $tablets) {
+    padding: 100px 32px;
+  }
+
+  @media (max-width: $phones) {
+    padding: 100px 32px;
+  }
 }
 </style>

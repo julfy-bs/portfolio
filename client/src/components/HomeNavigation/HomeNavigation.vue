@@ -9,13 +9,6 @@
       :class="isBurgerActive ? 'navigation__link--burger-is-active' : ''"
       @click="closeBurger"
     >
-      <!--      todo: реализовать переходы с сохранением query -->
-      <!--      $router.push(-->
-      <!--      {-->
-      <!--      query: $route.query,-->
-      <!--      hash: '#hero'-->
-      <!--      }-->
-      <!--      )-->
       Главная
     </router-link>
     <router-link
@@ -54,6 +47,8 @@
 </template>
 
 <script>
+// import { useRouter, useRoute } from 'vue-router'
+
 export default {
   name: 'HomeNavigation',
   props: {

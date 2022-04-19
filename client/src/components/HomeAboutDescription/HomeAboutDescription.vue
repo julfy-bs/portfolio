@@ -35,31 +35,29 @@ import UiLink from '@/components/UI/UiLink/UiLink.vue'
   flex-grow: 1;
   font-size: 14px;
   font-weight: 500;
-  padding: 0 3vw;
 
-
-  @media (min-width: $phones) {
-    padding: 0 15vw;
+  @media (max-width: $tablets-big) {
+    padding: 0;
   }
 
-  @media (min-width: $tablets) {
+  @media (max-width: $tablets) {
+    padding: 0 50px;
+  }
+
+  @media (max-width: $phones) {
     padding: 0;
   }
 
   .description__intro {
     text-align: center;
 
-    @media (min-width: $tablets) {
+    @media (min-width: $tablets-big) {
       text-align: left;
     }
   }
 
   .description__intro + .description__name {
     margin-top: 10px;
-
-    @media (min-width: $tablets) {
-      margin-top: 24px;
-    }
   }
 
   .description__name {
@@ -69,7 +67,7 @@ import UiLink from '@/components/UI/UiLink/UiLink.vue'
     line-height: 1.1;
     text-align: center;
 
-    @media (min-width: $tablets) {
+    @media (min-width: $tablets-big) {
       text-align: left;
     }
   }

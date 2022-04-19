@@ -1,7 +1,7 @@
 const state = () => ({
   skillsList: [
     {
-      id: 0, title: 'Верстка', url: 'html', components: [
+      id: 0, title: 'Верстка', url: 'html', description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt?', components: [
         { id: 0, title: 'pug', url: 'pug' },
         { id: 1, title: 'HTML5', url: 'html' },
         { id: 2, title: 'BEM', url: 'bem' },
@@ -63,7 +63,7 @@ const state = () => ({
     }
   ],
   isSkillOpened: false,
-  skillOpened: ''
+  skillOpened: {}
 })
 
 const mutations = {
@@ -93,7 +93,7 @@ const actions = {
 }
 
 const getters = {
-  skillDetailed: (state) => state.skillsList.find(item => item.url === state.skillOpened.skill)
+  skillDetailed: (state) => state.skillsList.find(item => item.url === state.skillOpened.skill) || []
 }
 
 export default {

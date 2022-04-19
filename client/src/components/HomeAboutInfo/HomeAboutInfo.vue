@@ -37,8 +37,15 @@ export default {
   align-items: center;
   width: 100%;
 
+
   @media (min-width: $tablets) {
-    max-width: 300px;
+    margin-bottom: 48px;
+  }
+
+  @media (min-width: $tablets-big) {
+    max-width: 350px;
+    margin: 0;
+    padding: 0;
   }
 
   .info__image {
@@ -70,11 +77,11 @@ export default {
     flex-wrap: wrap;
     justify-content: space-between;
 
-    @media (min-width: $phones) {
-      padding: 0 15vw;
+    @media (max-width: $tablets) {
+      padding: 0 50px;
     }
 
-    @media (min-width: $tablets) {
+    @media (max-width: $phones) {
       padding: 0;
     }
 
