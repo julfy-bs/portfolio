@@ -13,7 +13,7 @@ export default {
   }
 }
 
-const Template = (args) => ({
+const Template = (args: any) => ({
   components: { HomeHeader },
   setup() {
     return {
@@ -26,8 +26,3 @@ const Template = (args) => ({
 })
 
 export const Default = Template.bind({})
-
-Default.components = {}
-
-
-

@@ -3,50 +3,52 @@
     class="navigation"
     :class="isBurgerActive ? 'navigation--burger-is-active' : ''"
   >
-    <a
-      href="#hero"
+    <router-link
+      to="#hero"
       class="navigation__link"
       :class="isBurgerActive ? 'navigation__link--burger-is-active' : ''"
       @click="closeBurger"
     >
       Главная
-    </a>
-    <a
-      href="#about"
+    </router-link>
+    <router-link
+      to="#about"
       class="navigation__link"
       :class="isBurgerActive ? 'navigation__link--burger-is-active' : ''"
       @click="closeBurger"
     >
       Обо мне
-    </a>
-    <a
-      href="#skills"
+    </router-link>
+    <router-link
+      to="#skills"
       class="navigation__link"
       :class="isBurgerActive ? 'navigation__link--burger-is-active' : ''"
       @click="closeBurger"
     >
       Навыки
-    </a>
-    <a
-      href="#works"
+    </router-link>
+    <router-link
+      to="#works"
       class="navigation__link"
       :class="isBurgerActive ? 'navigation__link--burger-is-active' : ''"
       @click="closeBurger"
     >
       Работы
-    </a>
-    <a
-      href="#reviews"
+    </router-link>
+    <router-link
+      to="#reviews"
       class="navigation__link"
       :class="isBurgerActive ? 'navigation__link--burger-is-active' : ''"
       @click="closeBurger"
     >
       Отзывы
-    </a>
+    </router-link>
   </nav>
 </template>
 
 <script>
+// import { useRouter, useRoute } from 'vue-router'
+
 export default {
   name: 'HomeNavigation',
   props: {

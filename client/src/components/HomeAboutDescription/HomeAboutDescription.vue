@@ -11,23 +11,16 @@
       современные проекты.
     </div>
     <div class="description__block">
-      <button class="home-button">
-        <router-link
-          to="/resume"
-          target="_blank"
-          class="description__link"
-        >
-          Ссылка на резюме
-        </router-link>
-      </button>
+      <ui-link link="cv">
+        Ссылка на резюме
+      </ui-link>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  name: 'HomeAboutDescription'
-}
+<script setup lang='ts'>
+import UiLink from '@/components/UI/UiLink/UiLink.vue'
+
 </script>
 
 <style lang='scss' scoped>
@@ -39,29 +32,32 @@ export default {
   background-color: transparent;
   transition: color .5s, background-color .5s;
   border-radius: 8px;
-  flex: 1;
+  flex-grow: 1;
   font-size: 14px;
   font-weight: 500;
-  padding: 0 3vw;
 
-  @media (min-width: $tablets) {
+  @media (max-width: $tablets-big) {
+    padding: 0;
+  }
+
+  @media (max-width: $tablets) {
+    padding: 0 50px;
+  }
+
+  @media (max-width: $phones) {
     padding: 0;
   }
 
   .description__intro {
     text-align: center;
 
-    @media (min-width: $tablets) {
+    @media (min-width: $tablets-big) {
       text-align: left;
     }
   }
 
   .description__intro + .description__name {
     margin-top: 10px;
-
-    @media (min-width: $tablets) {
-      margin-top: 24px;
-    }
   }
 
   .description__name {
@@ -71,7 +67,7 @@ export default {
     line-height: 1.1;
     text-align: center;
 
-    @media (min-width: $tablets) {
+    @media (min-width: $tablets-big) {
       text-align: left;
     }
   }
@@ -85,20 +81,6 @@ export default {
 
     @media (min-width: $tablets) {
       text-align: left;
-    }
-
-    .description__link {
-      display: inline-block;
-      background-color: $bg-mute;
-      padding: 8px 18px;
-      font-weight: 500;
-      border-radius: 8px;
-      transition: background-color .5s, color .5s;
-
-      &:hover {
-        background-color: $gray-4;
-        transition-duration: .2s;
-      }
     }
   }
 
