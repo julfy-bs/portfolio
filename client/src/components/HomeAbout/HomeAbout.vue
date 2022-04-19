@@ -37,7 +37,13 @@ export default {
   transition: color .5s, background-color .5s;
 
   @media (min-width: $tablets) {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media (min-width: $tablets-big) {
     flex-direction: row;
+    flex-wrap: nowrap;
   }
 }
 
@@ -47,9 +53,13 @@ export default {
 }
 
 .info + .description {
-  margin-bottom: 48px;
+  margin-bottom: 88px;
 
   @media (min-width: $tablets) {
+    margin: 0;
+  }
+
+  @media (min-width: $tablets-big) {
     margin-left: 48px;
   }
 }

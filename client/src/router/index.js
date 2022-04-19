@@ -8,6 +8,16 @@ const routes = [
     component: HomeComponent
   },
   {
+    path: '/cv',
+    name: 'CV page',
+    component: HomeComponent
+  },
+  {
+    path: '/modules/:skill',
+    name: 'Skill page',
+    component: HomeComponent
+  },
+  {
     path: '/admin',
     name: 'Admin',
     component: () => import('@/views/Admin.vue'),
@@ -46,6 +56,22 @@ const routes = [
 ]
 
 const router = createRouter({
+    scrollBehavior(to, from, savedPosition) {
+      if (savedPosition) {
+        return savedPosition
+      } else if (to.hash && to.hash !== '#hero') {
+        return {
+          el: to.hash,
+          top: -10,
+          behavior: 'smooth'
+        }
+      } else {
+        return {
+          top: 0,
+          behavior: 'smooth'
+        }
+      }
+    },
     history: createWebHistory(process.env.BASE_URL),
     routes
   }

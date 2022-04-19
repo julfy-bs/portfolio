@@ -24,7 +24,9 @@ export default {
 @import "src/assets/styles/_variables.scss";
 
 .hero {
-  padding: 209px 32px;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
   text-align: center;
 
   @media (max-width: $tablets-big) {
@@ -32,14 +34,11 @@ export default {
     padding-bottom: 229px;
   }
 
-  @media (max-width: $tablets) {
-    padding-top: 262px;
-    padding-bottom: 262px;
+  @media (max-width: $tablets-big) {
+
   }
 
   @media (max-width: $phones) {
-    padding-top: 275px;
-    padding-bottom: 275px;
   }
 }
 

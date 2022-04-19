@@ -1,18 +1,24 @@
 module.exports = {
   root: true,
+
   env: {
     node: true
   },
-  extends: [
-    'airbnb-base',
-    '@vue/airbnb',
-    'prettier',
-    'plugin:vue/vue3-recommended'
-  ],
+
   parserOptions: {
-    parser: 'babel-eslint'
+    parser: '@typescript-eslint/parser'
   },
+
+  'extends': [
+    // 'airbnb-base',
+    // '@vue/airbnb',
+    'plugin:vue/vue3-recommended',
+    // '@vue/typescript',
+    'prettier'
+  ],
+
   plugins: ['prettier'],
+
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
@@ -20,8 +26,10 @@ module.exports = {
     'import/extensions': 'off',
     'consistent-return': 'off',
     'no-underscore-dangle': 'off',
-    'no-unused-expressions': 'off'
+    'no-unused-expressions': 'off',
+    'no-param-reassign': [2, { 'props': false }]
   },
+
   overrides: [
     {
       files: [
@@ -32,5 +40,13 @@ module.exports = {
         jest: true
       }
     }
-  ]
+  ],
+
+  settings: {
+    'import/resolver': {
+      'node': {
+        'extensions': ['.js', '.jsx', '.ts', '.tsx']
+      }
+    }
+  }
 }

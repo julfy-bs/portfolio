@@ -8,13 +8,14 @@
         <main-logo />
         <div class="content">
           <!--todo: поиск-->
-          <home-navigation :close-burger="closeMenu" />
+          <home-navigation :close-burger="closeBurger" />
           <change-appearance />
           <main-socials />
           <main-extra />
           <main-burger
             :is-active="isBurgerActive"
-            :toggle-burger="toggleBurger"
+            :open-burger="openBurger"
+            :close-burger="closeBurger"
           />
         </div>
       </div>
@@ -25,7 +26,7 @@
     >
       <div class="nav-screen__container">
         <home-navigation
-          :close-burger="closeMenu"
+          :close-burger="closeBurger"
           :is-burger-active="isBurgerActive"
         />
         <div class="appearance--burger">
@@ -40,39 +41,24 @@
   </header>
 </template>
 
-<script>
+<script setup lang='ts'>
 import MainLogo from '@/components/MainLogo/MainLogo.vue'
 import HomeNavigation from '@/components/HomeNavigation/HomeNavigation.vue'
 import MainSocials from '@/components/MainSocials/MainSocials.vue'
-import MainBurger from '@/components/MainBurger/MainBurger'
-import ChangeAppearance from '@/components/MainAppearance/ChangeAppearance'
-import MainExtra from '@/components/MainExtra/MainExtra'
+import MainBurger from '@/components/MainBurger/MainBurger.vue'
+import ChangeAppearance from '@/components/MainAppearance/ChangeAppearance.vue'
+import MainExtra from '@/components/MainExtra/MainExtra.vue'
 import { ref } from 'vue'
 
-export default {
-  name: 'HomeHeader',
-  components: {
-    MainLogo,
-    HomeNavigation,
-    MainSocials,
-    ChangeAppearance,
-    MainBurger,
-    MainExtra
-  },
-  setup() {
-    const isBurgerActive = ref(false)
-    const toggleBurger = () => {
-      isBurgerActive.value = !isBurgerActive.value
-    }
-    const closeMenu = () => {
-      isBurgerActive.value = false
-    }
-    return {
-      isBurgerActive,
-      toggleBurger,
-      closeMenu
-    }
-  }
+const isBurgerActive = ref<boolean>(false)
+
+const openBurger = (): void => {
+  document.body.classList.add('modal-open')
+  isBurgerActive.value = !isBurgerActive.value
+}
+const closeBurger = (): void => {
+  document.body.classList.remove('modal-open')
+  isBurgerActive.value = false
 }
 </script>
 

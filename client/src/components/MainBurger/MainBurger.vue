@@ -20,9 +20,25 @@ export default {
       type: Boolean,
       required: true
     },
-    toggleBurger: {
+    openBurger: {
       type: Function,
       required: true
+    },
+    closeBurger: {
+      type: Function,
+      required: true
+    }
+  },
+  setup(props) {
+    const toggleBurger = () => {
+      if (props.isActive) {
+        props.closeBurger()
+      } else {
+        props.openBurger()
+      }
+    }
+    return {
+      toggleBurger
     }
   }
 }

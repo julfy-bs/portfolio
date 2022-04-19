@@ -7,6 +7,10 @@
 <style lang='scss'>
 @import "src/assets/styles/_variables.scss";
 
+html {
+  scroll-behavior: smooth;
+}
+
 .app__container {
   display: flex;
   flex-direction: column;
@@ -38,6 +42,10 @@ body {
   text-rendering: optimizeLegibility;
   transition: color .5s, background-color .5s;
   -webkit-font-smoothing: antialiased;
+
+  &.modal-open {
+    overflow: hidden;
+  }
 }
 
 button, input, optgroup, select, textarea {
@@ -67,6 +75,18 @@ button, [role=button] {
 }
 
 section {
-  padding: 42px 32px;
+  padding: 100px 32px;
+
+  @media (max-width: $tablets-big) {
+    padding: 100px 64px;
+  }
+
+  @media (max-width: $tablets) {
+    padding: 100px 32px;
+  }
+
+  @media (max-width: $phones) {
+    padding: 100px 32px;
+  }
 }
 </style>

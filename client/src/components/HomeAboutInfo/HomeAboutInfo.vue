@@ -35,10 +35,16 @@ export default {
 
 .info {
   align-items: center;
-  flex-grow: .1;
-  padding: 0 5vw;
+  width: 100%;
+
 
   @media (min-width: $tablets) {
+    margin-bottom: 48px;
+  }
+
+  @media (min-width: $tablets-big) {
+    max-width: 350px;
+    margin: 0;
     padding: 0;
   }
 
@@ -71,6 +77,14 @@ export default {
     flex-wrap: wrap;
     justify-content: space-between;
 
+    @media (max-width: $tablets) {
+      padding: 0 50px;
+    }
+
+    @media (max-width: $phones) {
+      padding: 0;
+    }
+
     .info__title {
       color: $text-1;
 
@@ -81,9 +95,11 @@ export default {
 
     .info__title, .info__value {
       transition: color .5s;
+      width: 50%;
     }
 
     .info__value {
+      text-align: right;
     }
   }
 }
