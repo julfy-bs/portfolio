@@ -41,7 +41,7 @@
   </header>
 </template>
 
-<script setup lang='ts'>
+<script>
 import MainLogo from '@/components/MainLogo/MainLogo.vue'
 import HomeNavigation from '@/components/HomeNavigation/HomeNavigation.vue'
 import MainSocials from '@/components/MainSocials/MainSocials.vue'
@@ -50,15 +50,33 @@ import ChangeAppearance from '@/components/MainAppearance/ChangeAppearance.vue'
 import MainExtra from '@/components/MainExtra/MainExtra.vue'
 import { ref } from 'vue'
 
-const isBurgerActive = ref<boolean>(false)
+export default {
+  name: 'HomeHeader',
+  components: {
+    MainLogo,
+    HomeNavigation,
+    MainSocials,
+    MainBurger,
+    ChangeAppearance,
+    MainExtra
+  },
+  setup() {
+    const isBurgerActive = ref(false)
+    const openBurger = ()=> {
+      document.body.classList.add('modal-open')
+      isBurgerActive.value = !isBurgerActive.value
+    }
+    const closeBurger = ()=> {
+      document.body.classList.remove('modal-open')
+      isBurgerActive.value = false
+    }
 
-const openBurger = (): void => {
-  document.body.classList.add('modal-open')
-  isBurgerActive.value = !isBurgerActive.value
-}
-const closeBurger = (): void => {
-  document.body.classList.remove('modal-open')
-  isBurgerActive.value = false
+    return {
+      isBurgerActive,
+      openBurger,
+      closeBurger
+    }
+  }
 }
 </script>
 

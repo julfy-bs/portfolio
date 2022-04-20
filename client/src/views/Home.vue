@@ -11,11 +11,21 @@
   </main>
 </template>
 
-<script setup lang="ts">
+<script>
 import HomeHeader from '@/components/HomeHeader/HomeHeader.vue'
 import HomeHero from '@/components/HomeHero/HomeHero.vue'
 import HomeAbout from '@/components/HomeAbout/HomeAbout.vue'
 import HomeSkills from '@/components/HomeSkills/HomeSkills.vue'
+
+export default {
+  name: 'Home',
+  components: {
+    HomeHeader,
+    HomeHero,
+    HomeAbout,
+    HomeSkills
+  }
+}
 </script>
 
 <style lang='scss' scoped>

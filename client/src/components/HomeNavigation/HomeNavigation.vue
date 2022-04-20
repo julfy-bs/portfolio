@@ -47,7 +47,6 @@
 </template>
 
 <script>
-// import { useRouter, useRoute } from 'vue-router'
 
 export default {
   name: 'HomeNavigation',
