@@ -1,6 +1,5 @@
 <template>
   <header
-    id="top"
     class="header"
   >
     <div class="navbar">
@@ -41,7 +40,7 @@
   </header>
 </template>
 
-<script>
+<script setup lang='ts'>
 import MainLogo from '@/components/MainLogo/MainLogo.vue'
 import HomeNavigation from '@/components/HomeNavigation/HomeNavigation.vue'
 import MainSocials from '@/components/MainSocials/MainSocials.vue'
@@ -49,34 +48,14 @@ import MainBurger from '@/components/MainBurger/MainBurger.vue'
 import ChangeAppearance from '@/components/MainAppearance/ChangeAppearance.vue'
 import MainExtra from '@/components/MainExtra/MainExtra.vue'
 import { ref } from 'vue'
-
-export default {
-  name: 'HomeHeader',
-  components: {
-    MainLogo,
-    HomeNavigation,
-    MainSocials,
-    MainBurger,
-    ChangeAppearance,
-    MainExtra
-  },
-  setup() {
-    const isBurgerActive = ref(false)
-    const openBurger = ()=> {
-      document.body.classList.add('modal-open')
-      isBurgerActive.value = !isBurgerActive.value
-    }
-    const closeBurger = ()=> {
-      document.body.classList.remove('modal-open')
-      isBurgerActive.value = false
-    }
-
-    return {
-      isBurgerActive,
-      openBurger,
-      closeBurger
-    }
-  }
+const isBurgerActive = ref<Boolean>(false)
+const openBurger = (): void => {
+  document.body.classList.add('modal-open')
+  isBurgerActive.value = !isBurgerActive?.value
+}
+const closeBurger = (): void => {
+  document.body.classList.remove('modal-open')
+  isBurgerActive.value = false
 }
 </script>
 

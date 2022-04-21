@@ -21,63 +21,46 @@
   </section>
 </template>
 
-<script>
+<script setup lang='ts'>
 import HomeSkillsList from '@/components/HomeSkillsList/HomeSkillsList.vue'
-import HomeSkillsModal from '@/components/HomeSkillsModal/HomeSkillsModal'
+import HomeSkillsModal from '@/components/HomeSkillsModal/HomeSkillsModal.vue'
 import { computed } from 'vue'
 import { onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
+import Skill from '@/models/Skill.ts'
 
-export default {
-  name: 'HomeSkills',
-  components: {
-    HomeSkillsList,
-    HomeSkillsModal
-  },
-  setup() {
-    const router = useRouter()
-    const route = useRoute()
-    const store = useStore()
+const router = useRouter()
+const route = useRoute()
+const store = useStore()
 
-    const skillsList = computed(() => store.state.skills.skillsList)
-    const isSkillOpened = computed(() => store.state.skills.isSkillOpened)
-    const skillOpened = computed(() => store.state.skills.skillOpened)
-    const switchSkillCondition = async (value) => await store.dispatch('skills/switchSkillCondition', value)
-    const switchOpenedSkill = async (value) => await store.dispatch('skills/switchOpenedSkill', value)
+const skillsList = computed(() => store.state.skills.skillsList)
+const isSkillOpened = computed(() => store.state.skills.isSkillOpened)
+const switchSkillCondition = async (value?: boolean) => await store.dispatch('skills/switchSkillCondition', value)
+const switchOpenedSkill = async (value: object) => await store.dispatch('skills/switchOpenedSkill', value)
 
-    onBeforeRouteUpdate(async (to, from) => {
-      if (to.query !== from.query) {
-        await switchOpenedSkill(to.query)
-      }
-    })
-
-    if (route.query.skill) {
-      switchSkillCondition()
-      document.body.classList.add('modal-open')
-      switchOpenedSkill({ ...route.query })
-    }
-
-    const skillDetailOpen = (skill) => {
-      router.push({ query: { skill: skill.url }, hash: route.hash })
-      switchSkillCondition()
-      document.body.classList.add('modal-open')
-    }
-
-    const skillDetailClose = () => {
-      switchSkillCondition()
-      switchOpenedSkill({})
-      document.body.classList.remove('modal-open')
-      router.push({ path: '/', hash: route.hash })
-    }
-
-    return {
-      skillDetailOpen,
-      skillDetailClose,
-      skillsList,
-      isSkillOpened,
-      skillOpened
-    }
+onBeforeRouteUpdate(async (to, from) => {
+  if (to.query !== from.query) {
+    await switchOpenedSkill(to.query)
   }
+})
+
+if (route.query.skill) {
+  switchSkillCondition()
+  document.body.classList.add('modal-open')
+  switchOpenedSkill({ ...route.query })
+}
+
+const skillDetailOpen = (skill: Skill) => {
+  router.push({ query: { skill: skill.url }, hash: route.hash })
+  switchSkillCondition()
+  document.body.classList.add('modal-open')
+}
+
+const skillDetailClose = () => {
+  switchSkillCondition()
+  switchOpenedSkill({})
+  document.body.classList.remove('modal-open')
+  router.push({ path: '/', hash: route.hash })
 }
 </script>
 
@@ -91,7 +74,6 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: $bg;
   transition: color .5s, background-color .5s;
 }
 

@@ -5,7 +5,6 @@ import store from '@/store/index.js'
 import router from '@/router/index.js'
 import components from '@/components/UI'
 import '@/assets/styles/main.scss'
-
 const app = createApp(App)
 
 components.forEach(component => {
