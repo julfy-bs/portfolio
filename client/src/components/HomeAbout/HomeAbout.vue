@@ -33,7 +33,6 @@ export default {
   flex-direction: column-reverse;
   flex-wrap: wrap;
   justify-content: space-between;
-  background-color: $bg;
   transition: color .5s, background-color .5s;
 
   @media (min-width: $tablets) {
