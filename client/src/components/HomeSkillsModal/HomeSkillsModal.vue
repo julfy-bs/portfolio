@@ -53,7 +53,6 @@ export default {
 @import "src/assets/styles/_variables.scss";
 
 .skills__modal {
-  //z-index: $z-index-backdrop;
   position: fixed;
   top: 0;
   left: 0;

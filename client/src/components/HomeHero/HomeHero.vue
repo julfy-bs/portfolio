@@ -1,5 +1,6 @@
 <template>
   <section
+    id="hero"
     class="hero"
   >
     <h1 class="hero-title">
@@ -24,7 +25,7 @@ export default {
 @import "src/assets/styles/_variables.scss";
 
 .hero {
-  min-height: 90vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   text-align: center;
@@ -32,13 +33,7 @@ export default {
   @media (max-width: $tablets-big) {
     padding-top: 229px;
     padding-bottom: 229px;
-  }
-
-  @media (max-width: $tablets-big) {
-
-  }
-
-  @media (max-width: $phones) {
+    min-height: 90vh;
   }
 }
 

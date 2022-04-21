@@ -37,7 +37,6 @@ export default {
       required: true
     }
   },
-  emits: {},
   setup(props) {
     const skillOpen = (skill) => {
       props.skillDetailOpen(skill)

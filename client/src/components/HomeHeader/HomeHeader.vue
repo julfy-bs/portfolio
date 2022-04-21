@@ -1,6 +1,5 @@
 <template>
   <header
-    id="top"
     class="header"
   >
     <div class="navbar">
@@ -49,12 +48,10 @@ import MainBurger from '@/components/MainBurger/MainBurger.vue'
 import ChangeAppearance from '@/components/MainAppearance/ChangeAppearance.vue'
 import MainExtra from '@/components/MainExtra/MainExtra.vue'
 import { ref } from 'vue'
-
-const isBurgerActive = ref<boolean>(false)
-
+const isBurgerActive = ref<Boolean>(false)
 const openBurger = (): void => {
   document.body.classList.add('modal-open')
-  isBurgerActive.value = !isBurgerActive.value
+  isBurgerActive.value = !isBurgerActive?.value
 }
 const closeBurger = (): void => {
   document.body.classList.remove('modal-open')

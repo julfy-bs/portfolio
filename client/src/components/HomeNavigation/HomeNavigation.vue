@@ -1,65 +1,68 @@
 <template>
   <nav
     class="navigation"
-    :class="isBurgerActive ? 'navigation--burger-is-active' : ''"
+    :class="props.isBurgerActive ? 'navigation--burger-is-active' : ''"
   >
     <router-link
       to="#hero"
       class="navigation__link"
-      :class="isBurgerActive ? 'navigation__link--burger-is-active' : ''"
-      @click="closeBurger"
+      :class="props.isBurgerActive ? 'navigation__link--burger-is-active' : ''"
+      @click="clickLink"
     >
       Главная
     </router-link>
     <router-link
       to="#about"
       class="navigation__link"
-      :class="isBurgerActive ? 'navigation__link--burger-is-active' : ''"
-      @click="closeBurger"
+      :class="props.isBurgerActive ? 'navigation__link--burger-is-active' : ''"
+      @click="clickLink"
     >
       Обо мне
     </router-link>
     <router-link
       to="#skills"
       class="navigation__link"
-      :class="isBurgerActive ? 'navigation__link--burger-is-active' : ''"
-      @click="closeBurger"
+      :class="props.isBurgerActive ? 'navigation__link--burger-is-active' : ''"
+      @click="clickLink"
     >
       Навыки
     </router-link>
     <router-link
       to="#works"
       class="navigation__link"
-      :class="isBurgerActive ? 'navigation__link--burger-is-active' : ''"
-      @click="closeBurger"
+      :class="props.isBurgerActive ? 'navigation__link--burger-is-active' : ''"
+      @click="clickLink"
     >
       Работы
     </router-link>
     <router-link
       to="#reviews"
       class="navigation__link"
-      :class="isBurgerActive ? 'navigation__link--burger-is-active' : ''"
-      @click="closeBurger"
+      :class="props.isBurgerActive ? 'navigation__link--burger-is-active' : ''"
+      @click="clickLink"
     >
       Отзывы
     </router-link>
   </nav>
 </template>
 
-<script>
-// import { useRouter, useRoute } from 'vue-router'
-
-export default {
-  name: 'HomeNavigation',
-  props: {
-    isBurgerActive: {
-      type: Boolean,
-      default: false
-    },
-    closeBurger: {
-      type: Function,
-      required: true
-    }
+<script setup lang='ts'>
+import { computed } from 'vue'
+import { useStore } from 'vuex'
+interface Props {
+  isBurgerActive: Boolean,
+  closeBurger: Function
+}
+const props = defineProps<Props>()
+const store = useStore()
+const isSkillOpened = computed(() => store.state.skills.isSkillOpened)
+const switchSkillCondition = async (value?: boolean) => await store.dispatch('skills/switchSkillCondition', value)
+const clickLink = () => {
+  if (!isSkillOpened.value) {
+    props.closeBurger()
+  } else {
+    switchSkillCondition()
+    props.closeBurger()
   }
 }
 </script>
