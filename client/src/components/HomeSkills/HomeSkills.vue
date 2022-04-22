@@ -24,44 +24,8 @@
 <script setup lang='ts'>
 import HomeSkillsList from '@/components/HomeSkillsList/HomeSkillsList.vue'
 import HomeSkillsModal from '@/components/HomeSkillsModal/HomeSkillsModal.vue'
-import { computed } from 'vue'
-import { onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router'
-import { useStore } from 'vuex'
-import Skill from '@/models/Skill.ts'
-
-const router = useRouter()
-const route = useRoute()
-const store = useStore()
-
-const skillsList = computed(() => store.state.skills.skillsList)
-const isSkillOpened = computed(() => store.state.skills.isSkillOpened)
-const switchSkillCondition = async (value?: boolean) => await store.dispatch('skills/switchSkillCondition', value)
-const switchOpenedSkill = async (value: object) => await store.dispatch('skills/switchOpenedSkill', value)
-
-onBeforeRouteUpdate(async (to, from) => {
-  if (to.query !== from.query) {
-    await switchOpenedSkill(to.query)
-  }
-})
-
-if (route.query.skill) {
-  switchSkillCondition()
-  document.body.classList.add('modal-open')
-  switchOpenedSkill({ ...route.query })
-}
-
-const skillDetailOpen = (skill: Skill) => {
-  router.push({ query: { skill: skill.url }, hash: route.hash })
-  switchSkillCondition()
-  document.body.classList.add('modal-open')
-}
-
-const skillDetailClose = () => {
-  switchSkillCondition()
-  switchOpenedSkill({})
-  document.body.classList.remove('modal-open')
-  router.push({ path: '/', hash: route.hash })
-}
+import { useSkills } from '@/hooks/useSkills'
+const { skillDetailOpen, skillDetailClose, skillsList, isSkillOpened } = useSkills()
 </script>
 
 <style lang='scss' scoped>

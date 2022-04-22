@@ -1,7 +1,7 @@
 <template>
   <button
     class="hamburger"
-    :class="isActive ? 'hamburger--is-active' : ''"
+    :class="isBurgerActive ? 'hamburger--is-active' : ''"
     @click="toggleBurger"
   >
     <span class="hamburger__container">
@@ -12,34 +12,14 @@
   </button>
 </template>
 
-<script>
-export default {
-  name: 'MainBurger',
-  props: {
-    isActive: {
-      type: Boolean,
-      required: true
-    },
-    openBurger: {
-      type: Function,
-      required: true
-    },
-    closeBurger: {
-      type: Function,
-      required: true
-    }
-  },
-  setup(props) {
-    const toggleBurger = () => {
-      if (props.isActive) {
-        props.closeBurger()
-      } else {
-        props.openBurger()
-      }
-    }
-    return {
-      toggleBurger
-    }
+<script setup lang='ts'>
+import { useBurger } from '@/hooks/useBurger'
+const { closeBurger, openBurger, isBurgerActive } = useBurger()
+const toggleBurger = () => {
+  if (isBurgerActive) {
+    closeBurger()
+  } else {
+    openBurger()
   }
 }
 </script>

@@ -36,21 +36,9 @@
   </div>
 </template>
 
-<script>
-import elementSvg from '@/components/UI/ElementSvg/ElementSvg'
-
-export default {
-  name: 'MainSocials',
-  components: {
-    elementSvg
-  },
-  props: {
-    isBurgerActive: {
-      type: Boolean,
-      default: false
-    }
-  }
-}
+<script setup lang='ts'>
+import { useBurger } from '@/hooks/useBurger'
+const { isBurgerActive } = useBurger()
 </script>
 
 <style lang='scss' scoped>
