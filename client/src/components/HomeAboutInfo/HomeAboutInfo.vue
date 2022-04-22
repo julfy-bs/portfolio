@@ -24,12 +24,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'HomeAboutInfo'
-}
-</script>
-
 <style lang='scss' scoped>
 @import "src/assets/styles/_variables.scss";
 

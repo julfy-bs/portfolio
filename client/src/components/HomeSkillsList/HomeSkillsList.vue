@@ -1,98 +1,29 @@
 <template>
   <div
     class="skills__list"
-    @drop="onDrop($event, skillsList)"
-    @dragenter.prevent
-    @dragover.prevent
   >
     <home-skills-item
-      v-for="skill in skillsList"
+      v-for="skill in props.skillsList"
       :key="skill.id"
       :skill="skill"
-      draggable="true"
-      @dragstart="dragStart($event, skill)"
-      @dragenter="dragEnter($event, skill)"
-      @dragleave="dragLeave($event, skill)"
-      @dragend="dragEnd($event)"
       @click="skillOpen(skill)"
     />
   </div>
 </template>
 
-<script>
+<script setup lang='ts'>
 import HomeSkillsItem from '@/components/HomeSkillsItem/HomeSkillsItem.vue'
+import Skill from '@/models/Skill'
 
-export default {
-  name: 'HomeSkillsList',
-  components: {
-    HomeSkillsItem
-  },
-  props: {
-    skillsList: {
-      type: Array,
-      required: true
-    },
-    skillDetailOpen: {
-      type: Function,
-      required: true
-    }
-  },
-  setup(props) {
-    const skillOpen = (skill) => {
-      props.skillDetailOpen(skill)
-    }
+interface Props {
+  skillsList: Array<Skill>
+  skillDetailOpen: Function
+}
 
-    const drag = (item) => {
-      console.log(item)
-    }
+const props = defineProps<Props>()
 
-    const dragStart = (event, item) => {
-      event.dataTransfer.setData('item', item.id)
-      event.target.parentElement.classList.add('drag__list--active')
-    }
-
-    const dragEnter = (event) => {
-      event.target.classList.add('drag__item--active')
-    }
-
-    const dragLeave = (event) => {
-      event.target.classList.remove('drag__item--active')
-    }
-
-    const dragEnd = (event) => {
-      event.target.parentElement.classList.remove('drag__list--active')
-    }
-
-    const onDrop = (event, list) => {
-      const elementId = event.dataTransfer.getData('item')
-      const element = list.find(item => +elementId === item.id)
-      const elementIndex = list.findIndex(item => +elementId === item.id)
-
-      const skillsListClass = event.target.classList.contains('skills__list')
-      const skillsItemClass = event.target.classList.contains('skills__item')
-      const skillsItemIndex = list.findIndex(item => event.target.textContent === item.title)
-      list.splice(elementIndex, 1)
-
-      if (event.target && skillsListClass) {
-        list.push(element)
-      } else if (event.target && skillsItemClass) {
-        event.target.classList.remove('drag__item--active')
-        list.splice(skillsItemIndex, 0, element)
-      } else {
-        throw new Error('Произошла ошибка при взаимодействии с навыками!')
-      }
-    }
-
-    return {
-      skillOpen,
-      drag,
-      dragStart,
-      dragEnter,
-      dragLeave,
-      dragEnd,
-      onDrop
-    }
-  }
+const skillOpen = (skill: Skill) => {
+  props.skillDetailOpen(skill)
 }
 </script>
 

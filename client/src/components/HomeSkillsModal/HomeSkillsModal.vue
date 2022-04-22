@@ -1,7 +1,7 @@
 <template>
   <div
     class="skills__modal"
-    @click.self="skillClose"
+    @click.self="props.skillDetailClose"
   >
     <div class="modal__content">
       <h3 class="modal__heading">
@@ -23,30 +23,15 @@
   </div>
 </template>
 
-<script>
-import { computed} from 'vue'
+<script setup lang='ts'>
+import { computed } from 'vue'
 import { useStore } from 'vuex'
-
-export default {
-  name: 'HomeSkillsModal',
-  props: {
-    skillDetailClose: {
-      type: Function,
-      required: true
-    }
-  },
-  setup(props) {
-    const skillClose = () => props.skillDetailClose()
-    const store = useStore()
-    const skillDetailed = computed(() => store.getters['skills/skillDetailed'])
-    return {
-      skillClose,
-      skillDetailed
-    }
-  },
-  computed: {
-  }
+interface Props {
+  skillDetailClose: Function
 }
+const props = defineProps<Props>()
+const store = useStore()
+const skillDetailed = computed(() => store.getters['skills/skillDetailed'])
 </script>
 
 <style lang='scss' scoped>

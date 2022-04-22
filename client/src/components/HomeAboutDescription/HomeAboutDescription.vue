@@ -18,15 +18,8 @@
   </div>
 </template>
 
-<script>
+<script setup lang='ts'>
 import UiLink from '@/components/UI/UiLink/UiLink.vue'
-
-export default {
-  name: 'HomeAboutDescription',
-  components: {
-    UiLink
-  }
-}
 </script>
 
 <style lang='scss' scoped>

@@ -15,12 +15,6 @@
   </section>
 </template>
 
-<script>
-export default {
-  name: 'HomeHero'
-}
-</script>
-
 <style lang='scss' scoped>
 @import "src/assets/styles/_variables.scss";
 
