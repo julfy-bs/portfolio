@@ -7,15 +7,11 @@
         <main-logo />
         <div class="content">
           <!--todo: поиск-->
-          <home-navigation :close-burger="closeBurger" />
+          <home-navigation />
           <change-appearance />
           <main-socials />
           <main-extra />
-          <main-burger
-            :is-active="isBurgerActive"
-            :open-burger="openBurger"
-            :close-burger="closeBurger"
-          />
+          <main-burger />
         </div>
       </div>
     </div>
@@ -24,17 +20,14 @@
       class="nav-screen"
     >
       <div class="nav-screen__container">
-        <home-navigation
-          :close-burger="closeBurger"
-          :is-burger-active="isBurgerActive"
-        />
+        <home-navigation />
         <div class="appearance--burger">
           <p class="appearance__text">
             Сменить тему
           </p>
           <change-appearance />
         </div>
-        <main-socials :is-burger-active="isBurgerActive" />
+        <main-socials />
       </div>
     </div>
   </header>
@@ -47,16 +40,9 @@ import MainSocials from '@/components/MainSocials/MainSocials.vue'
 import MainBurger from '@/components/MainBurger/MainBurger.vue'
 import ChangeAppearance from '@/components/MainAppearance/ChangeAppearance.vue'
 import MainExtra from '@/components/MainExtra/MainExtra.vue'
-import { ref } from 'vue'
-const isBurgerActive = ref<Boolean>(false)
-const openBurger = (): void => {
-  document.body.classList.add('modal-open')
-  isBurgerActive.value = !isBurgerActive?.value
-}
-const closeBurger = (): void => {
-  document.body.classList.remove('modal-open')
-  isBurgerActive.value = false
-}
+import { useBurger } from '@/hooks/useBurger'
+
+const { isBurgerActive } = useBurger()
 </script>
 
 <style lang='scss' scoped>

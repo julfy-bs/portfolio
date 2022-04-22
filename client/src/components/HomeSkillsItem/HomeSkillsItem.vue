@@ -2,20 +2,16 @@
   <button
     class="skills__item"
   >
-    {{ skill.title }}
+    {{ props.skill.title }}
   </button>
 </template>
 
-<script>
-export default {
-  name: 'HomeSkillsItem',
-  props: {
-    skill: {
-      type: Object,
-      required: true
-    }
-  },
+<script setup lang='ts'>
+import Skill from '@/models/Skill'
+interface Props {
+  skill: Skill
 }
+const props = defineProps<Props>()
 </script>
 
 <style lang='scss' scoped>

@@ -52,9 +52,9 @@ const routes = [
 
 const router = createRouter({
     scrollBehavior(to, from, savedPosition) {
-      if (savedPosition) return savedPosition
-      else if (to.hash) {
-        return new Promise((resolve, reject) => {
+      if (savedPosition) {return savedPosition
+      } else if (to.hash) {
+        return new Promise((resolve) => {
           setTimeout(() => {
             resolve({
               el: to.hash,

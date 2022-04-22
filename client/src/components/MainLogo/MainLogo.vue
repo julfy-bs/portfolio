@@ -6,12 +6,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'MainLogo'
-}
-</script>
-
 <style lang='scss' scoped>
 @import "src/assets/styles/_variables.scss";
 

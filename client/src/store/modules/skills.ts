@@ -1,3 +1,18 @@
+import Skill from '@/models/Skill'
+import { ActionContext } from 'vuex'
+import { RootState } from '@/store'
+import { HeaderState } from '@/store/modules/header'
+
+interface SkillOpened {
+  skill: string
+}
+
+export interface SkillsState {
+  skillsList: Array<Skill>
+  isSkillOpened: boolean
+  skillOpened: SkillOpened
+}
+
 const state = () => ({
   skillsList: [
     {
@@ -71,23 +86,23 @@ const state = () => ({
 })
 
 const mutations = {
-  CHANGE_SKILL_CONDITION(state, value) {
+  CHANGE_SKILL_DISPLAY_CONDITION(state: SkillsState, value?: boolean) {
     state.isSkillOpened = value || !state.isSkillOpened
   },
-  CHANGE_OPENED_SKILL(state, value) {
+  CHANGE_OPENED_SKILL(state: SkillsState, value: SkillOpened) {
     state.skillOpened = value
   }
 }
 
 const actions = {
-  async switchSkillCondition({ commit }, value) {
+  async switchSkillDisplayCondition({ commit }: ActionContext<HeaderState, RootState>, value?: boolean) {
     try {
-      await commit('CHANGE_SKILL_CONDITION', value)
+      await commit('CHANGE_SKILL_DISPLAY_CONDITION', value)
     } catch (e) {
       throw new Error(e)
     }
   },
-  async switchOpenedSkill({commit}, value) {
+  async switchOpenedSkill({commit}: ActionContext<HeaderState, RootState>, value: SkillOpened) {
     try {
       await commit('CHANGE_OPENED_SKILL', value)
     } catch (e) {
@@ -97,7 +112,7 @@ const actions = {
 }
 
 const getters = {
-  skillDetailed: (state) => state.skillsList.find(item => item.url === state.skillOpened.skill) || []
+  skillDetailed: (state: SkillsState) => state.skillsList.find(item => item.url === state.skillOpened.skill) || []
 }
 
 export default {

@@ -25,17 +25,9 @@
   </div>
 </template>
 
-<script>
-import ChangeAppearance from '@/components/MainAppearance/ChangeAppearance'
-import MainSocials from '@/components/MainSocials/MainSocials'
-
-export default {
-  name: 'MainExtra',
-  components: {
-    ChangeAppearance,
-    MainSocials
-  }
-}
+<script setup lang='ts'>
+import ChangeAppearance from '@/components/MainAppearance/ChangeAppearance.vue'
+import MainSocials from '@/components/MainSocials/MainSocials.vue'
 </script>
 
 <style lang='scss' scoped>

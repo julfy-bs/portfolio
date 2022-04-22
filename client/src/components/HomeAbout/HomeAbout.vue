@@ -8,18 +8,9 @@
   </section>
 </template>
 
-<script>
-import HomeAboutInfo from '@/components/HomeAboutInfo/HomeAboutInfo'
-import HomeAboutDescription from '@/components/HomeAboutDescription/HomeAboutDescription'
-
-export default {
-  name: 'HomeAbout',
-  components: {
-    HomeAboutInfo,
-    HomeAboutDescription
-  }
-
-}
+<script setup lang='ts'>
+import HomeAboutInfo from '@/components/HomeAboutInfo/HomeAboutInfo.vue'
+import HomeAboutDescription from '@/components/HomeAboutDescription/HomeAboutDescription.vue'
 </script>
 
 <style lang='scss' scoped>
