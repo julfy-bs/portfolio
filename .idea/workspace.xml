@@ -6,29 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="e95b890a-1bae-476e-90ca-49b18bf09146" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/icons/arrow.svg" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/icons/arrow.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/icons/play.svg" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/icons/play.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/HomeAbout/HomeAbout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeAbout/HomeAbout.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeAboutDescription/HomeAboutDescription.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeAboutDescription/HomeAboutDescription.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeAboutInfo/HomeAboutInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeAboutInfo/HomeAboutInfo.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeHeader/HomeHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeHeader/HomeHeader.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeHero/HomeHero.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeHero/HomeHero.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeNavigation/HomeNavigation.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeNavigation/HomeNavigation.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/HomeSkills/HomeSkills.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeSkills/HomeSkills.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeSkillsItem/HomeSkillsItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeSkillsItem/HomeSkillsItem.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeSkillsList/HomeSkillsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeSkillsList/HomeSkillsList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeSkillsModal/HomeSkillsModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeSkillsModal/HomeSkillsModal.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/MainAppearance/ChangeAppearance.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MainAppearance/ChangeAppearance.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/MainBurger/MainBurger.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MainBurger/MainBurger.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/MainExtra/MainExtra.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MainExtra/MainExtra.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/MainLogo/MainLogo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MainLogo/MainLogo.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/MainSocials/MainSocials.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MainSocials/MainSocials.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/hooks/useBurger.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/hooks/useBurger.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/hooks/useSkills.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/hooks/useSkills.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/mixins/UI/ElementInput.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/mixins/UI/ElementInput.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/router/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/modules/skills.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/modules/skills.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/modules/header.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/modules/header.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/Home.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -61,6 +46,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/julfy/Documents/projects/portfolio/client/src/assets",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -71,52 +57,17 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="npm.lint">
-    <configuration name="lint" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/client/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="lint" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="serve (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/client/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="serve" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/client/src/assets" />
+    </key>
+  </component>
+  <component name="RunManager">
     <configuration name="serve" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
+      <package-json value="$PROJECT_DIR$/client/package.json" />
       <command value="run" />
       <scripts>
         <script value="serve" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="server (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/server/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="server" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="server" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="server" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
@@ -124,10 +75,6 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.lint" />
-        <item itemvalue="npm.serve (1)" />
-        <item itemvalue="npm.server (1)" />
-        <item itemvalue="npm.server" />
         <item itemvalue="npm.serve" />
       </list>
     </recent_temporary>
@@ -145,6 +92,7 @@
       <workItem from="1650628102794" duration="12335000" />
       <workItem from="1650640464975" duration="403000" />
       <workItem from="1650640887019" duration="4799000" />
+      <workItem from="1650725854198" duration="4032000" />
     </task>
     <servers />
   </component>
@@ -156,7 +104,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="dev" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>

@@ -10,8 +10,8 @@ const state = (): HeaderState => ({
 })
 
 const mutations = {
-  CHANGE_BURGER_DISPLAY_CONDITION(state: HeaderState, value?: boolean) {
-    state.isBurgerActive = value || !state.isBurgerActive
+  CHANGE_BURGER_DISPLAY_CONDITION(state: HeaderState, value: boolean) {
+    state.isBurgerActive = value
   },
 }
 

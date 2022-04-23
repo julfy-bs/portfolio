@@ -18,8 +18,6 @@ import HomeAboutDescription from '@/components/HomeAboutDescription/HomeAboutDes
 
 .about {
   color: $text-2;
-  max-width: 960px;
-  margin: 0 auto;
   display: flex;
   flex-direction: column-reverse;
   flex-wrap: wrap;

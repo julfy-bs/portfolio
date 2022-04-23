@@ -33,8 +33,6 @@ const { skillDetailOpen, skillDetailClose, skillsList, isSkillOpened } = useSkil
 
 .skills {
   color: $text-2;
-  max-width: 960px;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

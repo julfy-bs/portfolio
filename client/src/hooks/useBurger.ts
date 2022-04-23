@@ -13,13 +13,13 @@ export const useBurger = () => {
 
   const openBurger = () => {
     document.body.classList.add('modal-open')
-    void switchBurgerDisplayCondition()
+    void switchBurgerDisplayCondition(true)
   }
 
   const closeBurger = () => {
     document.body.classList.remove('modal-open')
-    void switchBurgerDisplayCondition()
-    if (isSkillOpened.value) void switchSkillDisplayCondition()
+    void switchBurgerDisplayCondition(false)
+    if (isSkillOpened.value) void switchSkillDisplayCondition(false)
   }
 
   return {

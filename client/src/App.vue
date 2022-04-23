@@ -74,8 +74,15 @@ button, [role=button] {
   cursor: pointer;
 }
 
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
 section {
   padding: 100px 32px;
+  max-width: 960px;
+  margin: 0 auto;
 
   @media (max-width: $tablets-big) {
     padding: 100px 64px;
