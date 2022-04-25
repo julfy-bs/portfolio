@@ -26,8 +26,7 @@ export const useSkills = () => {
   }
 
   const skillDetailOpen = (skill: Skill) => {
-    void router.push({ query: { skill: skill.url }, hash: route.hash })
-    console.log(route.hash)
+    void router.replace({ query: { skill: skill.url }, hash: route.hash })
     void switchSkillDisplayCondition()
     document.body.classList.add('modal-open')
   }
@@ -36,7 +35,7 @@ export const useSkills = () => {
     void switchSkillDisplayCondition()
     void switchOpenedSkill({})
     document.body.classList.remove('modal-open')
-    void router.push({ path: '/', hash: route.hash })
+    void router.replace({ path: '/', hash: route.hash })
   }
 
   return {

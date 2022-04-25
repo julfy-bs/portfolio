@@ -1,7 +1,7 @@
 <template>
   <div
     class="socials"
-    :class="isBurgerActive ? 'socials--burger-is-active' : ''"
+    :class="isBurgerActive.value ? 'socials--burger-is-active' : ''"
   >
     <a
       href="https://t.me/julfy_bs"
@@ -53,10 +53,14 @@ const { isBurgerActive } = useBurger()
   @media (min-width: $desktop) {
     display: flex;
   }
+}
 
-  &--burger-is-active {
-    display: flex;
-    margin: 12px 0 0;
+.nav-screen .socials--burger-is-active {
+  display: flex;
+  margin: 12px 0 0;
+
+  @media (min-width: $desktop) {
+    display: none;
   }
 }
 
