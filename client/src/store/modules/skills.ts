@@ -1,7 +1,6 @@
 import Skill from '@/models/Skill'
 import { ActionContext } from 'vuex'
 import { RootState } from '@/store'
-import { HeaderState } from '@/store/modules/header'
 
 interface SkillOpened {
   skill: string
@@ -13,13 +12,14 @@ export interface SkillsState {
   skillOpened: SkillOpened
 }
 
+// :SkillsState
 const state = () => ({
   skillsList: [
     {
       id: 0,
       title: 'Верстка',
       url: 'html',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt?',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, nesciunt?',
       components: [
         { id: 0, title: 'pug', url: 'pug' },
         { id: 1, title: 'HTML5', url: 'html' },
@@ -95,14 +95,14 @@ const mutations = {
 }
 
 const actions = {
-  async switchSkillDisplayCondition({ commit }: ActionContext<HeaderState, RootState>, value?: boolean) {
+  async switchSkillDisplayCondition({ commit }: ActionContext<SkillsState, RootState>, value?: boolean) {
     try {
       await commit('CHANGE_SKILL_DISPLAY_CONDITION', value)
     } catch (e) {
       throw new Error(e)
     }
   },
-  async switchOpenedSkill({commit}: ActionContext<HeaderState, RootState>, value: SkillOpened) {
+  async switchOpenedSkill({commit}: ActionContext<SkillsState, RootState>, value: SkillOpened) {
     try {
       await commit('CHANGE_OPENED_SKILL', value)
     } catch (e) {

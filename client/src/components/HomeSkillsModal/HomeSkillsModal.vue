@@ -1,31 +1,30 @@
 <template>
-  <div
-    class="skills__modal"
-    @click.self="props.skillDetailClose"
+  <element-modal
+    :close-modal="props.skillDetailClose"
   >
-    <div class="modal__content">
-      <h3 class="modal__heading">
-        {{ skillDetailed.title }}
-      </h3>
-      <div class="modal__component-list">
-        <span
-          v-for="component in skillDetailed.components"
-          :key="component.id"
-          class="modal__component"
-        >
-          {{ component.title }}
-        </span>
-      </div>
-      <div class="modal__description">
-        {{ skillDetailed.description }}
-      </div>
+    <h3 class="modal__heading">
+      {{ skillDetailed.title }}
+    </h3>
+    <div class="modal__component-list">
+      <span
+        v-for="component in skillDetailed.components"
+        :key="component.id"
+        class="modal__component"
+      >
+        {{ component.title }}
+      </span>
     </div>
-  </div>
+    <div class="modal__description">
+      {{ skillDetailed.description }}
+    </div>
+  </element-modal>
 </template>
 
 <script setup lang='ts'>
+import ElementModal from '@/components/UI/ElementModal/ElementModal.vue'
 import { computed } from 'vue'
 import { useStore } from 'vuex'
+
 interface Props {
   skillDetailClose: Function
 }
@@ -36,45 +35,6 @@ const skillDetailed = computed(() => store.getters['skills/skillDetailed'])
 
 <style lang='scss' scoped>
 @import "src/assets/styles/_variables.scss";
-
-.skills__modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  filter: blur(100%);
-  background-color: $bg;
-  transition: background-color .5s, color .5s;
-
-  &:hover {
-    cursor: pointer;
-  }
-}
-
-.modal__content {
-  background-color: $bg-soft;
-  max-width: 300px;
-  margin: 0 auto;
-  padding: 24px 32px;
-  font-weight: 500;
-  border-radius: 8px;
-  transition: background-color .5s, color .5s;
-  cursor: auto;
-  color: $text-2;
-  display: flex;
-  flex-flow: column wrap;
-
-  @media (min-width: $tablets) {
-    max-width: 670px;
-  }
-
-  @media (min-width: $desktop) {
-    max-width: 960px;
-  }
-}
 
 .modal__heading {
   font-size: 20px;

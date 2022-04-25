@@ -5,6 +5,114 @@
 </template>
 
 <style lang='scss'>
+/* General variables */
+:root {
+  color-scheme: light dark;
+  --header-height: 55px;
+  --font-family-base: Inter, -apple-system, sans-serif;
+  --screen-max-width: 1376px;
+  --c-white: #ffffff;
+  --c-white-soft: #f9f9f9;
+  --c-white-mute: #f1f1f1;
+  --c-black: #1a1a1a;
+  --c-black-pure: #000000;
+  --c-black-soft: #242424;
+  --c-black-mute: #2f2f2f;
+  --c-indigo: #213547;
+  --c-indigo-soft: #476582;
+  --c-indigo-light: #aac8e4;
+  --c-gray: #8e8e8e;
+  --c-gray-light-1: #aeaeae;
+  --c-gray-light-2: #c7c7c7;
+  --c-gray-light-3: #d1d1d1;
+  --c-gray-light-4: #e5e5e5;
+  --c-gray-light-5: #f2f2f2;
+  --c-gray-dark-1: #636363;
+  --c-gray-dark-2: #484848;
+  --c-gray-dark-3: #3a3a3a;
+  --c-gray-dark-4: #282828;
+  --c-gray-dark-5: #202020;
+  --c-divider-light-1: rgba(60, 60, 60, .29);
+  --c-divider-light-2: rgba(60, 60, 60, .12);
+  --c-divider-dark-1: rgba(84, 84, 84, .65);
+  --c-divider-dark-2: rgba(84, 84, 84, .48);
+  --c-green: #42b883;
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, .04), 0 1px 2px rgba(0, 0, 0, .06);
+  --shadow-2: 0 3px 12px rgba(0, 0, 0, .07), 0 1px 4px rgba(0, 0, 0, .07);
+  --shadow-3: 0 12px 32px rgba(0, 0, 0, .1), 0 2px 6px rgba(0, 0, 0, .08);
+  --shadow-4: 0 14px 44px rgba(0, 0, 0, .12), 0 3px 9px rgba(0, 0, 0, .12);
+  --shadow-5: 0 18px 56px rgba(0, 0, 0, .16), 0 4px 12px rgba(0, 0, 0, .16);
+}
+
+/* Light mode variables */
+:root.light-theme {
+  --text-1: var(--c-indigo);
+  --text-2: rgba(60, 60, 60, .7);
+  --text-3: rgba(60, 60, 60, .33);
+  --text-4: rgba(60, 60, 60, .18);
+  --text-code: var(--c-indigo-soft);
+
+  --bg: var(--c-white);
+  --bg-soft: var(--c-white-soft);
+  --bg-mute: var(--c-white-mute);
+
+  --c-gray-1: var(--c-gray-light-1);
+  --c-gray-2: var(--c-gray-light-2);
+  --c-gray-3: var(--c-gray-light-3);
+  --c-gray-4: var(--c-gray-light-4);
+  --c-gray-5: var(--c-gray-light-5);
+  --c-divider-1: var(--c-divider-light-1);
+  --c-divider-2: var(--c-divider-light-2);
+
+  --c-text-1: var(--c-indigo);
+  --c-text-2: rgba(60, 60, 60, .7);
+  --c-text-3: rgba(60, 60, 60, .33);
+  --c-text-4: rgba(60, 60, 60, .18);
+  --c-text-code: var(--c-indigo-soft);
+
+  --c-hover: var(--c-indigo);
+}
+
+/* Dark mode variables */
+:root.dark-theme {
+  --text-1: rgba(255, 255, 255, .87);
+  --text-2: rgba(235, 235, 235, .6);
+  --text-3: rgba(235, 235, 235, .38);
+  --text-4: rgba(235, 235, 235, .18);
+  --text-code: var(--c-indigo-light);
+
+  --bg: var(--c-black);
+  --bg-soft: var(--c-black-soft);
+  --bg-mute: var(--c-black-mute);
+
+  --c-gray-1: var(--c-gray-dark-1);
+  --c-gray-2: var(--c-gray-dark-2);
+  --c-gray-3: var(--c-gray-dark-3);
+  --c-gray-4: var(--c-gray-dark-4);
+  --c-gray-5: var(--c-gray-dark-5);
+  --c-divider-1: var(--c-divider-dark-1);
+  --c-divider-2: var(--c-divider-dark-2);
+
+  --c-text-1: rgba(255, 255, 255, .87);
+  --c-text-2: rgba(235, 235, 235, .6);
+  --c-text-3: rgba(235, 235, 235, .38);
+  --c-text-4: rgba(235, 235, 235, .18);
+  --c-text-code: var(--c-indigo-light);
+
+  --c-hover: var(--c-text-1);
+}
+
+.works__list {
+  --max-width: 240px;
+  @media (max-width: $tablets) {
+    --max-width: 180px;
+  }
+
+  @media (max-width: $phones) {
+    --max-width: 150px;
+  }
+}
+
 @import "src/assets/styles/_variables.scss";
 
 html {
@@ -74,8 +182,15 @@ button, [role=button] {
   cursor: pointer;
 }
 
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
 section {
   padding: 100px 32px;
+  max-width: 960px;
+  margin: 0 auto;
 
   @media (max-width: $tablets-big) {
     padding: 100px 64px;
@@ -88,5 +203,9 @@ section {
   @media (max-width: $phones) {
     padding: 100px 32px;
   }
+}
+
+.skills, .works {
+  padding: 24px 32px;
 }
 </style>

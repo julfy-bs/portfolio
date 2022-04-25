@@ -1,46 +1,42 @@
 <template>
   <section
-    id="skills"
-    class="skills"
+    id="works"
+    class="works"
   >
-    <h2 class="skills__heading">
-      My Skills
+    <h2 class="works__heading">
+      My Works
     </h2>
-    <home-skills-list
-      :skills-list="skillsList"
-      :skill-detail-open="skillDetailOpen"
+    <home-works-list
+      :works-list="worksList"
+      :work-detail-open="workDetailOpen"
     />
     <transition
       name="modal-animation"
     >
-      <home-skills-modal
-        v-if="isSkillOpened"
-        :skill-detail-close="skillDetailClose"
+      <home-works-modal
+        v-if="isWorkOpened"
+        :work-detail-close="workDetailClose"
       />
     </transition>
   </section>
 </template>
 
 <script setup lang='ts'>
-import HomeSkillsList from '@/components/HomeSkillsList/HomeSkillsList.vue'
-import HomeSkillsModal from '@/components/HomeSkillsModal/HomeSkillsModal.vue'
-import { useSkills } from '@/hooks/useSkills'
-
-const { skillDetailOpen, skillDetailClose, skillsList, isSkillOpened } = useSkills()
+import HomeWorksList from '@/components/HomeWorksList/HomeWorksList.vue'
+import HomeWorksModal from '@/components/HomeWorksModal/HomeWorksModal.vue'
+import { useWorks } from '@/hooks/useWorks'
+const { workDetailOpen, workDetailClose, worksList, isWorkOpened } = useWorks()
 </script>
 
-<style lang='scss' scoped>
+<style scoped lang='scss'>
 @import "src/assets/styles/_variables.scss";
 
-.skills {
+.works {
   color: $text-2;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   transition: color .5s, background-color .5s;
 }
 
-.skills__heading {
+.works__heading {
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 1em;
