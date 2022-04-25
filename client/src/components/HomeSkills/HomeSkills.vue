@@ -25,6 +25,7 @@
 import HomeSkillsList from '@/components/HomeSkillsList/HomeSkillsList.vue'
 import HomeSkillsModal from '@/components/HomeSkillsModal/HomeSkillsModal.vue'
 import { useSkills } from '@/hooks/useSkills'
+
 const { skillDetailOpen, skillDetailClose, skillsList, isSkillOpened } = useSkills()
 </script>
 
@@ -45,6 +46,7 @@ const { skillDetailOpen, skillDetailClose, skillsList, isSkillOpened } = useSkil
   margin-bottom: 1em;
   color: $text-1;
 }
+
 
 .modal-animation-enter-active {
   transition: all 0.2s ease-out;

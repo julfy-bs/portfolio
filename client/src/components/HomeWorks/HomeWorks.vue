@@ -6,84 +6,34 @@
     <h2 class="works__heading">
       My Works
     </h2>
-    <div class="works__list">
-      <div class="works__item">
-        <picture>
-          <source
-            srcset="@/static/images/among-us.png"
-            type="image/png"
-          >
-          <img
-            src="@/static/images/among-us.png"
-            alt="user"
-            class="works__image"
-          >
-        </picture>
-      </div>
-      <div class="works__item">
-        <picture>
-          <source
-            srcset="@/static/images/among-us.png"
-            type="image/png"
-          >
-          <img
-            src="@/static/images/among-us.png"
-            alt="user"
-            class="works__image"
-          >
-        </picture>
-      </div>
-      <div class="works__item">
-        <picture>
-          <source
-            srcset="@/static/images/among-us.png"
-            type="image/png"
-          >
-          <img
-            src="@/static/images/among-us.png"
-            alt="user"
-            class="works__image"
-          >
-        </picture>
-      </div>
-      <div class="works__item">
-        <picture>
-          <source
-            srcset="@/static/images/among-us.png"
-            type="image/png"
-          >
-          <img
-            src="@/static/images/among-us.png"
-            alt="user"
-            class="works__image"
-          >
-        </picture>
-      </div>
-      <div class="works__item">
-        <picture>
-          <source
-            srcset="@/static/images/among-us.png"
-            type="image/png"
-          >
-          <img
-            src="@/static/images/among-us.png"
-            alt="user"
-            class="works__image"
-          >
-        </picture>
-      </div>
-    </div>
+    <home-works-list
+      :works-list="worksList"
+      :work-detail-open="workDetailOpen"
+    />
+    <transition
+      name="modal-animation"
+    >
+      <home-works-modal
+        v-if="isWorkOpened"
+        :work-detail-close="workDetailClose"
+      />
+    </transition>
   </section>
 </template>
 
 <script setup lang='ts'>
+import HomeWorksList from '@/components/HomeWorksList/HomeWorksList.vue'
+import HomeWorksModal from '@/components/HomeWorksModal/HomeWorksModal.vue'
+import { useWorks } from '@/hooks/useWorks'
+const { workDetailOpen, workDetailClose, worksList, isWorkOpened } = useWorks()
 </script>
 
 <style scoped lang='scss'>
 @import "src/assets/styles/_variables.scss";
 
 .works {
-
+  color: $text-2;
+  transition: color .5s, background-color .5s;
 }
 
 .works__heading {
@@ -93,54 +43,32 @@
   color: $text-1;
 }
 
-.works__list {
-  --max-width: 240px;
 
-  @media (max-width: $tablets) {
-    --max-width: 180px;
-  }
-
-  @media (max-width: $phones) {
-    --max-width: 150px;
-  }
+.modal-animation-enter-active {
+  transition: all 0.2s ease-out;
 }
 
-
-.works__list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(var(--max-width), 1fr));
-  column-gap: 4px;
+.modal-animation-leave-active {
+  transition: all 0.2s ease-out;
 }
 
-.works__item {
-  background-color: $bg-soft;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  height: calc(var(--max-width) / 2 - 6px);
-  margin: 2px 0;
-  border-radius: 3px;
-  transition: background-color 0.2s ease 0s;
-
-  &:hover {
-    background-color: $bg-mute;
-  }
+.modal-animation-leave-to {
+  transform: translateY(-90px);
+  opacity: 0;
 }
 
-.dark-theme .works__item {
-  &:hover {
-    .works__image {
-      filter: none;
-    }
-  }
+.modal-animation-enter-from {
+  opacity: .3;
+  transform: translateY(-40px);
 }
 
-.dark-theme .works__image {
-  filter: grayscale(1) invert(1);
+.modal-animation-enter {
+  opacity: 1;
+  transform: translateY(0px);
 }
 
-.works__image {
-  max-width: calc(var(--max-width) - 30px);
-  max-height: calc(var(--max-width) / 2 - 20px);
+.modal-animation-enter-to {
+  opacity: 1;
+  transform: translateY(0px);
 }
 </style>

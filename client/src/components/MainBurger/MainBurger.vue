@@ -1,7 +1,7 @@
 <template>
   <button
     class="hamburger"
-    :class="isBurgerActive ? 'hamburger--is-active' : ''"
+    :class="isBurgerActive ? 'burger--is-active' : ''"
     @click="toggleBurger"
   >
     <span class="hamburger__container">
@@ -16,7 +16,7 @@
 import { useBurger } from '@/hooks/useBurger'
 const { closeBurger, openBurger, isBurgerActive } = useBurger()
 const toggleBurger = () => {
-  if (isBurgerActive) {
+  if (isBurgerActive.value) {
     closeBurger()
   } else {
     openBurger()
@@ -84,17 +84,17 @@ const toggleBurger = () => {
   transform: translate(8px);
 }
 
-.hamburger.hamburger--is-active .hamburger__top {
+.hamburger.burger--is-active .hamburger__top {
   top: 6px;
   transform: translate(0) rotate(225deg);
 }
 
-.hamburger.hamburger--is-active .hamburger__middle {
+.hamburger.burger--is-active .hamburger__middle {
   top: 6px;
   transform: translate(16px);
 }
 
-.hamburger.hamburger--is-active .hamburger__bottom {
+.hamburger.burger--is-active .hamburger__bottom {
   top: 6px;
   transform: translate(0) rotate(135deg);
 }

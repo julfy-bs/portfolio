@@ -61,10 +61,14 @@ const { closeBurger, isBurgerActive } = useBurger()
   @media (min-width: $tablets) {
     display: flex;
   }
+}
 
-  &--burger-is-active {
-    display: flex;
-    flex-flow: column nowrap;
+.nav-screen .navigation--burger-is-active {
+  display: flex;
+  flex-flow: column nowrap;
+
+  @media (min-width: $tablets) {
+    display: none;
   }
 }
 
