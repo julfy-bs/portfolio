@@ -5,8 +5,10 @@
   >
     <home-hero />
     <home-about />
+    <div class="divider" />
     <home-skills />
     <home-works />
+    <home-reviews />
   </main>
 </template>
 
@@ -16,8 +18,10 @@ import HomeHero from '@/components/HomeHero/HomeHero.vue'
 import HomeAbout from '@/components/HomeAbout/HomeAbout.vue'
 import HomeSkills from '@/components/HomeSkills/HomeSkills.vue'
 import HomeWorks from '@/components/HomeWorks/HomeWorks.vue'
+import HomeReviews from '@/components/HomeReviews/HomeReviews.vue'
 // todo: настроить присвоение hash при прокрутке страницы. Баг: сбивается hash
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver.ts'
+
 useIntersectionObserver('section')
 </script>
 
@@ -28,4 +32,8 @@ useIntersectionObserver('section')
   position: relative;
 }
 
+.divider {
+  width: 100%;
+  border-bottom: 1px solid $divider-2;
+}
 </style>
