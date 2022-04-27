@@ -18,6 +18,7 @@
     <div
       v-if="isBurgerActive"
       class="nav-screen"
+      @click.self="closeBurger"
     >
       <div class="nav-screen__container">
         <home-navigation />
@@ -42,7 +43,7 @@ import ChangeAppearance from '@/components/MainAppearance/ChangeAppearance.vue'
 import MainExtra from '@/components/MainExtra/MainExtra.vue'
 import { useBurger } from '@/hooks/useBurger'
 
-const { isBurgerActive } = useBurger()
+const { closeBurger, isBurgerActive } = useBurger()
 </script>
 
 <style lang='scss' scoped>

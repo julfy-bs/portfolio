@@ -1,8 +1,9 @@
 <template>
   <div
     class="socials"
-    :class="isBurgerActive.value ? 'socials--burger-is-active' : ''"
+    :class="isBurgerActive ? 'socials--burger-is-active' : ''"
   >
+    <!--    todo: разбить на компоненты, подключить массив-->
     <a
       href="https://t.me/julfy_bs"
       class="socials__link socials__link--is-small"
@@ -20,6 +21,16 @@
     >
       <element-svg
         file-name="github"
+        class-name="social__icon"
+      />
+    </a>
+    <a
+      href="https://www.codewars.com/users/julfy-bs"
+      class="socials__link socials__link--is-small"
+      target="_blank"
+    >
+      <element-svg
+        file-name="codewars"
         class-name="social__icon"
       />
     </a>

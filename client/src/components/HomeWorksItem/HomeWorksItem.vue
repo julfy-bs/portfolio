@@ -1,6 +1,7 @@
 <template>
   <div
     class="works__item"
+    :style="{backgroundImage: `url(${props.work.picture})` || 'none'}"
   >
     <picture v-if="props.work.picture">
       <source
@@ -8,7 +9,7 @@
         type="image/png"
       >
       <img
-        src="@/static/images/among-us.png"
+        :src="props.work.picture"
         alt="user"
         class="works__image"
       >
@@ -33,17 +34,22 @@ const props = defineProps<Props>()
 @import "src/assets/styles/_variables.scss";
 
 .works__item {
-  background-color: $bg-soft;
+  background-color: $bg-mute;
   display: flex;
   justify-content: space-around;
   align-items: center;
   height: calc(var(--max-width) / 2 - 6px);
   margin: 2px 0;
   border-radius: 3px;
-  transition: background-color 0.2s ease 0s;
+  transition: background-color 0.5s ease 0s;
+  background: {
+    repeat: no-repeat;
+    size: cover;
+    image: none;
+  };
 
   &:hover {
-    background-color: $bg-mute;
+    background-color: $bg-soft;
   }
 }
 
@@ -56,7 +62,7 @@ const props = defineProps<Props>()
 }
 
 .dark-theme .works__image {
-  filter: grayscale(1) invert(1);
+  filter: grayscale(1);
 }
 
 .works__image {

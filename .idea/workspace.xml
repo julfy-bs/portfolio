@@ -7,17 +7,10 @@
     <list default="true" id="e95b890a-1bae-476e-90ca-49b18bf09146" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/styles/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/styles/_variables.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeNavigation/HomeNavigation.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeNavigation/HomeNavigation.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeSkills/HomeSkills.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeSkills/HomeSkills.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeSkillsModal/HomeSkillsModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeSkillsModal/HomeSkillsModal.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeWorks/HomeWorks.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeWorks/HomeWorks.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/MainBurger/MainBurger.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MainBurger/MainBurger.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/MainSocials/MainSocials.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MainSocials/MainSocials.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/hooks/useBurger.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/hooks/useBurger.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeReviews/HomeReviews.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeReviews/HomeReviews.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeSkillsItem/HomeSkillsItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeSkillsItem/HomeSkillsItem.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementModal/ElementModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/ElementModal/ElementModal.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/store/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/modules/skills.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/modules/skills.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +24,17 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/client/src/App.vue" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/client/src/components/HomeAboutDescription/HomeAboutDescription.vue" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/client/src/components/HomeReviews/HomeReviews.vue" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/client/src/components/HomeWorks/HomeWorks.vue" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/client/src/components/HomeWorksItem/HomeWorksItem.vue" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/client/src/models/User.ts" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/client/src/store/index.ts" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/client/src/store/modules/works.ts" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/client/src/store/modules/сodewars.ts" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -49,7 +53,6 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/julfy/Documents/projects/portfolio/client/src/assets&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
@@ -61,12 +64,22 @@
   }
 }</component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/client/src/assets" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/client/src/store/modules" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="serve" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="npm.lint">
+    <configuration name="lint" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/client/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="lint" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="serve (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/client/package.json" />
       <command value="run" />
       <scripts>
@@ -76,8 +89,42 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="serve" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="serve" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="server (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/server/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="server" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="server" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="server" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.lint" />
+        <item itemvalue="npm.serve (1)" />
+        <item itemvalue="npm.server (1)" />
+        <item itemvalue="npm.server" />
         <item itemvalue="npm.serve" />
       </list>
     </recent_temporary>
@@ -95,8 +142,6 @@
       <workItem from="1650628102794" duration="12335000" />
       <workItem from="1650640464975" duration="403000" />
       <workItem from="1650640887019" duration="4799000" />
-      <workItem from="1650725854198" duration="4744000" />
-      <workItem from="1650883651653" duration="17079000" />
     </task>
     <servers />
   </component>

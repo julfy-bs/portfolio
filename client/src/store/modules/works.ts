@@ -15,7 +15,7 @@ export interface WorksState {
 // :WorksState
 const state = () => ({
   worksList: [
-    { id: 0, title: 'pravfond 1', url: 'pravfond' },
+    { id: 0, title: 'pravfond 1', url: 'pravfond'},
     { id: 0, title: '2', url: '2' }
   ],
   isWorkOpened: false,
