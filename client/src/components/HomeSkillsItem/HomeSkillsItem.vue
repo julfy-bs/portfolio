@@ -25,7 +25,7 @@ const props = defineProps<Props>()
   font-weight: 500;
   border-radius: 4px;
   transition: background-color .5s, color .5s;
-  font-size: 12px;
+  font-size: 13px;
   margin: 2px 2px;
 
   &:hover {

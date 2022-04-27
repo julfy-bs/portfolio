@@ -76,6 +76,7 @@ const props = defineProps<Props>()
   display: flex;
   flex-flow: column nowrap;
   height: 100%;
+  min-width: 200px;
 
   @media (min-width: $phones) {
     min-width: 300px;

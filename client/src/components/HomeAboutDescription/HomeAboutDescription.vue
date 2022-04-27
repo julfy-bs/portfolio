@@ -35,18 +35,6 @@ import UiLink from '@/components/UI/UiLink/UiLink.vue'
   font-size: 14px;
   font-weight: 500;
 
-  @media (max-width: $tablets-big) {
-    padding: 0;
-  }
-
-  @media (max-width: $tablets) {
-    padding: 0 50px;
-  }
-
-  @media (max-width: $phones) {
-    padding: 0;
-  }
-
   .description__intro {
     text-align: center;
 
@@ -69,6 +57,10 @@ import UiLink from '@/components/UI/UiLink/UiLink.vue'
     @media (min-width: $tablets-big) {
       text-align: left;
     }
+  }
+
+  .description__codewars-badge {
+    transition: color .5s, background-color .5s, fill .5s, outline-color .5s;
   }
 
   .description__name + .description__block {

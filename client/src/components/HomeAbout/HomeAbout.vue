@@ -3,8 +3,10 @@
     id="about"
     class="about"
   >
-    <home-about-info />
-    <home-about-description />
+    <div class="about__container">
+      <home-about-info />
+      <home-about-description />
+    </div>
   </section>
 </template>
 
@@ -18,20 +20,31 @@ import HomeAboutDescription from '@/components/HomeAboutDescription/HomeAboutDes
 
 .about {
   color: $text-2;
+  transition: color .5s, background-color .5s;
+}
+
+.about__container {
   display: flex;
   flex-direction: column-reverse;
   flex-wrap: wrap;
   justify-content: space-between;
-  transition: color .5s, background-color .5s;
+
+  @media (min-width: $phones) {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 40px;
+  }
 
   @media (min-width: $tablets) {
     flex-direction: column;
     align-items: center;
+    padding: 0 150px;
   }
 
   @media (min-width: $tablets-big) {
     flex-direction: row;
     flex-wrap: nowrap;
+    padding: 0;
   }
 }
 

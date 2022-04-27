@@ -31,8 +31,7 @@
   align-items: center;
   width: 100%;
 
-
-  @media (min-width: $tablets) {
+  @media (min-width: $phones) {
     margin-bottom: 48px;
   }
 
@@ -70,14 +69,6 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-
-    @media (max-width: $tablets) {
-      padding: 0 50px;
-    }
-
-    @media (max-width: $phones) {
-      padding: 0;
-    }
 
     .info__title {
       color: $text-1;

@@ -193,7 +193,7 @@ section {
   margin: 0 auto;
 
   @media (max-width: $tablets-big) {
-    padding: 100px 64px;
+    padding: 100px 32px;
   }
 
   @media (max-width: $tablets) {
@@ -201,11 +201,22 @@ section {
   }
 
   @media (max-width: $phones) {
-    padding: 100px 32px;
+    padding: 100px 16px;
+  }
+
+  .skills__heading, .works__heading, .reviews__heading {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 1em;
+    color: $text-1;
   }
 }
 
-.skills, .works {
-  padding: 24px 32px;
+.skills, .works, .reviews {
+  padding: 64px 32px;
+
+  @media (max-width: $phones) {
+    padding: 100px 16px;
+  }
 }
 </style>

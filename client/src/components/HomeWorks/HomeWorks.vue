@@ -36,14 +36,6 @@ const { workDetailOpen, workDetailClose, worksList, isWorkOpened } = useWorks()
   transition: color .5s, background-color .5s;
 }
 
-.works__heading {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 1em;
-  color: $text-1;
-}
-
-
 .modal-animation-enter-active {
   transition: all 0.2s ease-out;
 }
