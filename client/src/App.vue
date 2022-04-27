@@ -201,7 +201,7 @@ section {
   }
 
   @media (max-width: $phones) {
-    padding: 100px 32px;
+    padding: 100px 16px;
   }
 
   .skills__heading, .works__heading, .reviews__heading {
@@ -214,5 +214,9 @@ section {
 
 .skills, .works, .reviews {
   padding: 64px 32px;
+
+  @media (max-width: $phones) {
+    padding: 100px 16px;
+  }
 }
 </style>
