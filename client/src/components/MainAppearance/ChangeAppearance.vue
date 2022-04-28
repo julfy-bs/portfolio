@@ -2,6 +2,9 @@
   <div class="appearance">
     <button
       class="switch"
+      role="switch"
+      type="button"
+      aria-label="toggle dark mode"
       @click="toggleTheme"
     >
       <span class="switch__check">
