@@ -15,9 +15,13 @@
         </h3>
         <a
           class="review__link"
+          target="_blank"
           :href="props.review.author.company.link"
         >
-          <span class="review__company">
+          <span
+            class="review__company"
+            @click.stop
+          >
             {{ props.review.author.company.name }}
           </span>
         </a>
@@ -73,8 +77,11 @@ const props = defineProps<Props>()
     padding: 8px 18px;
   }
 
-  &:hover {
+  &:hover  {
     cursor: auto;
+    .button {
+      color: $text-1;
+    }
   }
 }
 
@@ -157,6 +164,11 @@ const props = defineProps<Props>()
   justify-content: center;
   align-items: center;
   height: 40px;
+  color: $text-2;
+
+  &:hover {
+    color: $text-1;
+  }
 }
 
 .button__container {
@@ -170,7 +182,7 @@ const props = defineProps<Props>()
   position: absolute;
   width: 16px;
   height: 2px;
-  background-color: $text-1;
+  background-color: currentColor;
   transition: top .25s, background-color .5s, transform .25s;
 }
 

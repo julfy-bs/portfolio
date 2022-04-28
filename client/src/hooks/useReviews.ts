@@ -19,15 +19,20 @@ export const useReviews = () => {
   }
 
   const toggleButton = (event: Event, review: Review) => {
-    const target = event.currentTarget as HTMLSpanElement
-    const classCheck: boolean = target.classList.contains('review--is-opened')
-    if (classCheck) {
+    const currentTarget = event.currentTarget as HTMLDivElement
+    const target = event.target as HTMLSpanElement
+    const classCheckLink: boolean = target.classList.contains('review__link')
+    const classCheckWrapper: boolean = currentTarget.classList.contains('review--is-opened')
+
+    if (classCheckLink) {
+      return false
+    } else if (classCheckWrapper) {
       void switchOpenedReview({})
       removeActiveClass()
     } else {
       void switchOpenedReview(review)
       removeActiveClass()
-      target.classList.add('review--is-opened')
+      currentTarget.classList.add('review--is-opened')
     }
   }
 
