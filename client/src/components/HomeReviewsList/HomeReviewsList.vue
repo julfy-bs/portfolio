@@ -10,7 +10,7 @@
       v-for="review in reviewsList"
       :key="review.id"
       :review="review"
-      @click.stop="toggleButton($event, review)"
+      @click="toggleButton($event, review)"
     />
   </div>
 </template>

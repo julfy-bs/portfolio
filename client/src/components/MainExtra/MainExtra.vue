@@ -26,6 +26,7 @@
 </template>
 
 <script setup lang='ts'>
+import ElementSvg from '@/components/UI/ElementSvg/ElementSvg.vue'
 import ChangeAppearance from '@/components/MainAppearance/ChangeAppearance.vue'
 import MainSocials from '@/components/MainSocials/MainSocials.vue'
 </script>

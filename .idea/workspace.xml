@@ -6,11 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="e95b890a-1bae-476e-90ca-49b18bf09146" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeReviews/HomeReviews.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeReviews/HomeReviews.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeSkillsItem/HomeSkillsItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeSkillsItem/HomeSkillsItem.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementModal/ElementModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/ElementModal/ElementModal.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeReviewsItem/HomeReviewsItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeReviewsItem/HomeReviewsItem.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeReviewsList/HomeReviewsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeReviewsList/HomeReviewsList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/MainAppearance/ChangeAppearance.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MainAppearance/ChangeAppearance.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/MainExtra/MainExtra.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MainExtra/MainExtra.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/MainSocials/MainSocials.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MainSocials/MainSocials.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementSvg/ElementSvg.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/ElementSvg/ElementSvg.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/hooks/useReviews.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/hooks/useReviews.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,13 +33,10 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/client/src/App.vue" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/client/src/components/HomeAboutDescription/HomeAboutDescription.vue" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/client/src/components/HomeReviews/HomeReviews.vue" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/client/src/components/HomeWorks/HomeWorks.vue" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/client/src/components/HomeWorksItem/HomeWorksItem.vue" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/client/src/models/User.ts" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/client/src/store/index.ts" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/client/src/store/modules/works.ts" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/client/src/store/modules/сodewars.ts" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -101,6 +103,26 @@
     </configuration>
     <configuration name="server (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/server/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="server" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="server (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/server/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="server" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="server" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts>
         <script value="server" />
