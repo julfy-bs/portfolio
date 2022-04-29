@@ -1,8 +1,24 @@
 <template id="app">
   <div class="app__container">
     <router-view />
+    <scroll-to-top :scroll-position="scrollPosition" />
   </div>
 </template>
+
+<script setup lang='ts'>
+import ScrollToTop from '@/components/UI/ScrollToTop/ScrollToTop.vue'
+
+import { onMounted, ref } from 'vue'
+
+let scrollPosition = ref<number>(window.pageYOffset)
+const updateScroll = () => {
+  scrollPosition.value = window.scrollY
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', updateScroll);
+})
+</script>
 
 <style lang='scss'>
 /* General variables */
@@ -220,3 +236,4 @@ section {
   }
 }
 </style>
+

@@ -1,15 +1,8 @@
 <template>
-  <element-title>
+  <h1>
     Блок «Обо мне»
-  </element-title>
-  <admin-skills-group />
+  </h1>
 </template>
 
-<script>
-import AdminSkillsGroup from '@/components/AdminSkillsGroup.vue'
-
-export default {
-  name: 'AdminAbout',
-  components: { AdminSkillsGroup }
-}
+<script setup lang='ts'>
 </script>

@@ -2,6 +2,9 @@
   <div class="appearance">
     <button
       class="switch"
+      role="switch"
+      type="button"
+      aria-label="toggle dark mode"
       @click="toggleTheme"
     >
       <span class="switch__check">
@@ -21,6 +24,8 @@
 </template>
 
 <script setup lang='ts'>
+import ElementSvg from '@/components/UI/ElementSvg/ElementSvg.vue'
+
 import { useAppearance } from '@/hooks/useAppearance'
 
 const { toggleTheme } = useAppearance()

@@ -1,22 +1,21 @@
 <template>
-  <router-link
-    :to="link"
+  <a
+    :href="link"
     target="_blank"
     class="ui__link"
   >
     <slot />
-  </router-link>
+  </a>
 </template>
 
-<script>
-export default {
-  props: {
-    link: {
-      type: String,
-      required: true
-    }
-  }
+<script setup lang='ts'>
+import { toRefs } from 'vue'
+
+interface Props {
+  link: string;
 }
+const props = defineProps<Props>()
+const { link } = toRefs(props)
 </script>
 
 <style lang='scss' scoped>

@@ -11,7 +11,7 @@
     >
       <element-svg
         file-name="telegram"
-        class-name="social__icon"
+        class="social__icon"
       />
     </a>
     <a
@@ -21,7 +21,7 @@
     >
       <element-svg
         file-name="github"
-        class-name="social__icon"
+        class="social__icon"
       />
     </a>
     <a
@@ -31,7 +31,7 @@
     >
       <element-svg
         file-name="codewars"
-        class-name="social__icon"
+        class="social__icon"
       />
     </a>
     <a
@@ -41,13 +41,14 @@
     >
       <element-svg
         file-name="discord"
-        class-name="social__icon"
+        class="social__icon"
       />
     </a>
   </div>
 </template>
 
 <script setup lang='ts'>
+import ElementSvg from '@/components/UI/ElementSvg/ElementSvg.vue'
 import { useBurger } from '@/hooks/useBurger'
 const { isBurgerActive } = useBurger()
 </script>
@@ -103,7 +104,6 @@ const { isBurgerActive } = useBurger()
 }
 
 .social__icon {
-  fill: currentColor;
   width: 20px;
   height: 20px;
 }
