@@ -1,5 +1,5 @@
 <template>
-  <HomeHeader />
+  <home-header />
   <main
     class="main"
   >

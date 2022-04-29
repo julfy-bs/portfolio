@@ -1,16 +1,27 @@
 <template>
-  <div class="flyout extra">
+  <div
+    ref="group"
+    class="flyout extra"
+  >
     <button
+      ref="button"
       class="extra__button"
+      aria-haspopup="true"
       aria-expanded="false"
+      @click="toggleFlyout(group, button)"
     >
       <element-svg
         file-name="detail"
         class="extra__icon"
       />
     </button>
-    <div class="flyout__menu">
-      <div class="menu">
+    <div
+      class="flyout__menu"
+    >
+      <div
+        class="menu"
+        @mouseleave="closeFlyout(group, button)"
+      >
         <div class="menu__group">
           <p class="menu__label">
             Сменить тему
@@ -29,6 +40,12 @@
 import ElementSvg from '@/components/UI/ElementSvg/ElementSvg.vue'
 import ChangeAppearance from '@/components/MainAppearance/ChangeAppearance.vue'
 import MainSocials from '@/components/MainSocials/MainSocials.vue'
+import { ref } from 'vue'
+import { useFlayout } from '@/hooks/useFlayout'
+
+const group = ref<HTMLDivElement | null>(null)
+const button = ref<HTMLButtonElement | null>(null)
+const { toggleFlyout, closeFlyout } = useFlayout()
 </script>
 
 <style lang='scss' scoped>
@@ -64,9 +81,14 @@ import MainSocials from '@/components/MainSocials/MainSocials.vue'
   position: relative;
 
   &:hover {
-    color: var(--vt-c-bland);
     transition: color .25s;
   }
+}
+
+.dark-theme .flyout__menu {
+  background: $bg;
+  box-shadow: $shadow-1;
+  border: 1px solid $divider-2;
 }
 
 .flyout:hover {
@@ -75,6 +97,7 @@ import MainSocials from '@/components/MainSocials/MainSocials.vue'
 }
 
 .flyout__menu {
+  border-radius: 8px;
   position: absolute;
   top: calc(#{$header-height} / 2 + 15px);
   right: 0;

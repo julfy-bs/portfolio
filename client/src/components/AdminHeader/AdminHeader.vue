@@ -1,12 +1,12 @@
 <template>
   <element-header>
-    <home-navigation />
+    <admin-navigation />
   </element-header>
 </template>
 
 <script setup lang='ts'>
 import ElementHeader from '@/components/UI/ElementHeader/ElementHeader.vue'
-import HomeNavigation from '@/components/HomeNavigation/HomeNavigation.vue'
+import AdminNavigation from '@/components/AdminNavigation/AdminNavigation.vue'
 </script>
 
 <style lang='scss' scoped>

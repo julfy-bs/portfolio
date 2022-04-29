@@ -11,15 +11,17 @@
       современные проекты.
     </div>
     <div class="description__block">
-      <ui-link link="cv">
+      <element-button-link
+        :link="`https://julfy.notion.site/Resume-565f39bdd17d404e9f1394f48fb01f66`"
+      >
         Ссылка на резюме
-      </ui-link>
+      </element-button-link>
     </div>
   </div>
 </template>
 
 <script setup lang='ts'>
-import UiLink from '@/components/UI/UiLink/UiLink.vue'
+import ElementButtonLink from '@/components/UI/ElementButtonLink/ElementButtonLink.vue'
 </script>
 
 <style lang='scss' scoped>
