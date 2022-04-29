@@ -4,6 +4,7 @@ import InlineSvg from 'vue-inline-svg'
 import store from '@/store'
 import router from '@/router'
 import '@/assets/styles/main.scss'
+
 const app = createApp(App)
 
 app

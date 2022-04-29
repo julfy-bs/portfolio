@@ -11,7 +11,9 @@
       современные проекты.
     </div>
     <div class="description__block">
-      <element-button-link link="cv">
+      <element-button-link
+        :link="`https://julfy.notion.site/Resume-565f39bdd17d404e9f1394f48fb01f66`"
+      >
         Ссылка на резюме
       </element-button-link>
     </div>

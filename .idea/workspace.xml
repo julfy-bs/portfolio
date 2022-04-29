@@ -6,33 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="e95b890a-1bae-476e-90ca-49b18bf09146" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/icons/plus.svg" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/icons/plus.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/styles/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/styles/_variables.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/AdminHeader.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/AdminNavigation.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/AdminSkillsGroup.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/AdminSkillsItem.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/AdminSkillsItemButtons.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/AdminSkillsItemFooter.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/AdminSkillsItemHeader.vue" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/HomeAboutDescription/HomeAboutDescription.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeAboutDescription/HomeAboutDescription.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeHeader/HomeHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeHeader/HomeHeader.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeNavigation/HomeNavigation.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeNavigation/HomeNavigation.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/InputGroup.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/MainAppearance/ChangeAppearance.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MainAppearance/ChangeAppearance.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/MainExtra/MainExtra.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MainExtra/MainExtra.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementButton.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementDialog.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementInput.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementTitle.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/UiLink/UiLink.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/ElementButtonLink/ElementButtonLink.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementButtonLink/ElementButtonLink.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/ElementButtonLink/ElementButtonLink.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/router/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/Admin.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/Admin.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/AdminAbout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/AdminAbout.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/AdminLogin.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/AdminLogin.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/Home.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
