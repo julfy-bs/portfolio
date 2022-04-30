@@ -6,7 +6,7 @@
       <div class="review__container">
         <div class="review__photo">
           <img
-            src="@/static/images/user.jpg"
+            :src="props.review.author.photo"
             alt="user"
           >
         </div>
@@ -22,7 +22,7 @@
             class="review__company"
             @click.stop
           >
-            {{ props.review.author.company.name }}
+            {{ props.review.author.position }}
           </span>
         </a>
       </div>
@@ -100,6 +100,7 @@ const props = defineProps<Props>()
 .review__body {
   padding: 8px;
   font-size: 12px;
+  width: 100%;
 
 
   @media (min-width: $phones) {

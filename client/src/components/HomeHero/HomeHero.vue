@@ -4,13 +4,9 @@
     class="hero"
   >
     <h1 class="hero-title">
-      Личный сайт
-      <br>
       <span class="gradient">
-        Frontend
+        Frontend Developer's Personal Portfolio Website
       </span>
-      <br>
-      разработчика
     </h1>
   </section>
 </template>

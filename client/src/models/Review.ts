@@ -1,11 +1,12 @@
 export default interface Review {
   id: number;
-  title: string;
   author: {
     name: string;
+    position: string;
+    photo?: string;
     company: {
       name: string;
-      link: string
+      link: string;
     }
   }
   description: string;
