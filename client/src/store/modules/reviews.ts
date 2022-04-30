@@ -11,39 +11,29 @@ const state = (): ReviewsState => ({
   reviewsList: [
     {
       id: 0,
-      title: 'Отзыв 1',
       author: {
-        name: 'Alex',
+        name: 'Dmitry Kovalchuk',
+        position: 'Loftschool Founder',
+        photo: 'https://sun9-66.userapi.com/s/v1/if2/KcR08a9os9wBpfDcW8NiQQv7tNCnpyUsX4Ho-CVpXXa3MpSzoWmKSIJp5oiMGhRXL38hJl47aIBRED89GArZaTyt.jpg?size=1333x2000&quality=95&type=album',
         company: {
-          name: 'Yandex',
-          link: '#'
+          name: 'Loftschool',
+          link: 'https://loftschool.com/'
         }
       },
-      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid, architecto asperiores, cupiditate distinctio dolor dolorem, dolores fugiat illo iste iure molestiae mollitia necessitatibus nulla numquam quaerat rerum tempore voluptatem.'
+      description: 'This guy was trained in web development not somewhere, but at LoftSchool! 4.5 months of only the most difficult trials and sleepless nights!'
     },
     {
       id: 1,
-      title: 'Отзыв 2',
       author: {
-        name: 'Victor',
+        name: 'Vladimir Sabantsev',
+        position: 'Loftschool Coach',
+        photo: 'https://ashvalev78.github.io/portfolio/build/assets/images/im/Vladimir.jpg',
         company: {
-          name: 'Google',
-          link: '#'
+          name: 'Loftschool',
+          link: 'https://loftschool.com/'
         }
       },
-      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid, architecto asperiores, cupiditate distinctio dolor dolorem, dolores fugiat illo iste iure molestiae mollitia necessitatibus nulla numquam quaerat rerum tempore voluptatem.'
-    },
-    {
-      id: 2,
-      title: 'Отзыв 3',
-      author: {
-        name: 'Vladilen',
-        company: {
-          name: 'Epam',
-          link: '#'
-        }
-      },
-      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid, architecto asperiores, cupiditate distinctio dolor dolorem, dolores fugiat illo iste iure molestiae mollitia necessitatibus nulla numquam quaerat rerum tempore voluptatem.'
+      description: 'This code will withstand any tests. Just please don\'t load the site on too old browsers.'
     }
   ],
   reviewOpened: {}

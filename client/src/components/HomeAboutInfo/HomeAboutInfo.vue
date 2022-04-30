@@ -2,23 +2,23 @@
   <div class="info">
     <div class="info__image">
       <img
-        src="../../static/images/user.jpg"
+        src="@/static/images/user.jpg"
         alt="Фото профиля"
         class="info__photo"
       >
     </div>
     <div class="info__table">
       <div class="info__cell city">
-        <span class="info__title">Город</span>
-        <span class="info__value">Москва</span>
+        <span class="info__title">City</span>
+        <span class="info__value">Moscow</span>
       </div>
       <div class="info__cell age">
-        <span class="info__title">Возраст</span>
+        <span class="info__title">Age</span>
         <span class="info__value">25</span>
       </div>
       <div class="info__cell birth">
-        <span class="info__title">Дата рождения</span>
-        <span class="info__value">13.12.1996</span>
+        <span class="info__title">Date of Birth</span>
+        <span class="info__value">December 13, 1996</span>
       </div>
     </div>
   </div>
