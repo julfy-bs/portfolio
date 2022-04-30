@@ -6,7 +6,7 @@
       :class="isBurgerActive ? 'navigation__link--burger-is-active' : ''"
       @click="closeBurger"
     >
-      Главная
+      Home
     </router-link>
     <router-link
       to="/#about"
@@ -14,7 +14,7 @@
       :class="isBurgerActive ? 'navigation__link--burger-is-active' : ''"
       @click="closeBurger"
     >
-      Обо мне
+      About
     </router-link>
     <router-link
       to="/#skills"
@@ -22,7 +22,7 @@
       :class="isBurgerActive ? 'navigation__link--burger-is-active' : ''"
       @click="closeBurger"
     >
-      Навыки
+      Skills
     </router-link>
     <router-link
       to="/#works"
@@ -30,7 +30,7 @@
       :class="isBurgerActive ? 'navigation__link--burger-is-active' : ''"
       @click="closeBurger"
     >
-      Работы
+      Works
     </router-link>
     <router-link
       to="/#reviews"
@@ -38,7 +38,7 @@
       :class="isBurgerActive ? 'navigation__link--burger-is-active' : ''"
       @click="closeBurger"
     >
-      Отзывы
+      Reviews
     </router-link>
   </element-navigation>
 </template>

@@ -37,7 +37,7 @@ import HomeAboutDescription from '@/components/HomeAboutDescription/HomeAboutDes
 
   @media (min-width: $tablets) {
     flex-direction: column;
-    align-items: center;
+    align-items: start;
     padding: 0 150px;
   }
 

@@ -6,10 +6,31 @@
   <component name="ChangeListManager">
     <list default="true" id="e95b890a-1bae-476e-90ca-49b18bf09146" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/assets/styles/_mixins.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/assets/styles/icons.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/assets/styles/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/styles/main.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeAbout/HomeAbout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeAbout/HomeAbout.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/HomeAboutDescription/HomeAboutDescription.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeAboutDescription/HomeAboutDescription.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementButtonLink/ElementButtonLink.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/ElementButtonLink/ElementButtonLink.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeAboutInfo/HomeAboutInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeAboutInfo/HomeAboutInfo.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeHero/HomeHero.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeHero/HomeHero.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeNavigation/HomeNavigation.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeNavigation/HomeNavigation.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeReviewsItem/HomeReviewsItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeReviewsItem/HomeReviewsItem.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeWorksModal/HomeWorksModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeWorksModal/HomeWorksModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementSvg/ElementSvg.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/ElementSvg/ElementSvg.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/hooks/useWorks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/hooks/useWorks.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/mixins/UI/ElementInput.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/models/Review.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/models/Review.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/models/Work.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/models/Work.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/static/images/among-us.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/static/images/dialog-background.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/modules/reviews.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/modules/reviews.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/modules/skills.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/modules/skills.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/modules/works.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/modules/works.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/vue.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,14 +47,21 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/client/src/App.vue" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/client/src/assets/styles/_variables.scss" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/client/src/assets/styles/main.scss" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/client/src/components/HomeAboutDescription/HomeAboutDescription.vue" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/client/src/components/HomeReviews/HomeReviews.vue" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/client/src/components/HomeReviewsItem/HomeReviewsItem.vue" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/client/src/components/HomeReviewsList/HomeReviewsList.vue" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/client/src/components/HomeWorks/HomeWorks.vue" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/client/src/components/HomeWorksItem/HomeWorksItem.vue" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/client/src/main.ts" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/client/src/models/User.ts" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/client/src/store/index.ts" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/client/src/store/modules/reviews.ts" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/client/src/store/modules/works.ts" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/client/src/store/modules/сodewars.ts" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/client/src/views/Home.vue" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -57,7 +85,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "editing.templates",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "ts.external.directory.path": "/Users/julfy/Documents/projects/portfolio/client/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
@@ -67,7 +95,17 @@
       <recent name="$PROJECT_DIR$/client/src/store/modules" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.lint">
+  <component name="RunManager" selected="npm.deploy">
+    <configuration name="deploy" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/client/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="deploy" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <configuration name="lint" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/client/package.json" />
       <command value="run" />
@@ -78,21 +116,11 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="serve (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+    <configuration name="predeploy" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/client/package.json" />
       <command value="run" />
       <scripts>
-        <script value="serve" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="serve" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="serve" />
+        <script value="predeploy" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
@@ -140,11 +168,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.deploy" />
+        <item itemvalue="npm.predeploy" />
         <item itemvalue="npm.lint" />
-        <item itemvalue="npm.serve (1)" />
         <item itemvalue="npm.server (1)" />
         <item itemvalue="npm.server" />
-        <item itemvalue="npm.serve" />
       </list>
     </recent_temporary>
   </component>
@@ -178,7 +206,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="dev" />
+                        <option value="main" />
                       </list>
                     </value>
                   </entry>

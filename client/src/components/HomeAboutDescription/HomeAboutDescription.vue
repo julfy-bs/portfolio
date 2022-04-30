@@ -1,20 +1,24 @@
 <template>
   <div class="description">
     <div class="description__intro">
-      Привет, меня зовут
+      Hi, my name is
     </div>
     <div class="description__name">
-      Богдан Сутужко
+      Bogdan Sutuzhko
     </div>
     <div class="description__block">
-      Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и
-      современные проекты.
+      I am a front-end developer based in Moscow. My focus area for the past few years has been
+      front-end development with Vue. <br><br> My passion is developing modern websites and
+      applications. I get pleasure when I create interesting and modern applications. <br> <br> I am currently looking for a job as a Junior Frontend
+      developer.  <br> I haven't had to work as a Frontend developer yet, but at the moment I
+      have
+      all the necessary knowledge and skills to work effectively as a Junior Frontend developer.
     </div>
     <div class="description__block">
       <element-button-link
         :link="`https://julfy.notion.site/Resume-565f39bdd17d404e9f1394f48fb01f66`"
       >
-        Ссылка на резюме
+        CV
       </element-button-link>
     </div>
   </div>

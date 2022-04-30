@@ -1,13 +1,13 @@
 <template>
   <inline-svg
-    :title="addTitle(fileName)"
-    :src="require(`@/assets/icons/${checkFileName(fileName)}.svg`)"
+    :title="addTitle(props.fileName)"
+    :src="require(`@/assets/icons/${checkFileName(props.fileName)}.svg`)"
     fill="currentColor"
   />
+  <!--  :src="require(`@/assets/icons/${checkFileName(fileName)}.svg`)"-->
 </template>
 
 <script setup lang='ts'>
-import { toRefs } from 'vue'
 import InlineSvg from 'vue-inline-svg'
 
 interface Props {
@@ -16,7 +16,6 @@ interface Props {
 
 const props = defineProps<Props>()
 
-const { fileName } = toRefs(props)
 
 const checkFileName = (str: string) => {
   if (!str) return str
