@@ -201,6 +201,10 @@ const button = ref<HTMLButtonElement | null>(null)
 
   .flyout-menu .flyout-menu__group {
     padding: 0 0 12px;
+
+    &:last-child {
+      padding: 0;
+    }
   }
 
   .flyout-menu__title {

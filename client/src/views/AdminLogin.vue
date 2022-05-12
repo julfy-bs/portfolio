@@ -1,10 +1,12 @@
 <template>
   <div class="wrapper">
-    login
+    <admin-login />
   </div>
 </template>
 
 <script setup lang='ts'>
+import AdminLogin from '@/components/AdminLogin/AdminLogin.vue'
+
 </script>
 
 <style lang='scss' scoped>

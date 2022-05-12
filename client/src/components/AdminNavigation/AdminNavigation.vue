@@ -10,6 +10,13 @@
     >
       {{ link.title }}
     </router-link>
+    <a
+      class="navigation__link"
+      target="_blank"
+      href="https://julfy.notion.site/Resume-565f39bdd17d404e9f1394f48fb01f66"
+    >
+      Resume
+    </a>
     <element-navigation-group
       v-for="linksGroup in navigationGroups"
       :key="linksGroup.id"
@@ -30,28 +37,22 @@ import { useBurger } from '@/hooks/useBurger'
 const linksList = ref([
   {
     id: 0,
-    title: 'Главная',
+    title: 'Home',
     isGroup: false,
     to: '/'
   },
   {
     id: 1,
-    title: 'Резюме',
-    isGroup: false,
-    to: '/cv'
-  },
-  {
-    id: 2,
-    title: 'Личный кабинет',
+    title: 'Admin',
     isGroup: true,
     to: null,
     groupName: '',
     group: [
-      { id: 0, title: 'Профиль', to: '/admin/profile' },
-      { id: 1, title: 'Обо мне', to: '/admin/about' },
-      { id: 2, title: 'Навыки', to: '/admin/skills' },
-      { id: 3, title: 'Работы', to: '/admin/works' },
-      { id: 4, title: 'Отзывы', to: '/admin/reviews' }
+      { id: 0, title: 'Profile', to: '/admin/profile' },
+      { id: 1, title: 'About', to: '/admin/about' },
+      { id: 2, title: 'Skills', to: '/admin/skills' },
+      { id: 3, title: 'Works', to: '/admin/works' },
+      { id: 4, title: 'Reviews', to: '/admin/reviews' }
     ]
   }
 

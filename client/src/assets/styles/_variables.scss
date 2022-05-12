@@ -1,5 +1,6 @@
 // media
 $screen-max-width: var(--screen-max-width);
+$screen-min-width: var(--screen-min-width);
 $desktop-hd: 1800px;
 $desktop: 1280px;
 $tablets-big: 960px;
@@ -36,7 +37,9 @@ $text-3: var(--c-text-3);
 $text-4: var(--c-text-4);
 $text-code: var(--c-text-code);
 
-
+$brand-vue: var(--c-green);
+$brand-vue-dark: var(--c-green-dark);
+$brand-yandex: var(--c-yellow);
 $green-light: #42d392;
 $green-lighter: #35eb9a;
 $green-dark: #33a06f;
@@ -77,14 +80,10 @@ $shadow-5: var(--shadow-5);
 
 $blue: #464D62;
 $dark-blue: #3e3e59;
-// todo: $gray-svg сменить название на понятное
-$gray-svg: #A9AEB9;
 
 /* interactive hover, focus */
-$focus-color: #5500F2;
-$hover-color: var(--c-hover);
-$hover-link-color: var(--c-green);
-//$hover-link-color: #FFCC00; // yandex
+$hover-svg-color: var(--c-hover-svg);
+$hover-link-color: $brand-vue;
 
 /* status color */
 $error: #FFD2D2;
@@ -103,15 +102,6 @@ $banner-height: 0;
 $header-height: var(--header-height);
 $header-line-height: calc(#{$header-height} - 1px);
 
-// hero
-$hero-divider-height: 62px;
-
-/* logo */
-$logo-font-weight: 600;
-$logo-font-size-small: 20px;
-$logo-font-weight-small: 500;
-
-
 /* z-index */
 $z-index-local-nav: 10;
 $z-index-nav: 20;
@@ -120,6 +110,4 @@ $z-index-backdrop: 40;
 $z-index-sidebar: 50;
 
 /* gradient */
-$dialog-gradient: linear-gradient(rgba(45, 60, 78, .9), rgba(45, 60, 78, .9));
-$admin-gradient: linear-gradient(rgba(252, 252, 254, .89), rgba(252, 252, 254, .99));
 $vue-gradient: linear-gradient(315deg, #42d392 25%, #647eff);
