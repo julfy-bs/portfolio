@@ -11,9 +11,11 @@
       {{ link.title }}
     </router-link>
     <a
-      class="navigation__link"
       target="_blank"
       href="https://julfy.notion.site/Resume-565f39bdd17d404e9f1394f48fb01f66"
+      class="navigation__link"
+      :class="isBurgerActive ? 'navigation__link--burger-is-active' : ''"
+      @click="closeBurger"
     >
       Resume
     </a>
@@ -32,7 +34,6 @@ import ElementNavigationGroup
 
 import { computed, ref } from 'vue'
 import { useBurger } from '@/hooks/useBurger'
-
 
 const linksList = ref([
   {
@@ -55,8 +56,6 @@ const linksList = ref([
       { id: 4, title: 'Reviews', to: '/admin/reviews' }
     ]
   }
-
-
 ])
 const navigationLinks = computed(() => {
   return linksList.value.filter(item => !item.isGroup)

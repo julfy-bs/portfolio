@@ -5,13 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e95b890a-1bae-476e-90ca-49b18bf09146" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/client/src/views/admin/AdminLoginPage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/assets/styles/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/styles/_variables.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/AdminLogin/AdminLogin.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminLogin/AdminLogin.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/AdminNavigation/AdminNavigation.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminNavigation/AdminNavigation.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/MainSocials/MainSocials.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MainSocials/MainSocials.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementNavigationGroup/ElementNavigationGroup.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/ElementNavigationGroup/ElementNavigationGroup.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/AdminLogin.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/AdminLogin.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementHeader/ElementHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/ElementHeader/ElementHeader.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/Admin.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/admin/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/AdminAbout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/admin/AdminAboutPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/AdminLogin.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/AdminReviews.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/admin/AdminReviewsPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/AdminWorks.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/admin/AdminWorksPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +49,7 @@
     <setting file="file://$PROJECT_DIR$/client/src/store/modules/reviews.ts" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/client/src/store/modules/works.ts" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/client/src/store/modules/сodewars.ts" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/client/src/views/Home.vue" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/client/src/views/index.vue" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -74,6 +81,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/client/src/views/admin" />
       <recent name="$PROJECT_DIR$/client/src/store/modules" />
     </key>
   </component>
@@ -180,7 +188,7 @@
       <workItem from="1651667782130" duration="62000" />
       <workItem from="1651667851438" duration="2589000" />
       <workItem from="1651753726061" duration="1261000" />
-      <workItem from="1652350184314" duration="6329000" />
+      <workItem from="1652350184314" duration="21592000" />
     </task>
     <servers />
   </component>

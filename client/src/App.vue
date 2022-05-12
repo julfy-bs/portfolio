@@ -16,7 +16,7 @@ const updateScroll = () => {
 }
 
 onMounted(() => {
-  window.addEventListener('scroll', updateScroll);
+  window.addEventListener('scroll', updateScroll)
 })
 </script>
 
@@ -49,6 +49,10 @@ onMounted(() => {
   --c-gray-dark-3: #3a3a3a;
   --c-gray-dark-4: #282828;
   --c-gray-dark-5: #202020;
+  --c-blue-light: #549ced;
+  --c-blue-dark: #3468a3;
+  --c-red-dark: #cd2d3f;
+  --c-red-darker: #ab2131;
   --c-divider-light-1: rgba(60, 60, 60, .29);
   --c-divider-light-2: rgba(60, 60, 60, .12);
   --c-divider-dark-1: rgba(84, 84, 84, .65);
@@ -61,6 +65,7 @@ onMounted(() => {
   --shadow-3: 0 12px 32px rgba(0, 0, 0, .1), 0 2px 6px rgba(0, 0, 0, .08);
   --shadow-4: 0 14px 44px rgba(0, 0, 0, .12), 0 3px 9px rgba(0, 0, 0, .12);
   --shadow-5: 0 18px 56px rgba(0, 0, 0, .16), 0 4px 12px rgba(0, 0, 0, .16);
+  --info-max-width: 200px;
 }
 
 /* Light mode variables */
@@ -117,7 +122,6 @@ onMounted(() => {
   --c-text-3: rgba(235, 235, 235, .38);
   --c-text-4: rgba(235, 235, 235, .18);
   --c-text-code: var(--c-indigo-light);
-
   --c-hover-svg: var(--c-text-1);
 }
 

@@ -45,9 +45,9 @@ $green-lighter: #35eb9a;
 $green-dark: #33a06f;
 $green-darker: #155f3e;
 $blue: #3b8eed;
-$blue-light: #549ced;
+$blue-light: var(--c-blue-light);
 $blue-lighter: #50a2ff;
-$blue-dark: #3468a3;
+$blue-dark: var(--c-blue-dark);
 $blue-darker: #255489;
 $yellow: #ffc517;
 $yellow-light: #ffe417;
@@ -57,8 +57,8 @@ $yellow-darker: #bc9112;
 $red: #ed3c50;
 $red-light: #f43771;
 $red-lighter: #fd1d7c;
-$red-dark: #cd2d3f;
-$red-darker: #ab2131;
+$red-dark: var(--c-red-dark);
+$red-darker: var(--c-red-darker);
 $purple: #de41e0;
 $purple-light: #e936eb;
 $purple-lighter: #f616f8;
@@ -111,3 +111,6 @@ $z-index-sidebar: 50;
 
 /* gradient */
 $vue-gradient: linear-gradient(315deg, #42d392 25%, #647eff);
+
+/* admin */
+$info-max-width: var(--info-max-width);
