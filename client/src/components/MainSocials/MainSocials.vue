@@ -99,7 +99,7 @@ const { isBurgerActive } = useBurger()
 
   &:hover {
     cursor: pointer;
-    color: $hover-color
+    color: $hover-svg-color
   }
 }
 

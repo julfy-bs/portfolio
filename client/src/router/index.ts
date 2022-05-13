@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeComponent from '@/views/Home.vue'
+import HomeComponent from '@/views/index.vue'
 
 const routes = [
   {
@@ -10,10 +10,7 @@ const routes = [
   {
     path: '/admin',
     name: 'Admin',
-    component: () => import('@/views/Admin.vue'),
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+    component: () => import('@/views/admin/index.vue'),
     children: [
       {
         path: '',
@@ -22,32 +19,32 @@ const routes = [
       {
         path: '/admin/login',
         name: 'Login to Admin',
-        component: () => import('@/views/AdminLogin.vue')
+        component: () => import('@/views/admin/AdminLoginPage.vue')
       },
       {
         path: '/admin/skills',
         name: 'Admin skills',
-        component: () => import('@/views/AdminWorks.vue')
+        component: () => import('@/views/admin/AdminSkillsPage.vue')
       },
       {
         path: '/admin/profile',
         name: 'Admin profile',
-        component: () => import('@/views/AdminWorks.vue')
+        component: () => import('@/views/admin/AdminProfilePage.vue')
       },
       {
         path: '/admin/works',
         name: 'Admin works',
-        component: () => import('@/views/AdminWorks.vue')
+        component: () => import('@/views/admin/AdminWorksPage.vue')
       },
       {
         path: '/admin/about',
         name: 'Admin about',
-        component: () => import('@/views/AdminAbout.vue')
+        component: () => import('@/views/admin/AdminAboutPage.vue')
       },
       {
         path: '/admin/reviews',
         name: 'Admin reviews',
-        component: () => import('@/views/AdminReviews.vue')
+        component: () => import('@/views/admin/AdminReviewsPage.vue')
       }
     ]
   }
@@ -57,7 +54,7 @@ const router = createRouter({
     scrollBehavior(to, from, savedPosition) {
       if (savedPosition) {
         return savedPosition
-      } else if (to.hash === '#hero') {
+      } else if (to.name === 'Home' && to.hash === '#hero') {
         return new Promise((resolve) => {
           setTimeout(() => {
             resolve({
@@ -67,7 +64,7 @@ const router = createRouter({
             })
           }, 150)
         })
-      } else if (to.hash !== '#hero') {
+      } else if (to.name === 'Home' && to.hash !== '#hero') {
         return new Promise((resolve) => {
           setTimeout(() => {
             resolve({
