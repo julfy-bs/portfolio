@@ -3,9 +3,8 @@
     class="socials"
     :class="isBurgerActive ? 'socials--burger-is-active' : ''"
   >
-    <!--    todo: разбить на компоненты, подключить массив-->
     <a
-      href="https://t.me/julfy_bs"
+      :href="user.telegram"
       class="socials__link socials__link--is-small"
       target="_blank"
     >
@@ -15,7 +14,7 @@
       />
     </a>
     <a
-      href="https://github.com/julfy-bs"
+      :href="user.github"
       class="socials__link socials__link--is-small"
       target="_blank"
     >
@@ -25,7 +24,7 @@
       />
     </a>
     <a
-      href="https://www.codewars.com/users/julfy-bs"
+      :href="user.codewars"
       class="socials__link socials__link--is-small"
       target="_blank"
     >
@@ -35,7 +34,7 @@
       />
     </a>
     <a
-      href="https://discordapp.com/users/236551328313114635/"
+      :href="user.discord"
       class="socials__link socials__link--is-small"
       target="_blank"
     >
@@ -50,7 +49,9 @@
 <script setup lang='ts'>
 import ElementSvg from '@/components/UI/ElementSvg/ElementSvg.vue'
 import { useBurger } from '@/hooks/useBurger'
+import { useUser } from '@/hooks/useUser'
 const { isBurgerActive } = useBurger()
+const { user } = useUser()
 </script>
 
 <style lang='scss' scoped>

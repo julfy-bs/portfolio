@@ -1,28 +1,14 @@
-export default interface Codewars {
-  username: string
-  name: string
-  honor: number
-  clan: string
-  leaderboardPosition: number
-  skills: Array<string>
-  "ranks": {
-    "overall": {
-      "rank": number
-      "name": string
-      "color": string
-      "score": number
-    },
-    "languages": {
-      "javascript": {
-        "rank": number
-        "name": string
-        "color": string
-        "score": number
-      }
-    }
-  },
-  codeChallenges: {
-    totalAuthored: number
-    totalCompleted: number
-  }
+export default interface User {
+  name: string;
+  surname: string;
+  city: string;
+  dateOfBirth: string;
+  email: string;
+  photo: string;
+  description: string;
+  resume: string;
+  telegram: string;
+  github: string;
+  codewars: string;
+  discord: string;
 }

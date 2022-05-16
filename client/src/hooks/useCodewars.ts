@@ -1,6 +1,6 @@
 import { useStore } from 'vuex'
 import { computed, onMounted } from 'vue'
-import User from '@/models/User'
+import User from '@/models/Codewars'
 
 export const useCodewars = () => {
   const store = useStore()
