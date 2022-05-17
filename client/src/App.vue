@@ -195,10 +195,6 @@ a {
   text-decoration: inherit;
 }
 
-input:focus, textarea:focus, select:focus {
-  outline: none;
-}
-
 button, input, select, textarea {
   border: 0;
   padding: 0;

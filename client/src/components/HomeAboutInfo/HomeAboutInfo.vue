@@ -1,28 +1,31 @@
 <template>
   <div class="info">
-    <div class="info__image">
-      <img
-        src="@/static/images/user.jpg"
-        alt="Фото профиля"
-        class="info__photo"
-      >
-    </div>
+    <main-user-photo />
     <div class="info__table">
       <div class="info__cell city">
         <span class="info__title">City</span>
-        <span class="info__value">Moscow</span>
+        <span class="info__value">{{ user.city }}</span>
       </div>
       <div class="info__cell age">
         <span class="info__title">Age</span>
-        <span class="info__value">25</span>
+        <span class="info__value">{{ countAge(user.dateOfBirth) }}</span>
       </div>
       <div class="info__cell birth">
         <span class="info__title">Date of Birth</span>
-        <span class="info__value">December 13, 1996</span>
+        <span class="info__value">{{ formatDate(user.dateOfBirth) }}</span>
       </div>
     </div>
   </div>
 </template>
+
+<script setup lang='ts'>
+import MainUserPhoto from '@/components/MainUserPhoto/MainUserPhoto.vue'
+import { countAge } from '@/helpers/countAge'
+import { useUser } from '@/hooks/useUser'
+import { formatDate } from '@/helpers/formatDate'
+
+const { user } = useUser()
+</script>
 
 <style lang='scss' scoped>
 @import "src/assets/styles/_variables.scss";
@@ -30,6 +33,9 @@
 .info {
   align-items: center;
   width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 24px;
 
   @media (min-width: $phones) {
     margin-bottom: 48px;
@@ -39,23 +45,6 @@
     max-width: 350px;
     margin: 0;
     padding: 0;
-  }
-
-  .info__image {
-    max-width: 200px;
-    max-height: 200px;
-
-    .info__photo {
-      object-fit: cover;
-      object-position: center;
-      border-radius: 50%;
-      width: 200px;
-      height: 200px;
-    }
-  }
-
-  .info__image + .info__table {
-    margin-top: 24px;
   }
 
   .info__table {

@@ -3,7 +3,8 @@
     class="button"
     :class="{
       'edit': role === 'edit',
-      'delete': role === 'delete'
+      'delete': role === 'delete',
+      'add': role === 'add'
     }"
   >
     <button>
@@ -66,6 +67,16 @@ const { role = 'save' } = toRefs(props)
 
       &:hover {
         background-color: $red-darker;
+      }
+    }
+  }
+
+  &.add {
+    button {
+      background-color: $yellow-dark;
+
+      &:hover {
+        background-color: $yellow-darker;
       }
     }
   }

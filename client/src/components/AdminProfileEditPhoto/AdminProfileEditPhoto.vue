@@ -1,9 +1,26 @@
 <template>
   <div class="profile__edit photo">
-    <h3>
-      Change user photo
-    </h3>
     <div
+      v-if="user.photo"
+      class="photo__actual"
+    >
+      <main-user-photo />
+      <div class="photo__add">
+        <input
+          ref="file"
+          type="file"
+          @change="updatePhoto"
+        >
+        <element-button
+          role="add"
+          @click="changePhoto"
+        >
+          Change photo
+        </element-button>
+      </div>
+    </div>
+    <div
+      v-else
       class="photo__placeholder"
     >
       <div class="placeholder__top" />
@@ -13,8 +30,24 @@
 </template>
 
 <script setup lang='ts'>
-import ElementInput from '@/components/UI/ElementInput/ElementInput.vue'
 import ElementButton from '@/components/UI/ElementButton/ElementButton.vue'
+import MainUserPhoto from '@/components/MainUserPhoto/MainUserPhoto.vue'
+import { ref } from 'vue'
+import { useUser } from '@/hooks/useUser'
+// todo: drag&drop
+const file = ref()
+const {user, updateStore} = useUser()
+const changePhoto = (): void => {
+  if(file.value) {
+    file.value.click()
+  }
+}
+const updatePhoto = () => {
+  if(file.value) {
+    console.log(file.value.files[0].name)
+    updateStore('photo', file.value.files[0].name)
+  }
+}
 </script>
 
 <style scoped lang='scss'>
@@ -22,6 +55,18 @@ import ElementButton from '@/components/UI/ElementButton/ElementButton.vue'
 
 .photo {
   max-width: 200px;
+
+  .photo__actual {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1rem;
+
+    input {
+      display: none;
+      opacity: 0;
+      color: transparent;
+    }
+  }
 
   .photo__placeholder {
     border-radius: 50%;
