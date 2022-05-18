@@ -13,7 +13,7 @@
 
 <script setup lang='ts'>
 
-import AdminProfileEditInfo from '@/components/AdminProfileEditInfo/AdminProfileEditInfo.vue'
+import AdminProfileEditInfo from '@/components/AdminProfileEdit/AdminProfileEdit.vue'
 
 </script>
 

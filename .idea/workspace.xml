@@ -5,20 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e95b890a-1bae-476e-90ca-49b18bf09146" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/views/admin/AdminLoginPage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/assets/styles/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/styles/_variables.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/AdminLogin/AdminLogin.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminLogin/AdminLogin.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/AdminNavigation/AdminNavigation.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminNavigation/AdminNavigation.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementHeader/ElementHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/ElementHeader/ElementHeader.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/router/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/Admin.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/admin/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/AdminAbout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/admin/AdminAboutPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/AdminLogin.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/AdminReviews.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/admin/AdminReviewsPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/AdminWorks.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/admin/AdminWorksPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/AdminProfile/AdminProfile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminProfile/AdminProfile.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/AdminProfileEditInfo/AdminProfileEditInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminProfileEdit/AdminProfileEdit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/AdminProfileEditPhoto/AdminProfileEditPhoto.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminProfileEditPhoto/AdminProfileEditPhoto.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeAboutDescription/HomeAboutDescription.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeAboutDescription/HomeAboutDescription.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeAboutInfo/HomeAboutInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeAboutInfo/HomeAboutInfo.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/MainSocials/MainSocials.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MainSocials/MainSocials.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementButton/ElementButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/ElementButton/ElementButton.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementInput/ElementInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/ElementInput/ElementInput.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/hooks/useCodewars.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/hooks/useCodewars.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/models/User.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/models/Codewars.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/modules/сodewars.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/modules/сodewars.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +45,7 @@
     <setting file="file://$PROJECT_DIR$/client/src/components/HomeWorks/HomeWorks.vue" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/client/src/components/HomeWorksItem/HomeWorksItem.vue" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/client/src/main.ts" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/client/src/models/User.ts" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/client/src/models/Codewars.ts" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/client/src/store/index.ts" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/client/src/store/modules/reviews.ts" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/client/src/store/modules/works.ts" root0="FORCE_HIGHLIGHTING" />
@@ -81,8 +82,9 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/client/src/views/admin" />
       <recent name="$PROJECT_DIR$/client/src/store/modules" />
+      <recent name="$PROJECT_DIR$/client/src/store/modules/user" />
+      <recent name="$PROJECT_DIR$/client/src/views/admin" />
     </key>
   </component>
   <component name="RunManager" selected="npm.serve (1)">
@@ -188,7 +190,9 @@
       <workItem from="1651667782130" duration="62000" />
       <workItem from="1651667851438" duration="2589000" />
       <workItem from="1651753726061" duration="1261000" />
-      <workItem from="1652350184314" duration="21592000" />
+      <workItem from="1652350184314" duration="22007000" />
+      <workItem from="1652457673522" duration="3064000" />
+      <workItem from="1652690018869" duration="30709000" />
     </task>
     <servers />
   </component>

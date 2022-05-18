@@ -5,33 +5,25 @@
     >
       {{ capitalizeFirstLetter(name) }}
     </label>
-    <input
+    <textarea
       v-model="input"
-      :type="type"
       :name="name"
-      :placeholder="placeholder ? placeholder : `Enter ${name}`"
-      @keyup="updateStore(storeKey, input)"
-    >
+      :placeholder="placeholder"
+    />
   </div>
 </template>
 
 <script setup lang='ts'>
 import { onMounted, ref, toRefs } from 'vue'
 import { capitalizeFirstLetter } from '@/helpers/capitalizeFirstLetter'
-import { useUser } from '@/hooks/useUser'
-import { UserKey } from '@/models/UserPayload'
-
-type inputType = 'text' | 'password' | 'email' | 'number' | 'checkbox' | 'color' | 'date' | 'file'
 
 interface Props {
-  type: inputType;
   name: string;
   placeholder?: string;
-  storeKey: UserKey;
 }
 
 const props = defineProps<Props>()
-const { type = 'text', name, placeholder, storeKey } = toRefs(props)
+const { name, placeholder } = toRefs(props)
 
 const input = ref<string>('')
 
@@ -40,8 +32,6 @@ onMounted(() => {
     input.value = placeholder.value
   }
 })
-
-const { updateStore } = useUser()
 </script>
 
 <style scoped lang='scss'>
@@ -57,11 +47,13 @@ const { updateStore } = useUser()
     color: $text-1;
   }
 
-  input {
+  textarea {
     border: 1px solid $divider-2;
     border-radius: 8px;
     padding: 6px 12px;
     transition: color 0.25s;
+    height: floor(calc(250px / 1.1));
+    resize: none;
     color: $text-1;
   }
 }

@@ -1,6 +1,6 @@
 import { ActionContext } from 'vuex'
 import { RootState } from '@/store'
-import Codewars from '@/models/User'
+import Codewars from '@/models/Codewars'
 import axios from 'axios'
 
 const codewarsApi = 'https://www.codewars.com/api/v1/users/julfy-bs'
