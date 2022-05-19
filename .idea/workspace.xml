@@ -6,20 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="e95b890a-1bae-476e-90ca-49b18bf09146" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/styles/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/styles/_variables.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/AdminNavigation/AdminNavigation.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminNavigation/AdminNavigation.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/AdminProfile/AdminProfile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminProfile/AdminProfile.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/AdminProfileEditInfo/AdminProfileEditInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminProfileEdit/AdminProfileEdit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/AdminProfileEdit/AdminProfileEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminProfileEdit/AdminProfileEdit.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/AdminProfileEditPhoto/AdminProfileEditPhoto.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminProfileEditPhoto/AdminProfileEditPhoto.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/AdminSkills/AdminSkills.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminSkills/AdminSkills.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/HomeAboutDescription/HomeAboutDescription.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeAboutDescription/HomeAboutDescription.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeAboutInfo/HomeAboutInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeAboutInfo/HomeAboutInfo.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/MainSocials/MainSocials.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MainSocials/MainSocials.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementButton/ElementButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/ElementButton/ElementButton.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementInput/ElementInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/ElementInput/ElementInput.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/hooks/useCodewars.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/hooks/useCodewars.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/models/User.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/models/Codewars.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/modules/сodewars.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/modules/сodewars.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementTextarea/ElementTextarea.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/ElementTextarea/ElementTextarea.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/hooks/useUser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/hooks/useUser.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/modules/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/modules/user.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/admin/AdminAboutPage.vue" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,7 +189,7 @@
       <workItem from="1651753726061" duration="1261000" />
       <workItem from="1652350184314" duration="22007000" />
       <workItem from="1652457673522" duration="3064000" />
-      <workItem from="1652690018869" duration="30709000" />
+      <workItem from="1652690018869" duration="35661000" />
     </task>
     <servers />
   </component>

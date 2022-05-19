@@ -14,7 +14,7 @@ export const useUser = (): useUser=> {
   const user = computed((): User => store.state.user.user)
 
   const changeUser = (payload: UserPayload<UserKey, UserValue>): void => store.commit('user/CHANGE_USER_FIELD', payload)
-
+  const updateUser = (payload: User): void => store.commit('user/UPDATE_USER', payload)
   // todo: Кнопка save отправляет содержимое на backend
 
   const updateStore = (key: UserKey, value: UserValue): void => {
@@ -23,6 +23,7 @@ export const useUser = (): useUser=> {
 
   const pushUser = (data: User): void => {
     try {
+      updateUser(data)
       console.log(data)
     } catch (e) {
       throw new Error(e)
