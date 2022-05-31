@@ -6,17 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="e95b890a-1bae-476e-90ca-49b18bf09146" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/AdminNavigation/AdminNavigation.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminNavigation/AdminNavigation.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/AdminProfile/AdminProfile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminProfile/AdminProfile.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/AdminProfileEdit/AdminProfileEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminProfileEdit/AdminProfileEdit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/AdminProfileEditPhoto/AdminProfileEditPhoto.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminProfileEditPhoto/AdminProfileEditPhoto.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/AdminSkills/AdminSkills.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminSkills/AdminSkills.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeAboutDescription/HomeAboutDescription.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeAboutDescription/HomeAboutDescription.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementTextarea/ElementTextarea.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/ElementTextarea/ElementTextarea.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/hooks/useUser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/hooks/useUser.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/router/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/modules/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/modules/user.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/admin/AdminAboutPage.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeSkills/HomeSkills.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeSkills/HomeSkills.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeWorks/HomeWorks.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeWorks/HomeWorks.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,7 +181,23 @@
       <workItem from="1651753726061" duration="1261000" />
       <workItem from="1652350184314" duration="22007000" />
       <workItem from="1652457673522" duration="3064000" />
-      <workItem from="1652690018869" duration="35661000" />
+      <workItem from="1652690018869" duration="36423000" />
+      <workItem from="1653048602776" duration="212000" />
+      <workItem from="1653050490424" duration="63000" />
+      <workItem from="1653050579712" duration="1896000" />
+      <workItem from="1653417946277" duration="3926000" />
+      <workItem from="1653487996268" duration="44000" />
+      <workItem from="1653488233386" duration="7260000" />
+      <workItem from="1653585399469" duration="1133000" />
+      <workItem from="1653594357062" duration="1220000" />
+      <workItem from="1653698722669" duration="609000" />
+      <workItem from="1653740686690" duration="737000" />
+      <workItem from="1653742201874" duration="30000" />
+      <workItem from="1653746500574" duration="130000" />
+      <workItem from="1653746951633" duration="3672000" />
+      <workItem from="1653885361993" duration="1884000" />
+      <workItem from="1653936023318" duration="726000" />
+      <workItem from="1654018176242" duration="1201000" />
     </task>
     <servers />
   </component>
