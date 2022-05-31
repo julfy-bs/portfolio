@@ -37,11 +37,6 @@ const routes = [
         component: () => import('@/views/admin/AdminWorksPage.vue')
       },
       {
-        path: '/admin/about',
-        name: 'Admin about',
-        component: () => import('@/views/admin/AdminAboutPage.vue')
-      },
-      {
         path: '/admin/reviews',
         name: 'Admin reviews',
         component: () => import('@/views/admin/AdminReviewsPage.vue')

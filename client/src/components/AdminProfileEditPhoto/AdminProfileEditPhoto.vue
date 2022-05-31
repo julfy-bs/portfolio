@@ -1,10 +1,16 @@
 <template>
   <div class="profile__edit photo">
     <div
-      v-if="user.photo"
       class="photo__actual"
     >
-      <main-user-photo />
+      <main-user-photo v-if="user.photo" />
+      <div
+        v-else
+        class="photo__placeholder"
+      >
+        <div class="placeholder__top" />
+        <div class="placeholder__bottom" />
+      </div>
       <div class="photo__add">
         <input
           ref="file"
@@ -18,13 +24,6 @@
           Change photo
         </element-button>
       </div>
-    </div>
-    <div
-      v-else
-      class="photo__placeholder"
-    >
-      <div class="placeholder__top" />
-      <div class="placeholder__bottom" />
     </div>
   </div>
 </template>

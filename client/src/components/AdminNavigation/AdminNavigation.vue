@@ -50,10 +50,9 @@ const linksList = ref([
     groupName: '',
     group: [
       { id: 0, title: 'Profile', to: '/admin/profile' },
-      { id: 1, title: 'About', to: '/admin/about' },
-      { id: 2, title: 'Skills', to: '/admin/skills' },
-      { id: 3, title: 'Works', to: '/admin/works' },
-      { id: 4, title: 'Reviews', to: '/admin/reviews' }
+      { id: 1, title: 'Skills', to: '/admin/skills' },
+      { id: 2, title: 'Works', to: '/admin/works' },
+      { id: 3, title: 'Reviews', to: '/admin/reviews' }
     ]
   }
 ])

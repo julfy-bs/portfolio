@@ -4,16 +4,14 @@
       Profile
     </h1>
     <div class="admin-section__wrapper">
-      <div class="profile__wrapper ">
-        <admin-profile-edit-info />
-      </div>
+      <admin-profile-edit />
     </div>
   </section>
 </template>
 
 <script setup lang='ts'>
 
-import AdminProfileEditInfo from '@/components/AdminProfileEdit/AdminProfileEdit.vue'
+import AdminProfileEdit from '@/components/AdminProfileEdit/AdminProfileEdit.vue'
 
 </script>
 
@@ -23,12 +21,5 @@ import AdminProfileEditInfo from '@/components/AdminProfileEdit/AdminProfileEdit
 .profile {
   display: flex;
   justify-content: center;
-
-  .profile__wrapper {
-    display: flex;
-    flex-flow: column nowrap;
-    gap: 1rem;
-  }
-
 }
 </style>

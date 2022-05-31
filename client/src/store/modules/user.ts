@@ -8,6 +8,7 @@ export interface UserState {
 
 enum MutationTypes {
   CHANGE_USER_FIELD = 'CHANGE_USER_FIELD',
+  UPDATE_USER = 'UPDATE_USER'
 }
 
 const state = (): UserState => ({
@@ -29,11 +30,16 @@ const state = (): UserState => ({
 
 type Mutations<S = UserState> = {
   [MutationTypes.CHANGE_USER_FIELD](state: S, payload: UserPayload<UserKey, UserValue>): void
+  // todo: нужна ли эта мутация?
+  [MutationTypes.UPDATE_USER](state: S, payload: User): void
 }
 
 const mutations: MutationTree<UserState> & Mutations = {
   [MutationTypes.CHANGE_USER_FIELD](state, payload) {
     state.user[payload.key] = payload.value
+  },
+  [MutationTypes.UPDATE_USER](state, payload) {
+    state.user = payload
   }
 }
 

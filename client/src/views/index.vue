@@ -20,9 +20,9 @@ import HomeSkills from '@/components/HomeSkills/HomeSkills.vue'
 import HomeWorks from '@/components/HomeWorks/HomeWorks.vue'
 import HomeReviews from '@/components/HomeReviews/HomeReviews.vue'
 // todo: настроить присвоение hash при прокрутке страницы. Баг: сбивается hash
-import { useIntersectionObserver } from '@/hooks/useIntersectionObserver.ts'
-
-useIntersectionObserver('section')
+// import { useIntersectionObserver } from '@/hooks/useIntersectionObserver.ts'
+//
+// useIntersectionObserver('section')
 </script>
 
 <style lang='scss' scoped>

@@ -9,29 +9,29 @@
       v-model="input"
       :name="name"
       :placeholder="placeholder"
+      @keyup="updateStore(storeKey, input)"
     />
   </div>
 </template>
 
 <script setup lang='ts'>
-import { onMounted, ref, toRefs } from 'vue'
+import { ref, toRefs } from 'vue'
 import { capitalizeFirstLetter } from '@/helpers/capitalizeFirstLetter'
+import { useUser } from '@/hooks/useUser'
+import { UserKey } from '@/models/UserPayload'
 
 interface Props {
   name: string;
   placeholder?: string;
+  storeKey: UserKey;
 }
 
 const props = defineProps<Props>()
-const { name, placeholder } = toRefs(props)
+const { name, placeholder, storeKey } = toRefs(props)
 
-const input = ref<string>('')
+const input = ref(placeholder?.value ? placeholder.value : '')
 
-onMounted(() => {
-  if (placeholder?.value) {
-    input.value = placeholder.value
-  }
-})
+const { updateStore } = useUser()
 </script>
 
 <style scoped lang='scss'>
