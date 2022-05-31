@@ -50,7 +50,6 @@ const { workDetailOpen, workDetailClose, worksList, isWorkOpened } = useWorks()
 }
 
 .modal-animation-enter-from {
-  opacity: .3;
   transform: translateY(-40px);
 }
 

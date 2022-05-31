@@ -30,10 +30,11 @@
 <script setup lang='ts'>
 import ElementButtonLink from '@/components/UI/ElementButtonLink/ElementButtonLink.vue'
 import { useUser } from '@/hooks/useUser'
+import { computed } from 'vue'
 
 const { user } = useUser()
+const lines = computed(() => user.value.description.split('\n'))
 
-const lines = user.value.description.split('\n')
 </script>
 
 <style lang='scss' scoped>

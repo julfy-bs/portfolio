@@ -103,8 +103,14 @@ const { user, pushUser } = useUser()
 
     .user__main {
       display: flex;
-      flex-flow: row nowrap;
+      flex-flow: column nowrap;
+      align-items: center;
       gap: 1rem;
+
+      @media (min-width: $tablets) {
+        flex-flow: row nowrap;
+        align-items: flex-start;
+      }
 
       .user__sidebar, .user__body {
         display: flex;
@@ -118,6 +124,11 @@ const { user, pushUser } = useUser()
 
       .user__body {
         flex: 1 1 auto;
+        width: 100%;
+
+        @media (min-width: $tablets) {
+          width: auto;
+        }
 
         .user__group {
           display: flex;

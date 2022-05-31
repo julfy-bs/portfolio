@@ -54,7 +54,6 @@ const { skillDetailOpen, skillDetailClose, skillsList, isSkillOpened } = useSkil
 }
 
 .modal-animation-enter-from {
-  opacity: .3;
   transform: translateY(-40px);
 }
 
