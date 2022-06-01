@@ -212,21 +212,21 @@ const props = defineProps<Props>()
 }
 
 .ease-out-enter-active {
-  transition: all 0.3s ease-out;
+  transition: all .3s ease-out;
 }
 
 .ease-out-leave-active {
-  transition: all 0.3s ease-out;
+  transition: all .2s ease-out;
 }
 
 .ease-out-leave-to {
-  transform: translateY(-20px);
+  transform: translateY(-100px);
   opacity: 0;
 }
 
 .ease-out-enter-from {
   opacity: .3;
-  transform: translateY(-20px);
+  transform: translateY(-100px);
 }
 
 .ease-out-enter {

@@ -6,9 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="e95b890a-1bae-476e-90ca-49b18bf09146" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeSkills/HomeSkills.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeSkills/HomeSkills.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeWorks/HomeWorks.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeWorks/HomeWorks.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/assets/styles/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/styles/_variables.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/AdminSkills/AdminSkills.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminSkills/AdminSkills.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeHero/HomeHero.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeHero/HomeHero.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeReviewsItem/HomeReviewsItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeReviewsItem/HomeReviewsItem.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/MainUserPhoto/MainUserPhoto.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MainUserPhoto/MainUserPhoto.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,7 +199,7 @@
       <workItem from="1653746951633" duration="3672000" />
       <workItem from="1653885361993" duration="1884000" />
       <workItem from="1653936023318" duration="726000" />
-      <workItem from="1654018176242" duration="1201000" />
+      <workItem from="1654018176242" duration="13807000" />
     </task>
     <servers />
   </component>
