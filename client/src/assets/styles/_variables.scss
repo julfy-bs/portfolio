@@ -106,8 +106,7 @@ $z-index-backdrop: 40;
 $z-index-sidebar: 50;
 
 /* gradient */
-$vue-gradient: -webkit-linear-gradient(315deg, #42d392 25%, #647eff);
-$animation-gradient: -webkit-linear-gradient(30deg, #751988, #00cae0 20%, #42d392 40%, #647eff 60%, #dd02c7 80%, #751988);
+$vue-gradient: -webkit-linear-gradient(315deg, rgba(0,202,224,1) 0%, rgba(66,211,146,1) 50%, rgba(100,126,255,1) 100%);
 
 /* admin */
 $info-max-width: var(--info-max-width);

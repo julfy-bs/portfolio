@@ -1,14 +1,9 @@
 <template>
-  <div
-    class="button"
-    :class="{
-      'edit': role === 'edit',
-      'delete': role === 'delete',
-      'add': role === 'add'
-    }"
-  >
+  <div class="animation-button">
     <button>
-      <slot />
+      <span>
+        <slot />
+      </span>
     </button>
   </div>
 </template>
@@ -30,55 +25,75 @@ const { role = 'save' } = toRefs(props)
 <style scoped lang='scss'>
 @import "src/assets/styles/_variables.scss";
 
-.button {
-  display: flex;
-  align-items: flex-end;
+.animation-button {
+  position: relative;
+  min-width: 160px;
+  height: 36px;
+}
 
-  button {
-    width: 100%;
+.animation-button button {
+  min-width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
 
-    font-weight: 600;
-    color: $bg;
-
+  &::before {
+    left: 50%;
+    top: 50%;
+    width: 200%;
+    padding-top: 200%;
+    transform-origin: center;
+    transform: translate(-50%, -50%);
     background-color: $brand-vue;
-    border-radius: 6px;
-
-    padding: 7px 24px;
-    transition: background-color .5s, color .5s;
-
-    &:hover {
-      background-color: $brand-vue-dark;
-    }
+    background-image: $vue-gradient;
+    background-size: 200% 200%;
+    opacity: 1;
+    animation: animation_btn_idle 5s ease-in-out infinite;
   }
 
-  &.edit {
-    button {
-      background-color: $blue-light;
-
-      &:hover {
-        background-color: $blue-dark;
-      }
-    }
+  span {
+    z-index: 1;
+    position: relative;
+    color: #ffffff;
+    text-shadow: 0 -1px 1px rgb(0 0 0 / 25%);
   }
 
-  &.delete {
-    button {
-      background-color: $red-dark;
-
-      &:hover {
-        background-color: $red-darker;
-      }
-    }
+  &:after {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    background-image: linear-gradient(45deg,transparent,transparent 25%,rgba(0,231,255,.7) 45%,rgba(255,0,231,.7) 55%,transparent 70%,transparent),url(https://static.wasd.tv/assets/fe/images/buttons/button-donate-fx.gif);
+    background-size: 200% 200%,cover;
+    mix-blend-mode: screen;
+    opacity: 0;
+    transition: opacity .3s ease-out;
   }
+}
 
-  &.add {
-    button {
-      background-color: $yellow-dark;
+.animation-button button:after, .animation-button button:before {
+  content: "";
+  position: absolute;
+}
 
-      &:hover {
-        background-color: $yellow-darker;
-      }
-    }
+.animation-button button:hover:after {
+  opacity: 1;
+}
+
+@keyframes animation_btn_idle {
+  0% {
+    background-position: 0 0
+  }
+  50% {
+    background-position: 100% 100%
+  }
+  to {
+    background-position: 0 0
   }
 }
 </style>

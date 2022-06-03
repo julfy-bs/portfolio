@@ -37,9 +37,9 @@ const { user } = useUser()
     transform: translate(-50%, -50%);
     height: 200px;
     width: 200px;
-    background: $animation-gradient;
+    background: $vue-gradient;
     border-radius: calc(2 * var(--borderWidth));
-    animation: animation_img_idle 5s ease infinite;
+    animation: animation_img_idle 15s ease infinite;
     background-size: 100% 100%;
     z-index: -1;
   }

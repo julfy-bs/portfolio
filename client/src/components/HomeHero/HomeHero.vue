@@ -55,8 +55,8 @@
   -webkit-text-fill-color: transparent;
   background-size: 200% 200%;
   letter-spacing: .4px;
-  background-color: #aa83f3;
-  background-image: $animation-gradient;
+  background-color: $brand-vue;
+  background-image: $vue-gradient;
   animation: animation_btn_idle 15s ease-in-out infinite;
 }
 
@@ -64,8 +64,11 @@
   0% {
     background-position: 0 0
   }
-  to {
-    background-position: 200% center;
+  50% {
+    background-position: 100% center;
+  }
+  100% {
+    background-position: 0 0
   }
 }
 </style>

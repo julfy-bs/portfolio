@@ -56,8 +56,8 @@ const { role = 'save' } = toRefs(props)
     padding-top: 200%;
     transform-origin: center;
     transform: translate(-50%, -50%) rotate(-45deg);
-    background-color: #aa83f3;
-    background-image: $animation-gradient;
+    background-color: $brand-vue;
+    background-image: $vue-gradient;
     background-size: 200% 200%;
     opacity: 1;
     animation: animation_btn_idle 15s ease-in-out infinite;
