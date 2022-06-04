@@ -32,12 +32,20 @@ const { role = 'save' } = toRefs(props)
 }
 
 .animation-button button {
+  font-weight: 400;
   min-width: 100%;
   height: 100%;
-  border-radius: 8px;
+  border-width: 0;
+  border-radius: 4px;
+  font-size: 12px;
   outline: none;
+  letter-spacing: .4px;
+  color: #444858;;
   cursor: pointer;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   overflow: hidden;
   transform: translateZ(0);
 
@@ -47,12 +55,12 @@ const { role = 'save' } = toRefs(props)
     width: 200%;
     padding-top: 200%;
     transform-origin: center;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) rotate(-45deg);
     background-color: $brand-vue;
     background-image: $vue-gradient;
     background-size: 200% 200%;
     opacity: 1;
-    animation: animation_btn_idle 5s ease-in-out infinite;
+    animation: animation_btn_idle 15s ease-in-out infinite;
   }
 
   span {
@@ -89,11 +97,8 @@ const { role = 'save' } = toRefs(props)
   0% {
     background-position: 0 0
   }
-  50% {
-    background-position: 100% 100%
-  }
   to {
-    background-position: 0 0
+    background-position: -200% -200%
   }
 }
 </style>

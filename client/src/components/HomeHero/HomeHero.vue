@@ -48,10 +48,27 @@
     font-size: 36px;
   }
 }
+
 .gradient {
-  background: -webkit-linear-gradient(315deg, #42d392 25%, #647eff);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  letter-spacing: .4px;
+  background-color: $brand-vue;
+  background-image: $vue-gradient;
+  animation: animation_btn_idle 15s ease-in-out infinite;
+}
+
+@keyframes animation_btn_idle {
+  0% {
+    background-position: 0 0
+  }
+  50% {
+    background-position: 100% center;
+  }
+  100% {
+    background-position: 0 0
+  }
 }
 </style>

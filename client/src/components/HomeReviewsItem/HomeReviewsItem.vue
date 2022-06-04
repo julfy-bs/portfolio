@@ -36,7 +36,7 @@
         </span>
       </button>
     </div>
-    <transition name="ease-out">
+    <transition name="slide-fade">
       <div
         v-if="detailedReviewOpened === props.review"
         class="review__body"
@@ -211,31 +211,17 @@ const props = defineProps<Props>()
   transform: translate(0) rotate(225deg);
 }
 
-.ease-out-enter-active {
+.slide-fade-enter-active {
   transition: all 0.3s ease-out;
 }
 
-.ease-out-leave-active {
-  transition: all 0.3s ease-out;
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
 }
 
-.ease-out-leave-to {
+.slide-fade-enter-from,
+.slide-fade-leave-to {
   transform: translateY(-20px);
   opacity: 0;
-}
-
-.ease-out-enter-from {
-  opacity: .3;
-  transform: translateY(-20px);
-}
-
-.ease-out-enter {
-  opacity: 1;
-  transform: translateY(0px);
-}
-
-.ease-out-enter-to {
-  opacity: 1;
-  transform: translateY(0px);
 }
 </style>
