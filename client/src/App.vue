@@ -50,7 +50,9 @@ onMounted(() => {
   --c-gray-dark-4: #282828;
   --c-gray-dark-5: #202020;
   --c-blue-light: #549ced;
+  --c-blue-light-2: #00cae0;
   --c-blue-dark: #3468a3;
+  --c-blue-dark-2: #647eff;
   --c-red-dark: #cd2d3f;
   --c-red-darker: #ab2131;
   --c-divider-light-1: rgba(60, 60, 60, .29);
@@ -225,7 +227,7 @@ img, video {
   height: auto;
 }
 
-section {
+section:not(.hero) {
   padding: 100px 32px;
   max-width: 960px;
   margin: 0 auto;
