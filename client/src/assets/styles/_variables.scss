@@ -10,7 +10,6 @@ $phones: 460px;
 //font
 $font-family-base: var(--font-family-base);
 
-
 // primary colors
 $white: var(--c-white);
 $white-soft: var(--c-white-soft);
@@ -36,18 +35,17 @@ $text-2: var(--c-text-2);
 $text-3: var(--c-text-3);
 $text-4: var(--c-text-4);
 $text-code: var(--c-text-code);
-
-$brand-vue: var(--c-green);
-$brand-vue-dark: var(--c-green-dark);
-$brand-yandex: var(--c-yellow);
+$green: var(--c-green);
 $green-light: #42d392;
 $green-lighter: #35eb9a;
-$green-dark: #33a06f;
+$green-dark: var(--c-green-dark);
 $green-darker: #155f3e;
 $blue: #3b8eed;
 $blue-light: var(--c-blue-light);
+$blue-light-2: var(--c-blue-light-2);
 $blue-lighter: #50a2ff;
 $blue-dark: var(--c-blue-dark);
+$blue-dark-2: var(--c-blue-dark-2);
 $blue-darker: #255489;
 $yellow: #ffc517;
 $yellow-light: #ffe417;
@@ -64,6 +62,11 @@ $purple-light: #e936eb;
 $purple-lighter: #f616f8;
 $purple-dark: #823c83;
 $purple-darker: #602960;
+
+/* brand */
+$brand-vue: $green;
+$brand-vue-dark: $green-dark;
+$brand-yandex: var(--c-yellow);
 
 /* background color */
 $bg: var(--bg);
@@ -92,13 +95,15 @@ $warning: #FEEFB3;
 $warning-main: #9F6000;
 
 /* banner */
-$banner-height: 0;
+$banner-height: 0px;
 
 /* header */
 $header-height: var(--header-height);
 $header-line-height: calc(#{$header-height} - 1px);
 
 /* z-index */
+$z-index-hero-square: 1;
+$z-index-hero-content: 5;
 $z-index-local-nav: 10;
 $z-index-nav: 20;
 $z-index-banner: 30;
@@ -106,7 +111,7 @@ $z-index-backdrop: 40;
 $z-index-sidebar: 50;
 
 /* gradient */
-$vue-gradient: -webkit-linear-gradient(315deg, rgba(0,202,224,1) 0%, rgba(66,211,146,1) 50%, rgba(100,126,255,1) 100%);
+$vue-gradient: -webkit-linear-gradient(315deg, $blue-light-2 0%, $brand-vue 50%, $blue-dark-2 100%);
 
 /* admin */
 $info-max-width: var(--info-max-width);
