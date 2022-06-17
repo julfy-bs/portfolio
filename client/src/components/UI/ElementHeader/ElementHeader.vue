@@ -42,7 +42,6 @@ import MainBurger from '@/components/MainBurger/MainBurger.vue'
 import ChangeAppearance from '@/components/MainAppearance/ChangeAppearance.vue'
 
 import { useBurger } from '@/hooks/useBurger'
-
 const { closeBurger, isBurgerActive } = useBurger()
 </script>
 
@@ -57,7 +56,7 @@ const { closeBurger, isBurgerActive } = useBurger()
 
 
   @media (min-width: $tablets-big) {
-    position: fixed;
+    position: sticky;
     top: $banner-height;
     width: 100%;
   }

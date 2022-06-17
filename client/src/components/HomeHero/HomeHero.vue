@@ -3,31 +3,37 @@
     id="hero"
     class="hero"
   >
+    <element-background />
     <h1 class="hero-title">
       <span class="gradient">
-        Frontend Developer's Personal Portfolio Website
+        Frontend Developer's Portfolio
       </span>
     </h1>
   </section>
 </template>
 
+<script setup lang='ts'>
+import ElementBackground from '@/components/UI/ElementBackground/ElementBackground.vue'
+</script>
+
 <style lang='scss' scoped>
 @import "src/assets/styles/_variables.scss";
 
 .hero {
-  min-height: 100vh;
+  height: calc(100vh - #{$header-height} - #{$banner-height});
   display: flex;
   align-items: center;
   text-align: center;
+  position: relative;
 
   @media (max-width: $tablets-big) {
     padding-top: 229px;
     padding-bottom: 229px;
-    min-height: 90vh;
   }
 }
 
 .hero-title {
+  z-index: $z-index-hero-content;
   font-size: 76px;
   line-height: 1.1;
   font-weight: 900;
