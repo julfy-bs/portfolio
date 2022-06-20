@@ -16,7 +16,7 @@ export const useUser = (): useUser=> {
   const changeUser = (payload: UserPayload<UserKey, UserValue>): void => store.commit('user/CHANGE_USER_FIELD', payload)
   const updateUser = (payload: User): void => store.commit('user/UPDATE_USER', payload)
   // todo: Кнопка save отправляет содержимое на backend
-
+  // todo: Добавить loader на загрузку юзера и отображение всех загружаемых данных по boolean флагу
   const updateStore = (key: UserKey, value: UserValue): void => {
       changeUser({ key, value })
   }

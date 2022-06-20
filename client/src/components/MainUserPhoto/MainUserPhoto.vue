@@ -1,5 +1,8 @@
 <template>
-  <div class="info__image">
+  <div
+    v-if="user.photo"
+    class="info__image"
+  >
     <img
       :src="user.photo"
       alt="User photo"
@@ -24,7 +27,6 @@ const { user } = useUser()
   position: relative;
   background: transparent;
   border-radius: var(--borderWidth);
-  //overflow: hidden;
   z-index: 0;
 
   &:after {
