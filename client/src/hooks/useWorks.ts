@@ -26,7 +26,7 @@ export const useWorks = () => {
   }
 
   const workDetailOpen = (work: Work) => {
-    void router.replace({ query: { work: work.title }, hash: route.hash })
+    void router.replace({ query: { work: work.title } })
     void switchWorkDisplayCondition(true)
     document.body.classList.add('modal-open')
   }
@@ -35,7 +35,7 @@ export const useWorks = () => {
     void switchWorkDisplayCondition(false)
     void switchOpenedWork({})
     document.body.classList.remove('modal-open')
-    void router.replace({ path: '/', hash: route.hash })
+    void router.replace({ path: '/' })
   }
 
   return {

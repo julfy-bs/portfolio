@@ -4,10 +4,11 @@
     class="hero"
   >
     <element-background />
-    <h1 class="hero-title">
-      <span class="gradient">
-        Frontend Developer's Portfolio
-      </span>
+    <h1 class="hero-title gradient">
+      Frontend Developer's
+    </h1>
+    <h1 class="hero-title gradient">
+      Portfolio
     </h1>
   </section>
 </template>
@@ -22,6 +23,8 @@ import ElementBackground from '@/components/UI/ElementBackground/ElementBackgrou
 .hero {
   height: calc(100vh - #{$header-height} - #{$banner-height});
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   text-align: center;
   position: relative;
@@ -47,7 +50,7 @@ import ElementBackground from '@/components/UI/ElementBackground/ElementBackgrou
   }
 
   @media (max-width: $tablets) {
-    font-size: 44px;
+    font-size: 40px;
   }
 
   @media (max-width: $phones) {
@@ -56,7 +59,6 @@ import ElementBackground from '@/components/UI/ElementBackground/ElementBackgrou
 }
 
 .gradient {
-  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 200% 200%;
