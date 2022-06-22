@@ -7,10 +7,7 @@
     <list default="true" id="e95b890a-1bae-476e-90ca-49b18bf09146" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/HomeHero/HomeHero.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeHero/HomeHero.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/MainUserPhoto/MainUserPhoto.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MainUserPhoto/MainUserPhoto.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/hooks/useSkills.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/hooks/useSkills.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/hooks/useUser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/hooks/useUser.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/hooks/useWorks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/hooks/useWorks.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,20 +53,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/julfy/Documents/projects/portfolio&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/julfy/Documents/projects/portfolio/client/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/julfy/Documents/projects/portfolio",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.sourceCode.HTML",
+    "ts.external.directory.path": "/Users/julfy/Documents/projects/portfolio/client/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/client/src/components/UI" />
@@ -78,7 +77,7 @@
       <recent name="$PROJECT_DIR$/client/src/views/admin" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="npm.serve">
     <configuration name="serve" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/client/package.json" />
       <command value="run" />
@@ -162,6 +161,8 @@
       <workItem from="1654691608931" duration="3483000" />
       <workItem from="1655220135763" duration="20885000" />
       <workItem from="1655312471369" duration="6053000" />
+      <workItem from="1655829053235" duration="761000" />
+      <workItem from="1655829818911" duration="4227000" />
     </task>
     <servers />
   </component>
@@ -190,5 +191,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
