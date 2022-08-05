@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e95b890a-1bae-476e-90ca-49b18bf09146" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeHero/HomeHero.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeHero/HomeHero.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementBackground/ElementBackground.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/ElementBackground/ElementBackground.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,7 +164,9 @@
       <workItem from="1655829818911" duration="4227000" />
       <workItem from="1655908872832" duration="99000" />
       <workItem from="1656001777955" duration="46000" />
-      <workItem from="1657213238574" duration="1970000" />
+      <workItem from="1657213238574" duration="2714000" />
+      <workItem from="1659700402390" duration="163000" />
+      <workItem from="1659700604297" duration="1181000" />
     </task>
     <servers />
   </component>
