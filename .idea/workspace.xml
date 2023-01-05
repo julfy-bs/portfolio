@@ -5,26 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e95b890a-1bae-476e-90ca-49b18bf09146" name="Changes" comment="feat: добавляет структуру для настройки сайта.&#10;&#10;/cv&#10;добавляет страницу для отображения резюме.&#10;    &#10;&#10;/admin&#10;добавляет стили и разметку админской части приложения.&#10; &#10;    /login&#10;    добавляет стили для логина. Реализовывает редирект с /admin.&#10;    &#10;    /profile&#10;    добавляет настройку профиля.&#10;    &#10;    /skills&#10;    добавляет страницу для настройки скилов.&#10;    &#10;    /cv&#10;    добавляет страницу для настройки резюме.&#10;    &#10;    /works&#10;    добавляет страницу для настройки работ.">
-      <change afterPath="$PROJECT_DIR$/client/src/assets/work-converter.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/assets/work-crm.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/views/CVPage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/views/admin/AdminCVPage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/among-us.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/AdminLogin/AdminLogin.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminLogin/AdminLogin.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeWorksItem/HomeWorksItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeWorksItem/HomeWorksItem.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeWorksList/HomeWorksList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeWorksList/HomeWorksList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/MainAppearance/ChangeAppearance.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MainAppearance/ChangeAppearance.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/MainUserPhoto/MainUserPhoto.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MainUserPhoto/MainUserPhoto.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementButton/ElementButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/ElementButton/ElementButton.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementInput/ElementInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/ElementInput/ElementInput.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/router/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/modules/works.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/modules/works.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/admin/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/admin/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/vue.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,11 +20,11 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -69,6 +50,7 @@
     <setting file="file://$PROJECT_DIR$/client/src/store/modules/reviews.ts" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/client/src/store/modules/works.ts" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/client/src/store/modules/сodewars.ts" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/client/src/views/index.vue" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -152,7 +134,6 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.serve (1)" />
         <item itemvalue="npm.serve" />
         <item itemvalue="npm.server (1)" />
         <item itemvalue="npm.server" />
