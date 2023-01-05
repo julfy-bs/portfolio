@@ -4,7 +4,7 @@
     class="info__image"
   >
     <img
-      :src="user.photo"
+      src="@/static/images/user.jpg"
       alt="User photo"
       class="info__photo"
     >

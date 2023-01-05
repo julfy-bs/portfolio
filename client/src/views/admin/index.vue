@@ -23,7 +23,10 @@ import AdminHeader from '@/components/AdminHeader/AdminHeader.vue'
 
 .admin-main {
   position: relative;
-
+  background-color: $bg;
+  transition: color .5s, background-color .5s;
+  
+  
   &.with-header {
     @media (min-width: $tablets-big) {
       padding-top: $header-height;

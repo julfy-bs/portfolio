@@ -17,7 +17,7 @@
           name="password"
           type="password"
         />
-        <element-button>
+        <element-button role="login">
           Submit
         </element-button>
       </form>
@@ -41,15 +41,15 @@ const loginSubmit = () => router.push('profile')
 
 .login {
   height: calc(100vh - #{$header-height});
-
+  
   @media (min-width: $phones) {
     max-width: 500px;
   }
-
+  
   @media (min-width: $tablets) {
     max-width: $screen-min-width;
   }
-
+  
   .login__form {
     display: flex;
     flex-flow: column nowrap;

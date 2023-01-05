@@ -1,8 +1,8 @@
 <template>
   <div
     class="works__item"
-    :style="{backgroundImage: `url(${props.work.picture})` || 'none'}"
   >
+    <!--        :style="{backgroundImage: `url(${props.work.picture})` || 'none'}"-->
     <picture v-if="props.work.picture">
       <source
         :srcset="props.work.picture"
@@ -14,13 +14,13 @@
         class="works__image"
       >
     </picture>
-    <div v-else>
+    <div>
       {{ props.work.title }}
     </div>
   </div>
 </template>
 
-<script setup lang='ts'>
+<script lang='ts' setup>
 import Work from '@/models/Work'
 
 interface Props {
@@ -30,23 +30,17 @@ interface Props {
 const props = defineProps<Props>()
 </script>
 
-<style scoped lang='scss'>
+<style lang='scss' scoped>
 @import "src/assets/styles/_variables.scss";
 
 .works__item {
-  background-color: $bg-mute;
-  display: flex;
-  justify-content: space-around;
   align-items: center;
+  background-color: $bg-mute;
+  border-radius: 4px;
+  display: flex;
   height: calc(var(--max-width) / 2 - 6px);
-  margin: 2px 0;
-  border-radius: 3px;
-  transition: background-color 0.5s ease 0s;
-  background: {
-    repeat: no-repeat;
-    size: cover;
-    image: none;
-  };
+  justify-content: center;
+  transition: background-color 0.5s ease 0s;;
 
   &:hover {
     background-color: $bg-soft;
@@ -66,7 +60,7 @@ const props = defineProps<Props>()
 }
 
 .works__image {
-  max-width: calc(var(--max-width) - 30px);
   max-height: calc(var(--max-width) / 2 - 20px);
+  max-width: calc(var(--max-width) - 30px);
 }
 </style>
