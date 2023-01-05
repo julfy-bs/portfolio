@@ -27,7 +27,7 @@ interface Props {
   type: inputType;
   name: string;
   placeholder?: string;
-  storeKey: UserKey;
+  storeKey?: UserKey;
 }
 
 const props = defineProps<Props>()

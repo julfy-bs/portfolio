@@ -78,7 +78,7 @@ const { toggleTheme } = useAppearance()
   height: 18px;
   border-radius: 50%;
   background-color: $white;
-  box-shadow: var(--vt-shadow-1);
+  box-shadow: var(--shadow-1);
   transition: background-color .25s, transform .25s;
 }
 
