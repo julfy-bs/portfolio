@@ -79,21 +79,15 @@ const { toggleFlyout, closeFlyout } = useFlayout()
 
 .flyout {
   position: relative;
+  color: $text-1;
 
   &:hover {
     transition: color .25s;
   }
 }
 
-.dark-theme .flyout__menu {
-  background: $bg;
-  box-shadow: $shadow-1;
-  border: 1px solid $divider-2;
-}
-
 .flyout:hover {
   color: $text-3;
-  transition: color .25s;
 }
 
 .flyout__menu {
@@ -103,8 +97,15 @@ const { toggleFlyout, closeFlyout } = useFlayout()
   right: 0;
   opacity: 0;
   visibility: hidden;
+  border: 1px solid transparent;
   transform: translateY(-4px);
-  transition: opacity .25s, visibility .25s, transform .25s;
+  background: $bg;
+  box-shadow: $shadow-1;
+  transition: background-color .5s, opacity .5s, visibility .25s, transform .25s;
+}
+
+.dark-theme .flyout__menu {
+  border: 1px solid $divider-2;
 }
 
 .menu {

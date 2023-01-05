@@ -1,5 +1,8 @@
 <template>
-  <div class="info__image">
+  <div
+    v-if="user.photo"
+    class="info__image"
+  >
     <img
       src="@/static/images/user.jpg"
       alt="User photo"
