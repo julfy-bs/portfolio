@@ -5,21 +5,28 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: HomeComponent
+    component: HomeComponent,
+  },
+  {
+    path: '/cv',
+    name: 'CV page',
+    component: () => import('@/views/CVPage.vue')
   },
   {
     path: '/admin',
     name: 'Admin',
+    redirect: '/admin/login',
     component: () => import('@/views/admin/index.vue'),
     children: [
-      {
-        path: '',
-        redirect: '/admin/login'
-      },
       {
         path: '/admin/login',
         name: 'Login to Admin',
         component: () => import('@/views/admin/AdminLoginPage.vue')
+      },
+      {
+        path: '/admin/cv',
+        name: 'Admin CV',
+        component: () => import('@/views/admin/AdminCVPage.vue')
       },
       {
         path: '/admin/skills',

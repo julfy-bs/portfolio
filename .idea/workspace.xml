@@ -4,14 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e95b890a-1bae-476e-90ca-49b18bf09146" name="Changes" comment="">
+    <list default="true" id="e95b890a-1bae-476e-90ca-49b18bf09146" name="Changes" comment="feat: добавляет структуру для настройки сайта.&#10;&#10;/cv&#10;добавляет страницу для отображения резюме.&#10;    &#10;&#10;/admin&#10;добавляет стили и разметку админской части приложения.&#10; &#10;    /login&#10;    добавляет стили для логина. Реализовывает редирект с /admin.&#10;    &#10;    /profile&#10;    добавляет настройку профиля.&#10;    &#10;    /skills&#10;    добавляет страницу для настройки скилов.&#10;    &#10;    /cv&#10;    добавляет страницу для настройки резюме.&#10;    &#10;    /works&#10;    добавляет страницу для настройки работ.">
+      <change afterPath="$PROJECT_DIR$/client/src/assets/work-converter.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/assets/work-crm.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/views/CVPage.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/views/admin/AdminCVPage.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/styles/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/styles/_variables.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeHero/HomeHero.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeHero/HomeHero.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeReviewsItem/HomeReviewsItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeReviewsItem/HomeReviewsItem.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/assets/among-us.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/AdminLogin/AdminLogin.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AdminLogin/AdminLogin.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeWorksItem/HomeWorksItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeWorksItem/HomeWorksItem.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeWorksList/HomeWorksList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeWorksList/HomeWorksList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/MainAppearance/ChangeAppearance.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MainAppearance/ChangeAppearance.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/MainUserPhoto/MainUserPhoto.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MainUserPhoto/MainUserPhoto.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementButton/ElementButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/ElementButton/ElementButton.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementButtonAnimation/ElementButtonAnimation.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/ElementButtonAnimation/ElementButtonAnimation.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementInput/ElementInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/ElementInput/ElementInput.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/modules/works.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/modules/works.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/admin/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/admin/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/vue.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,10 +34,23 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="dev" />
+        <entry key="$PROJECT_DIR$" value="feature/cv" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="dc3bd244-0f09-44c5-9fc1-68bee61bb10b" />
+        <option name="url" value="git@github.com:julfy-bs/portfolio.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/client/src/App.vue" root0="FORCE_HIGHLIGHTING" />
@@ -38,6 +64,7 @@
     <setting file="file://$PROJECT_DIR$/client/src/components/HomeWorksItem/HomeWorksItem.vue" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/client/src/main.ts" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/client/src/models/Codewars.ts" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/client/src/models/User.ts" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/client/src/store/index.ts" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/client/src/store/modules/reviews.ts" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/client/src/store/modules/works.ts" root0="FORCE_HIGHLIGHTING" />
@@ -74,6 +101,8 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/client/src/static/images" />
+      <recent name="$PROJECT_DIR$/client/src/assets" />
       <recent name="$PROJECT_DIR$/client/src/store/modules" />
       <recent name="$PROJECT_DIR$/client/src/store/modules/user" />
       <recent name="$PROJECT_DIR$/client/src/views/admin" />
@@ -102,6 +131,16 @@
     </configuration>
     <configuration name="serve" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="serve" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="serve" type="js.build_tools.npm" temporary="true">
+      <package-json value="$PROJECT_DIR$/client/package.json" />
       <command value="run" />
       <scripts>
         <script value="serve" />
@@ -153,10 +192,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="npm.serve (1)" />
+        <item itemvalue="npm.serve" />
         <item itemvalue="npm.server (1)" />
         <item itemvalue="npm.server" />
         <item itemvalue="npm.serve" />
-        <item itemvalue="npm.lint" />
       </list>
     </recent_temporary>
   </component>
@@ -201,6 +240,9 @@
       <workItem from="1653885361993" duration="1884000" />
       <workItem from="1653936023318" duration="726000" />
       <workItem from="1654018176242" duration="16142000" />
+      <workItem from="1672736503825" duration="702000" />
+      <workItem from="1672737243274" duration="3769000" />
+      <workItem from="1672915755027" duration="6303000" />
     </task>
     <servers />
   </component>
@@ -229,5 +271,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat: добавляет структуру для настройки сайта.&#10;&#10;/cv&#10;добавляет страницу для отображения резюме.&#10;    &#10;&#10;/admin&#10;добавляет стили и разметку админской части приложения.&#10; &#10;    /login&#10;    добавляет стили для логина. Реализовывает редирект с /admin.&#10;    &#10;    /profile&#10;    добавляет настройку профиля.&#10;    &#10;    /skills&#10;    добавляет страницу для настройки скилов.&#10;    &#10;    /cv&#10;    добавляет страницу для настройки резюме.&#10;    &#10;    /works&#10;    добавляет страницу для настройки работ." />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: добавляет структуру для настройки сайта.&#10;&#10;/cv&#10;добавляет страницу для отображения резюме.&#10;    &#10;&#10;/admin&#10;добавляет стили и разметку админской части приложения.&#10; &#10;    /login&#10;    добавляет стили для логина. Реализовывает редирект с /admin.&#10;    &#10;    /profile&#10;    добавляет настройку профиля.&#10;    &#10;    /skills&#10;    добавляет страницу для настройки скилов.&#10;    &#10;    /cv&#10;    добавляет страницу для настройки резюме.&#10;    &#10;    /works&#10;    добавляет страницу для настройки работ." />
   </component>
 </project>

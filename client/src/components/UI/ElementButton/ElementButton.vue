@@ -11,7 +11,7 @@
 <script setup lang='ts'>
 import { toRefs } from 'vue'
 
-type RoleType = 'edit' | 'save' | 'delete'
+type RoleType = 'edit' | 'save' | 'delete' | 'login'
 
 interface Props {
   role: RoleType;

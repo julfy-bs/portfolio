@@ -30,7 +30,8 @@ const workOpen = (work: Work) => {
 
 .works__list {
   display: grid;
+  grid-auto-flow: dense;
   grid-template-columns: repeat(auto-fill, minmax(var(--max-width), 1fr));
-  column-gap: 4px;
+  gap: 4px;
 }
 </style>

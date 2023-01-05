@@ -1,7 +1,7 @@
 <template>
   <div class="info__image">
     <img
-      :src="user.photo"
+      src="@/static/images/user.jpg"
       alt="User photo"
       class="info__photo"
     >
@@ -24,7 +24,6 @@ const { user } = useUser()
   position: relative;
   background: transparent;
   border-radius: var(--borderWidth);
-  //overflow: hidden;
   z-index: 0;
 
   &:after {
