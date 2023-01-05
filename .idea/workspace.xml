@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e95b890a-1bae-476e-90ca-49b18bf09146" name="Changes" comment="feat: добавляет структуру для настройки сайта.&#10;&#10;/cv&#10;добавляет страницу для отображения резюме.&#10;    &#10;&#10;/admin&#10;добавляет стили и разметку админской части приложения.&#10; &#10;    /login&#10;    добавляет стили для логина. Реализовывает редирект с /admin.&#10;    &#10;    /profile&#10;    добавляет настройку профиля.&#10;    &#10;    /skills&#10;    добавляет страницу для настройки скилов.&#10;    &#10;    /cv&#10;    добавляет страницу для настройки резюме.&#10;    &#10;    /works&#10;    добавляет страницу для настройки работ.">
+    <list default="true" id="e95b890a-1bae-476e-90ca-49b18bf09146" name="Changes" comment="feat: добавляет github action для автоматического деплоя приложения">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/deploy.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/deploy.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -15,7 +16,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature/cv" />
+        <entry key="$PROJECT_DIR$" value="develop" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -92,6 +93,36 @@
     </key>
   </component>
   <component name="RunManager" selected="npm.serve">
+    <configuration name="deploy" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/client/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="deploy" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="lint" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/client/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="lint" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="predeploy" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/client/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="predeploy" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <configuration name="serve" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/client/package.json" />
       <command value="run" />
@@ -122,22 +153,13 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="server" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="server" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.serve" />
         <item itemvalue="npm.server (1)" />
-        <item itemvalue="npm.server" />
         <item itemvalue="npm.serve" />
+        <item itemvalue="npm.predeploy" />
+        <item itemvalue="npm.lint" />
+        <item itemvalue="npm.deploy" />
       </list>
     </recent_temporary>
   </component>
@@ -186,6 +208,14 @@
       <workItem from="1672737243274" duration="3769000" />
       <workItem from="1672915755027" duration="6303000" />
     </task>
+    <task id="LOCAL-00001" summary="feat: добавляет github action для автоматического деплоя приложения">
+      <created>1672935507217</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1672935507217</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -216,6 +246,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat: добавляет структуру для настройки сайта.&#10;&#10;/cv&#10;добавляет страницу для отображения резюме.&#10;    &#10;&#10;/admin&#10;добавляет стили и разметку админской части приложения.&#10; &#10;    /login&#10;    добавляет стили для логина. Реализовывает редирект с /admin.&#10;    &#10;    /profile&#10;    добавляет настройку профиля.&#10;    &#10;    /skills&#10;    добавляет страницу для настройки скилов.&#10;    &#10;    /cv&#10;    добавляет страницу для настройки резюме.&#10;    &#10;    /works&#10;    добавляет страницу для настройки работ." />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: добавляет структуру для настройки сайта.&#10;&#10;/cv&#10;добавляет страницу для отображения резюме.&#10;    &#10;&#10;/admin&#10;добавляет стили и разметку админской части приложения.&#10; &#10;    /login&#10;    добавляет стили для логина. Реализовывает редирект с /admin.&#10;    &#10;    /profile&#10;    добавляет настройку профиля.&#10;    &#10;    /skills&#10;    добавляет страницу для настройки скилов.&#10;    &#10;    /cv&#10;    добавляет страницу для настройки резюме.&#10;    &#10;    /works&#10;    добавляет страницу для настройки работ." />
+    <MESSAGE value="feat: добавляет github action для автоматического деплоя приложения" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: добавляет github action для автоматического деплоя приложения" />
   </component>
 </project>
