@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkportfolio"]=self["webpackChunkportfolio"]||[]).push([[553],{9553:function(n,r,e){e.r(r),e.d(r,{default:function(){return i}});var o=e(6252);function t(n,r,e,t,u,a){return(0,o.wg)(),(0,o.iD)("h1",null,"works")}var u={name:"AdminWorksPage"},a=e(8118);const f=(0,a.Z)(u,[["render",t]]);var i=f}}]);
+//# sourceMappingURL=553.b2c8d600.js.map

@@ -1,2 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d21e92a"],{d5ad:function(n,e,c){"use strict";c.r(e);var o=c("7a23");function a(n,e,c,a,r,t){return Object(o["openBlock"])(),Object(o["createElementBlock"])("h1",null,"works")}var r={name:"AdminWorksPage"},t=c("6b0d"),d=c.n(t);const s=d()(r,[["render",a]]);e["default"]=s}}]);
-//# sourceMappingURL=chunk-2d21e92a.c8ab68e6.js.map
