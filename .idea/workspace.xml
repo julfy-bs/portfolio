@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e95b890a-1bae-476e-90ca-49b18bf09146" name="Changes" comment="feat: добавляет github action для автоматического деплоя приложения">
+    <list default="true" id="e95b890a-1bae-476e-90ca-49b18bf09146" name="Changes" comment="fix: меняет workflow ветку на main">
       <change beforePath="$PROJECT_DIR$/.github/workflows/deploy.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/deploy.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,7 +214,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672935507217</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="fix: меняет workflow ветку на main">
+      <created>1672936876991</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1672936876991</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -247,6 +253,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat: добавляет структуру для настройки сайта.&#10;&#10;/cv&#10;добавляет страницу для отображения резюме.&#10;    &#10;&#10;/admin&#10;добавляет стили и разметку админской части приложения.&#10; &#10;    /login&#10;    добавляет стили для логина. Реализовывает редирект с /admin.&#10;    &#10;    /profile&#10;    добавляет настройку профиля.&#10;    &#10;    /skills&#10;    добавляет страницу для настройки скилов.&#10;    &#10;    /cv&#10;    добавляет страницу для настройки резюме.&#10;    &#10;    /works&#10;    добавляет страницу для настройки работ." />
     <MESSAGE value="feat: добавляет github action для автоматического деплоя приложения" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: добавляет github action для автоматического деплоя приложения" />
+    <MESSAGE value="fix: меняет workflow ветку на main" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: меняет workflow ветку на main" />
   </component>
 </project>

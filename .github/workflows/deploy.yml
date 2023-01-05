@@ -43,7 +43,7 @@ jobs:
           cd client
           npm run lint
   deploy:
-    needs: [ test, lint, build ]
+    needs: [ test, lint ]
     runs-on: ubuntu-latest
     steps:
       - name: Получить код
