@@ -13,6 +13,20 @@ export const formatDate = (date: string): string => {
     'October',
     'November',
     'December'
+  ];
+  const monthRu = [
+    'Января',
+    'Февраля',
+    'Марта',
+    'Апреля',
+    'Мая',
+    'Июня',
+    'Июля',
+    'Августа',
+    'Сентября',
+    'Октября',
+    'Ноября',
+    'Декабря'
   ]
-  return `${month[dateValue.getMonth()]} ${dateValue.getDate()}, ${dateValue.getFullYear()}`
+  return `${dateValue.getDate()} ${monthRu[dateValue.getMonth()]} ${dateValue.getFullYear()}`
 }

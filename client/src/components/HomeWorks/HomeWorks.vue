@@ -3,9 +3,6 @@
     id="works"
     class="works"
   >
-    <h2 class="works__heading">
-      My Works
-    </h2>
     <home-works-list
       :works-list="worksList"
       :work-detail-open="workDetailOpen"

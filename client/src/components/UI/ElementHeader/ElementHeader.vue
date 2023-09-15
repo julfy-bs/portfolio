@@ -55,11 +55,11 @@ const { closeBurger, isBurgerActive } = useBurger()
   z-index: $z-index-nav;
 
 
-  @media (min-width: $tablets-big) {
-    position: sticky;
-    top: $banner-height;
-    width: 100%;
-  }
+  //@media (min-width: $tablets-big) {
+  //  position: sticky;
+  //  top: $banner-height;
+  //  width: 100%;
+  //}
 }
 
 .navbar {

@@ -10,5 +10,6 @@ export default interface User {
   telegram: string;
   github: string;
   codewars: string;
+  linkedIn: string;
   discord: string;
 }

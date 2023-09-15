@@ -4,6 +4,7 @@
     class="about"
   >
     <div class="about__container">
+      <element-background />
       <home-about-info />
       <home-about-description />
     </div>
@@ -13,6 +14,7 @@
 <script setup lang='ts'>
 import HomeAboutInfo from '@/components/HomeAboutInfo/HomeAboutInfo.vue'
 import HomeAboutDescription from '@/components/HomeAboutDescription/HomeAboutDescription.vue'
+import ElementBackground from '@/components/UI/ElementBackground/ElementBackground.vue';
 </script>
 
 <style lang='scss' scoped>
@@ -21,6 +23,19 @@ import HomeAboutDescription from '@/components/HomeAboutDescription/HomeAboutDes
 .about {
   color: $text-2;
   transition: color .5s, background-color .5s;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - #{$header-height} - #{$banner-height});
+  justify-content: center;
+  position: relative;
+  text-align: center;
+
+  @media (max-width: $tablets-big) {
+    padding-top: 229px;
+    padding-bottom: 229px;
+    height: auto;
+  }
 }
 
 .about__container {

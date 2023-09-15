@@ -2,10 +2,10 @@
   <div class="description">
     <div class="description__header">
       <div class="description__intro">
-        Hi, my name is
+        Привет, меня зовут
       </div>
       <div class="description__name">
-        {{ user.name }} {{ user.surname }}
+        {{ user.name }} {{ user.surname }} 👋
       </div>
     </div>
     <div class="description__body">
@@ -17,10 +17,11 @@
         {{ line }}
       </div>
       <div class="description__block">
+
         <element-button-link
           :link="user.resume"
         >
-          CV
+          Резюме
         </element-button-link>
       </div>
     </div>
@@ -45,7 +46,7 @@ const lines = computed(() => user.value.description.split('\n'))
   flex-flow: column nowrap;
   gap: 10px;
   background-color: transparent;
-  transition: color .5s, background-color .5s;
+  transition: color .25s ease, background-color .5s ease;
   border-radius: 8px;
   flex-grow: 1;
   font-size: 14px;
@@ -61,6 +62,8 @@ const lines = computed(() => user.value.description.split('\n'))
 
     .description__intro {
       text-align: center;
+      z-index: #{$z-index-hero-content};
+      transition: color .25s ease;
 
       @media (min-width: $tablets-big) {
         text-align: left;
@@ -73,6 +76,9 @@ const lines = computed(() => user.value.description.split('\n'))
       font-weight: 700;
       line-height: 1.1;
       text-align: center;
+      z-index: #{$z-index-hero-content};
+      transition: color .25s ease;
+
 
       @media (min-width: $tablets-big) {
         text-align: left;
@@ -90,6 +96,7 @@ const lines = computed(() => user.value.description.split('\n'))
 
   .description__block {
     text-align: center;
+    z-index: #{$z-index-hero-content};
 
     @media (min-width: $tablets) {
       text-align: left;

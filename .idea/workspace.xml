@@ -4,9 +4,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e95b890a-1bae-476e-90ca-49b18bf09146" name="Changes" comment="fix: меняет workflow deploy needs.">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/deploy.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/deploy.yml" afterDir="false" />
+    <list default="true" id="e95b890a-1bae-476e-90ca-49b18bf09146" name="Changes" comment="feat: настраивает репозиторий для работы с react приложением.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/assets/styles/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/styles/_variables.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeAbout/HomeAbout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeAbout/HomeAbout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeAboutDescription/HomeAboutDescription.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeAboutDescription/HomeAboutDescription.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeAboutInfo/HomeAboutInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeAboutInfo/HomeAboutInfo.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeHero/HomeHero.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeHero/HomeHero.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeNavigation/HomeNavigation.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeNavigation/HomeNavigation.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeSkills/HomeSkills.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeSkills/HomeSkills.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeSkillsItem/HomeSkillsItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeSkillsItem/HomeSkillsItem.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeSkillsList/HomeSkillsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeSkillsList/HomeSkillsList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeWorks/HomeWorks.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeWorks/HomeWorks.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeWorksItem/HomeWorksItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeWorksItem/HomeWorksItem.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeWorksList/HomeWorksList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeWorksList/HomeWorksList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeWorksModal/HomeWorksModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeWorksModal/HomeWorksModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/MainSocials/MainSocials.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MainSocials/MainSocials.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/MainUserPhoto/MainUserPhoto.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MainUserPhoto/MainUserPhoto.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementButtonLink/ElementButtonLink.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/ElementButtonLink/ElementButtonLink.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementHeader/ElementHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/ElementHeader/ElementHeader.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/helpers/formatDate.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/helpers/formatDate.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/models/Skill.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/models/Skill.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/models/User.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/models/User.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/models/Work.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/models/Work.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/modules/reviews.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/modules/reviews.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/modules/skills.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/modules/skills.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/modules/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/modules/user.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/modules/works.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/modules/works.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,7 +42,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="develop" />
+        <entry key="$PROJECT_DIR$" value="dev" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -70,6 +96,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/julfy/Documents/projects/portfolio&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
@@ -79,7 +106,7 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.HTML&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/julfy/Documents/projects/portfolio/client/node_modules/typescript/lib&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/julfy/Documents/projects/portfolio/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -155,8 +182,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.server (1)" />
         <item itemvalue="npm.serve" />
+        <item itemvalue="npm.server (1)" />
         <item itemvalue="npm.predeploy" />
         <item itemvalue="npm.lint" />
         <item itemvalue="npm.deploy" />
@@ -207,6 +234,7 @@
       <workItem from="1672736503825" duration="702000" />
       <workItem from="1672737243274" duration="3769000" />
       <workItem from="1672915755027" duration="6303000" />
+      <workItem from="1694776633941" duration="11494000" />
     </task>
     <task id="LOCAL-00001" summary="feat: добавляет github action для автоматического деплоя приложения">
       <created>1672935507217</created>
