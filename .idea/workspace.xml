@@ -4,221 +4,41 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e95b890a-1bae-476e-90ca-49b18bf09146" name="Changes" comment="fix: удаляет workflow job test.">
-      <change beforePath="$PROJECT_DIR$/.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/deploy.yml" beforeDir="false" />
+    <list default="true" id="e95b890a-1bae-476e-90ca-49b18bf09146" name="Changes" comment="feat: initial commit.">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.browserslistrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.eslintrc.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.eslintignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.eslintrc.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/client/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.prettierignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/client/.prettierrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.storybook/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.storybook/preview.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/babel.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/jest.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/e2e/.eslintrc.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/e2e/cypress.config.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/e2e/project.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/e2e/src/e2e/app.cy.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/e2e/src/fixtures/example.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/e2e/src/support/app.po.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/e2e/src/support/commands.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/e2e/src/support/e2e.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/e2e/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/nx.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/project.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/client/public/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/icons/arrow-left.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/icons/arrow-right.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/icons/arrow.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/icons/burger.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/icons/code.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/icons/codepen.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/icons/codewars.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/icons/detail.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/icons/discord.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/icons/edit.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/icons/github.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/icons/heart.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/icons/language.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/icons/link.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/icons/linkedin.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/icons/location.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/icons/moon.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/icons/password.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/icons/play.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/icons/plus.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/icons/search.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/icons/sun.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/icons/telegram.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/icons/tick.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/icons/trash.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/icons/twitter.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/icons/user.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/icons/web.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/styles/_variables.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/styles/main.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/work-converter.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/assets/work-crm.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/AdminHeader/AdminHeader.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/AdminLogin/AdminLogin.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/AdminNavigation/AdminNavigation.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/AdminProfile/AdminProfile.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/AdminProfileEdit/AdminProfileEdit.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/AdminProfileEditControls/AdminProfileEditControls.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/AdminProfileEditLinks/AdminProfileEditLinks.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/AdminProfileEditPhoto/AdminProfileEditPhoto.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/AdminSkills/AdminSkills.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeAbout/HomeAbout.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeAboutDescription/HomeAboutDescription.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeAboutInfo/HomeAboutInfo.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeHeader/HomeHeader.stories.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeHeader/HomeHeader.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeHero/HomeHero.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeHeroTitle/HomeHeroTitle.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeNavigation/HomeNavigation.stories.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeNavigation/HomeNavigation.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeReviews/HomeReviews.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeReviewsItem/HomeReviewsItem.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeReviewsList/HomeReviewsList.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeSkills/HomeSkills.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeSkillsItem/HomeSkillsItem.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeSkillsList/HomeSkillsList.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeSkillsModal/HomeSkillsModal.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeWorks/HomeWorks.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeWorksItem/HomeWorksItem.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeWorksList/HomeWorksList.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/HomeWorksModal/HomeWorksModal.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/MainAppearance/ChangeAppearance.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/MainBurger/MainBurger.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/MainExtra/MainExtra.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/MainLogo/MainLogo.stories.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/MainLogo/MainLogo.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/MainSocials/MainSocials.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/MainUserPhoto/MainUserPhoto.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementBackground/ElementBackground.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementBackgroundItem/ElementBackgroundItem.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementButton/ElementButton.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementButtonAnimation/ElementButtonAnimation.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementButtonLink/ElementButtonLink.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementHeader/ElementHeader.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementInput/ElementInput.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementModal/ElementModal.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementNavigation/ElementNavigation.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementNavigationGroup/ElementNavigationGroup.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementSvg/ElementSvg.stories.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementSvg/ElementSvg.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementTextarea/ElementTextarea.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ScrollToTop/ScrollToTop.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/helpers/capitalizeFirstLetter.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/helpers/countAge.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/helpers/formatDate.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/hooks/useAppearance.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/hooks/useBackgroundAnimation.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/hooks/useBurger.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/hooks/useCodewars.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/hooks/useDragDrop.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/hooks/useFlayout.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/hooks/useIntersectionObserver.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/hooks/useReviews.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/hooks/useSkills.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/hooks/useUser.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/hooks/useWorks.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/models/AppColors.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/models/Codewars.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/models/ElementBackground.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/models/Review.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/models/Skill.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/models/SkillComponent.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/models/User.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/models/UserPayload.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/models/Work.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/router/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/shims-vue.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/static/images/user.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/modules/header.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/modules/reviews.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/modules/skills.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/modules/user.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/modules/works.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/store/modules/сodewars.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/CVPage.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/admin/AdminCVPage.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/admin/AdminLoginPage.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/admin/AdminProfilePage.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/admin/AdminReviewsPage.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/admin/AdminSkillsPage.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/admin/AdminWorksPage.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/admin/index.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/index.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/tests/unit/example.spec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/app.module.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/app.spec.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/app.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/app/nx-welcome.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/assets/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/styles.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/tsconfig.app.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/client/tsconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/vue.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/.development.env" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/.production.env" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/auth/auth.controller.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/auth/auth.controller.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/auth/auth.controller.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/auth/auth.module.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/auth/auth.module.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/auth/auth.module.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/auth/auth.service.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/auth/auth.service.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/auth/auth.service.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/auth/jwt-auth.guard.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/auth/jwt-auth.guard.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/auth/jwt-auth.guard.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/auth/roles-auth.decorator.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/auth/roles-auth.decorator.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/auth/roles-auth.decorator.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/auth/roles.guard.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/auth/roles.guard.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/auth/roles.guard.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/exceptions/validation.exception.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/exceptions/validation.exception.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/exceptions/validation.exception.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/exceptions/validation.exeption.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/exceptions/validation.exeption.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/exceptions/validation.exeption.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/pipes/validation.pipe.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/pipes/validation.pipe.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/pipes/validation.pipe.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/roles/dto/create-role.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/roles/dto/create-role.dto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/roles/dto/create-role.dto.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/roles/roles.controller.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/roles/roles.controller.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/roles/roles.controller.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/roles/roles.model.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/roles/roles.model.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/roles/roles.model.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/roles/roles.module.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/roles/roles.module.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/roles/roles.module.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/roles/roles.service.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/roles/roles.service.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/roles/roles.service.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/roles/user-roles.model.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/roles/user-roles.model.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/roles/user-roles.model.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/users/dto/add-role.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/users/dto/add-role.dto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/users/dto/add-role.dto.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/users/dto/create-user.dto.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/users/dto/create-user.dto.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/users/dto/create-user.dto.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/users/users.controller.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/users/users.controller.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/users/users.controller.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/users/users.model.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/users/users.model.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/users/users.model.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/users/users.module.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/users/users.module.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/users/users.module.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/users/users.service.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/users/users.service.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/dist/users/users.service.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/tsconfig.spec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/vite.config.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -269,7 +89,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectId" id="27O4bTOb8ny6OaRzIySvvBXef4o" />
   <component name="ProjectLevelVcsManager">
@@ -288,46 +108,37 @@
     "javascript.nodejs.core.library.configured.version": "20.6.1",
     "javascript.nodejs.core.library.typings.version": "20.6.0",
     "js.linters.configure.manually.selectedeslint": "true",
-    "last_opened_file_path": "/Users/julfy/Documents/projects/portfolio/client",
+    "last_opened_file_path": "/Users/julfy/Documents/projects/portfolio",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.eslint": "/Users/julfy/Documents/projects/portfolio/node_modules/eslint",
     "node.js.selected.package.standard": "",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "prettier.import.notification.dismissed": "true",
-    "prettierjs.PrettierConfiguration.Package": "/Users/julfy/Documents/projects/portfolio/client/node_modules/prettier",
+    "prettierjs.PrettierConfiguration.Package": "/Users/julfy/Documents/projects/portfolio/node_modules/prettier",
     "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "preferences.sourceCode.HTML",
-    "ts.external.directory.path": "/Users/julfy/Documents/projects/portfolio/client/node_modules/typescript/lib",
+    "ts.external.directory.path": "/Users/julfy/Documents/projects/portfolio/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/client" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/client/src/components" />
       <recent name="$PROJECT_DIR$/client/src/static/images" />
       <recent name="$PROJECT_DIR$/client/src/assets" />
       <recent name="$PROJECT_DIR$/client/src/store/modules" />
       <recent name="$PROJECT_DIR$/client/src/store/modules/user" />
-      <recent name="$PROJECT_DIR$/client/src/views/admin" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start">
-    <configuration name="deploy" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/client/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="deploy" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/client/package.json" />
+  <component name="RunManager" selected="npm.storybook">
+    <configuration name="dev (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts>
         <script value="dev" />
@@ -336,8 +147,8 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="lint" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/client/package.json" />
+    <configuration name="lint (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts>
         <script value="lint" />
@@ -346,31 +157,31 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="serve" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/client/package.json" />
+    <configuration name="lint:fix" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts>
-        <script value="serve" />
+        <script value="lint:fix" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="serve" type="js.build_tools.npm" temporary="true">
-      <package-json value="$PROJECT_DIR$/client/package.json" />
+    <configuration name="lint:vite" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts>
-        <script value="serve" />
+        <script value="lint:vite" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/client/package.json" />
+    <configuration name="storybook" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts>
-        <script value="start" />
+        <script value="storybook" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
@@ -378,11 +189,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.start" />
-        <item itemvalue="npm.dev" />
-        <item itemvalue="npm.lint" />
-        <item itemvalue="npm.serve" />
-        <item itemvalue="npm.deploy" />
+        <item itemvalue="npm.storybook" />
+        <item itemvalue="npm.lint (1)" />
+        <item itemvalue="npm.lint:fix" />
+        <item itemvalue="npm.lint:vite" />
+        <item itemvalue="npm.dev (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -432,7 +243,10 @@
       <workItem from="1672915755027" duration="6303000" />
       <workItem from="1675859204409" duration="168000" />
       <workItem from="1694709953963" duration="1180000" />
-      <workItem from="1694711187173" duration="3532000" />
+      <workItem from="1694711187173" duration="4925000" />
+      <workItem from="1694726722925" duration="80000" />
+      <workItem from="1694726809321" duration="3319000" />
+      <workItem from="1694737197484" duration="4745000" />
     </task>
     <task id="LOCAL-00001" summary="feat: добавляет github action для автоматического деплоя приложения">
       <created>1672935507217</created>
@@ -462,7 +276,15 @@
       <option name="project" value="LOCAL" />
       <updated>1672937059679</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="feat: initial commit.">
+      <option name="closed" value="true" />
+      <created>1694725473363</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1694725473363</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -497,6 +319,7 @@
     <MESSAGE value="fix: меняет workflow ветку на main" />
     <MESSAGE value="fix: меняет workflow deploy needs." />
     <MESSAGE value="fix: удаляет workflow job test." />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: удаляет workflow job test." />
+    <MESSAGE value="feat: initial commit." />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: initial commit." />
   </component>
 </project>
