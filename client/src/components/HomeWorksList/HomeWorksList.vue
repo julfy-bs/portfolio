@@ -12,6 +12,7 @@
 <script setup lang='ts'>
 import HomeWorksItem from '@/components/HomeWorksItem/HomeWorksItem.vue'
 import Work from '@/models/Work'
+import { computed } from 'vue';
 
 interface Props {
   worksList: Array<Work>
@@ -19,7 +20,6 @@ interface Props {
 }
 
 const props = defineProps<Props>()
-
 const workOpen = (work: Work) => {
   props.workDetailOpen(work)
 }

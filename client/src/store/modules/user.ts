@@ -13,17 +13,23 @@ enum MutationTypes {
 
 const state = (): UserState => ({
   user: {
-    city: 'Moscow',
+    city: 'Москва',
     dateOfBirth: '1996-12-13',
-    description: 'I am a front-end developer based in Moscow. My focus area for the past few years has been front-end development with Vue. \nMy passion is developing modern websites and applications. I get pleasure when I create interesting and modern applications. I am currently looking for a job as a Junior Frontend developer. \nI haven\'t had to work as a Frontend developer yet, but at the moment I have all the necessary knowledge and skills to work effectively as a Junior Frontend developer.',
-    email: 'julfy.web@gmail.com',
-    name: 'Bogdan',
-    photo: 'https://habrastorage.org/getpro/moikrug/uploads/user/100/039/198/2/avatar/0f3d15744a4a806a1df1063debbee4c6.jpg',
-    resume: 'https://julfy.notion.site/Resume-565f39bdd17d404e9f1394f48fb01f66',
-    surname: 'Sutuzhko',
+    description: `Я Frontend разработчик, студент Яндекс Практикума и Азовского государственного педагогического университета по направлению Фундаментальная информатика и информационные технологии. 👨‍🎓 \n Ежедневно развиваюсь в разработке для того, чтобы приносить пользу команде и миру. 🌍`,
+    //
+    //  Стратегическое мышление, развитое за время профессиональных занятий шахматами, позволяет мне систематизировать и приоритизировать блоки работы, соблюдая при этом поставленные сроки.
+    //  Лингвистическое образование дает мне понимание системности и логики языков, что сокращает сроки освоения материала.
+    //  Самое важное для меня – внести вклад в достижение поставленной перед командой цели и получить бесценный опыт, который поможет стать профессионалом во frontend-разработке.
+    email: 'sutuzhko.bogdan@ya.ru',
+    name: 'Богдан',
+    photo: 'https://avatars.githubusercontent.com/u/61148628?v=4',
+    // resume: 'https://julfy.notion.site/Resume-565f39bdd17d404e9f1394f48fb01f66',
+    resume: 'https://disk.yandex.ru/i/MZwPtgnPq6uqAQ',
+    surname: 'Сутужко',
     telegram: 'https://t.me/julfy_bs',
     github: 'https://github.com/julfy-bs',
     codewars: 'https://www.codewars.com/users/julfy-bs',
+    linkedIn: 'https://www.linkedin.com/in/sutuzhko-bogdan/',
     discord: 'https://discordapp.com/users/236551328313114635/'
   }
 })

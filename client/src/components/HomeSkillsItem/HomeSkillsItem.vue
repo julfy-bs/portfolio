@@ -1,32 +1,34 @@
 <template>
-  <button
+  <img
+    :src="props.skill.picture"
     class="skills__item"
+    :alt="props.skill.title"
   >
-    {{ props.skill.title }}
-  </button>
 </template>
 
-<script setup lang='ts'>
-import Skill from '@/models/Skill'
+<script setup lang="ts">
+import Skill from '@/models/Skill';
+
 interface Props {
-  skill: Skill
+  skill: Skill;
 }
-const props = defineProps<Props>()
+
+const props = defineProps<Props>();
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 @import "src/assets/styles/_variables.scss";
 
 .skills__item {
   text-align: center;
   display: inline-block;
-  background-color: $bg-mute;
   padding: 8px 18px;
   font-weight: 500;
   border-radius: 4px;
   transition: background-color .5s, color .5s;
   font-size: 13px;
   margin: 2px 2px;
+  width: 100%;
 
   &:hover {
     background-color: $gray-4;

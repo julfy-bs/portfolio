@@ -24,6 +24,7 @@ onMounted(() => {
 /* General variables */
 :root {
   color-scheme: light dark;
+  --banner-height: 40px;
   --header-height: 55px;
   --font-family-base: Inter, -apple-system, sans-serif;
   --screen-max-width: 1376px;
@@ -150,7 +151,6 @@ html {
   min-height: 100vh;
   background-color: $bg;
   transition: background-color .5s;
-  padding-top: $banner-height;
 }
 
 *, :before, :after {

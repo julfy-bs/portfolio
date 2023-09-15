@@ -1,15 +1,15 @@
-import Skill from '@/models/Skill'
-import { ActionContext } from 'vuex'
-import { RootState } from '@/store'
+import Skill from '@/models/Skill';
+import { ActionContext } from 'vuex';
+import { RootState } from '@/store';
 
 interface SkillOpened {
-  skill: string
+  skill: string;
 }
 
 export interface SkillsState {
-  skillsList: Array<Skill>
-  isSkillOpened: boolean
-  skillOpened: SkillOpened
+  skillsList: Array<Skill>;
+  isSkillOpened: boolean;
+  skillOpened: SkillOpened;
 }
 
 // :SkillsState
@@ -17,138 +17,145 @@ const state = () => ({
   skillsList: [
     {
       id: 0,
-      title: 'Layout',
-      url: 'html',
-      description: `It's hard to imagine frontend development without mentioning writing markup for the site. In modern realities, markup is still essential in the world of web development, which will definitely not change in the near future. A fairly obvious set of html coder HTML5, CSS3, BEM, which is used exclusively in every project. If we talk about convenience and saving time for working with layout - pug, CSS preprocessors (sass is my favorite), CSS frameworks.`,
-      components: [
-        { id: 0, title: 'pug', url: 'pug' },
-        { id: 1, title: 'HTML5', url: 'html' },
-        { id: 2, title: 'BEM', url: 'bem' },
-        { id: 3, title: 'CSS3', url: 'css' },
-        { id: 4, title: 'CSS preprocessors', url: 'css-preprocessors' },
-        { id: 5, title: 'CSS frameworks', url: 'css-frameworks' }
-      ]
+      title: 'HTML5',
+      picture: 'https://user-images.githubusercontent.com/25181517/192158954-f88b5814-d510-4564-b285-dff7d6400dad.png',
+
     },
     {
       id: 1,
-      title: 'Git',
-      url: 'git',
-      description: 'I understand the importance of the version control system well and moreover I regularly use it in my work and pet projects. I would also like to note the undeserved understatement of the value of Conventional Commits. Consistency always simplifies life in large projects.',
-      components: [
-        { id: 0, title: 'husky', url: 'husky' },
-        { id: 1, title: 'lint staged', url: 'lint-staged' },
-        { id: 2, title: 'Conventional Commits', url: 'conventional-commits' }
-      ]
-    },
-    {
+      title: 'CSS3',
+      picture: 'https://user-images.githubusercontent.com/25181517/183898674-75a4a1b1-f960-4ea9-abcb-637170a00a75.png',
+    }, {
       id: 2,
-      title: 'Workflow',
-      url: 'workflow',
-      description: 'It is difficult to succeed in programming without using the console directly. And the skill of setting up the workflow incredibly greatly simplifies life at the same time speeds up the development process, and if we talk about linters, it also pleases the eye.',
-      components: [
-        { id: 0, title: 'Terminal', url: 'terminal' },
-        { id: 1, title: 'Gulp', url: 'gulp' },
-        { id: 2, title: 'Webpack', url: 'webpack' },
-        { id: 3, title: 'npm', url: 'npm' },
-        { id: 4, title: 'yarn', url: 'yarn' },
-        { id: 3, title: 'ESLint', url: 'eslint' },
-        { id: 3, title: 'Prettier', url: 'prettier' },
-      ]
-    },
-    {
-      id: 3,
+      title: 'PUG',
+      picture: 'https://github.com/marwin1991/profile-technology-icons/assets/136815194/85880a3a-e65b-4e4b-a102-6c3f225b9aba',
+    }, {
+      id: 0,
       title: 'JavaScript',
-      url: 'javascript',
-      description: 'the main character and the basis of modern frontend development as well as my "native" programming language. I have been working on javascript regularly for two years now. During this short period of time, I managed to examine many of its facets. With my deepening into the world of javascript came the understanding that a typescript is an essential part of it.',
-      components: [
-        { id: 0, title: 'ES6+', url: 'es' },
-        { id: 1, title: 'Ajax', url: 'ajax' },
-        { id: 2, title: 'TypeScript', url: 'typescript' }
-      ]
-    },
-    {
-      id: 4,
-      title: 'Vue',
-      url: 'vue',
-      description: 'Vue.js became the first javascript framework for me. Let\'s say when I first met him, he seemed superfluous to me, but now I know exactly why he is so popular. With the advent of the Composition API, Vue components have become incredibly concise.',
-      components: [
-        { id: 0, title: 'Vue 2', url: 'vue-2' },
-        { id: 1, title: 'Vue 3', url: 'vue-3' },
-        { id: 2, title: 'Vuex', url: 'vuex' },
-        { id: 2, title: 'Vue router', url: 'vue router' },
-        { id: 3, title: 'Option API', url: 'option-api' },
-        { id: 4, title: 'Composition API', url: 'composition-api' },
-        { id: 5, title: 'Nuxt', url: 'nuxt' }
-      ]
-    },
-    {
-      id: 5,
+      picture: 'https://user-images.githubusercontent.com/25181517/117447155-6a868a00-af3d-11eb-9cfe-245df15c9f3f.png',
+    }, {
+      id: 0,
+      title: 'TypeScript',
+      picture: 'https://user-images.githubusercontent.com/25181517/183890598-19a0ac2d-e88a-4005-a8df-1ee36782fde1.png',
+    }, {
+      id: 0,
       title: 'React',
-      url: 'react',
-      description: 'If speaking of Vue, I can call myself an experienced user, then speaking of React, it is worth noting that my journey began not so long ago.',
-      components: [
-        { id: 0, title: 'Redux', url: 'redux' }
-      ]
+      picture: 'https://user-images.githubusercontent.com/25181517/183897015-94a058a6-b86e-4e42-a37f-bf92061753e5.png',
+    }, {
+      id: 0,
+      title: 'Redux',
+      picture: 'https://user-images.githubusercontent.com/25181517/187896150-cc1dcb12-d490-445c-8e4d-1275cd2388d6.png',
+    }, {
+      id: 0,
+      title: 'Vue',
+      picture: 'https://user-images.githubusercontent.com/25181517/117448124-a2da9800-af3e-11eb-85d2-bd1b69b65603.png',
+    }, {
+      id: 0,
+      title: 'Jest',
+      picture: 'https://user-images.githubusercontent.com/25181517/187955005-f4ca6f1a-e727-497b-b81b-93fb9726268e.png',
+    }, {
+      id: 0,
+      title: 'Cypress',
+      picture: 'https://user-images.githubusercontent.com/68279555/200387386-276c709f-380b-46cc-81fd-f292985927a8.png',
+    }, {
+      id: 0,
+      title: 'Node',
+      picture: 'https://user-images.githubusercontent.com/25181517/183568594-85e280a7-0d7e-4d1a-9028-c8c2209e073c.png',
     },
     {
-      id: 6,
-      title: 'Testing tools',
-      url: 'testing',
-      description: 'So far, I have not had to write tests in commercial projects, but even exclusively in pet projects, I was able to understand their great importance for simplifying development.',
-      components: [
-        { id: 0, title: 'Jest', url: 'jest' },
-        { id: 1, title: 'Storybook', url: 'storybook' }
-      ]
+      id: 0,
+      title: 'Express',
+      picture: 'https://user-images.githubusercontent.com/25181517/183859966-a3462d8d-1bc7-4880-b353-e2cbed900ed6.png',
     },
     {
-      id: 7,
-      title: 'Node.js',
-      url: 'node',
-      description: `It would seem why split the node.js and javascript, after all, are the same language, but still they affect diametrically opposite aspects of the workflow. As for node.js - it is impossible to build a good application without a server. There's a node here.js helps us out.`,
-      components: [
-        { id: 0, title: 'Express', url: 'express' },
-        { id: 1, title: 'NestJS', url: 'nest' }
-      ]
-    }
+      id: 0,
+      title: 'Postman',
+      picture: 'https://user-images.githubusercontent.com/25181517/192109061-e138ca71-337c-4019-8d42-4792fdaa7128.png',
+    },
+    {
+      id: 0,
+      title: 'Npm',
+      picture: 'https://user-images.githubusercontent.com/25181517/121401671-49102800-c959-11eb-9f6f-74d49a5e1774.png',
+    },
+    {
+      id: 0,
+      title: 'Yarn',
+      picture: 'https://user-images.githubusercontent.com/25181517/183049794-a3dfaddd-22ee-4ffe-b0b4-549ccd4879f9.png',
+    },
+    {
+      id: 0,
+      title: 'Vite',
+      picture: 'https://github.com/marwin1991/profile-technology-icons/assets/62091613/b40892ef-efb8-4b0e-a6b5-d1cfc2f3fc35',
+    },
+    {
+      id: 0,
+      title: 'Webpack',
+      picture: 'https://user-images.githubusercontent.com/25181517/187955008-981340e6-b4cc-441b-80cf-7a5e94d29e7e.png',
+    },
+    {
+      id: 0,
+      title: 'Babel',
+      picture: 'https://github.com/marwin1991/profile-technology-icons/assets/136815194/ecd443af-ebba-4af8-a46e-1bf64d863b5b',
+    },
+    {
+      id: 0,
+      title: 'Git',
+      picture: 'https://user-images.githubusercontent.com/25181517/192108372-f71d70ac-7ae6-4c0d-8395-51d8870c2ef0.png',
+    },
+    {
+      id: 0,
+      title: 'Github',
+      picture: 'https://user-images.githubusercontent.com/25181517/192108374-8da61ba1-99ec-41d7-80b8-fb2f7c0a4948.png',
+    },
+    {
+      id: 0,
+      title: 'Webstorm',
+      picture: 'https://user-images.githubusercontent.com/25181517/192108893-b1eed3c7-b2c4-4e1c-9e9f-c7e83637b33d.png',
+    },
+    {
+      id: 0,
+      title: 'Figma',
+      picture: 'https://user-images.githubusercontent.com/25181517/189715289-df3ee512-6eca-463f-a0f4-c10d94a06b2f.png',
+    },
   ],
   isSkillOpened: false,
-  skillOpened: {}
-})
+  skillOpened: {},
+});
 
 const mutations = {
   CHANGE_SKILL_DISPLAY_CONDITION(state: SkillsState, value?: boolean) {
-    state.isSkillOpened = value || !state.isSkillOpened
+    state.isSkillOpened = value || !state.isSkillOpened;
   },
   CHANGE_OPENED_SKILL(state: SkillsState, value: SkillOpened) {
-    state.skillOpened = value
-  }
-}
+    state.skillOpened = value;
+  },
+};
 
 const actions = {
   async switchSkillDisplayCondition({ commit }: ActionContext<SkillsState, RootState>, value?: boolean) {
     try {
-      await commit('CHANGE_SKILL_DISPLAY_CONDITION', value)
+      await commit('CHANGE_SKILL_DISPLAY_CONDITION', value);
     } catch (e) {
-      throw new Error(e)
+      throw new Error(e);
     }
   },
   async switchOpenedSkill({ commit }: ActionContext<SkillsState, RootState>, value: SkillOpened) {
     try {
-      await commit('CHANGE_OPENED_SKILL', value)
+      await commit('CHANGE_OPENED_SKILL', value);
     } catch (e) {
-      throw new Error(e)
+      throw new Error(e);
     }
-  }
-}
+  },
+};
 
 const getters = {
-  skillDetailed: (state: SkillsState) => state.skillsList.find(item => item.url === state.skillOpened.skill) || []
-}
+  skillDetailed: (state: SkillsState) => state.skillsList.find(item => item.url === state.skillOpened.skill) || [],
+};
 
 export default {
   namespaced: true,
   state,
   getters,
   mutations,
-  actions
-}
+  actions,
+};

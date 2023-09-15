@@ -3,21 +3,17 @@
     id="skills"
     class="skills"
   >
-    <h2 class="skills__heading">
-      My Skills
-    </h2>
     <home-skills-list
       :skills-list="skillsList"
-      :skill-detail-open="skillDetailOpen"
     />
-    <transition
-      name="modal-animation"
-    >
-      <home-skills-modal
-        v-if="isSkillOpened"
-        :skill-detail-close="skillDetailClose"
-      />
-    </transition>
+<!--    <transition-->
+<!--      name="modal-animation"-->
+<!--    >-->
+<!--      <home-skills-modal-->
+<!--        v-if="isSkillOpened"-->
+<!--        :skill-detail-close="skillDetailClose"-->
+<!--      />-->
+<!--    </transition>-->
   </section>
 </template>
 

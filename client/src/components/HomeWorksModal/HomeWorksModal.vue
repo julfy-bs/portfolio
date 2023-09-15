@@ -11,7 +11,7 @@
         :href="workDetailed.url"
         target="_blank"
       >
-        Link to an external site
+        Ссылка на сайт
       </a>
     </div>
     <div class="modal__description">
@@ -25,6 +25,8 @@
         </span>
       </div>
       {{ workDetailed.description }}
+      <span v-html="workDetailed.html"></span>
+      <img class="modal__image" :src="workDetailed.picture" alt="">
     </div>
   </element-modal>
 </template>
@@ -72,7 +74,7 @@ const workDetailed = computed(() => store.getters['works/workDetailed'])
 .modal__component-list {
   display: flex;
   flex-wrap: wrap;
-  padding: 20px 0;
+  padding: 20px 0 0;
 }
 
 .modal__component {
@@ -88,8 +90,16 @@ const workDetailed = computed(() => store.getters['works/workDetailed'])
 }
 
 .modal__description {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
   font-size: 14px;
   font-weight: 500;
   transition: background-color .5s, color .5s;
+}
+
+.modal__image {
+  width: 100%;
+  height: auto;
 }
 </style>

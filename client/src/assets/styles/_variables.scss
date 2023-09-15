@@ -98,6 +98,7 @@ $warning-main: #9F6000;
 $banner-height: 0px;
 
 /* header */
+$banner-height: var(--banner-height);
 $header-height: var(--header-height);
 $header-line-height: calc(#{$header-height} - 1px);
 

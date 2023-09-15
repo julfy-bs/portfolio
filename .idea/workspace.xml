@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e95b890a-1bae-476e-90ca-49b18bf09146" name="Changes" comment="fix: меняет workflow deploy needs.">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/deploy.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/deploy.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="e95b890a-1bae-476e-90ca-49b18bf09146" name="Changes" comment="feat: подготавливает сайт к перезапуску на React.">
+      <change afterPath="$PROJECT_DIR$/client/src/components/UI/ElementBanner/ElementBanner.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/static/images/avatar.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/client/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,7 +17,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="develop" />
+        <entry key="$PROJECT_DIR$" value="dev" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -70,6 +71,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/julfy/Documents/projects/portfolio&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
@@ -79,7 +81,7 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.HTML&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/julfy/Documents/projects/portfolio/client/node_modules/typescript/lib&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/julfy/Documents/projects/portfolio/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -155,8 +157,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.server (1)" />
         <item itemvalue="npm.serve" />
+        <item itemvalue="npm.server (1)" />
         <item itemvalue="npm.predeploy" />
         <item itemvalue="npm.lint" />
         <item itemvalue="npm.deploy" />
@@ -207,6 +209,7 @@
       <workItem from="1672736503825" duration="702000" />
       <workItem from="1672737243274" duration="3769000" />
       <workItem from="1672915755027" duration="6303000" />
+      <workItem from="1694776633941" duration="11597000" />
     </task>
     <task id="LOCAL-00001" summary="feat: добавляет github action для автоматического деплоя приложения">
       <created>1672935507217</created>
@@ -229,7 +232,15 @@
       <option name="project" value="LOCAL" />
       <updated>1672936932915</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="feat: подготавливает сайт к перезапуску на React.">
+      <option name="closed" value="true" />
+      <created>1694788623157</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1694788623157</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -263,6 +274,7 @@
     <MESSAGE value="feat: добавляет github action для автоматического деплоя приложения" />
     <MESSAGE value="fix: меняет workflow ветку на main" />
     <MESSAGE value="fix: меняет workflow deploy needs." />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: меняет workflow deploy needs." />
+    <MESSAGE value="feat: подготавливает сайт к перезапуску на React." />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: подготавливает сайт к перезапуску на React." />
   </component>
 </project>

@@ -38,9 +38,10 @@ const props = defineProps<Props>()
   background-color: $bg-mute;
   border-radius: 4px;
   display: flex;
-  height: calc(var(--max-width) / 2 - 6px);
+  min-height: calc(var(--max-width) / 2 - 6px);
   justify-content: center;
-  transition: background-color 0.5s ease 0s;;
+  transition: background-color 0.5s ease 0s;
+  text-align: center;
 
   &:hover {
     background-color: $bg-soft;

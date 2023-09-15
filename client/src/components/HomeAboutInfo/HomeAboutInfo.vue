@@ -3,55 +3,55 @@
     <main-user-photo />
     <div class="info__table">
       <div class="info__cell city">
-        <span class="info__title">City</span>
+        <span class="info__title">Город</span>
         <span class="info__value">{{ user.city }}</span>
       </div>
       <div class="info__cell age">
-        <span class="info__title">Age</span>
+        <span class="info__title">Возраст</span>
         <span class="info__value">{{ countAge(user.dateOfBirth) }}</span>
       </div>
       <div class="info__cell birth">
-        <span class="info__title">Date of Birth</span>
+        <span class="info__title">Дата рождения</span>
         <span class="info__value">{{ formatDate(user.dateOfBirth) }}</span>
       </div>
     </div>
   </div>
 </template>
 
-<script setup lang='ts'>
-import MainUserPhoto from '@/components/MainUserPhoto/MainUserPhoto.vue'
-import { countAge } from '@/helpers/countAge'
-import { useUser } from '@/hooks/useUser'
-import { formatDate } from '@/helpers/formatDate'
+<script lang="ts" setup>
+import MainUserPhoto from '@/components/MainUserPhoto/MainUserPhoto.vue';
+import { countAge } from '@/helpers/countAge';
+import { useUser } from '@/hooks/useUser';
+import { formatDate } from '@/helpers/formatDate';
 
-const { user } = useUser()
+const { user } = useUser();
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 @import "src/assets/styles/_variables.scss";
 
 .info {
   align-items: center;
-  width: 100%;
   display: flex;
   flex-flow: column nowrap;
   gap: 24px;
+  width: 100%;
 
   @media (min-width: $phones) {
     margin-bottom: 48px;
   }
 
   @media (min-width: $tablets-big) {
-    max-width: 350px;
     margin: 0;
+    max-width: 350px;
     padding: 0;
   }
 
   .info__table {
-    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: stretch;
+    width: 100%;
   }
 
   .info__cell {
@@ -68,8 +68,10 @@ const { user } = useUser()
     }
 
     .info__title, .info__value {
+      max-width: 50%;
       transition: color .5s;
-      width: 50%;
+      width: fit-content;
+      z-index: #{$z-index-hero-content};
     }
 
     .info__value {

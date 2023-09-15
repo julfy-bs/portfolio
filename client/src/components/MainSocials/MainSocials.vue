@@ -34,12 +34,12 @@
       />
     </a>
     <a
-      :href="user.discord"
+      :href="user.linkedIn"
       class="socials__link socials__link--is-small"
       target="_blank"
     >
       <element-svg
-        file-name="discord"
+        file-name="linkedin"
         class="social__icon"
       />
     </a>
@@ -107,5 +107,7 @@ const { user } = useUser()
 .social__icon {
   width: 20px;
   height: 20px;
+  transition: fill .2s ease, stroke .2s ease;
+
 }
 </style>

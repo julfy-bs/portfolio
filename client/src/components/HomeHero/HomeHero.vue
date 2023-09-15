@@ -3,7 +3,6 @@
     id="hero"
     class="hero"
   >
-    <element-background />
     <home-hero-title
       title="Frontend Developer's"
     />
@@ -20,14 +19,14 @@ import HomeHeroTitle from '@/components/HomeHeroTitle/HomeHeroTitle.vue'
 @import "src/assets/styles/_variables.scss";
 
 .hero {
-	height: calc(100vh - #{$header-height} - #{$banner-height});
+  align-items: center;
 	display: flex;
 	flex-direction: column;
+	height: calc(100vh - #{$header-height} - #{$banner-height});
 	justify-content: center;
-	align-items: center;
-	text-align: center;
 	position: relative;
-	
+	text-align: center;
+
 	@media (max-width: $tablets-big) {
 		padding-top: 229px;
 		padding-bottom: 229px;
