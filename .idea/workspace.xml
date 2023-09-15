@@ -4,10 +4,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e95b890a-1bae-476e-90ca-49b18bf09146" name="Changes" comment="feat: подготавливает сайт к перезапуску на React.">
-      <change afterPath="$PROJECT_DIR$/client/src/components/UI/ElementBanner/ElementBanner.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/static/images/avatar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/client/.gitignore" afterDir="false" />
+    <list default="true" id="e95b890a-1bae-476e-90ca-49b18bf09146" name="Changes" comment="feat: настраивает репозиторий для работы с react приложением.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/assets/styles/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/assets/styles/_variables.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeAbout/HomeAbout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeAbout/HomeAbout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeAboutDescription/HomeAboutDescription.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeAboutDescription/HomeAboutDescription.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeAboutInfo/HomeAboutInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeAboutInfo/HomeAboutInfo.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeHero/HomeHero.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeHero/HomeHero.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeNavigation/HomeNavigation.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeNavigation/HomeNavigation.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeSkills/HomeSkills.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeSkills/HomeSkills.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeSkillsItem/HomeSkillsItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeSkillsItem/HomeSkillsItem.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeSkillsList/HomeSkillsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeSkillsList/HomeSkillsList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeWorks/HomeWorks.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeWorks/HomeWorks.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeWorksItem/HomeWorksItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeWorksItem/HomeWorksItem.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeWorksList/HomeWorksList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeWorksList/HomeWorksList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/HomeWorksModal/HomeWorksModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/HomeWorksModal/HomeWorksModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/MainSocials/MainSocials.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MainSocials/MainSocials.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/MainUserPhoto/MainUserPhoto.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/MainUserPhoto/MainUserPhoto.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementButtonLink/ElementButtonLink.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/ElementButtonLink/ElementButtonLink.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/ElementHeader/ElementHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/ElementHeader/ElementHeader.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/helpers/formatDate.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/helpers/formatDate.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/models/Skill.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/models/Skill.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/models/User.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/models/User.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/models/Work.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/models/Work.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/modules/reviews.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/modules/reviews.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/modules/skills.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/modules/skills.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/modules/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/modules/user.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/store/modules/works.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/store/modules/works.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -209,7 +234,7 @@
       <workItem from="1672736503825" duration="702000" />
       <workItem from="1672737243274" duration="3769000" />
       <workItem from="1672915755027" duration="6303000" />
-      <workItem from="1694776633941" duration="11597000" />
+      <workItem from="1694776633941" duration="11494000" />
     </task>
     <task id="LOCAL-00001" summary="feat: добавляет github action для автоматического деплоя приложения">
       <created>1672935507217</created>
@@ -232,15 +257,7 @@
       <option name="project" value="LOCAL" />
       <updated>1672936932915</updated>
     </task>
-    <task id="LOCAL-00004" summary="feat: подготавливает сайт к перезапуску на React.">
-      <option name="closed" value="true" />
-      <created>1694788623157</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1694788623157</updated>
-    </task>
-    <option name="localTasksCounter" value="5" />
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -274,7 +291,6 @@
     <MESSAGE value="feat: добавляет github action для автоматического деплоя приложения" />
     <MESSAGE value="fix: меняет workflow ветку на main" />
     <MESSAGE value="fix: меняет workflow deploy needs." />
-    <MESSAGE value="feat: подготавливает сайт к перезапуску на React." />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: подготавливает сайт к перезапуску на React." />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: меняет workflow deploy needs." />
   </component>
 </project>
