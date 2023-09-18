@@ -1,0 +1,31 @@
+@mixin respond($breakpoint) {
+  @if $breakpoint==huge {
+    @media screen and (min-width: var(--media-desktop-hd)) {
+      @content;
+    }
+  }
+  
+  @if $breakpoint==fullhd {
+    @media screen and (min-width: var(--media-desktop)) {
+      @content;
+    }
+  }
+  
+  @if $breakpoint==desktop {
+    @media screen and (min-width: var(--media-tablets-big)) {
+      @content;
+    }
+  }
+  
+  @if $breakpoint==laptop {
+    @media screen and (min-width: var(--media-tablets)) {
+      @content;
+    }
+  }
+  
+  @if $breakpoint==tablet {
+    @media screen and (min-width: var(--media-phones)) {
+      @content;
+    }
+  }
+}
