@@ -1,0 +1,26 @@
+import { Meta, Canvas, Controls } from '@storybook/blocks';
+import * as AvatarStories from './avatar.stories';
+
+<Meta of={AvatarStories} />
+
+# Компонент `<Avatar />`
+
+Аватар - контентный элемент, который используется для отображения фотографий пользователей.
+
+## Использование
+
+Используется для отображения фото пользователей.
+
+## Параметры
+Аватар принимает `size`, `image` и `alt` в качестве параметров. **Все параметры являются необязательными.**
+
+```
+type AvatarProps = {
+  image?: string;
+  alt?: string;
+  size?: AvatarSize;
+}
+```
+<Canvas of={AvatarStories.ExampleAvatar} />
+
+<Controls />

@@ -1,0 +1,100 @@
+.wrapper {
+  background: transparent;
+  border-radius: var(--border-radius);
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  max-height: var(--height);
+  max-width: var(--width);
+  overflow: hidden;
+  position: relative;
+  --border-radius: 50%;
+  z-index: var(--z-index-background);
+  
+  &:after {
+    animation: animation_img_idle 10s ease infinite;
+    background: var(--gradient-vue);
+    background-size: 100% 100%;
+    border-radius: var(--border-radius);
+    bottom: 0;
+    content: '';
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    z-index: var(--z-index-hidden);
+  }
+  
+  .photo {
+    border: var(--border-width) solid transparent;
+    border-radius: 50%;
+    box-sizing: border-box;
+    max-width: 100%;
+    min-height: var(--height);
+    object-fit: cover;
+    object-position: center;
+    position: relative;
+    --border-width: 5px;
+    width: var(--width);
+  }
+  
+  .icon {
+    align-self: center;
+    background-color: var(--bg-overlay-black-1);
+    border-radius: var(--border-radius);
+    box-sizing: border-box;
+    display: flex;
+    fill: var(--color-brand);
+    max-height: var(--height);
+    max-width: var(--width);
+    min-height: var(--icon-size);
+    min-width: var(--icon-size);
+    --icon-size: 64px;
+  }
+  
+  &_big {
+    --height: 200px;
+    --width: 200px;
+    --icon-padding: 60px;
+    
+    &:after {
+      max-height: var(--height);
+      max-width: var(--width);
+    }
+    
+    & > .icon {
+      padding: var(--icon-padding);
+    }
+  }
+  
+  &_small {
+    --height: 100px;
+    --width: 100px;
+    --icon-padding: 20px;
+    
+    &:after {
+      height: var(--height);
+      width: var(--width);
+    }
+    
+    & > .icon {
+      padding: var(--icon-padding);
+    }
+  }
+}
+
+@keyframes animation_img_idle {
+  0% {
+    --animation-start: 0deg;
+    --animation-end: 360deg;
+    transform: rotate(var(--animation-start));
+  }
+  100% {
+    transform: rotate(var(--animation-end));
+  }
+}

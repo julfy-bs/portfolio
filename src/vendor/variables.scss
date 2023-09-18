@@ -1,0 +1,77 @@
+// media
+$desktop-hd: 1441px;
+$desktop: 1281px;
+$tablets-big: 1025px;
+$tablets: 769px;
+$phones: 481px;
+
+// primary colors
+$green: #42b883;
+$green-light: #42d392;
+$green-lighter: #35eb9a;
+$green-darker: #155f3e;
+$blue: #3b8eed;
+$blue-light: #549ced;
+$blue-light-2: #00cae0;
+$blue-lighter: #50a2ff;
+$blue-dark: #3468a3;
+$blue-dark-2: #647eff;
+$blue-darker: #255489;
+$yellow: #ffc517;
+$yellow-light: #ffe417;
+$yellow-lighter: #ffff17;
+$yellow-dark: #e0ad15;
+$yellow-darker: #bc9112;
+$red: #ed3c50;
+$red-light: #f43771;
+$red-lighter: #fd1d7c;
+$purple: #de41e0;
+$purple-light: #e936eb;
+$purple-lighter: #f616f8;
+$purple-dark: #823c83;
+$purple-darker: #602960;
+
+/* brand */
+$brand-vue: $green;
+$brand-yandex: #ffcc00;
+
+/* z-index */
+$z-index-background: 5;
+$z-index-banner: 30;
+$z-index-backdrop: 40;
+$z-index-modal: 100;
+$z-index-hidden: -1;
+$z-index-default: 0;
+
+/* gradient */
+$vue-gradient: -webkit-linear-gradient(315deg, $blue-light-2 0%, $brand-vue 50%, $blue-dark-2 100%);
+
+:root {
+  --bg-overlay-black-1: rgba(0, 0, 0, .1);
+  
+  --gradient-vue: #{$vue-gradient};
+  --color-brand: #{$brand-vue};
+  
+  --media-desktop: #{$desktop};
+  --media-desktop-hd: #{$desktop-hd};
+  --media-phones: #{$phones};
+  --media-tablets: #{$tablets};
+  --media-tablets-big: #{$tablets-big};
+  
+  
+  
+  --z-index-backdrop: #{$z-index-backdrop};
+  --z-index-background: #{$z-index-background};
+  --z-index-banner: #{$z-index-banner};
+  --z-index-default: #{$z-index-default};
+  --z-index-hidden: #{$z-index-hidden};
+  --z-index-modal: #{$z-index-modal};
+}
+
+:root .page_theme_light {
+
+}
+
+:root .page_theme_dark {
+
+}
