@@ -6,6 +6,21 @@ $tablets: 769px;
 $phones: 481px;
 
 // primary colors
+$color-white: #ffffff;
+$color-white-soft: #f9f9f9;
+$color-white-mute: #f1f1f1;
+$color-black: #1a1a1a;
+$color-black-pure: #000000;
+$color-black-soft: #242424;
+$color-black-mute: #2f2f2f;
+$color-indigo: #213547;
+
+
+$color-divider-light-1: rgba(60, 60, 60, .29);
+$color-divider-light-2: rgba(60, 60, 60, .12);
+$color-divider-dark-1: rgba(84, 84, 84, .65);
+$color-divider-dark-2: rgba(84, 84, 84, .48);
+
 $green: #42b883;
 $green-light: #42d392;
 $green-lighter: #35eb9a;
@@ -30,9 +45,19 @@ $purple-light: #e936eb;
 $purple-lighter: #f616f8;
 $purple-dark: #823c83;
 $purple-darker: #602960;
-
+$color-gray: #8e8e8e;
+$color-gray-light-1: #aeaeae;
+$color-gray-light-2: #c7c7c7;
+$color-gray-light-3: #d1d1d1;
+$color-gray-light-4: #e5e5e5;
+$color-gray-light-5: #f2f2f2;
+$color-gray-dark-1: #636363;
+$color-gray-dark-2: #484848;
+$color-gray-dark-3: #3a3a3a;
+$color-gray-dark-4: #282828;
+$color-gray-dark-5: #202020;
 /* brand */
-$brand-vue: $green;
+$color-brand-vue: $green;
 $brand-yandex: #ffcc00;
 
 /* z-index */
@@ -44,20 +69,30 @@ $z-index-hidden: -1;
 $z-index-default: 0;
 
 /* gradient */
-$vue-gradient: -webkit-linear-gradient(315deg, $blue-light-2 0%, $brand-vue 50%, $blue-dark-2 100%);
+$vue-gradient: -webkit-linear-gradient(315deg, $blue-light-2 0%, $color-brand-vue 50%, $blue-dark-2 100%);
 
 :root {
   --bg-overlay-black-1: rgba(0, 0, 0, .1);
-  
+  --animation-transition-s: .1s;
+  --animation-transition-m: .25s;
+  --animation-transition-l: .5s;
   --gradient-vue: #{$vue-gradient};
-  --color-brand: #{$brand-vue};
+  
+  --color-gray: #{$color-gray};
+  --color-brand: #{$color-brand-vue};
+  --color-black: #{$color-black};
+  --color-white: #{$color-white};
   
   --media-desktop: #{$desktop};
   --media-desktop-hd: #{$desktop-hd};
   --media-phones: #{$phones};
   --media-tablets: #{$tablets};
   --media-tablets-big: #{$tablets-big};
-  
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, .04), 0 1px 2px rgba(0, 0, 0, .06);
+  --shadow-2: 0 3px 12px rgba(0, 0, 0, .07), 0 1px 4px rgba(0, 0, 0, .07);
+  --shadow-3: 0 12px 32px rgba(0, 0, 0, .1), 0 2px 6px rgba(0, 0, 0, .08);
+  --shadow-4: 0 14px 44px rgba(0, 0, 0, .12), 0 3px 9px rgba(0, 0, 0, .12);
+  --shadow-5: 0 18px 56px rgba(0, 0, 0, .16), 0 4px 12px rgba(0, 0, 0, .16);
   
   
   --z-index-backdrop: #{$z-index-backdrop};
@@ -69,9 +104,41 @@ $vue-gradient: -webkit-linear-gradient(315deg, $blue-light-2 0%, $brand-vue 50%,
 }
 
 :root .page_theme_light {
-
+  --bg: #{$color-white};
+  --bg-soft: #{$color-white-soft};
+  --bg-mute: #{$color-white-mute};
+  
+  --color-text-1: #{$color-indigo};
+  --color-text-2: rgba(60, 60, 60, .7);
+  --color-text-3: rgba(60, 60, 60, .33);
+  --color-text-4: rgba(60, 60, 60, .18);
+  
+  --color-divider-1: #{$color-divider-light-1};
+  --color-divider-2: #{$color-divider-light-2};
+  
+  --color-gray-1: #{$color-gray-light-1};
+  --color-gray-2: #{$color-gray-light-2};
+  --color-gray-3: #{$color-gray-light-3};
+  --color-gray-4: #{$color-gray-light-4};
+  --color-gray-5: #{$color-gray-light-5};
 }
 
 :root .page_theme_dark {
-
+  --bg: #{$color-black};
+  --bg-soft: #{$color-black-soft};
+  --bg-mute: #{$color-black-mute};
+  
+  --color-text-1: rgba(255, 255, 255, .87);
+  --color-text-2: rgba(235, 235, 235, .6);
+  --color-text-3: rgba(235, 235, 235, .38);
+  --color-text-4: rgba(235, 235, 235, .18);
+  
+  --color-divider-1: #{$color-divider-dark-1};
+  --color-divider-2: #{$color-divider-dark-2};
+  
+  --color-gray-1: #{$color-gray-dark-1};
+  --color-gray-2: #{$color-gray-dark-2};
+  --color-gray-3: #{$color-gray-dark-3};
+  --color-gray-4: #{$color-gray-dark-4};
+  --color-gray-5: #{$color-gray-dark-5};
 }

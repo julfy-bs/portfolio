@@ -1,0 +1,99 @@
+.switch {
+  background-color: var(--bg-mute);
+  border: var(--switch-border-width) solid var(--color-divider-1);
+  --switch-border-radius: 11px;
+  border-radius: var(--switch-border-radius);
+  --switch-border-width: 1px;
+  display: block;
+  flex-shrink: 0;
+  --switch-heght: 22px;
+  height: var(--switch-heght);
+  position: relative;
+  transition: border-color var(--animation-transition-m), background-color var(--animation-transition-m);
+  --switch-width: 40px;
+  width: var(--switch-width);
+  
+  &:hover {
+    border-color: var(--color-gray);
+  }
+  
+  .switch__check {
+    background-color: var(--color-white);
+    --check-border-radius: 50%;
+    border-radius: var(--check-border-radius);
+    box-shadow: var(--shadow-1);
+    --check-height: 18px;
+    height: var(--check-height);
+    left: var(--check-position-left);
+    position: absolute;
+    --check-position-left: 1px;
+    --check-position-top: 1px;
+    top: var(--check-position-top);
+    transition: background-color var(--animation-transition-m), transform var(--animation-transition-m);
+    --check-width: 18px;
+    width: var(--check-width);
+    
+    .icon_wrapper {
+      border-radius: 50%;
+      display: block;
+      height: var(--icon-wrapper-height);
+      overflow: hidden;
+      position: relative;
+      width: var(--icon-wrapper-width);
+      --icon-wrapper-border-radius: 50%;
+      --icon-wrapper-height: 18px;
+      --icon-wrapper-width: 18px;
+      
+      .icon {
+        fill: var(--color-text-2);
+        height: var(--icon-inside-wrapper-height);
+        --icon-inside-wrapper-height: 12px;
+        --icon-inside-wrapper-position-left: 3px;
+        --icon-inside-wrapper-position-top: 1px;
+        --icon-inside-wrapper-width: 12px;
+        left: var(--icon-inside-wrapper-position-left);
+        position: absolute;
+        top: var(--icon-inside-wrapper-position-top);
+        width: var(--icon-inside-wrapper-width);
+      }
+      
+      .icon_unchecked {
+        opacity: 1;
+        pointer-events: all;
+        visibility: visible;
+      }
+      
+      .icon_checked {
+        opacity: 0;
+        pointer-events: none;
+        visibility: hidden;
+      }
+    }
+  }
+  
+  &_checked {
+    .switch__check {
+      background-color: var(--color-black);
+      transform: translate(var(--check-transform-checked));
+      --check-transform-checked: 18px;
+      
+      .icon_wrapper > .icon {
+        fill: var(--color-text-1);
+        transition: opacity var(--animation-transition-m);
+      }
+      
+      .icon_wrapper > .icon_checked {
+        opacity: 1;
+        pointer-events: all;
+        visibility: visible;
+      }
+      
+      .icon_wrapper > .icon_unchecked {
+        opacity: 0;
+        pointer-events: none;
+        visibility: hidden;
+      }
+      
+    }
+  }
+}

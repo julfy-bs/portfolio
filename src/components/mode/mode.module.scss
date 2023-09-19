@@ -1,0 +1,9 @@
+@import "../../styles/mixins/media";
+
+.mode {
+  display: none;
+  
+  @include respond(desktop) {
+    display: flex;
+  }
+}
