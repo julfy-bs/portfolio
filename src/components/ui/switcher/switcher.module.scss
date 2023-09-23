@@ -1,0 +1,135 @@
+.switch {
+  --check-border-radius: 50%;
+  --switch-border-radius: 11px;
+  --switch-border-width: 1px;
+  --switch-heght: 22px;
+  --check-height: 18px;
+  --icon-inside-wrapper-height: 12px;
+  --icon-inside-wrapper-position-left: 3px;
+  --icon-inside-wrapper-position-top: 3px;
+  --icon-inside-wrapper-width: 12px;
+  --check-position-left: 1px;
+  --check-position-top: 1px;
+  --check-width: 18px;
+  --switch-width: 40px;
+  --icon-wrapper-border-radius: 50%;
+  --icon-wrapper-height: 18px;
+  --icon-wrapper-width: 18px;
+  
+  
+  & {
+    all: unset;
+    background-color: var(--bg-light-mute);
+    border: var(--switch-border-width) solid var(--color-light-divider-1);
+    border-radius: var(--switch-border-radius);
+    box-sizing: border-box;
+    display: block;
+    flex-shrink: 0;
+    font-family: var(--font-family);
+    font-size: 12px;
+    height: var(--switch-heght);
+    line-height: 1em;
+    position: relative;
+    transition: border-color var(--animation-transition-m), background-color var(--animation-transition-m);
+    width: var(--switch-width);
+  }
+  
+  &:focus {
+    border-color: #35eb9a;
+  }
+  
+  &:hover {
+    border-color: var(--color-gray);
+  }
+  
+  &__check {
+    background-color: var(--color-white);
+    border-radius: var(--check-border-radius);
+    box-shadow: var(--shadow-1);
+    height: var(--check-height);
+    left: var(--check-position-left);
+    position: absolute;
+    top: var(--check-position-top);
+    transition: background-color var(--animation-transition-m), transform var(--animation-transition-m);
+    width: var(--check-width);
+    
+    .icon_wrapper {
+      border-radius: 50%;
+      display: flex;
+      height: var(--icon-wrapper-height);
+      overflow: hidden;
+      position: relative;
+      width: var(--icon-wrapper-width);
+      
+      .icon {
+        align-items: center;
+        align-self: center;
+        box-sizing: border-box;
+        display: flex;
+        fill: var(--color-text-2);
+        height: 100%;
+        justify-content: center;
+        left: var(--icon-inside-wrapper-position-left);
+        max-height: var(--icon-inside-wrapper-height);
+        max-width: var(--icon-inside-wrapper-width);
+        position: absolute;
+        top: var(--icon-inside-wrapper-position-top);
+        width: 100%;
+      }
+      
+      .icon_unchecked {
+        opacity: 1;
+        pointer-events: all;
+        visibility: visible;
+      }
+      
+      .icon_checked {
+        opacity: 0;
+        pointer-events: none;
+        visibility: hidden;
+      }
+    }
+  }
+  
+  &_checked {
+    .switch__check {
+      background-color: var(--bg-light);
+      transform: translate(var(--check-transform-checked));
+      --check-transform-checked: 18px;
+      
+      .icon_wrapper > .icon {
+        fill: var(--color-text-1);
+        transition: opacity var(--animation-transition-m);
+      }
+      
+      .icon_wrapper > .icon_checked {
+        opacity: 1;
+        pointer-events: all;
+        visibility: visible;
+      }
+      
+      .icon_wrapper > .icon_unchecked {
+        opacity: 0;
+        pointer-events: none;
+        visibility: hidden;
+      }
+      
+    }
+  }
+}
+
+:global(.page_theme_dark) {
+  .switch {
+    background-color: var(--bg-dark-mute);
+    border-color: var(--color-dark-divider-1);
+    color: var(--color-text-dark-1);
+  }
+  
+  .switch__check {
+    background-color: var(--color-black);
+  }
+  
+  .icon_wrapper > .icon {
+    fill: var(--color-text-dark-1);
+  }
+}

@@ -1,30 +1,32 @@
+@import '../../vendor/variables.scss';
+
 @mixin respond($breakpoint) {
   @if $breakpoint==huge {
-    @media screen and (min-width: var(--media-desktop-hd)) {
+    @media screen and (min-width: #{$desktop-hd}) {
       @content;
     }
   }
   
   @if $breakpoint==fullhd {
-    @media screen and (min-width: var(--media-desktop)) {
+    @media screen and (min-width: #{$desktop}) {
       @content;
     }
   }
   
   @if $breakpoint==desktop {
-    @media screen and (min-width: var(--media-tablets-big)) {
+    @media screen and (min-width: #{$tablets-big}) {
       @content;
     }
   }
   
   @if $breakpoint==laptop {
-    @media screen and (min-width: var(--media-tablets)) {
+    @media screen and (min-width: #{$tablets}) {
       @content;
     }
   }
   
   @if $breakpoint==tablet {
-    @media screen and (min-width: var(--media-phones)) {
+    @media screen and (min-width: #{$phones}) {
       @content;
     }
   }

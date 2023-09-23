@@ -1,0 +1,35 @@
+import { Meta, Canvas, Controls } from '@storybook/blocks';
+import * as SwitcherStories from './switcher.stories';
+
+<Meta of={SwitcherStories} />
+
+# Компонент `<Switcher />`
+
+Switcher - UI компонент. Стилизован для двух тем приложения (светлой и темной).
+
+## Использование
+
+Используется для переключения состояния.
+
+## Параметры
+
+Switcher принимает `ariaLabel`, `icon`, `iconChecked`, `switchCallback` и `switched` в качестве параметров.
+
+**Параметр `ariaLabel` является необязательным, его значение по умолчанию - 'Кнопка переключения режима.'**
+
+```
+/**
+ * Тип входных параметров для компонента Switcher.
+ */
+type SwitchProps = {
+  ariaLabel: string;
+  icon: ReactNode;
+  iconChecked: ReactNode;
+  switchCallback: EventHandler<SyntheticEvent>;
+  switched: boolean;
+};
+```
+<Canvas of={SwitcherStories.DarkMode} />
+<Canvas of={SwitcherStories.LightMode} />
+
+<Controls />

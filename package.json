@@ -12,9 +12,12 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test": "vitest",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "docs": "jsdoc -c jsdoc.conf.json"
   },
   "dependencies": {
+    "better-docs": "^2.7.2",
+    "jsdoc": "^4.0.2",
     "jsdom": "^22.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -30,9 +33,10 @@
     "@storybook/react": "^7.0.18",
     "@storybook/react-vite": "^7.0.18",
     "@storybook/testing-library": "^0.1.0",
-    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/dom": "^9.3.3",
+    "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^14.4.3",
+    "@testing-library/user-event": "^14.5.1",
     "@types/jest": "^29.2.5",
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.9",
