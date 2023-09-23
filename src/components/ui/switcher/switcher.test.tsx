@@ -9,17 +9,17 @@ import {
   ICON_CHECKED_TEST_ID,
   ICON_UNCHECKED_TEST_ID,
 } from '../../../constants/tests/switch/values';
-import Switch from './switch';
+import Switcher from './switcher';
 
 describe('UI-компонент <Switch /> рендерится без ошибок', () => {
   const switchCallback = vi.fn();
 
   beforeEach(() => {
     const switchedFlag = false;
-    const switchedAriaLabel = 'Testing switch button';
+    const switchedAriaLabel = 'Testing switcher button';
 
     render(
-      <Switch
+      <Switcher
         switched={switchedFlag}
         ariaLabel={switchedAriaLabel}
         icon={<SunIcon file-name="sun" />}

@@ -56,6 +56,8 @@ $color-gray-dark-2: #484848;
 $color-gray-dark-3: #3a3a3a;
 $color-gray-dark-4: #282828;
 $color-gray-dark-5: #202020;
+$color-gray-direct-energy: #666666;
+$color-gray-alabaster: #f3f3f3;
 /* brand */
 $color-brand-vue: $green;
 $brand-yandex: #ffcc00;
@@ -72,49 +74,66 @@ $z-index-default: 0;
 $vue-gradient: -webkit-linear-gradient(315deg, $blue-light-2 0%, $color-brand-vue 50%, $blue-dark-2 100%);
 
 :root {
-  --bg-overlay-black-1: rgba(0, 0, 0, .1);
+  // font
+  --font-family: 'Inter', Arial, sans-serif;
+  // animation
   --animation-transition-s: .1s;
   --animation-transition-m: .25s;
   --animation-transition-l: .5s;
+  // bg
+  --bg-light: #{$color-white};
+  --bg-light-soft: #{$color-white-soft};
+  --bg-light-mute: #{$color-white-mute};
+  --bg-dark: #{$color-black};
+  --bg-dark-soft: #{$color-black-soft};
+  --bg-dark-mute: #{$color-black-mute};
+  --bg-overlay-black-1: rgba(0, 0, 0, .1);
+  // gradient
   --gradient-vue: #{$vue-gradient};
-  
+  // color
   --color-gray: #{$color-gray};
   --color-brand: #{$color-brand-vue};
   --color-black: #{$color-black};
   --color-white: #{$color-white};
-  
-  --media-desktop: #{$desktop};
-  --media-desktop-hd: #{$desktop-hd};
-  --media-phones: #{$phones};
-  --media-tablets: #{$tablets};
-  --media-tablets-big: #{$tablets-big};
+  // divider
+  --color-light-divider-1: #{$color-divider-light-1};
+  --color-light-divider-2: #{$color-divider-light-2};
+  --color-dark-divider-1: #{$color-divider-dark-1};
+  --color-dark-divider-2: #{$color-divider-dark-2};
+  // text
+  --color-text-light-1: #{$color-indigo};
+  --color-text-light-2: #{$color-gray-direct-energy};
+  --color-text-light-3: rgba(60, 60, 60, .33);
+  --color-text-light-4: rgba(60, 60, 60, .18);
+  --color-text-dark-1: rgba(255, 255, 255, .87);
+  --color-text-dark-2: #{$color-gray-alabaster};
+  --color-text-dark-3: rgba(235, 235, 235, .38);
+  --color-text-dark-4: rgba(235, 235, 235, .18);
+  // border-shadow
   --shadow-1: 0 1px 2px rgba(0, 0, 0, .04), 0 1px 2px rgba(0, 0, 0, .06);
   --shadow-2: 0 3px 12px rgba(0, 0, 0, .07), 0 1px 4px rgba(0, 0, 0, .07);
   --shadow-3: 0 12px 32px rgba(0, 0, 0, .1), 0 2px 6px rgba(0, 0, 0, .08);
   --shadow-4: 0 14px 44px rgba(0, 0, 0, .12), 0 3px 9px rgba(0, 0, 0, .12);
   --shadow-5: 0 18px 56px rgba(0, 0, 0, .16), 0 4px 12px rgba(0, 0, 0, .16);
-  
-  
+  // z-index
   --z-index-backdrop: #{$z-index-backdrop};
   --z-index-background: #{$z-index-background};
   --z-index-banner: #{$z-index-banner};
   --z-index-default: #{$z-index-default};
   --z-index-hidden: #{$z-index-hidden};
   --z-index-modal: #{$z-index-modal};
-}
-
-:root .page_theme_light {
-  --bg: #{$color-white};
-  --bg-soft: #{$color-white-soft};
-  --bg-mute: #{$color-white-mute};
+  // light mode
+  --bg: var(--bg-light);
+  --bg-soft: var(--bg-light-soft);
+  --bg-mute: var(--bg-light-mute);
   
   --color-text-1: #{$color-indigo};
-  --color-text-2: rgba(60, 60, 60, .7);
+  --color-text-2: #{$color-gray-direct-energy};
   --color-text-3: rgba(60, 60, 60, .33);
   --color-text-4: rgba(60, 60, 60, .18);
   
-  --color-divider-1: #{$color-divider-light-1};
-  --color-divider-2: #{$color-divider-light-2};
+  --color-divider-1: var(--color-light-divider-1);
+  --color-divider-2: var(--color-light-divider-2);
   
   --color-gray-1: #{$color-gray-light-1};
   --color-gray-2: #{$color-gray-light-2};
@@ -129,12 +148,12 @@ $vue-gradient: -webkit-linear-gradient(315deg, $blue-light-2 0%, $color-brand-vu
   --bg-mute: #{$color-black-mute};
   
   --color-text-1: rgba(255, 255, 255, .87);
-  --color-text-2: rgba(235, 235, 235, .6);
+  --color-text-2: #{$color-gray-alabaster};
   --color-text-3: rgba(235, 235, 235, .38);
   --color-text-4: rgba(235, 235, 235, .18);
   
-  --color-divider-1: #{$color-divider-dark-1};
-  --color-divider-2: #{$color-divider-dark-2};
+  --color-divider-1: var(--color-dark-divider-1);
+  --color-divider-2: var(--color-dark-divider-2);
   
   --color-gray-1: #{$color-gray-dark-1};
   --color-gray-2: #{$color-gray-dark-2};
