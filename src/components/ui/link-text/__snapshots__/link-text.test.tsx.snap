@@ -1,5 +1,22 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`UI-компонент <LinkText /> рендерится без ошибок > Рендерится с параметром navigation 1`] = `
+<a
+  aria-current="page"
+  class="_link_dd42dc _link_active_dd42dc _link_role_navigation_dd42dc"
+  data-testid="link-element"
+  href="/"
+  tabindex="-1"
+>
+  <span
+    class="_text_dd42dc"
+    data-testid="link-text"
+  >
+    TEST
+  </span>
+</a>
+`;
+
 exports[`UI-компонент <LinkText /> рендерится без ошибок > Рендерится с параметром навигации 1`] = `
 <a
   aria-current="page"
