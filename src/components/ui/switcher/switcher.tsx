@@ -9,7 +9,7 @@ import {
 import styles from './switcher.module.scss';
 
 /**
- * Тип входных параметров для компонента Switcher.
+ * Типы входных параметров для компонента Switcher.
  * @memberof Switcher
  * @alias SwitcherProps
  * @typedef {object} SwitcherProps
@@ -38,7 +38,7 @@ type SwitchProps = {
 };
 
 /**
- * UI компонент
+ * UI компонент.
  * Boolean кнопка переключения состояния. Компонент стилизован для двух тем приложения (светлой и темной).
  *
  * @component
@@ -51,17 +51,17 @@ type SwitchProps = {
  * @example
  * * import { ReactComponent as MoonIcon } from '../../../assets/icons/moon.svg';
  * * import { ReactComponent as SunIcon } from '../../../assets/icons/sun.svg';
- *
+ * *
  * * const switchedFlag = false;
  * * const switchedAriaLabel = 'Testing switcher button';
  * * return (
  * *   <Switcher
- *          switched={switchedFlag}
- *          ariaLabel={switchedAriaLabel}
- *          icon={<SunIcon file-name="sun" />}
- *          iconChecked={<MoonIcon file-name="moon" />}
- *          switchCallback={switchCallback}
- *       />
+ * *        switched={switchedFlag}
+ * *        ariaLabel={switchedAriaLabel}
+ * *        icon={<SunIcon file-name="sun" />}
+ * *        iconChecked={<MoonIcon file-name="moon" />}
+ * *        switchCallback={switchCallback}
+ * *     />
  * * )
  */
 const Switcher: FC<SwitchProps> = ({

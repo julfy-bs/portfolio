@@ -1,30 +1,33 @@
+@import "../../../styles/mixins/position-absolute";
+
 .wrapper {
-  background: transparent;
-  border-radius: var(--border-radius);
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  max-height: var(--height);
-  max-width: var(--width);
-  overflow: hidden;
-  position: relative;
   --border-radius: 50%;
-  z-index: var(--z-index-background);
+  --icon-size: 64px;
+  --border-width: 5px;
+  
+  & {
+    background: transparent;
+    border-radius: var(--border-radius);
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    max-height: var(--size);
+    max-width: var(--size);
+    overflow: hidden;
+    position: relative;
+    z-index: var(--z-index-background);
+  }
   
   &:after {
-    animation: animation_img_idle 10s ease infinite;
+    @include position-absolute-all-0();
+    animation: animation_img_idle 20s ease infinite;
     background: var(--gradient-vue);
     background-size: 100% 100%;
     border-radius: var(--border-radius);
-    bottom: 0;
     content: '';
     display: flex;
     height: 100%;
     justify-content: center;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
     transform: translate(-50%, -50%);
     width: 100%;
     z-index: var(--z-index-hidden);
@@ -34,13 +37,12 @@
     border: var(--border-width) solid transparent;
     border-radius: 50%;
     box-sizing: border-box;
-    max-width: 100%;
-    min-height: var(--height);
+    max-width: var(--size);
+    min-height: var(--size);
     object-fit: cover;
     object-position: center;
     position: relative;
-    --border-width: 5px;
-    width: var(--width);
+    width: 100%;
   }
   
   .icon {
@@ -50,21 +52,19 @@
     box-sizing: border-box;
     display: flex;
     fill: var(--color-brand);
-    max-height: var(--height);
-    max-width: var(--width);
+    max-height: var(--size);
+    max-width: var(--size);
     min-height: var(--icon-size);
     min-width: var(--icon-size);
-    --icon-size: 64px;
   }
   
   &_big {
-    --height: 200px;
-    --width: 200px;
+    --size: 200px;
     --icon-padding: 60px;
     
     &:after {
-      max-height: var(--height);
-      max-width: var(--width);
+      max-height: var(--size);
+      max-width: var(--size);
     }
     
     & > .icon {
@@ -73,13 +73,12 @@
   }
   
   &_small {
-    --height: 100px;
-    --width: 100px;
+    --size: 100px;
     --icon-padding: 20px;
     
     &:after {
-      height: var(--height);
-      width: var(--width);
+      height: var(--size);
+      width: var(--size);
     }
     
     & > .icon {

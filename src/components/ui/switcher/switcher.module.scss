@@ -1,3 +1,5 @@
+@import "../../../styles/mixins/font";
+
 .switch {
   --check-border-radius: 50%;
   --switch-border-radius: 11px;
@@ -19,27 +21,18 @@
   
   & {
     all: unset;
+    @include font(12px);
     background-color: var(--bg-light-mute);
     border: var(--switch-border-width) solid var(--color-light-divider-1);
     border-radius: var(--switch-border-radius);
     box-sizing: border-box;
     display: block;
     flex-shrink: 0;
-    font-family: var(--font-family);
-    font-size: 12px;
     height: var(--switch-heght);
     line-height: 1em;
     position: relative;
     transition: border-color var(--animation-transition-m), background-color var(--animation-transition-m);
     width: var(--switch-width);
-  }
-  
-  &:focus {
-    border-color: #35eb9a;
-  }
-  
-  &:hover {
-    border-color: var(--color-gray);
   }
   
   &__check {
@@ -113,8 +106,16 @@
         pointer-events: none;
         visibility: hidden;
       }
-      
     }
+  }
+  
+  &:hover {
+    cursor: pointer;
+    border-color: var(--color-gray);
+  }
+  
+  &:focus {
+    border-color: var(--color-brand);
   }
 }
 
@@ -123,13 +124,21 @@
     background-color: var(--bg-dark-mute);
     border-color: var(--color-dark-divider-1);
     color: var(--color-text-dark-1);
-  }
-  
-  .switch__check {
-    background-color: var(--color-black);
-  }
-  
-  .icon_wrapper > .icon {
-    fill: var(--color-text-dark-1);
+    
+    &__check {
+      background-color: var(--color-black);
+      
+      .icon_wrapper > .icon {
+        fill: var(--color-text-dark-1);
+      }
+    }
+    
+    &:hover {
+      border-color: var(--color-gray);
+    }
+    
+    &:focus {
+      border-color: var(--color-brand);
+    }
   }
 }

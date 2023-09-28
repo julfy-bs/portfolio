@@ -16,7 +16,7 @@ const meta: Meta<SwitchProps> = {
     ariaLabel: 'Кнопка переключения режима.',
     icon: <SunIcon file-name="sun" />,
     iconChecked: <MoonIcon file-name="moon" />,
-    switchCallback: () => console.log(123),
+    switchCallback: () => null,
     switched: switched,
   },
   argTypes: {
@@ -49,7 +49,7 @@ const meta: Meta<SwitchProps> = {
       description: 'Функция переключения свитчера.',
       table: { defaultValue: { summary: '() => {}' } },
       controls: {
-        type: 'code',
+        type: 'text',
       },
     },
   },
@@ -57,8 +57,8 @@ const meta: Meta<SwitchProps> = {
     layout: 'fullscreen',
     docs: {
       page: mdx,
-      story: { inline: true }, // render the story in an iframe
-      source: { type: 'code' }, // forces the raw source code (rather than the rendered JSX).
+      story: { inline: true },
+      source: { type: 'code' },
     },
   },
 };

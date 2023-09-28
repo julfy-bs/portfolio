@@ -95,6 +95,7 @@ $vue-gradient: -webkit-linear-gradient(315deg, $blue-light-2 0%, $color-brand-vu
   --color-brand: #{$color-brand-vue};
   --color-black: #{$color-black};
   --color-white: #{$color-white};
+  --color-blue-lighter: #{$blue-lighter};
   // divider
   --color-light-divider-1: #{$color-divider-light-1};
   --color-light-divider-2: #{$color-divider-light-2};
@@ -140,6 +141,9 @@ $vue-gradient: -webkit-linear-gradient(315deg, $blue-light-2 0%, $color-brand-vu
   --color-gray-3: #{$color-gray-light-3};
   --color-gray-4: #{$color-gray-light-4};
   --color-gray-5: #{$color-gray-light-5};
+  // header
+  --header-height: 55px;
+  --header-line-height: calc(var(--header-height) - 1px);
 }
 
 :root .page_theme_dark {

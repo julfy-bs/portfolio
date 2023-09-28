@@ -1,0 +1,57 @@
+import { Meta, Canvas, Controls } from '@storybook/blocks';
+import * as LinkTextStories from './link-text.stories';
+
+<Meta of={LinkTextStories} />
+
+# Компонент `<LinkText />`
+
+LinkText - UI компонент. Стилизован для двух тем приложения (светлой и темной).
+
+## Использование
+
+Используется для выделения ссылок в тексте или для навигации по сайту.
+
+<Canvas of={LinkTextStories.Default} />
+
+<Controls />
+
+## Параметры
+
+LinkText принимает `children`, `external`, `navigation`, `onClick`, `route` и `text` в качестве параметров.
+
+**Параметр `children`, `external`, `navigation`, `onClick` являются необязательными.'**
+
+```
+/**
+ * Типы входных параметров для компонента LinkText.
+ * @memberof LinkText
+ * @alias LinkTextProps
+ * @typedef {object} LinkTextProps
+ */
+type LinkTextProps = {
+  /**
+   * Вложенные элементы. **Необязательный параметр.**
+   * */
+  children?: ReactNode;
+  /**
+   * Флаг означающий, что ссылка ведет на внешний источник. **Необязательный параметр.**
+   * */
+  external?: boolean;
+  /**
+   * Boolean флаг-индикатор, что ссылка является элементом навигации по сайту. **Необязательный параметр.**
+   * */
+  navigation?: boolean;
+  /**
+   * Функция выполняемая по нажатию на ссылку. **Необязательный параметр.**
+   * */
+  onClick?: MouseEventHandler;
+  /**
+   * Маршрут по которому ведет ссылка.
+   * */
+  route: string;
+  /**
+   * Текстовый контент ссылки.
+   * */
+  text: string;
+}
+```
