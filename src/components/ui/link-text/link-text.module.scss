@@ -1,0 +1,63 @@
+@import "../../../styles/mixins/font";
+
+.link {
+  --link-border-radius: 6px;
+  --link-border-width: 1px;
+  --link-hover-opacity: .7;
+  --navigation-link-font-size: 14px;
+  --navigation-link-hover-opacity: 1;
+  --navigation-link-padding: 6px;
+  
+  & {
+    all: unset;
+    border: var(--link-border-width) solid transparent;
+    border-radius: var(--link-border-radius);
+    box-sizing: border-box;
+    color: var(--color-brand);
+    display: inline-block;
+    font-size: inherit;
+    max-width: fit-content;
+    transition: color var(--animation-transition-m), opacity var(--animation-transition-m);
+    
+    &:hover {
+      cursor: pointer;
+      opacity: var(--link-hover-opacity);
+    }
+    
+    &:focus {
+      border-color: var(--color-brand);
+    }
+  }
+  
+  &_role_navigation {
+    color: var(--color-text-1);
+    font-size: var(--navigation-link-font-size);
+    line-height: var(--header-line-height);
+    padding: var(--navigation-link-padding);
+    
+    &:hover {
+      color: var(--color-brand);
+      cursor: pointer;
+      opacity: var(--navigation-link-hover-opacity);
+    }
+    
+    &:focus {
+      border-color: var(--color-brand);
+    }
+  }
+  
+  &_active {
+    color: var(--color-gray);
+    pointer-events: none;
+  }
+  
+  .text {
+    --text-size: 100%;
+    
+    & {
+      @include font(inherit);
+      height: var(--text-size);
+      width: var(--text-size);
+    }
+  }
+}

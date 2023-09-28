@@ -132,20 +132,6 @@ const Mode: FC<ModeProps> = ({ themeRef }) => {
         switchCallback={toggleTheme}
         switched={isDarkModeActive}
       />
-      <Switcher
-        ariaLabel={'Кнопка без смены темы'}
-        icon={<span>1</span>}
-        iconChecked={<span>2</span>}
-        switchCallback={() => console.log(123)}
-        switched={false}
-      />
-      <Switcher
-        ariaLabel={'Кнопка без смены темы'}
-        icon={<span>1</span>}
-        iconChecked={<span>2</span>}
-        switchCallback={() => console.log(123)}
-        switched={false}
-      />
     </div>
   );
 };

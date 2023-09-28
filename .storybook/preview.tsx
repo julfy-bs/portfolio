@@ -1,5 +1,14 @@
-import { Preview } from '@storybook/react';
+import { Preview, Story } from '@storybook/react';
+import { MemoryRouter } from 'react-router';
 import '../src/styles/main.scss';
+
+export const decorators = [
+  (Story: Story) => (
+    <MemoryRouter initialEntries={['/']}>
+      <Story />
+    </MemoryRouter>
+  ),
+];
 
 const preview: Preview = {
   parameters: {
