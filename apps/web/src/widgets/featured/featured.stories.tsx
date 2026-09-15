@@ -91,7 +91,7 @@ export const ViewAll: Story = {
   },
 };
 
-/** Список грузится — скелетоны плиток. */
+/** Список грузится, вместо плиток скелетоны. */
 export const Loading: Story = {
   name: 'Скелетоны загрузки',
   args: { projects: undefined, isLoading: true },

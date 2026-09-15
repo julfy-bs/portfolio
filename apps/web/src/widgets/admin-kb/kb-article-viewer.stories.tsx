@@ -29,7 +29,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Статья: теги, дата, тело в Markdown и бэклинки. */
+/** Теги, дата, текст в Markdown и обратные ссылки. */
 export const Content: Story = {
   name: 'Статья',
   play: async ({ canvasElement }) => {
@@ -39,13 +39,13 @@ export const Content: Story = {
   },
 };
 
-/** Ничего не выбрано — приглашающее пустое состояние. */
+/** Пока статья не выбрана, показываем приглашение выбрать. */
 export const Empty: Story = {
   name: 'Пусто',
   args: { hasSelection: false, article: undefined },
 };
 
-/** Загрузка выбранной статьи — скелетон. */
+/** Пока выбранная статья грузится, виден скелетон. */
 export const Loading: Story = {
   name: 'Загрузка',
   args: { isLoading: true, article: undefined },

@@ -6,8 +6,7 @@ import { App } from 'supertest/types';
 
 import { AppModule } from './../src/app.module';
 
-// e2e admin write API (Фаза 4). Требует поднятую и засеянную БД (`pnpm backend:seed`).
-// Проверяем гейтинг (401/400) и сквозной CRUD на простых сущностях.
+// Нужна поднятая и засеянная БД (`pnpm backend:seed`). Тесты возвращают данные сида на место.
 describe('Admin write API (e2e)', () => {
   let app: INestApplication<App>;
 
@@ -71,7 +70,7 @@ describe('Admin write API (e2e)', () => {
     const body = res.body as { siteTitle: string; consoleGlow: boolean };
     expect(body.siteTitle).toBe('Portfolio');
     expect(body.consoleGlow).toBe(false);
-    // вернём дефолт, чтобы не влиять на другие прогоны
+    // возвращаем дефолт, чтобы не влиять на другие прогоны
     await request(app.getHttpServer())
       .patch('/api/settings')
       .set('Cookie', cookies)
@@ -104,7 +103,6 @@ describe('Admin write API (e2e)', () => {
       .expect(200);
     expect((patched.body as { name: { ru: string } }).name.ru).toBe('Обновлён');
 
-    // публичный список отдаёт строку нужной локали
     const publicEn = await request(app.getHttpServer()).get('/api/skills?locale=en').expect(200);
     expect(
       (publicEn.body as Array<{ id: string; name: string }>).find((s) => s.id === id)?.name,
@@ -145,7 +143,7 @@ describe('Admin write API (e2e)', () => {
       .send({ name: { ru: 'Тест-имя', en: 'Test name' } })
       .expect(200);
 
-    // патч только ru — сохранённая en остаётся (мёрж локали)
+    // шлём только ru, en должна остаться прежней
     const res = await request(app.getHttpServer())
       .patch('/api/profile')
       .set('Cookie', cookies)
@@ -156,7 +154,6 @@ describe('Admin write API (e2e)', () => {
       en: 'Test name',
     });
 
-    // публичный ответ локализуется по Accept-Language
     const publicEn = await request(app.getHttpServer())
       .get('/api/profile')
       .set('Accept-Language', 'en-US,en;q=0.9')
@@ -190,7 +187,7 @@ describe('Admin write API (e2e)', () => {
     expect(body.highlights).toEqual([{ value: '5+', label: { ru: 'лет опыта', en: 'years' } }]);
     expect(body.contactIntro).toEqual({ ru: 'Пишите', en: 'Reach out' });
 
-    // публичный ответ локализует по заголовку Accept-Language (путь фронтенда)
+    // фронтенд передаёт язык именно заголовком, а не ?locale=
     const publicRes = await request(app.getHttpServer())
       .get('/api/profile')
       .set('Accept-Language', 'en-US,en;q=0.9')
@@ -213,7 +210,7 @@ describe('Admin write API (e2e)', () => {
     const techId = techs[0]?.id ?? '';
     const contribId = contributors[0]?.id ?? '';
 
-    // несуществующая связь → 400
+    // несуществующая технология даёт 400
     await request(app.getHttpServer())
       .post('/api/projects')
       .set('Cookie', cookies)
@@ -244,7 +241,7 @@ describe('Admin write API (e2e)', () => {
     const project = created.body as { id: string; slug: string; technologyIds: string[] };
     expect(project.technologyIds).toEqual([techId]);
 
-    // дубликат slug → 409
+    // занятый slug даёт 409
     await request(app.getHttpServer())
       .post('/api/projects')
       .set('Cookie', cookies)
@@ -256,10 +253,10 @@ describe('Admin write API (e2e)', () => {
       })
       .expect(409);
 
-    // DRAFT не виден публично
+    // черновик публично не виден
     await request(app.getHttpServer()).get('/api/projects/e2e-temp').expect(404);
 
-    // публикуем → виден
+    // после публикации появляется
     await request(app.getHttpServer())
       .patch(`/api/projects/${project.id}`)
       .set('Cookie', cookies)
@@ -328,7 +325,7 @@ describe('Admin write API (e2e)', () => {
         .expect(201)
     ).body as { id: string };
 
-    // дубликат slug → 409
+    // занятый slug даёт 409
     await request(app.getHttpServer())
       .post('/api/database/articles')
       .set('Cookie', cookies)
@@ -341,14 +338,13 @@ describe('Admin write API (e2e)', () => {
       .set('Cookie', cookies)
       .expect(400);
 
-    // admin-чтение статьи по id отдаёт обе локали
     const adminRead = await request(app.getHttpServer())
       .get(`/api/database/articles/admin/${article.id}`)
       .set('Cookie', cookies)
       .expect(200);
     expect((adminRead.body as { title: { en?: string } }).title.en).toBe('Article');
 
-    // чистим: статья → папка
+    // сначала статью, иначе папку не удалить
     await request(app.getHttpServer())
       .delete(`/api/database/articles/${article.id}`)
       .set('Cookie', cookies)

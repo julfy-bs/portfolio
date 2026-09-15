@@ -9,20 +9,16 @@ import styles from './admin-projects.module.css';
 const EMPTY_DRAFT: TechnologyDraft = { name: '', category: '' };
 
 interface TechnologyFormProps {
-  /** Начальные значения (правка); без них — создание. */
+  /** Передаётся при правке. Без него форма открывается пустой. */
   readonly initial?: TechnologyDraft;
   readonly disabled: boolean;
   readonly submitLabel: string;
   readonly onSubmit: (draft: TechnologyDraft) => void;
   readonly onCancel: () => void;
-  /** Удаление (только правка) — открывает подтверждение у менеджера. */
+  /** Только при правке. Подтверждение удаления показывает менеджер. */
   readonly onDelete?: () => void;
 }
 
-/**
- * Форма технологии (создание и правка): имя (простая строка) и необязательная
- * категория. Презентационная: своё состояние полей, наружу — колбэки.
- */
 export function TechnologyForm({
   initial,
   disabled,

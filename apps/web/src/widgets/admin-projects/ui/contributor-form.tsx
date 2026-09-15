@@ -7,13 +7,13 @@ import { Button, Icon, Input } from '@sutuzhko/ui-kit';
 import { CONTRIBUTOR_COLORS } from '../model/project-form';
 import styles from './admin-projects.module.css';
 
-/** Черновик участника (строки формы; локаль имени накладывает менеджер). */
+/** Имя здесь без привязки к локали, её применяет менеджер. */
 export interface ContributorDraft {
   readonly name: string;
   readonly color: string;
-  /** URL аватара (необязателен) — при отсутствии показываем инициалы на `color`. */
+  /** Необязателен. Без фото показываем инициалы на фоне `color`. */
   readonly image: string;
-  /** Внешняя ссылка на профиль (необязательна) — делает участника кликабельным. */
+  /** Необязательна. Если есть, участник на сайте становится ссылкой. */
   readonly link: string;
 }
 
@@ -22,23 +22,17 @@ const DEFAULT_COLOR = CONTRIBUTOR_COLORS[0] ?? '#238636';
 const EMPTY_DRAFT: ContributorDraft = { name: '', color: DEFAULT_COLOR, image: '', link: '' };
 
 interface ContributorFormProps {
-  /** Начальные значения (правка); без них — создание с пустыми полями. */
+  /** Передаётся при правке. Без него форма открывается пустой для создания. */
   readonly initial?: ContributorDraft;
   readonly disabled: boolean;
-  /** Подпись кнопки подтверждения (добавить/сохранить). */
   readonly submitLabel: string;
   readonly onSubmit: (draft: ContributorDraft) => void;
   readonly onCancel: () => void;
-  /** Удаление (только правка) — открывает подтверждение у менеджера. */
+  /** Только при правке. Подтверждение удаления показывает менеджер. */
   readonly onDelete?: () => void;
 }
 
-/**
- * Форма участника (создание и правка): имя в активной локали, цвет аватара и
- * опциональная ссылка. Локаль-логику имени владеет `ContributorManager` — форма
- * оперирует «сырыми» строками. Презентационная: своё состояние полей, наружу —
- * колбэки submit/cancel/delete.
- */
+/** Форма работает с сырыми строками, а локалью имени занимается `ContributorManager`. */
 export function ContributorForm({
   initial,
   disabled,
@@ -75,7 +69,7 @@ export function ContributorForm({
           role="radiogroup"
           aria-label={t('admin.projects.contributorColor')}
         >
-          {/* «Без цвета» — сброс к дефолтному аватару-градиенту (на сохранении → null). */}
+          {/* Сброс к стандартному градиенту аватара, на сохранении цвет станет null. */}
           <button
             type="button"
             role="radio"

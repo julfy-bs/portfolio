@@ -20,16 +20,13 @@ export function coverScale(naturalW: number, naturalH: number, viewport: number)
 
 /** Ограничивает смещение так, чтобы картинка всегда покрывала вьюпорт (без зазоров). */
 export function clampPan(pan: number, displaySize: number, viewport: number): number {
-  const minPan = viewport - displaySize; // ≤ 0, картинка не меньше вьюпорта
+  const minPan = viewport - displaySize; // не больше 0, картинка не меньше вьюпорта
   if (pan > 0) return 0;
   if (pan < minPan) return minPan;
   return pan;
 }
 
-/**
- * Прямоугольник кадрирования (квадрат) в пикселях исходного изображения — из
- * текущего масштаба и смещения. Вьюпорт квадратный, поэтому размер стороны один.
- */
+/** Квадрат кадрирования в пикселях исходника по текущему масштабу и смещению. */
 export function computeCrop(
   natural: { width: number; height: number },
   viewport: number,

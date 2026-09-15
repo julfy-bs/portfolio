@@ -19,10 +19,10 @@ export default defineConfig({
       fileName: () => 'index.js',
     },
     rollupOptions: {
-      // React приходит от консюмера (peerDependencies) — не бандлим.
+      // React приходит от консюмера через peerDependencies, в бандл его не кладём.
       external: ['react', 'react-dom', 'react/jsx-runtime'],
       output: {
-        // Весь CSS (токены, база, CSS-модули) — одним файлом `styles.css`.
+        // Весь CSS (токены, база, модули) собираем в один `styles.css`.
         assetFileNames: (asset) =>
           asset.name?.endsWith('.css') ? 'styles.css' : '[name][extname]',
       },

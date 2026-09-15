@@ -6,17 +6,14 @@ import sharp from 'sharp';
 
 const prisma = new PrismaClient();
 
-// Каталог статики — совпадает с runtime (StorageService: UPLOAD_DIR ?? 'uploads',
-// путь резолвится от cwd, а сид и API стартуют из apps/api).
+// Тот же каталог, что у StorageService: путь считается от cwd, а сид и API
+// оба стартуют из apps/api.
 const UPLOAD_DIR = resolve(process.env.UPLOAD_DIR ?? 'uploads');
 
-// Стоимость bcrypt — компромисс между безопасностью и скоростью сидирования.
 const BCRYPT_ROUNDS = 12;
 
-// Хелпер LocalizedText — `{ ru, en }`.
 const L = (ru: string, en?: string): Prisma.InputJsonValue => (en ? { ru, en } : { ru });
 
-// Достаём русский текст из LocalizedText-Json без `as` (сужаем через typeof/in).
 const readRu = (value: Prisma.JsonValue | null | undefined): string | undefined => {
   if (
     value !== null &&
@@ -41,9 +38,8 @@ const escapeXml = (text: string): string =>
     return map[ch] ?? ch;
   });
 
-// Брендированная заглушка скриншота: градиент цвета плитки проекта + диагональная
-// штриховка (как в ProjectBackground на фронте) + название и подпись. Лучше пустой
-// «битой» картинки: сид не тащит бинарники, а генерит их на месте (в т.ч. на проде).
+// Заглушка скриншота в цвет плитки проекта, со штриховкой как в ProjectBackground на фронте.
+// Бинарники в репозиторий не кладём, сид рисует картинки сам, в том числе на проде.
 const galleryPlaceholderSvg = (color: string, title: string, caption: string): string => {
   const width = 1200;
   const height = 675;
@@ -65,8 +61,7 @@ const galleryPlaceholderSvg = (color: string, title: string, caption: string): s
 </svg>`;
 };
 
-// Для каждого GalleryAsset пишем реальный PNG по его url. Иначе на детали проекта
-// висят «битые» превью (сид создавал строки БД, но не файлы на диске).
+// Без файлов на диске строки галереи в БД дают битые превью на странице проекта.
 async function generateGalleryPlaceholders(): Promise<void> {
   const assets = await prisma.mediaAsset.findMany({
     where: { type: 'GALLERY' },
@@ -74,8 +69,7 @@ async function generateGalleryPlaceholders(): Promise<void> {
   });
   await fs.mkdir(UPLOAD_DIR, { recursive: true });
   for (const asset of assets) {
-    // url вида `/uploads/<файл>.png` → пишем в UPLOAD_DIR под тем же именем.
-    // basename отсекает любые попытки выйти за каталог.
+    // basename не даёт выйти за пределы UPLOAD_DIR.
     const filename = basename(asset.url);
     const color = asset.project?.tileColor ?? '#1f6feb';
     const title = readRu(asset.project?.title) ?? 'Preview';
@@ -87,7 +81,7 @@ async function generateGalleryPlaceholders(): Promise<void> {
 }
 
 async function reset(): Promise<void> {
-  // Порядок важен: сначала чистим зависимые строки, потом родительские.
+  // Сначала зависимые строки, потом родительские, иначе мешают внешние ключи.
   await prisma.refreshToken.deleteMany();
   await prisma.user.deleteMany();
   await prisma.mediaAsset.deleteMany();
@@ -108,8 +102,7 @@ async function reset(): Promise<void> {
 async function main(): Promise<void> {
   await reset();
 
-  // Владелец приватной зоны (роль ADMIN). Логин/пароль берём из окружения,
-  // с безопасными для локалки значениями по умолчанию.
+  // Владелец приватной зоны. Дефолтные логин и пароль годятся только для локальной разработки.
   const username = process.env.ADMIN_USERNAME ?? 'admin';
   const password = process.env.ADMIN_PASSWORD ?? 'admin12345';
   await prisma.user.create({
@@ -120,10 +113,9 @@ async function main(): Promise<void> {
     },
   });
 
-  // Настройки (синглтон)
   await prisma.settings.create({ data: { id: 1 } });
 
-  // Профиль (синглтон) + контактные ссылки
+  // Профиль и контакты
   await prisma.profile.create({
     data: {
       id: 1,
@@ -192,9 +184,8 @@ async function main(): Promise<void> {
     },
   });
 
-  // Технологии (из них выводятся фильтры и группы стека)
-  // category держим в едином нижнем регистре — на главной он идёт как заголовок
-  // группы стека; разнобой («BACKEND» vs «frontend») выглядел бы как баг.
+  // Технологии. category пишем строчными: на главной это заголовок группы стека,
+  // и разный регистр смотрится как баг.
   const techNames = [
     { name: 'TypeScript', category: 'language' },
     { name: 'React', category: 'frontend' },
@@ -213,14 +204,13 @@ async function main(): Promise<void> {
     techIds.set(item.name, row.id);
   }
 
-  // Безопасная выборка id технологии по имени (без non-null assertion).
   const tech = (name: string): { id: string } => {
     const id = techIds.get(name);
     if (!id) throw new Error(`Технология "${name}" не найдена в seed`);
     return { id };
   };
 
-  // Контрибьюторы (общие между проектами, нужны для фильтра на /projects)
+  // Участники проектов
   const me = await prisma.contributor.create({
     data: {
       name: L('Богдан Сутужко', 'Bogdan Sutuzhko'),
@@ -548,8 +538,7 @@ async function main(): Promise<void> {
     data: skillNames.map((name, order) => ({ name: L(name), order })),
   });
 
-  // База знаний: папки (id заданы явно ради стабильных ссылок parent → child)
-  // и статьи с вики-ссылками `[[slug]]` в теле — на них строятся бэклинки.
+  // База знаний. id папок заданы явно, чтобы ссылаться на них через parentId и folderId.
   await prisma.folder.createMany({
     data: [
       { id: 'frontend', name: L('Frontend'), order: 0, parentId: null },

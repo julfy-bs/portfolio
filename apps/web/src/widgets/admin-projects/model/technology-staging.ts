@@ -1,10 +1,8 @@
 import type { CreateTechnology, TechnologyAdmin, UpdateTechnology } from '@/entities/technology';
 
 /**
- * Черновик каталожной записи технологии. Весь CRUD (создание/правка/удаление)
- * копится локально и применяется одним пакетом на «Сохранить» проекта — как у
- * участников ([[contributor-staging]]). Имя технологии — простая строка (не
- * локализуется), плюс необязательная категория.
+ * Работает так же, как черновик участников: правки каталога копятся локально и уходят вместе
+ * с проектом. Имя технологии не локализуется.
  */
 export interface StagedTechnology extends TechnologyAdmin {
   readonly isNew: boolean;
@@ -12,7 +10,7 @@ export interface StagedTechnology extends TechnologyAdmin {
   readonly isEdited: boolean;
 }
 
-/** Строки формы технологии (имя обязателен, категория — нет). */
+/** Имя обязательно, категория нет. */
 export interface TechnologyDraft {
   readonly name: string;
   readonly category: string;
@@ -20,7 +18,6 @@ export interface TechnologyDraft {
 
 const TEMP_PREFIX = 'tmp-technology-';
 
-/** Временный ли это id (несохранённая технология). */
 export function isTempTechnologyId(id: string): boolean {
   return id.startsWith(TEMP_PREFIX);
 }
@@ -31,7 +28,6 @@ function makeTempId(list: readonly StagedTechnology[]): string {
   return `${TEMP_PREFIX}${index}`;
 }
 
-/** Инициализирует черновик из каталога: все записи существующие, без изменений. */
 export function initTechStaged(technologies: readonly TechnologyAdmin[]): StagedTechnology[] {
   return technologies.map((technology) => ({
     ...technology,
@@ -41,7 +37,6 @@ export function initTechStaged(technologies: readonly TechnologyAdmin[]): Staged
   }));
 }
 
-/** Добавляет новую технологию (временный id) в конец списка. */
 export function stageCreateTech(
   list: readonly StagedTechnology[],
   draft: TechnologyDraft,
@@ -58,7 +53,6 @@ export function stageCreateTech(
   return [...list, entry];
 }
 
-/** Правит существующую/новую технологию; существующая помечается изменённой. */
 export function stageUpdateTech(
   list: readonly StagedTechnology[],
   id: string,
@@ -76,7 +70,7 @@ export function stageUpdateTech(
   );
 }
 
-/** Помечает существующую на удаление; новую — выбрасывает совсем. */
+/** Новую технологию просто выбрасываем, а существующую помечаем на удаление. */
 export function stageDeleteTech(list: readonly StagedTechnology[], id: string): StagedTechnology[] {
   return list.flatMap((entry) => {
     if (entry.id !== id) return [entry];
@@ -84,24 +78,21 @@ export function stageDeleteTech(list: readonly StagedTechnology[], id: string): 
   });
 }
 
-/** Видимые записи (без помеченных на удаление) — для чипов и предпросмотра. */
 export function visibleTechStaged(list: readonly StagedTechnology[]): StagedTechnology[] {
   return list.filter((entry) => !entry.isDeleted);
 }
 
-/** Каталог-форма для `formToTile`/мультиселекта: без флагов и удалённых. */
+/** Для `formToTile` и мультиселекта флаги черновика не нужны. */
 export function stagedToTechCatalog(list: readonly StagedTechnology[]): TechnologyAdmin[] {
   return visibleTechStaged(list).map(({ isNew: _n, isDeleted: _d, isEdited: _e, ...rest }) => rest);
 }
 
-/** План применения черновика к API. */
 export interface TechnologyStagingPlan {
   readonly creates: readonly StagedTechnology[];
   readonly updates: readonly StagedTechnology[];
   readonly deletes: readonly StagedTechnology[];
 }
 
-/** Раскладывает черновик на операции create/update/delete. */
 export function planTechnologyStaging(list: readonly StagedTechnology[]): TechnologyStagingPlan {
   return {
     creates: list.filter((entry) => entry.isNew && !entry.isDeleted),
@@ -110,18 +101,15 @@ export function planTechnologyStaging(list: readonly StagedTechnology[]): Techno
   };
 }
 
-/** Есть ли что применять (для гейта «Сохранить» и счётчика диффа). */
 export function countTechnologyChanges(list: readonly StagedTechnology[]): number {
   const plan = planTechnologyStaging(list);
   return plan.creates.length + plan.updates.length + plan.deletes.length;
 }
 
-/** Тело create для записи черновика. */
 export function stagedToTechCreateBody(entry: StagedTechnology): CreateTechnology {
   return { name: entry.name, category: entry.category ?? undefined };
 }
 
-/** Тело update для записи черновика. */
 export function stagedToTechUpdateBody(entry: StagedTechnology): UpdateTechnology {
   return { name: entry.name, category: entry.category ?? undefined };
 }

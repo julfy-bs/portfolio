@@ -7,8 +7,7 @@ import { HERO_AVATAR_SIZE } from '../model/config';
 
 import styles from './hero.module.css';
 
-/** Идентичность героя: аватар, приветствие, имя и роль — контент профиля.
- * Соц-ник берётся из контактов профиля (Telegram), а не из хардкода. */
+/** Аватар, приветствие, имя и роль. Ник берём из Telegram в контактах профиля. */
 export function HeroIdentity({ profile }: { readonly profile: Profile }) {
   const { t } = useTranslation();
   const handle = telegramHandle(profile.contacts);
@@ -39,8 +38,8 @@ export function HeroIdentity({ profile }: { readonly profile: Profile }) {
   );
 }
 
-/** Скелетон идентичности: высоты повторяют line-box контента (caption 18 / h1 41 /
- * small 20), чтобы блок не менял высоту при появлении данных. */
+/** Высоты повторяют line-box текста (caption 18, h1 41, small 20), чтобы блок не прыгал,
+ * когда придут данные. */
 export function HeroIdentitySkeleton() {
   return (
     <div className={styles.identity}>

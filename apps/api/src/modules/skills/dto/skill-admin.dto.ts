@@ -25,8 +25,8 @@ export class CreateSkillDto {
   @Type(() => LocalizedTextInput)
   name: LocalizedTextInput;
 
-  // Дробный и отрицательный order — норма: админка ставит запись между соседями
-  // (или перед первой), не перенумеровывая остальных (колонка — Float).
+  // order бывает дробным и отрицательным: при перетаскивании админка ставит запись
+  // между соседями или перед первой, не перенумеровывая остальные.
   @ApiPropertyOptional()
   @IsOptional()
   @IsNumber()
@@ -40,8 +40,8 @@ export class UpdateSkillDto {
   @Type(() => LocalizedTextPatch)
   name?: LocalizedTextPatch;
 
-  // Дробный и отрицательный order — норма: админка ставит запись между соседями
-  // (или перед первой), не перенумеровывая остальных (колонка — Float).
+  // order бывает дробным и отрицательным: при перетаскивании админка ставит запись
+  // между соседями или перед первой, не перенумеровывая остальные.
   @ApiPropertyOptional()
   @IsOptional()
   @IsNumber()

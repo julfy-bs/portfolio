@@ -10,7 +10,7 @@ export interface KbBacklinksProps {
   readonly onNavigate: (slug: string) => void;
 }
 
-/** Блок «Ссылаются сюда» — статьи с вики-ссылкой на текущую (считает бэкенд). */
+/** Статьи, которые ссылаются на текущую. Список собирает бэкенд. */
 export function KbBacklinks({ backlinks, onNavigate }: KbBacklinksProps) {
   const { t } = useTranslation();
 

@@ -20,11 +20,7 @@ function readRedirectTarget(state: unknown): string {
   return routePaths.admin;
 }
 
-/**
- * Контейнер входа: связывает форму с мутацией `login`, показывает тост об успехе
- * или ошибке и возвращает пользователя на исходный маршрут. Уже авторизованного
- * сразу перенаправляет — экран логина ему не нужен.
- */
+/** Уже авторизованного пользователя сразу перенаправляем, экран входа ему не нужен. */
 export function LoginPage() {
   const { t } = useTranslation();
   const navigate = useNavigate();

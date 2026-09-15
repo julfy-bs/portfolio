@@ -92,7 +92,7 @@ export const Playground: Story = {
   },
 };
 
-/** Список грузится — сетка скелетон-карточек той же раскладки. */
+/** Список грузится: скелетон-карточки в той же сетке. */
 export const Loading: Story = {
   name: 'Скелетоны загрузки',
   args: { projects: [], isLoading: true },
@@ -102,7 +102,7 @@ export const Loading: Story = {
   },
 };
 
-/** Пусто: приглашение сбросить фильтры. play: клик вызывает onClearFilters. */
+/** Пусто, предлагаем сбросить фильтры. play: клик вызывает onClearFilters. */
 export const Empty: Story = {
   name: 'Нет результатов',
   args: { projects: [] },

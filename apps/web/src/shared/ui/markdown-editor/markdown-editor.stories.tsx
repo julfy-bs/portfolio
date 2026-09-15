@@ -21,7 +21,7 @@ const meta = {
   parameters: { layout: 'padded' },
   args: {
     value: '',
-    // Значение переопределяется управляемой обёрткой в `render`; заглушка для типов.
+    // Нужен только для типов, настоящий обработчик подставляет `render`.
     onChange: () => undefined,
     sourceLabel: 'MARKDOWN',
     splitLabel: 'split',
@@ -34,7 +34,7 @@ const meta = {
     onChange: { control: false },
     renderPreview: { control: false },
   },
-  // Управляемый компонент — храним значение в обёртке, чтобы ввод и превью жили.
+  // Компонент управляемый, без своего состояния в истории ввод бы не работал.
   render: (args) => {
     const [value, setValue] = useState(args.value ?? '');
     return <MarkdownEditor {...args} value={value} onChange={setValue} />;
@@ -45,19 +45,17 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Split: слева исходник, справа живое превью (с таблицей GFM). */
+/** Слева исходник, справа живое превью. */
 export const Split: Story = {
   name: 'Split + превью',
   args: { value: sample },
 };
 
-/** Пустой редактор — исходник и пустое превью. */
 export const Empty: Story = {
   name: 'Пустой',
   args: { value: '' },
 };
 
-/** Ошибка валидации под редактором. */
 export const WithError: Story = {
   name: 'С ошибкой',
   args: { value: '', error: 'Заполните полное описание' },

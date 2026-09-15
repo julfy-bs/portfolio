@@ -5,8 +5,8 @@ import { cn } from '../../lib';
 import styles from './field-frame.module.css';
 
 /**
- * Стиль подписи: `mono` — терминальная (ПРОПИСНЫЕ, моно; для входа/консольных форм),
- * `plain` — обычная (sans, смешанный регистр; для CMS-форм кабинета по макету).
+ * Стиль подписи: `mono` терминальный (капсом, для входа и консольных форм),
+ * `plain` обычный (sans, для CMS-форм кабинета).
  */
 export type FieldLabelVariant = 'mono' | 'plain';
 
@@ -18,7 +18,7 @@ export interface FieldFrameProps {
   readonly error?: ReactNode;
   /** Стиль подписи; по умолчанию терминальный `mono`. */
   readonly labelVariant?: FieldLabelVariant;
-  /** Помечает поле обязательным — красная звёздочка после подписи. */
+  /** Помечает поле обязательным: после подписи появляется красная звёздочка. */
   readonly required?: boolean;
   /** id текста сообщения (для aria-describedby контрола). */
   readonly messageId?: string;
@@ -27,8 +27,8 @@ export interface FieldFrameProps {
 }
 
 /**
- * Обвязка поля формы: подпись сверху, контрол, сообщение (ошибка приоритетнее хинта).
- * Используется Input/Textarea/Select, чтобы не дублировать разметку и a11y.
+ * Общая обвязка поля (подпись, контрол, сообщение) для Input, Textarea и Select, чтобы разметка
+ * и a11y не дублировались. Ошибка вытесняет подсказку.
  */
 export function FieldFrame({
   id,

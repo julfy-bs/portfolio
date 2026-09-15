@@ -13,21 +13,16 @@ import styles from './login-page.module.css';
 
 export interface LoginPageViewProps {
   readonly onSubmit: (credentials: LoginCredentials) => void;
-  /** Идёт запрос входа — блокируем повторную отправку. */
+  /** Пока идёт вход, повторную отправку блокируем. */
   readonly isSubmitting: boolean;
-  /** Сервер отклонил учётные данные (неверный логин/пароль). */
+  /** Сервер отклонил логин или пароль. */
   readonly invalid: boolean;
-  /** Telegram-контакт владельца (с бэкенда) для строки «нет доступа?». */
+  /** Telegram владельца с бэкенда для строки «нет доступа?». */
   readonly telegram?: TelegramContact;
-  /** Профиль ещё грузится — ник под скелетоном. */
+  /** Профиль ещё грузится, ник под скелетоном. */
   readonly isProfileLoading?: boolean;
 }
 
-/**
- * Презентационный экран входа (макет `~/login`): слева форма, справа
- * декоративный терминал. Валидация — React Hook Form + Zod (сообщения из i18n).
- * Отправка и результат приходят пропами, поэтому вид управляем и тестируется.
- */
 export function LoginPageView({
   onSubmit,
   isSubmitting,

@@ -9,22 +9,20 @@ import { Icon } from '@sutuzhko/ui-kit';
 import styles from './admin-stack.module.css';
 
 interface SortableCategoryProps {
-  /** Ключ категории = id сортировки dnd-kit. */
+  /** Ключ категории, он же id для dnd-kit. */
   readonly id: string;
-  /** Имя блока — для aria-label ручки. */
+  /** Нужно для aria-label ручки. */
   readonly name: string;
   /**
-   * Содержимое колонки. Аргумент `dragHandle` — готовая кнопка-грип; вид
-   * вставляет её в заголовок блока (в режиме переименования — опускает).
+   * Ручку отдаём наружу, чтобы вид сам решил, где её показать. В режиме переименования
+   * он её не рисует.
    */
   readonly children: (dragHandle: ReactNode) => ReactNode;
 }
 
 /**
- * Перетаскиваемый блок-категория технологий (dnd-kit sortable). Ручка-грип несёт
- * слушатели (мышь + клавиатура), поэтому переименование/удаление/добавление внутри
- * блока остаются обычными кнопками. Новый порядок блоков → плоский `Technology.order`
- * (категории по порядку × чипы внутри), который считает контейнер на сохранении.
+ * Слушатели перетаскивания висят только на ручке, поэтому остальные кнопки внутри блока
+ * работают как обычно.
  */
 export function SortableCategory({ id, name, children }: SortableCategoryProps) {
   const { t } = useTranslation();
@@ -47,7 +45,7 @@ export function SortableCategory({ id, name, children }: SortableCategoryProps) 
   return (
     <div
       ref={setNodeRef}
-      // Только translate, без scale (см. SortableChip): иначе содержимое блока «плывёт».
+      // Только translate, без scale, как в SortableChip. Со scale содержимое блока плывёт.
       style={{ transform: CSS.Translate.toString(transform), transition }}
       className={cn(styles.techColumn, isDragging && styles.columnDragging)}
     >

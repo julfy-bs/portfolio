@@ -6,7 +6,7 @@ import { mockAuthUser } from '@/entities/session/mocks';
 import { env } from '@/shared/config';
 import { makeStore } from '@/shared/store';
 
-// Приватный эндпоинт для проверки: `getMe` ходит через тот же axiosBaseQuery.
+// Берём `getMe`: он приватный и ходит через тот же axiosBaseQuery.
 import { sessionApi } from '@/entities/session/api/session-api';
 
 describe('axiosBaseQuery — авто-refresh на 401', () => {
@@ -16,7 +16,7 @@ describe('axiosBaseQuery — авто-refresh на 401', () => {
     server.use(
       http.get(`${env.apiBaseUrl}/auth/me`, () => {
         meCalls += 1;
-        // Первый вызов — «access истёк», после refresh — успех.
+        // Первый раз access-токен истёк, после refresh уже пускаем.
         return meCalls === 1
           ? new HttpResponse(null, { status: 401 })
           : HttpResponse.json(mockAuthUser);
@@ -49,7 +49,7 @@ describe('axiosBaseQuery — авто-refresh на 401', () => {
     const result = await store.dispatch(sessionApi.endpoints.getMe.initiate());
 
     expect(result.isError).toBe(true);
-    // Один исходный + одна повторная попытка не делается (refresh провалился).
+    // Refresh провалился, поэтому повторного запроса не было.
     expect(meCalls).toBe(1);
   });
 });

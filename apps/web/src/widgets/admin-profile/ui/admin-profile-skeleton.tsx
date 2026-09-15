@@ -4,7 +4,6 @@ import styles from './admin-profile.module.css';
 
 const ROWS = [0, 1, 2, 3, 4, 5];
 
-/** Скелетон формы профиля на время загрузки. */
 export function AdminProfileSkeleton() {
   return (
     <div className={styles.form} aria-busy="true" aria-live="polite">

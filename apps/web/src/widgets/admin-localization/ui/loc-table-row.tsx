@@ -10,7 +10,6 @@ import {
 import { LocCell, type LocCellLabels, type LocLocale } from './loc-cell';
 import styles from './admin-localization.module.css';
 
-/** Подписи флагов строки. */
 export interface LocFlagLabels {
   readonly missing: string;
   readonly same: string;
@@ -20,7 +19,7 @@ export interface LocFlagLabels {
 export interface LocTableRowProps {
   readonly row: LocRow;
   readonly edits: LocEdits;
-  /** Какая локаль этой строки редактируется (или null). */
+  /** `null`, если в этой строке сейчас ничего не правится. */
   readonly editingLocale: LocLocale | null;
   readonly ruLabels: LocCellLabels;
   readonly enLabels: LocCellLabels;
@@ -30,7 +29,6 @@ export interface LocTableRowProps {
   readonly onCancel: () => void;
 }
 
-/** Строка сверки: машинный ключ + флаги слева, ячейки RU/EN справа. */
 export function LocTableRow({
   row,
   edits,

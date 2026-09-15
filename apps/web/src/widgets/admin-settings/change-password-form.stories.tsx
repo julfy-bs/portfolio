@@ -18,7 +18,6 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Форма смены пароля: текущий + новый + подтверждение. */
 export const Default: Story = {
   play: async ({ canvasElement, args, userEvent }) => {
     const canvas = within(canvasElement);
@@ -30,7 +29,7 @@ export const Default: Story = {
   },
 };
 
-/** Идёт сохранение — кнопка заблокирована. */
+/** Пока идёт сохранение, кнопка заблокирована. */
 export const Saving: Story = {
   name: 'Сохранение',
   args: { isSaving: true },

@@ -23,33 +23,27 @@ import styles from './admin-profile.module.css';
 
 export interface AdminProfileViewProps {
   readonly profile: ProfileAdmin;
-  /** Активная локаль редактирования (язык приложения). */
   readonly locale: AppLanguage;
   readonly isSaving: boolean;
   /**
-   * Сохранение: профиль (PATCH) + URL контактов Telegram/GitHub (отдельный ресурс).
-   * `update === null` — поля профиля не менялись, PATCH `/profile` слать не нужно
-   * (изменились только контакты); контакты гейтит сам контейнер по каждому URL.
+   * Контакты на бэке отдельный ресурс. `update` равен null, если менялись только контакты:
+   * тогда PATCH `/profile` не нужен. Какие контакты отправлять, решает контейнер.
    */
   readonly onSave: (update: UpdateProfile | null, contacts: ProfileContacts) => void;
-  /** Загружает кадрированное фото аватара и возвращает его URL (для превью и сохранения). */
+  /** Возвращает URL уже обрезанного фото. */
   readonly onUploadAvatar: (file: File, crop: CropRect) => Promise<string>;
-  /** Загружает PDF-резюме и возвращает его URL (сохраняется в активной локали). */
+  /** Резюме своё для каждой локали. */
   readonly onUploadCv: (file: File) => Promise<string>;
 }
 
-/** URL контактов, редактируемых инлайн в профиле (по макету). */
 export interface ProfileContacts {
   readonly telegram: string;
   readonly github: string;
 }
 
 /**
- * Форма профиля админки (`PATCH /api/profile`). Стилизация — по макету кабинета:
- * карточка профиля (аватар с палитрой + поля) и отдельная карточка статуса.
- * Локализованные поля правятся в АКТИВНОЙ локали (язык приложения) — на сохранении
- * уходит только она, вторую бэкенд мёржит. Презентационная: данные приходят
- * пропом, сохранение — колбэком; родитель ремонтирует форму по `locale`.
+ * Локализованные поля правятся в активной локали, и на сохранении уходит только она:
+ * вторую бэкенд мёржит сам. При смене `locale` родитель монтирует форму заново.
  */
 export function AdminProfileView({
   profile,
@@ -85,7 +79,7 @@ export function AdminProfileView({
   const avatarPhotoUrl = watch('avatarPhotoUrl');
   const hasPhoto = avatarPhotoUrl.length > 0;
   const submit = (values: ProfileFormValues): void => {
-    // PATCH /profile нужен только если менялись поля профиля (не контакты).
+    // Telegram и GitHub живут в контактах, их изменение не повод слать PATCH /profile.
     const profileDirty = Object.keys(dirtyFields).some(
       (field) => field !== 'telegram' && field !== 'github',
     );
@@ -110,7 +104,7 @@ export function AdminProfileView({
 
   const onAvatarFile = (event: ChangeEvent<HTMLInputElement>): void => {
     const file = event.target.files?.[0];
-    // Сбрасываем input, чтобы повторный выбор того же файла снова триггерил change.
+    // Без сброса повторный выбор того же файла не вызовет change.
     event.target.value = '';
     if (!file) return;
     cropFileRef.current = file;

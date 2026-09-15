@@ -10,7 +10,6 @@ interface LanguagesCardProps {
   readonly isLoading?: boolean;
 }
 
-/** Карточка языков: название, уровень и полоса владения (`pct`). */
 export function LanguagesCard({ languages, isLoading }: LanguagesCardProps) {
   const { t } = useTranslation();
 

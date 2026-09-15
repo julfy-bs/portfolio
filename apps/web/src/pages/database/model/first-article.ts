@@ -1,6 +1,6 @@
 import type { DatabaseTree } from '@/entities/kb';
 
-/** Slug первой статьи дерева (корневые — приоритетнее) для автовыбора при загрузке. */
+/** Slug статьи для автовыбора при загрузке, корневые статьи в приоритете. */
 export function firstArticleSlug(tree: DatabaseTree): string | undefined {
   const [rootArticle] = tree.rootArticles;
   if (rootArticle !== undefined) return rootArticle.slug;

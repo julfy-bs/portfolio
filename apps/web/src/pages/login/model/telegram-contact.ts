@@ -2,14 +2,13 @@ import { telegramHandle, type ProfileContact } from '@/entities/profile';
 
 export interface TelegramContact {
   readonly url: string;
-  /** @-ник, выведённый из ссылки `t.me/<ник>` (данные владельца — с бэкенда). */
+  /** @-ник из ссылки `t.me/<ник>`. */
   readonly handle: string;
 }
 
 /**
- * Достаёт Telegram-контакт из профиля для подсказки «нет доступа?». Ник владельца
- * приходит с бэкенда (`profile.contacts`), а не из i18n — по правилу «любые данные
- * пользователя только с сервера». Извлечение ника — общий `telegramHandle`.
+ * Ник владельца для подсказки «нет доступа?» берём из `profile.contacts`, а не из
+ * i18n: данные пользователя приходят только с сервера.
  */
 export function findTelegramContact(
   contacts: readonly ProfileContact[] | undefined,

@@ -10,10 +10,8 @@ import { routePaths } from '@/shared/config';
 import { ExperiencePageView } from './experience-page-view';
 
 /**
- * Контейнер экрана опыта: оркеструет запросы (опыт, образование, языки, навыки)
- * и навигацию, отдаёт данные презентационному `ExperiencePageView`. Ведущее
- * состояние загрузки/ошибки — по опыту (основной блок экрана). Интро экрана
- * берётся из профиля (`profile.experienceIntro`).
+ * Загрузку и ошибку экрана определяет запрос опыта, это основной блок. Интро
+ * берётся из `profile.experienceIntro`.
  */
 export function ExperiencePage() {
   const navigate = useNavigate();

@@ -28,7 +28,7 @@ describe('ThemeProvider', () => {
     act(() => result.current.applyDefaultMode('light'));
 
     expect(document.documentElement.dataset.theme).toBe('light');
-    // Ключевое: не пишем в localStorage → гость не считается «выбравшим тему».
+    // Главное, что в localStorage ничего не пишем, иначе гость будет считаться выбравшим тему.
     expect(localStorage.getItem(themeStorageKey)).toBeNull();
   });
 });

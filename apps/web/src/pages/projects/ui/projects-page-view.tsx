@@ -12,12 +12,12 @@ import styles from './projects-page.module.css';
 
 const noop = () => undefined;
 
-// Пагинацию показываем только при > 12 проектов (сетка 3 в ряд ⇒ 4 ряда/страница).
+// Пагинация появляется, когда проектов больше 12: сетка по 3 в ряд, 4 ряда на страницу.
 const PAGE_SIZE = 12;
 
 export interface ProjectsPageViewProps {
   readonly projects?: readonly ProjectListItem[];
-  /** Интро-абзац экрана (серверное поле профиля). */
+  /** Интро-абзац, поле профиля с сервера. */
   readonly intro?: string | null;
   readonly isLoading?: boolean;
   readonly isError?: boolean;
@@ -26,12 +26,6 @@ export interface ProjectsPageViewProps {
   readonly onRetry?: () => void;
 }
 
-/**
- * Презентационный слой списка проектов: шапка-«крошка», панель фильтров и сетка
- * карточек. Список приходит пропсом (запросы и навигацию делает контейнер
- * `ProjectsPage`), фильтрация — клиентская. Управляемый `isLoading` наглядно
- * показывает состояние ожидания данных с сервера в Storybook.
- */
 export function ProjectsPageView({
   projects,
   intro,
@@ -49,12 +43,12 @@ export function ProjectsPageView({
   const pageCount = Math.max(1, Math.ceil(total / PAGE_SIZE));
   const [page, setPage] = useState(1);
 
-  // Смена фильтра/сортировки/набора возвращает на первую страницу.
+  // Смена фильтра, сортировки или набора возвращает на первую страницу.
   useEffect(() => {
     setPage(1);
   }, [filter.state, filter.sortKey]);
 
-  // Если после фильтра страниц стало меньше — не зависаем на пустой странице.
+  // Если после фильтрации страниц стало меньше, не остаёмся на пустой странице.
   useEffect(() => {
     if (page > pageCount) setPage(pageCount);
   }, [page, pageCount]);
@@ -87,9 +81,8 @@ export function ProjectsPageView({
       <Heading level="h1" className={styles.title}>
         {t('projects.title')}
       </Heading>
-      {/* Интро — серверное поле профиля. Скелетон — только когда данных нет
-          (intro === undefined). Профиль обычно уже в кэше (его тянет футер),
-          поэтому текст показываем сразу, не мигая скелетоном из-за загрузки списка. */}
+      {/* Скелетон только при intro === undefined. Профиль обычно уже в кэше (его
+          запрашивает футер), так что текст виден сразу и не мигает, пока грузится список. */}
       <PageIntro intro={intro} />
 
       <div className={styles.filter}>

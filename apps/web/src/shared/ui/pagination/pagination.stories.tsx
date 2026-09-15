@@ -10,7 +10,7 @@ const meta = {
   args: {
     page: 1,
     pageCount: 5,
-    // Переопределяется управляемой обёрткой в `render`; заглушка для типов.
+    // Нужен только для типов, настоящий обработчик подставляет `render`.
     onChange: () => undefined,
     ariaLabel: 'Страницы',
     prevLabel: 'Назад',
@@ -27,8 +27,8 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Пять страниц — активная в середине. */
+/** Активна средняя страница. */
 export const Default: Story = { name: 'Пять страниц', args: { page: 3 } };
 
-/** Две страницы — минимальный видимый случай (одна — не рендерится). */
+/** Меньше двух страниц пагинация не рендерится вовсе. */
 export const TwoPages: Story = { name: 'Две страницы', args: { pageCount: 2 } };

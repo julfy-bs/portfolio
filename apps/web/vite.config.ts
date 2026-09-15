@@ -11,8 +11,8 @@ import { playwright } from '@vitest/browser-playwright';
 const dirname =
   typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
 
-// Куда проксировать API и статику загрузок в dev без моков (`pnpm dev`).
-// По умолчанию — локальный NestJS; переопределяется через VITE_API_PROXY_TARGET.
+// Куда проксировать API и загрузки в `pnpm dev` без моков. По умолчанию локальный
+// NestJS, можно переопределить через VITE_API_PROXY_TARGET.
 const apiProxyTarget = process.env.VITE_API_PROXY_TARGET ?? 'http://localhost:3000';
 
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
@@ -21,12 +21,11 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      // Service worker собирается только в прод-билде. В dev работает MSW-воркер
-      // (dev:mock) — два service worker'а на одном origin конфликтовали бы.
+      // В dev (dev:mock) работает воркер MSW, и второй service worker на том же
+      // origin с ним бы конфликтовал.
       devOptions: { enabled: false },
-      // В мок-сборке (e2e через `VITE_ENABLE_MOCKS=true`) активен MSW-воркер,
-      // поэтому PWA-воркер отключаем — иначе два SW дерутся за один scope и MSW
-      // перестаёт перехватывать запросы.
+      // Мок-сборка для e2e: если оставить PWA-воркер, он займёт scope, и MSW
+      // перестанет перехватывать запросы.
       disable: process.env.VITE_ENABLE_MOCKS === 'true',
       includeAssets: ['favicon.ico', 'favicon.svg', 'apple-touch-icon.png'],
       manifest: {
@@ -52,15 +51,13 @@ export default defineConfig({
         ],
       },
       workbox: {
-        // Прекэш оболочки приложения (собранные ассеты).
         globPatterns: ['**/*.{js,css,html,svg,woff2}'],
-        // SPA: любые непойманные навигации отдаём index.html из кэша (офлайн-роутинг).
+        // Чтобы роутинг SPA работал и офлайн.
         navigateFallback: '/index.html',
-        // Не перехватываем API и загрузки навигационным фолбэком.
         navigateFallbackDenylist: [/^\/api/, /^\/uploads/],
         runtimeCaching: [
           {
-            // Публичные данные: свежее онлайн, из кэша — офлайн.
+            // Онлайн берём свежие данные, офлайн отдаём из кэша.
             urlPattern: ({ url }) => url.pathname.startsWith('/api/'),
             handler: 'NetworkFirst',
             options: {
@@ -71,7 +68,7 @@ export default defineConfig({
             },
           },
           {
-            // Загруженные изображения (аватар, галерея) — редко меняются.
+            // Аватар и картинки галереи меняются редко.
             urlPattern: ({ url }) => url.pathname.startsWith('/uploads/'),
             handler: 'StaleWhileRevalidate',
             options: {
@@ -81,7 +78,6 @@ export default defineConfig({
             },
           },
           {
-            // Google Fonts — стили и сами шрифты.
             urlPattern: ({ url }) => url.origin === 'https://fonts.googleapis.com',
             handler: 'StaleWhileRevalidate',
             options: { cacheName: 'google-fonts-stylesheets' },
@@ -102,17 +98,16 @@ export default defineConfig({
   server: {
     port: 5180,
     strictPort: true,
-    // В dev без моков фронт ходит на реальный бэкенд. Проксируем и API, и
-    // `/uploads` на NestJS, чтобы всё оставалось same-origin: HttpOnly-cookie
-    // авторизации ходят без CORS. При `dev:mock` MSW перехватывает запросы
-    // раньше сети, поэтому прокси там просто не задействуется.
+    // Проксируем на NestJS, чтобы остаться на одном origin: так HttpOnly-cookie
+    // авторизации работают без CORS. В `dev:mock` MSW отвечает раньше сети, и до
+    // прокси запросы не доходят.
     proxy: {
       '/api': { target: apiProxyTarget, changeOrigin: true },
       '/uploads': { target: apiProxyTarget, changeOrigin: true },
     },
   },
-  // `vite preview` (прод-сборка) тоже проксирует на бэкенд — нужно для проверки
-  // PWA/офлайна на реальном service worker (в dev он выключен, работает MSW).
+  // PWA и офлайн можно проверить только на прод-сборке, в dev service worker
+  // выключен. Поэтому preview тоже проксирует на бэкенд.
   preview: {
     proxy: {
       '/api': { target: apiProxyTarget, changeOrigin: true },

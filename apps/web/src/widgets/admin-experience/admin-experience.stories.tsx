@@ -31,7 +31,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Список мест работы; добавление и правка ведут на отдельные маршруты. */
+/** Список мест работы. Добавление и правка открываются на отдельных маршрутах. */
 export const Default: Story = {
   name: 'Список',
   play: async ({ canvasElement, args }) => {
@@ -41,13 +41,13 @@ export const Default: Story = {
   },
 };
 
-/** Английская локаль — роли в переводе. */
+/** Роли показываются на английском. */
 export const English: Story = {
   name: 'Локаль EN',
   args: { locale: 'en' },
 };
 
-/** Пустой список — только кнопка добавления. */
+/** Без записей остаётся только кнопка добавления. */
 export const Empty: Story = {
   name: 'Пусто',
   args: { items: [] },

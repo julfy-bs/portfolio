@@ -16,13 +16,8 @@ import { buildRows, rowToCreate, rowToUpdate, type EducationRow } from '../model
 import { AdminEducationSkeleton } from './admin-education-skeleton';
 import { AdminEducationView } from './admin-education-view';
 
-/**
- * Контейнер вкладки «Образование»: строит строки редактора из админ-данных и по
- * «Сохранить» считает разницу (create/update/delete) и шлёт мутации одним пакетом.
- * Мутации инвалидируют тег `Education` — публичный экран образования тоже обновляется.
- */
 export interface AdminEducationProps {
-  /** Локаль редактирования из маршрута. */
+  /** Берётся из маршрута. */
   readonly locale: AppLanguage;
 }
 
@@ -67,10 +62,8 @@ export function AdminEducation({ locale }: AdminEducationProps) {
     return <AdminEducationSkeleton />;
   }
 
-  // Ключ по локали + набору id: смена локали или create/delete пересобирает
-  // редактор из свежих данных (у новых записей появляются реальные id).
-  // Ключ по содержимому: после сохранения рефетч меняет данные → форма пересобирается
-  // чистой (бар сохранения скрывается), а не только при смене набора id.
+  // Ключ строим по содержимому: после сохранения рефетч меняет данные, редактор монтируется
+  // заново уже с реальными id у новых записей, и бар сохранения прячется.
   const signature = `${locale}|${JSON.stringify(items)}`;
 
   return (

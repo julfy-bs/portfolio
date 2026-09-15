@@ -83,13 +83,13 @@ export const Contributor: Story = {
   args: { name: 'Anna Karenina', size: 34, color: '#4b6b8a' },
 };
 
-/** Квадратная форма: скруглённый квадрат (`--radius-button`) — заполняет квадратную кнопку. */
+/** Скруглённый квадрат (`--radius-button`) для квадратных кнопок. */
 export const Square: Story = {
   name: 'Квадрат (заполняет кнопку)',
   args: { name: 'Bogdan Sutuzhko', size: 38, color: '#238636', shape: 'square' },
 };
 
-/** Фото: `<img alt={name}>` — доступная подпись сохраняется. */
+/** Фото рендерится как `<img alt={name}>`, доступная подпись сохраняется. */
 export const Photo: Story = {
   name: 'Фото',
   args: { src: 'https://avatars.githubusercontent.com/u/1?v=4', size: 64 },
@@ -99,7 +99,7 @@ export const Photo: Story = {
   },
 };
 
-/** Размеры — от компактных меток до крупного профиля. */
+/** Размеры от компактных меток до крупного профиля. */
 export const Sizes: Story = {
   name: 'Размеры',
   render: (args) => (
@@ -117,7 +117,7 @@ export const SingleWord: Story = {
   args: { name: 'Гость' },
 };
 
-/** Край: длинное имя — инициалы всё равно из двух букв, подпись полная. */
+/** Край: у длинного имени инициалы всё равно из двух букв, подпись полная. */
 export const LongName: Story = {
   name: 'Край: длинное имя',
   args: { name: 'Александра-Виктория Мидлтон-Сазерленд', size: 56 },

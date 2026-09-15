@@ -18,13 +18,13 @@ export interface KbArticleEditorProps {
   readonly initial: ArticleFormValues;
   readonly folders: readonly FolderOption[];
   readonly isSaving: boolean;
-  /** Ошибка сервера по slug (например, 409 — уже занят). */
+  /** Например, 409, если такой slug уже занят. */
   readonly serverSlugError?: string;
   readonly onSave: (values: ArticleFormValues) => void;
   readonly onCancel: () => void;
 }
 
-/** Правая панель БЗ в режиме редактора: метаполя + Markdown-исходник с живым превью. */
+/** Поля статьи и Markdown-исходник с превью, которое обновляется при вводе. */
 export function KbArticleEditor({
   mode,
   initial,

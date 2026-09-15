@@ -12,10 +12,10 @@ import {
 } from './dto/education-admin.dto';
 import { EducationDto } from './dto/education.dto';
 
-// Таймлайн читается от свежего к давнему: что началось раньше — ниже.
+// В таймлайне свежие записи сверху.
 const ORDER_BY: Prisma.EducationOrderByWithRelationInput = { startDate: 'desc' };
 
-// Окончание раньше начала — ошибка ввода, а не «странный» период: отклоняем явно.
+// Окончание раньше начала почти наверняка опечатка, поэтому не сохраняем такое молча.
 function assertPeriod(startDate: Date, endDate: Date | null): void {
   if (endDate !== null && endDate.getTime() < startDate.getTime()) {
     throw new BadRequestException('Дата окончания раньше даты начала');
@@ -42,7 +42,7 @@ export class EducationService {
     }));
   }
 
-  // --- admin ---
+  // Админка
 
   async listAdmin(): Promise<EducationAdminDto[]> {
     const items = await this.prisma.education.findMany({ orderBy: ORDER_BY });
@@ -67,8 +67,8 @@ export class EducationService {
   }
 
   async update(id: string, dto: UpdateEducationDto): Promise<EducationAdminDto> {
-    // Текущее значение — чтобы патч одной локали не затирал вторую (mergeText) и чтобы
-    // проверить период целиком, даже если прислали только одну из дат.
+    // Текущая запись нужна, чтобы патч одной локали не затёр вторую и чтобы проверить
+    // период, даже если прислали только одну из дат.
     const current = await this.load(id);
     const startDate = dto.startDate === undefined ? current.startDate : new Date(dto.startDate);
     const endDate = dto.endDate === undefined ? current.endDate : toDateOrNull(dto.endDate);
@@ -88,8 +88,7 @@ export class EducationService {
     await this.prisma.education.delete({ where: { id } });
   }
 
-  // Возвращает запись или бросает 404; строку переиспользуют мёрж локалей в
-  // update и проверка существования в remove.
+  // Бросает 404. Возвращает строку, чтобы update мог смёржить локали без второго запроса.
   private async load(id: string): Promise<Education> {
     const education = await this.prisma.education.findUnique({ where: { id } });
     if (!education) {

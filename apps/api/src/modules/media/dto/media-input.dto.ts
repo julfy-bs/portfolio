@@ -29,8 +29,7 @@ export class UploadGalleryDto {
   order?: number;
 }
 
-// Кадрирование аватара (multipart). Если переданы все четыре поля — извлекаем
-// область; иначе делаем центрированный квадратный кроп.
+// Если пришли все четыре поля кропа, вырезаем эту область. Иначе режем квадрат по центру.
 export class UploadAvatarDto {
   @ApiPropertyOptional()
   @IsOptional()

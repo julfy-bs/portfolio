@@ -43,7 +43,7 @@ type Story = StoryObj<typeof meta>;
 /** Песочница: выберите иконку и размер, задайте title для значимого варианта. */
 export const Playground: Story = {};
 
-/** По умолчанию иконка декоративна (`aria-hidden`) — рядом обычно есть текст. */
+/** По умолчанию иконка декоративная (`aria-hidden`), рядом обычно есть текст. */
 export const Decorative: Story = {
   name: 'Декоративная (по умолчанию)',
   args: { name: 'folder' },
@@ -53,7 +53,7 @@ export const Decorative: Story = {
   },
 };
 
-/** С `title` иконка становится значимой: `role="img"` + доступное имя. */
+/** С `title` иконка становится значимой: `role="img"` и доступное имя. */
 export const Meaningful: Story = {
   name: 'Значимая (с подписью)',
   args: { name: 'warning', title: 'Внимание' },
@@ -63,7 +63,7 @@ export const Meaningful: Story = {
   },
 };
 
-/** Размер — квадрат в px; масштабируется без потери чёткости (это SVG). */
+/** Размер задаёт сторону квадрата в px. Это SVG, так что чёткость не теряется. */
 export const Sizes: Story = {
   name: 'Размеры',
   render: () => (
@@ -91,7 +91,7 @@ export const ColorInheritance: Story = {
   ),
 };
 
-/** Весь реестр — единственный источник иконок в проекте. */
+/** Весь реестр. Других источников иконок в проекте нет. */
 export const Gallery: Story = {
   name: 'Весь реестр',
   render: () => (

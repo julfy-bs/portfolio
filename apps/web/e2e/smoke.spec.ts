@@ -3,13 +3,12 @@ import { expect, test } from '@playwright/test';
 test('главная отображает профиль из API', async ({ page }) => {
   await page.goto('/');
 
-  // Имя локализовано бэкендом: в русской локали — кириллицей.
+  // Имя локализует бэкенд, в русской локали оно кириллицей.
   await expect(page.getByRole('heading', { name: 'Богдан Сутужко' })).toBeVisible();
 });
 
 test('переключение темы меняет data-theme на <html>', async ({ page }) => {
-  // Тема уважает системное предпочтение, поэтому задаём его явно (тёмное) —
-  // иначе Chromium по умолчанию отдаёт light и старт будет светлым.
+  // Приложение берёт системную тему, а Chromium по умолчанию отдаёт light.
   await page.emulateMedia({ colorScheme: 'dark' });
   await page.goto('/');
 

@@ -7,7 +7,7 @@ import type { AuthUserDto } from './dto/auth-user.dto';
 import { TokenService } from './token.service';
 import type { JwtPayload } from './types/jwt-payload';
 
-// Стоимость bcrypt — та же, что при сидинге администратора (см. prisma/seed.ts).
+// Держим в синхроне с prisma/seed.ts.
 const BCRYPT_ROUNDS = 12;
 
 export interface AuthTokens {
@@ -58,11 +58,7 @@ export class AuthService {
     return this.issueSession(user);
   }
 
-  /**
-   * Смена пароля залогиненного пользователя. Проверяет текущий пароль, сохраняет
-   * хеш нового и отзывает ВСЕ его refresh-токены — активные сессии на других
-   * устройствах становятся недействительными (стандартное поведение при смене пароля).
-   */
+  // Вместе с паролем отзываем все refresh-токены, чтобы разлогинить остальные устройства.
   async changePassword(
     userId: string,
     currentPassword: string,

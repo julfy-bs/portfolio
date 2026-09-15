@@ -7,8 +7,7 @@ import { Contributors } from './contributors';
 import { TagRow } from './tag-row';
 import styles from './featured.module.css';
 
-// Если описание состоит из нескольких предложений — показываем только первое
-// (обрезаем сразу после точки), чтобы длинный текст не распирал плитку.
+// Из описания берём только первое предложение, чтобы длинный текст не распирал плитку.
 function firstSentence(text: string): string {
   const boundary = text.search(/[.!?]\s/);
   return boundary >= 0 ? text.slice(0, boundary + 1) : text;
@@ -19,8 +18,7 @@ interface ProjectTileProps {
   readonly onSelect: (slug: string) => void;
 }
 
-/** Плитка-градиент избранного проекта: категория, название, первое предложение
- * описания, аватары контрибьюторов и адаптивный ряд тегов. Плитка — это `<button>`. */
+/** Плитка избранного проекта, кликабельная целиком (это `<button>`). */
 export function ProjectTile({ project, onSelect }: ProjectTileProps) {
   const { t } = useTranslation();
 

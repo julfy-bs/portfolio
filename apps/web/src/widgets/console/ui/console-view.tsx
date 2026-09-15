@@ -19,7 +19,7 @@ export type ConsoleWindowState = 'normal' | 'maximized' | 'minimized';
 export interface ConsoleViewProps {
   readonly isOpen: boolean;
   readonly windowState: ConsoleWindowState;
-  /** Метка маршрута в заголовке `bash — <route>`. */
+  /** Маршрут, который показываем в заголовке окна. */
   readonly routeLabel: string;
   readonly entries: readonly ConsoleEntry[];
   readonly input: string;
@@ -61,12 +61,9 @@ function FeedEntry({
 }
 
 /**
- * Презентационный оверлей консоли — терминальное окно поверх страницы. Всё
- * состояние (лента, ввод, размер окна) приходит пропами, поэтому компонент
- * полностью управляем и документируется в Storybook.
- *
- * Доступность: окно — модальный `dialog` с фокусом на скрытом поле ввода,
- * ловушкой Tab и лентой-логом (`role="log"`), которую озвучивают скринридеры.
+ * Оверлей консоли без своего состояния: лента, ввод и размер окна приходят пропами.
+ * Окно сделано модальным `dialog` с ловушкой Tab, а лента помечена `role="log"`, чтобы
+ * новый вывод озвучивали скринридеры.
  */
 export function ConsoleView({
   isOpen,
@@ -88,8 +85,8 @@ export function ConsoleView({
   const cardRef = useRef<HTMLDivElement>(null);
   const feedRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  // Позиция каретки скрытого поля — чтобы блок-курсор в эхе стоял там же, где реальная
-  // каретка (стрелки ←/→, Home/End двигают её). Иначе курсор всегда «прилипал» к концу.
+  // Следим за кареткой скрытого поля, чтобы блок-курсор стоял там же, где настоящая
+  // (её двигают стрелки, Home и End). Иначе курсор всегда прилипал бы к концу.
   const [caret, setCaret] = useState(0);
   const syncCaret = (): void => setCaret(inputRef.current?.selectionStart ?? 0);
 
@@ -111,7 +108,7 @@ export function ConsoleView({
     }
   }, [active, entries.length]);
 
-  // Пока консоль открыта — блокируем прокрутку страницы: скроллится только лента.
+  // Пока консоль открыта, страница не скроллится, только лента.
   useEffect(() => {
     if (!active) return;
     const previous = document.body.style.overflow;
@@ -121,10 +118,9 @@ export function ConsoleView({
     };
   }, [active]);
 
-  // Единственный терминал «владеет» всем экраном: колесо мыши за пределами окна
-  // прокручивает его ленту. Внутри ленты — нативная прокрутка. (Когда терминалов
-  // станет несколько, каждый будет скроллиться только внутри себя — этот перехват
-  // живёт на оверлее конкретной консоли.)
+  // Терминал пока один и занимает весь экран, поэтому колесо мыши вне окна тоже крутит
+  // ленту. Перехват висит на оверлее конкретной консоли, так что если терминалов станет
+  // несколько, они не будут мешать друг другу.
   useEffect(() => {
     const overlay = overlayRef.current;
     const feed = feedRef.current;

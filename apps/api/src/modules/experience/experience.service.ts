@@ -23,7 +23,7 @@ import { ExperienceDto } from './dto/experience.dto';
 const adminInclude = { tech: { orderBy: { order: 'asc' } } } satisfies Prisma.ExperienceInclude;
 type ExperiencePayload = Prisma.ExperienceGetPayload<{ include: typeof adminInclude }>;
 
-// Таймлайн читается от свежего к давнему: что началось раньше — ниже.
+// В таймлайне свежие записи сверху.
 const ORDER_BY: Prisma.ExperienceOrderByWithRelationInput = { startDate: 'desc' };
 
 @Injectable()
@@ -51,7 +51,7 @@ export class ExperienceService {
     }));
   }
 
-  // --- admin ---
+  // Админка
 
   async listAdmin(): Promise<ExperienceAdminDto[]> {
     const items = await this.prisma.experience.findMany({
@@ -83,7 +83,7 @@ export class ExperienceService {
   }
 
   async update(id: string, dto: UpdateExperienceDto): Promise<ExperienceAdminDto> {
-    // Текущее значение — чтобы патч одной локали не затирал вторую (mergeText/mergeList).
+    // Текущая запись нужна, чтобы патч одной локали не затёр вторую.
     const current = await this.load(id);
     await this.assertTechnologies(dto.technologyIds);
 
@@ -114,8 +114,7 @@ export class ExperienceService {
     await this.prisma.experience.delete({ where: { id } });
   }
 
-  // Возвращает запись опыта или бросает 404; строку переиспользуют мёрж локалей
-  // в update и проверка существования в remove.
+  // Бросает 404. Возвращает строку, чтобы update мог смёржить локали без второго запроса.
   private async load(id: string): Promise<Experience> {
     const experience = await this.prisma.experience.findUnique({ where: { id } });
     if (!experience) {

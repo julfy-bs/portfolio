@@ -12,7 +12,7 @@ interface EducationCardProps {
   readonly isLoading?: boolean;
 }
 
-/** Карточка образования: основное (`MAIN`) и дополнительное (`ADDITIONAL`). */
+/** Основное (`MAIN`) и дополнительное (`ADDITIONAL`) образование. */
 export function EducationCard({ education, isLoading }: EducationCardProps) {
   const { t } = useTranslation();
 

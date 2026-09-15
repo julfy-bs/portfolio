@@ -1,20 +1,15 @@
-/** Запись последовательности для расчёта порядка: ключ, id (null — новая), позиция с бэка. */
 export interface OrderedItem {
   readonly key: string;
+  /** null у ещё не сохранённой записи. */
   readonly id: string | null;
   readonly order: number;
 }
 
 /**
- * Целевой `order` каждого элемента в желаемой последовательности при МИНИМУМЕ правок.
- *
- * Ключевая идея: сохраняем как «якоря» максимальный набор существующих элементов, чей
- * `order` уже идёт по возрастанию (наибольшая возрастающая подпоследовательность, LIS) —
- * их не трогаем. Остальным (новым и реально сдвинутым) выдаём ДРОБНУЮ позицию между
- * соседними якорями (или за пределами диапазона у краёв). Благодаря дробям перестановка
- * одного элемента (в т.ч. в начало) меняет `order` ровно у него, а не перенумеровывает
- * всех — поэтому `order` на бэке = Float. Вызывающий шлёт PATCH только тем, у кого
- * новый `order` отличается от текущего.
+ * Считает новый `order` для последовательности так, чтобы изменилось как можно меньше
+ * записей. Самая длинная возрастающая подпоследовательность остаётся на месте, остальные
+ * получают дробную позицию между соседями. Поэтому перенос одного элемента меняет только
+ * его `order`, и на бэке это поле Float.
  */
 export function planMinimalOrders(seq: readonly OrderedItem[]): Map<string, number> {
   const existing: number[] = [];
@@ -22,7 +17,7 @@ export function planMinimalOrders(seq: readonly OrderedItem[]): Map<string, numb
     if (seq[i].id !== null) existing.push(i);
   }
 
-  // LIS по `order` среди существующих (строго возрастающая), с восстановлением набора.
+  // LIS по `order` среди сохранённых записей, строго возрастающая.
   const anchors = new Set<number>();
   if (existing.length > 0) {
     const length = existing.map(() => 1);
@@ -48,7 +43,7 @@ export function planMinimalOrders(seq: readonly OrderedItem[]): Map<string, numb
       i += 1;
       continue;
     }
-    // Прогон не-якорей [i, j); соседи слева/справа — якоря (или край).
+    // Отрезок [i, j) без якорей. По краям от него якоря или конец списка.
     let j = i;
     while (j < seq.length && !anchors.has(j)) j += 1;
     const lo = i > 0 ? seq[i - 1].order : null;
@@ -61,7 +56,7 @@ export function planMinimalOrders(seq: readonly OrderedItem[]): Map<string, numb
         value = hi - (run - r); // ниже hi, по возрастанию
       else if (hi === null)
         value = lo + (r + 1); // выше lo
-      else value = lo + ((hi - lo) * (r + 1)) / (run + 1); // дробная середина
+      else value = lo + ((hi - lo) * (r + 1)) / (run + 1); // равномерно между соседями
       plan.set(seq[i + r].key, value);
     }
     i = j;

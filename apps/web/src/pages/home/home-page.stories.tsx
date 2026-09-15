@@ -61,7 +61,7 @@ export const Loading: Story = {
   args: { isLoading: true },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    // Пока грузится — контент профиля скрыт (везде скелетоны).
+    // Пока идёт загрузка, контент профиля везде под скелетонами.
     await expect(canvas.queryByRole('heading', { name: 'Богдан Сутужко' })).not.toBeInTheDocument();
   },
 };
@@ -74,12 +74,12 @@ export const Failed: Story = {
   },
 };
 
-/** Часть секций выключена в настройках сайта — блоки не рендерятся. */
+/** Часть секций выключена в настройках сайта, эти блоки не рендерятся. */
 export const HiddenSections: Story = {
   name: 'Секции выключены',
   args: { sections: { featured: false, activity: false } },
   play: async ({ canvas }) => {
-    // Hero остаётся, а выключенная плитка избранного отсутствует.
+    // Hero на месте, а выключенной плитки избранного нет.
     await expect(canvas.getByRole('heading', { name: 'Богдан Сутужко' })).toBeInTheDocument();
     await expect(
       canvas.queryByRole('button', { name: new RegExp(featured[0].title) }),

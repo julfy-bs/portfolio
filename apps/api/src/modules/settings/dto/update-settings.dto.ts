@@ -1,7 +1,6 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { IsArray, IsBoolean, IsOptional, IsString } from 'class-validator';
 
-// Все поля опциональны — PATCH обновляет только переданные.
 export class UpdateSettingsDto {
   @ApiPropertyOptional()
   @IsOptional()

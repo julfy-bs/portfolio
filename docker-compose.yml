@@ -1,7 +1,7 @@
 services:
   db:
-    # Закреплено на локально закешированный образ, т.к. реестр Docker сейчас недоступен (DNS).
-    # Когда доступ к registry восстановится — можно вернуть postgres:17-alpine.
+    # Взят образ, который уже был в локальном кэше: Docker Hub не резолвился по DNS.
+    # Когда реестр снова будет доступен, можно вернуть postgres:17-alpine.
     image: postgres:16.0-alpine
     container_name: portfolio-db
     restart: unless-stopped

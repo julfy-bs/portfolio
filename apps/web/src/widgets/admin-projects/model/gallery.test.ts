@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import { MAX_GALLERY_FILE_SIZE, MAX_GALLERY_ITEMS, partitionGalleryFiles } from './gallery';
 
-/** Файл с заданным размером без реальной аллокации. */
+// Подменяем size, чтобы не выделять память под настоящий файл.
 function fileOfSize(size: number): File {
   const file = new File(['x'], 'f.png', { type: 'image/png' });
   Object.defineProperty(file, 'size', { value: size });
@@ -30,7 +30,7 @@ describe('partitionGalleryFiles', () => {
   });
 
   it('лишние сверх оставшихся слотов уходят в overflow', () => {
-    // Уже 9 из 10 → влезает только 1, второй в overflow.
+    // Занято 9 мест из 10, поэтому второй файл уже не помещается.
     const first = small();
     const result = partitionGalleryFiles([first, small()], MAX_GALLERY_ITEMS - 1);
     expect(result.accepted).toEqual([first]);

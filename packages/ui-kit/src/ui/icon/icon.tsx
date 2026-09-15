@@ -6,8 +6,8 @@ export interface IconProps {
   readonly size?: number;
   readonly className?: string;
   /**
-   * Доступная подпись. Если задана — иконка озвучивается скринридером (role=img);
-   * иначе считается декоративной и скрывается (aria-hidden).
+   * Доступная подпись. С ней иконка озвучивается (role=img), без неё считается декоративной
+   * и скрывается через aria-hidden.
    */
   readonly title?: string;
 }

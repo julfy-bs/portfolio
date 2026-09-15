@@ -36,7 +36,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Кликабельная плитка (есть `onOpen`) — семантическая `<button>`. */
+/** С `onOpen` плитка кликабельна и рендерится как `<button>`. */
 export const Playground: Story = {
   play: async ({ canvasElement, args, userEvent }) => {
     const canvas = within(canvasElement);
@@ -45,7 +45,7 @@ export const Playground: Story = {
   },
 };
 
-/** Запускаемый проект — маркер `▶ run <cmd>`. */
+/** У запускаемого проекта есть маркер с командой `run <cmd>`. */
 export const Runnable: Story = {
   name: 'Запускаемый проект',
   args: {
@@ -64,13 +64,13 @@ export const Runnable: Story = {
   },
 };
 
-/** Статичная плитка (без `onOpen`) — рендерится как `<div>`, не кликабельна. */
+/** Без `onOpen` плитка рендерится как `<div>` и не кликабельна. */
 export const Static: Story = {
   name: 'Статичная (предпросмотр)',
   args: { onOpen: undefined },
 };
 
-/** Край: без контрибьюторов и с одним тегом. */
+/** Крайний случай: без контрибьюторов и с одним тегом. */
 export const Minimal: Story = {
   name: 'Край: минимум данных',
   args: {
@@ -78,7 +78,6 @@ export const Minimal: Story = {
   },
 };
 
-/** Мобильная ширина. */
 export const Mobile: Story = {
   name: 'Мобильная ширина',
   decorators: [(Story) => <div style={{ width: 300 }}>{Story()}</div>],

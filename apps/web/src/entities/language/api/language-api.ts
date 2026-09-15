@@ -4,9 +4,8 @@ import type { AppLanguage } from '@/shared/config';
 import type { CreateLanguage, Language, LanguageAdmin, UpdateLanguage } from '../model/types';
 
 /**
- * Эндпоинты языков. Название локализуется → язык в аргументе. Мутации админки
- * инвалидируют тег `Language` → и админ-список, и публичный `getLanguages`
- * перезапрашиваются, поэтому блок языков в резюме сразу отражает правки.
+ * Название локализуется, поэтому язык передаётся аргументом. Мутации инвалидируют тег
+ * `Language`, и блок языков в резюме сразу видит правки.
  */
 export const languageApi = apiSlice.injectEndpoints({
   endpoints: (build) => ({

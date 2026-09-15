@@ -17,7 +17,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Пример страницы-заглушки в слоте маршрута (со своим <main>). */
+// Страница рендерит свой <main>, как настоящие маршруты.
 function SamplePage() {
   return (
     <main
@@ -49,7 +49,6 @@ const renderLayout = (): ReactElement => (
   </MemoryRouter>
 );
 
-/** Навбар (banner) + контент маршрута + подвал (contentinfo). */
 export const Playground: Story = {
   name: 'Оболочка приложения',
   render: renderLayout,
@@ -61,7 +60,7 @@ export const Playground: Story = {
   },
 };
 
-/** Мобильная ширина: навбар и подвал ужимают отступы, бренд скрыт. */
+/** На узком экране отступы меньше, а бренд в навбаре скрыт. */
 export const Mobile: Story = {
   name: 'Мобильная ширина',
   render: renderLayout,

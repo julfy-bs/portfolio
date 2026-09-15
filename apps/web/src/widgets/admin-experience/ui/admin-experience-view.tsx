@@ -11,16 +11,15 @@ import styles from './admin-experience.module.css';
 
 export interface AdminExperienceViewProps {
   readonly items: readonly ExperienceAdmin[];
-  /** Активная локаль приложения — для показа роли в списке. */
+  /** Нужна, чтобы показать роль на нужном языке. */
   readonly locale: AppLanguage;
-  /** Идёт мутация — блокируем действия. */
   readonly isBusy: boolean;
   readonly onAdd: () => void;
   readonly onEdit: (id: string) => void;
   readonly onDelete: (id: string) => void;
 }
 
-// ISO date-time → MM/YYYY (как в макете «06/2025»).
+// Из ISO-даты получаем вид 06/2025.
 function formatMonth(iso: string): string {
   const ym = iso.slice(0, 7); // YYYY-MM
   return `${ym.slice(5, 7)}/${ym.slice(0, 4)}`;
@@ -32,11 +31,7 @@ function formatPeriod(record: ExperienceAdmin, presentLabel: string): string {
   return record.endDate ? `${start} — ${formatMonth(record.endDate)}` : start;
 }
 
-/**
- * Список мест работы: компания, роль, период, значок «сейчас». Добавление и
- * редактирование ведут на отдельные детальные маршруты (форма — не здесь),
- * удаление — с подтверждением. Презентационная.
- */
+/** Формы здесь нет: добавление и правка открываются на отдельных маршрутах. */
 export function AdminExperienceView({
   items,
   locale,

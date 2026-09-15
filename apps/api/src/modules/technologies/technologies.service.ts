@@ -24,7 +24,7 @@ export class TechnologiesService {
     }));
   }
 
-  // --- admin ---
+  // Админка
 
   async listAdmin(): Promise<TechnologyAdminDto[]> {
     const technologies = await this.prisma.technology.findMany({ orderBy: ORDER_BY });

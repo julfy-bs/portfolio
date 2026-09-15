@@ -5,18 +5,15 @@ import { Button, ImageCropper, Modal, type CropRect } from '@sutuzhko/ui-kit';
 
 export interface AvatarCropperModalProps {
   readonly open: boolean;
-  /** URL кадрируемого изображения (object URL выбранного файла). */
+  /** Object URL выбранного файла. */
   readonly src: string;
-  /** Идёт загрузка на сервер — блокируем «Применить». */
+  /** Пока файл грузится, «Применить» заблокирована. */
   readonly isUploading: boolean;
   readonly onCancel: () => void;
   readonly onApply: (crop: CropRect) => void;
 }
 
-/**
- * Модал кадрирования аватара: перетаскивание + масштаб над круглой маской, снизу —
- * «Отмена»/«Применить». Отдаёт наружу выбранный квадрат кадра (в пикселях исходника).
- */
+/** Наружу отдаёт выбранный квадрат в пикселях исходного изображения. */
 export function AvatarCropperModal({
   open,
   src,

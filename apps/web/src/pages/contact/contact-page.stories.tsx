@@ -56,11 +56,11 @@ export const Loaded: Story = {
 
 export const Loading: Story = {
   name: 'Ожидание данных',
-  // Данных ещё нет: contacts/cvUrl грузятся, intro профиля тоже undefined → всё под скелетоном.
+  // Данных ещё нет: contacts, cvUrl и intro не загружены, поэтому всё под скелетоном.
   args: { isLoading: true, intro: undefined },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    // Интро без данных (undefined) — под скелетоном, не текстом.
+    // Интро без данных показывается скелетоном, а не текстом.
     await expect(canvas.queryByText(/Открыт к интересным задачам/)).not.toBeInTheDocument();
   },
 };

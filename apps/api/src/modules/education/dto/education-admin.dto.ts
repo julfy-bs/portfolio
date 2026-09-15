@@ -79,7 +79,7 @@ export class UpdateEducationDto {
   @IsDateString()
   startDate?: string;
 
-  // null снимает дату окончания (курс одной датой), undefined — оставляет как есть.
+  // null убирает дату окончания, а если поле не прислали, дата остаётся прежней.
   @ApiPropertyOptional({ type: String, nullable: true, format: 'date-time' })
   @IsOptional()
   @IsDateString()

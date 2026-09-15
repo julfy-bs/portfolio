@@ -18,34 +18,24 @@ import styles from './admin-projects.module.css';
 export interface ContributorManagerProps {
   readonly locale: AppLanguage;
   readonly disabled: boolean;
-  /** Видимый черновик каталога (без помеченных на удаление) — в желаемом порядке. */
+  /** Уже без удалённых и в том порядке, который хотим сохранить. */
   readonly staged: readonly StagedContributor[];
   readonly selectedIds: readonly string[];
-  /** Тоггл участника в проекте. */
   readonly onToggle: (id: string) => void;
-  /** Застейджить создание (применяется на «Сохранить» проекта). */
   readonly onStageCreate: (draft: ContributorDraft) => void;
-  /** Застейджить правку каталожной записи. */
   readonly onStageUpdate: (id: string, draft: ContributorDraft) => void;
-  /** Застейджить удаление из каталога. */
   readonly onStageDelete: (id: string) => void;
-  /** Перетаскивание: участник `activeId` встаёт на место `overId` (порядок каталога). */
   readonly onReorder: (activeId: string, overId: string) => void;
 }
 
-// Состояние встроенного редактора: закрыт / создание / правка конкретной записи.
 type Editor =
   | { readonly kind: 'closed' }
   | { readonly kind: 'create' }
   | { readonly kind: 'edit'; readonly contributor: StagedContributor };
 
 /**
- * Управление участниками проекта: чипы-выбор из каталога (у каждого — ручка
- * перетаскивания и карандаш правки), инлайн-форма создания/правки и подтверждение
- * удаления. Порядок чипов — глобальный порядок каталога: в нём участники идут и на
- * публичных плитках. Весь CRUD и перестановка **стейджатся**: колбэки лишь копят
- * черновик, а реальные запросы уходят одним пакетом при сохранении проекта.
- * Презентационный, состояние редактора — локальное.
+ * Порядок чипов здесь общий для всего каталога, в нём же участники идут на публичных плитках.
+ * Колбэки только копят черновик, запросы уходят при сохранении проекта.
  */
 export function ContributorManager({
   locale,
@@ -109,7 +99,6 @@ export function ContributorManager({
               />
             ))}
           </SortableContext>
-          {/* «+ создать участника» — последним элементом ряда чипов (как в макете). */}
           <button
             type="button"
             className={styles.chipAdd}

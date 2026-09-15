@@ -13,7 +13,7 @@
   color: var(--color-fg-dim);
 }
 
-/* Обычная подпись (CMS-формы кабинета): sans, смешанный регистр — по макету. */
+/* Обычная подпись для CMS-форм кабинета: sans и без капса. */
 .labelPlain {
   font-family: var(--font-sans), sans-serif;
   font-size: var(--font-size-small);

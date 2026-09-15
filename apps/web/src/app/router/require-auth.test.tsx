@@ -29,7 +29,7 @@ describe('RequireAuth', () => {
   });
 
   it('авторизованного пропускает к приватной странице', async () => {
-    // Открываем сессию в моке (модульная переменная общая на прогон).
+    // Сессия в моке общая на весь прогон, её сбрасывает setup после теста.
     const store = makeStore();
     await store
       .dispatch(sessionApi.endpoints.login.initiate({ username: 'admin', password: 'admin12345' }))

@@ -38,7 +38,6 @@ function renderView(overrides: Partial<Parameters<typeof AdminStackView>[0]> = {
   return { onSave, ...result };
 }
 
-// Дифф последнего вызова onSave.
 type Diff = Parameters<Parameters<typeof AdminStackView>[0]['onSave']>[0];
 const lastDiff = (onSave: ReturnType<typeof vi.fn>): Diff => onSave.mock.calls[0]?.[0] as Diff;
 
@@ -49,7 +48,7 @@ describe('AdminStackView', () => {
     expect(screen.getByText('React')).toBeInTheDocument();
     expect(screen.getByText('NestJS')).toBeInTheDocument();
     expect(screen.getByDisplayValue('Русский')).toBeInTheDocument();
-    // «Accessibility» уникален для навыков (нет среди технологий).
+    // Accessibility есть только среди навыков, так что запрос не заденет технологии.
     expect(screen.getByText('Accessibility')).toBeInTheDocument();
   });
 
@@ -112,13 +111,13 @@ describe('AdminStackView', () => {
     const { onSave } = renderView();
     await userEvent.click(screen.getByRole('button', { name: 'Удалить блок «Tooling»' }));
     expect(screen.queryByText('Tooling')).not.toBeInTheDocument();
-    // «Cypress» уникален для Tooling-технологий (нет среди навыков).
+    // Cypress есть только в Tooling, среди навыков его нет.
     expect(screen.queryByText('Cypress')).not.toBeInTheDocument();
 
     await userEvent.click(screen.getByRole('button', { name: /Сохранить/ }));
     const diff = lastDiff(onSave);
     expect(diff.techCategories.some((c) => c.name === 'Tooling')).toBe(false);
-    // Все 6 технологий Tooling (Vite/Storybook/Jest/Cypress/Docker/Git) — на удаление.
+    // Вместе с категорией уходят все 6 технологий Tooling.
     expect(diff.deletedTechIds.length).toBeGreaterThanOrEqual(6);
   });
 
@@ -139,7 +138,7 @@ describe('AdminStackView', () => {
 
   it('чипы, навыки и блоки получают ручки перетаскивания', () => {
     renderView();
-    // Чип технологии (React), навык (Accessibility) и блок (Frontend) — сортируемы.
+    // Перетаскивать можно и технологии, и навыки, и сами категории.
     expect(screen.getByRole('button', { name: 'Переместить «React»' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Переместить «Accessibility»' })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Переместить блок «Frontend»' })).toBeInTheDocument();
@@ -149,7 +148,7 @@ describe('AdminStackView', () => {
     const { onSave } = renderView();
     const before = langRows.length;
     await userEvent.click(screen.getByRole('button', { name: 'язык' }));
-    // Пустая новая строка не считается изменением (create не уйдёт) — заполняем название.
+    // Пустую строку сохранять незачем, поэтому сначала вписываем название.
     const nameInputs = screen.getAllByLabelText('Язык');
     await userEvent.type(nameInputs[nameInputs.length - 1], 'Немецкий');
 

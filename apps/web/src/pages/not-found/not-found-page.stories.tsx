@@ -8,7 +8,7 @@ const meta = {
   title: 'Pages/NotFound',
   component: NotFoundPage,
   parameters: { layout: 'fullscreen' },
-  // Ссылка «на главную» использует роутер — даём контекст истории.
+  // Ссылка на главную работает через роутер, поэтому нужен его контекст.
   decorators: [
     (Story) => (
       <MemoryRouter>

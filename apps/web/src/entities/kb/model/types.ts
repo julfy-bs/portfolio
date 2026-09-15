@@ -1,30 +1,28 @@
 import type { components } from '@portfolio/contract';
 
-/** Дерево базы знаний: папки с вложенностью + статьи в корне. */
+/** Вложенные папки плюс статьи в корне. */
 export type DatabaseTree = components['schemas']['DatabaseTreeDto'];
 
-/** Узел-папка дерева (рекурсивный: содержит статьи и вложенные папки). */
+/** Рекурсивный узел: статьи и вложенные папки. */
 export type FolderNode = components['schemas']['FolderNodeDto'];
 
-/** Заглушка статьи в дереве (без тела). */
+/** Статья в дереве, без тела. */
 export type ArticleStub = components['schemas']['ArticleStubDto'];
 
-/** Полная статья: тело, теги, хлебные крошки, бэклинки. */
 export type ArticleDetail = components['schemas']['ArticleDetailDto'];
 
-/** Ссылка на статью (бэклинк): slug + заголовок. */
+/** Бэклинк на статью. */
 export type ArticleLink = components['schemas']['ArticleLinkDto'];
 
-/** Статус публикации статьи. */
 export type PublishStatus = components['schemas']['PublishStatus'];
 
-/** Двуязычный текст (`{ ru, en? }`) — как хранятся имя папки, заголовок и тело статьи. */
+/** `{ ru, en? }`: так хранятся имя папки, заголовок и тело статьи. */
 export type LocalizedText = components['schemas']['LocalizedTextDto'];
 
-/** Папка в админ-представлении: имя обеими локалями, родитель, порядок. */
+/** Админ-вид папки, имя в обеих локалях. */
 export type FolderAdmin = components['schemas']['FolderAdminDto'];
 
-/** Статья в админ-представлении: обе локали title/body, slug, теги, статус, папка. */
+/** Админ-вид статьи, title и body в обеих локалях. */
 export type ArticleAdmin = components['schemas']['ArticleAdminDto'];
 
 export type CreateFolder = components['schemas']['CreateFolderDto'];

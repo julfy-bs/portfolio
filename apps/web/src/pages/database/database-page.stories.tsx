@@ -41,7 +41,7 @@ export const Loaded: Story = {
   name: 'База знаний',
 };
 
-/** Дерево и статья грузятся — оба под скелетонами. */
+/** Дерево и статья грузятся, оба под скелетонами. */
 export const Loading: Story = {
   name: 'Загрузка',
   args: {
@@ -52,7 +52,7 @@ export const Loading: Story = {
   },
 };
 
-/** Ошибка дерева — на уровне страницы (без него читать нечего). */
+/** Ошибка дерева на уровне страницы: без дерева читать нечего. */
 export const TreeError: Story = {
   name: 'Ошибка дерева',
   args: { tree: undefined, isTreeError: true },

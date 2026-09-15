@@ -1,8 +1,8 @@
 .grid {
   display: grid;
 
-  /* minmax(0, …) вместо 1fr: иначе авто-минимум трека раздувается под
-     min-content длинного URL и колонка вылезает за контейнер (гориз. скролл) */
+  /* minmax(0, 1fr) вместо 1fr: иначе минимум трека растягивается под длинный URL,
+     колонка вылезает за контейнер и появляется горизонтальный скролл */
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 14px;
 }
@@ -63,7 +63,7 @@
   white-space: nowrap;
 }
 
-/* Мобильный: один столбец (--bp-md 768) */
+/* На мобильных один столбец (--bp-md, 768px) */
 @media (width <= 768px) {
   .grid {
     grid-template-columns: minmax(0, 1fr);

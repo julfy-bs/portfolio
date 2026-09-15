@@ -41,7 +41,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Дерево со счётчиками; клик по статье выбирает её. */
+/** Дерево со счётчиками. Клик по статье выбирает её. */
 export const Default: Story = {
   name: 'Библиотека',
   play: async ({ canvasElement, args }) => {
@@ -52,13 +52,13 @@ export const Default: Story = {
   },
 };
 
-/** Выбранная статья подсвечена в дереве. */
+/** Выбранная статья подсвечивается в дереве. */
 export const Selected: Story = {
   name: 'С выбранной статьёй',
   args: { selectedSlug: 'react-fiber' },
 };
 
-/** Контекст-меню узла: переименовать / добавить / переместить / удалить. */
+/** В меню узла можно переименовать, добавить, переместить или удалить. */
 export const ContextMenu: Story = {
   name: 'Контекст-меню',
   play: async ({ canvasElement }) => {
@@ -71,7 +71,7 @@ export const ContextMenu: Story = {
   },
 };
 
-/** Инлайн-форма создания папки. */
+/** Папка создаётся через форму прямо в библиотеке. */
 export const NewFolder: Story = {
   name: 'Новая папка',
   play: async ({ canvasElement }) => {

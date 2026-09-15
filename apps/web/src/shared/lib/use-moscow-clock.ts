@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-/** Текущее московское время (HH:MM, 24 часа). Локале-независимый снимок. */
+// Формат фиксирован и не зависит от языка интерфейса.
 export function moscowTime(): string {
   return new Intl.DateTimeFormat('ru-RU', {
     hour: '2-digit',
@@ -10,10 +10,6 @@ export function moscowTime(): string {
   }).format(new Date());
 }
 
-/**
- * Живые часы по Москве (HH:MM) — общий флейвор терминала: строка `location`
- * в герой-карточке и приветствие консоли. Формат 24-часовой, локале-независим.
- */
 export function useMoscowClock(): string {
   const [time, setTime] = useState(moscowTime);
 

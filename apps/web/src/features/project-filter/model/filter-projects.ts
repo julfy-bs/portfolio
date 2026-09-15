@@ -2,18 +2,15 @@ import type { ProjectListItem } from '@/entities/project';
 
 import type { ProjectFilterState } from './types';
 
-/** Пустое состояние фильтра (ни один критерий не активен). */
 export const EMPTY_FILTER: ProjectFilterState = { query: '', techs: [], contributors: [] };
 
-/** Есть ли хотя бы один активный критерий. */
 export function hasActiveFilters(state: ProjectFilterState): boolean {
   return state.query.trim() !== '' || state.techs.length > 0 || state.contributors.length > 0;
 }
 
 /**
- * Фильтрует проекты по запросу (title/description), технологиям и контрибьюторам.
- * Внутри фасета — «ИЛИ» (проект подходит, если содержит любой из выбранных),
- * между фасетами и запросом — «И». Пустой фасет ограничений не накладывает.
+ * Внутри фасета условия работают как ИЛИ, между фасетами и поиском как И.
+ * Пустой фасет ничего не ограничивает.
  */
 export function filterProjects(
   projects: readonly ProjectListItem[],

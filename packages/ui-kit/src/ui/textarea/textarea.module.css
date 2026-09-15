@@ -5,7 +5,7 @@
   resize: vertical;
 }
 
-/* Обычный (sans) шрифт значения — для контентных полей CMS по макету. */
+/* Sans для контентных полей CMS */
 .sans {
   --control-font: var(--font-sans);
 }

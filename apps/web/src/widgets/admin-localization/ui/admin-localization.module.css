@@ -1,11 +1,10 @@
-/* Вкладка «Локализация»: сверка RU/EN по всему контенту с инлайн-правкой. */
 .root {
   display: flex;
   flex-direction: column;
   gap: 18px;
 }
 
-/* ---------- Шапка: покрытие + статистика ---------- */
+/* Шапка со статистикой */
 .summary {
   overflow: hidden;
   background: var(--color-surface);
@@ -97,7 +96,7 @@
   background: var(--color-fg-dim);
 }
 
-/* ---------- Поиск + фильтры ---------- */
+/* Поиск и фильтры */
 .controls {
   display: flex;
   flex-wrap: wrap;
@@ -165,7 +164,7 @@
   border-color: var(--color-border-strong);
 }
 
-/* ---------- Таблица ---------- */
+/* Таблица */
 .table {
   overflow: hidden;
   background: var(--color-surface);
@@ -291,7 +290,7 @@
   text-align: center;
 }
 
-/* ---------- Ячейка локали ---------- */
+/* Ячейка */
 .cell {
   position: relative;
   min-width: 0;
@@ -416,7 +415,7 @@
   color: var(--color-fg-dim);
 }
 
-/* ---------- Заметка про БЗ ---------- */
+/* Заметка про базу знаний */
 .note {
   display: flex;
   gap: 13px;
@@ -453,9 +452,9 @@
   color: var(--color-fg-muted);
 }
 
-/* Плавающая панель сохранения — общий компонент `@/shared/ui` SaveBar. */
+/* Стили панели сохранения живут в SaveBar из `@/shared/ui`. */
 
-/* ---------- Скелетон ---------- */
+/* Скелетон */
 .skelSummary {
   height: 92px;
   border-radius: 16px;

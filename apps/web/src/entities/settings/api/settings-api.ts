@@ -3,8 +3,7 @@ import { apiSlice } from '@/shared/api';
 import type { Settings, UpdateSettings } from '../model/types';
 
 /**
- * Эндпоинты настроек сайта. Настройки не локализуются, поэтому один `getSettings`
- * обслуживает и публичную часть, и админку; `updateSettings` инвалидирует кэш.
+ * Настройки не локализуются, поэтому один `getSettings` обслуживает и сайт, и админку.
  */
 export const settingsApi = apiSlice.injectEndpoints({
   endpoints: (build) => ({

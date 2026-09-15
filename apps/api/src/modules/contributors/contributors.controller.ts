@@ -25,7 +25,7 @@ import {
 } from './dto/contributor-admin.dto';
 import { ContributorsService } from './contributors.service';
 
-// Участники проектов — общая сущность, управляется только из приватной зоны (ADMIN).
+// Участники общие для всех проектов, редактировать их можно только из приватной зоны.
 @ApiTags('contributors')
 @AdminAuth()
 @Controller('contributors')

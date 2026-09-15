@@ -22,9 +22,9 @@ import {
 import styles from './admin-experience.module.css';
 
 export interface ExperienceFormProps {
-  /** Редактируемая запись или `null` — создание новой. */
+  /** `null`, когда запись создаётся. */
   readonly record: ExperienceAdmin | null;
-  /** Технологии для мультиселекта (id + имя). */
+  /** Выбирать можно только из того, что уже есть в стеке. */
   readonly technologies: readonly TechnologyAdmin[];
   readonly locale: AppLanguage;
   readonly isBusy: boolean;
@@ -33,11 +33,7 @@ export interface ExperienceFormProps {
   readonly onCancel: () => void;
 }
 
-/**
- * Форма места работы (создание/редактирование). Локализованные поля правятся в
- * активной локали; период задаётся месяцами (`type="month"`), «текущее место» —
- * тумблером. Технологии — мультиселект чипами по существующим записям стека.
- */
+/** Локализованные поля правятся в активной локали. */
 export function ExperienceForm({
   record,
   technologies,

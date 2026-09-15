@@ -7,8 +7,8 @@ import { getMockProfileState, localizeProfile } from './profile-store.mock';
 export { mockProfile, mockProfileEn } from './profile-store.mock';
 
 /**
- * MSW-обработчики публичного профиля. Локаль читается из `Accept-Language`, а данные —
- * из общего состояния (см. `profile-store.mock`), поэтому правка в CRM сразу видна здесь.
+ * Локаль берётся из `Accept-Language`, данные из общего состояния (`profile-store.mock`),
+ * так что правка в CRM сразу видна здесь.
  */
 export const profileHandlers = [
   http.get(`${env.apiBaseUrl}/profile`, ({ request }) => {

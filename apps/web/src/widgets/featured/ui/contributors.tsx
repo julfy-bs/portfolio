@@ -8,7 +8,7 @@ import styles from './featured.module.css';
 
 const MAX_AVATARS = 3;
 
-/** Стопка аватаров контрибьюторов проекта: показываем до трёх, остаток — «+N». */
+/** Показываем до трёх аватаров, остальных сворачиваем в «+N». */
 export function Contributors({ people }: { readonly people: readonly ProjectContributor[] }) {
   const { t } = useTranslation();
   const shown = people.slice(0, MAX_AVATARS);

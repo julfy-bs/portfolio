@@ -41,7 +41,7 @@ export const NoSelection: Story = {
   args: { selectedSlug: undefined },
 };
 
-/** Дерево ещё грузится — скелетон. */
+/** Дерево ещё грузится. */
 export const Loading: Story = {
   name: 'Загрузка',
   args: { tree: undefined },

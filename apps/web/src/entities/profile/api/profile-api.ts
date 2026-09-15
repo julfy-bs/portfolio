@@ -14,12 +14,11 @@ import type {
 } from '../model/types';
 
 /**
- * Эндпоинты профиля, подключённые к корневому API. Язык — аргумент запроса:
- * он и сегментирует кэш RTK Query по локали, и уходит на бэкенд заголовком
- * `Accept-Language` (см. `withLocale`), поэтому смена языка перезапрашивает данные.
+ * Язык передаётся аргументом: он делит кэш RTK Query по локали и уходит на бэкенд
+ * заголовком `Accept-Language` (см. `withLocale`), так что смена языка перезапрашивает данные.
  *
- * Админ-эндпоинты отдают/принимают обе локали; `updateProfile` инвалидирует и
- * публичный, и админский кэш — публичные экраны сразу видят правки.
+ * Админ-эндпоинты работают с обеими локалями. `updateProfile` инвалидирует и публичный,
+ * и админский кэш, чтобы публичные экраны сразу видели правки.
  */
 export const profileApi = apiSlice.injectEndpoints({
   endpoints: (build) => ({
@@ -35,8 +34,8 @@ export const profileApi = apiSlice.injectEndpoints({
       query: (body) => ({ url: '/profile', method: 'PATCH', body }),
       invalidatesTags: ['Profile', 'ProfileAdmin'],
     }),
-    // Загрузка фото аватара: файл уходит multipart, ответ — URL. Кэш не трогаем:
-    // URL сам сохранится через updateProfile (avatarPhotoUrl в теле PATCH).
+    // Фото аватара уходит multipart, в ответ приходит URL. Кэш не трогаем:
+    // URL сохранится через updateProfile (avatarPhotoUrl в теле PATCH).
     uploadAvatar: build.mutation<AvatarResult, { file: File; crop?: AvatarCrop }>({
       query: ({ file, crop }) => {
         const body = new FormData();
@@ -50,7 +49,7 @@ export const profileApi = apiSlice.injectEndpoints({
         return { url: '/media/avatar', method: 'POST', body };
       },
     }),
-    // Загрузка PDF-резюме: файл уходит multipart, ответ — URL. Локаль проставит
+    // PDF-резюме уходит multipart, в ответ приходит URL. Локаль проставит
     // updateProfile (cvUrl в теле PATCH мёржится по активной локали).
     uploadCv: build.mutation<CvResult, File>({
       query: (file) => {

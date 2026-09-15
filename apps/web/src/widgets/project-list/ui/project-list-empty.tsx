@@ -6,7 +6,7 @@ interface ProjectListEmptyProps {
   readonly onClear: () => void;
 }
 
-/** Пустое состояние сетки: фильтры не дали результатов + сброс фильтров. */
+/** Фильтры ничего не нашли, предлагаем их сбросить. */
 export function ProjectListEmpty({ onClear }: ProjectListEmptyProps) {
   const { t } = useTranslation();
 

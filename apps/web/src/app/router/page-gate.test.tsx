@@ -27,7 +27,7 @@ describe('PageGate', () => {
   });
 
   it('отдаёт 404, когда страница выключена в настройках', async () => {
-    // Выключаем страницу в моке настроек (модульное состояние общее на прогон).
+    // Мок настроек общий на весь прогон, его сбрасывает setup после теста.
     const store = makeStore();
     await store
       .dispatch(settingsApi.endpoints.updateSettings.initiate({ showProjects: false }))

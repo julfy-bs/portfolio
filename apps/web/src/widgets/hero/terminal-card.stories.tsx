@@ -18,7 +18,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** «Терминальная» визитка. play: виден вывод; клик по плашке открывает консоль. */
+/** Визитка в виде терминала. play: вывод виден, клик по плашке открывает консоль. */
 export const Playground: Story = {
   play: async ({ canvasElement, userEvent, args, step }) => {
     const canvas = within(canvasElement);

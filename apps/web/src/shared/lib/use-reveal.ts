@@ -1,16 +1,16 @@
 import { useLayoutEffect, useRef, type RefObject } from 'react';
 
 interface RevealOptions {
-  /** Смещение появления по вертикали, px (макет: rise = 8px). */
+  /** Сдвиг по вертикали в начале анимации, px. */
   readonly y?: number;
   /** Длительность появления одного элемента, сек. */
   readonly duration?: number;
-  /** Задержка между соседними детьми, попавшими в вид одновременно, сек. */
+  /** Задержка между детьми, которые попали в вид одновременно, сек. */
   readonly stagger?: number;
 }
 
-// Минимальная структурная форма нужных частей gsap — чтобы не тянуть типы (и тем
-// более значение) библиотеки в статический граф (её грузим динамически).
+// Описываем только нужный кусок gsap сами: библиотека грузится динамически, и её
+// типы не должны попадать в статический граф импортов.
 interface RevealTween {
   kill: () => void;
   progress: (value: number) => void;
@@ -25,23 +25,10 @@ interface GsapApi {
 }
 
 /**
- * Плавное «rise + fade» появление прямых детей контейнера **по мере попадания в
- * вьюпорт** при прокрутке — из словаря анимаций макета (`@keyframes rise`:
- * opacity 0→1, translateY 8px→0), сдержанно. Возвращает ref для контейнера
- * (например, `<main>` страницы); секции первого экрана появляются на загрузке,
- * остальные — когда до них доскроллили.
- *
- * Триггер — нативный **IntersectionObserver** (надёжнее gsap ScrollTrigger,
- * который завязан на `window.innerHeight` и ломается при нестандартном
- * вьюпорте). Сама анимация — gsap, подгружаемый **динамически** (`import('gsap')`
- * при первом появлении), поэтому тяжёлая либа не попадает в основной бандл.
- *
- * Отказоустойчивость (контент не может залипнуть скрытым): нет IO —
- * показываем сразу; gsap не загрузился — раскрываем без анимации; IO не сработал
- * за таймаут — failsafe раскрывает оставшееся; замёрзший rAF-тикер (фоновая
- * вкладка) добивает `tween.progress(1)` по setTimeout. `prefers-reduced-motion`
- * — анимации нет, контент виден сразу. Начальное скрытие ставится синхронно
- * инлайновым стилем в useLayoutEffect (до отрисовки) — вспышки нет.
+ * Плавно проявляет прямых детей контейнера, когда они попадают во вьюпорт при прокрутке.
+ * Следим через IntersectionObserver, а не ScrollTrigger: тот опирается на
+ * `window.innerHeight` и ломается на нестандартном вьюпорте. gsap грузим лениво, чтобы
+ * не раздувать основной бандл.
  */
 export function useReveal<T extends HTMLElement = HTMLElement>(
   options: RevealOptions = {},
@@ -72,14 +59,14 @@ export function useReveal<T extends HTMLElement = HTMLElement>(
       }
     };
 
-    // Прячем синхронно, до первой отрисовки → вспышки готового контента нет.
+    // Прячем до первой отрисовки, иначе готовый контент успевает мигнуть.
     for (const item of items) {
       item.style.opacity = '0';
       item.style.transform = `translateY(${String(y)}px)`;
       item.style.willChange = 'opacity, transform';
     }
 
-    // Без IntersectionObserver скролл-триггер невозможен — показываем сразу.
+    // Без IntersectionObserver следить за прокруткой нечем, показываем сразу.
     if (typeof IntersectionObserver === 'undefined') {
       clearHidden(items);
       return undefined;
@@ -91,8 +78,8 @@ export function useReveal<T extends HTMLElement = HTMLElement>(
     let gsapApi: GsapApi | undefined;
     let gsapPromise: Promise<void> | undefined;
 
-    // Если IO по какой-то причине не сработал (нестандартный вьюпорт и т.п.) —
-    // раскрываем оставшееся, чтобы контент не залип скрытым.
+    // Если observer так и не сработал, раскрываем оставшееся, чтобы контент не
+    // остался скрытым навсегда.
     const failsafe = window.setTimeout(() => {
       clearHidden(Array.from(pending));
       pending.clear();
@@ -122,8 +109,8 @@ export function useReveal<T extends HTMLElement = HTMLElement>(
         },
       );
       tweens.add(tween);
-      // Доводчик на случай замороженного rAF (фоновая вкладка/троттлинг):
-      // setTimeout не зависит от rAF и синхронно доигрывает твин до конца.
+      // В фоновой вкладке rAF замирает, и твин может застрять на середине.
+      // setTimeout от rAF не зависит, поэтому им и доигрываем анимацию.
       const guardMs = (duration + stagger * batch.length + 0.4) * 1000;
       window.setTimeout(() => {
         tween.progress(1);
@@ -142,7 +129,7 @@ export function useReveal<T extends HTMLElement = HTMLElement>(
           gsapApi = module.gsap;
         })
         .catch(() => {
-          // Оставляем gsapApi undefined → animate() просто покажет без анимации.
+          // gsapApi остаётся пустым, и animate() покажет элементы без анимации.
         });
       void gsapPromise.then(() => {
         if (!cancelled) {
@@ -165,7 +152,7 @@ export function useReveal<T extends HTMLElement = HTMLElement>(
         }
         reveal(entered);
       },
-      // Небольшой нижний отступ — секция «раскрывается», едва заметно войдя в кадр.
+      // Отступ снизу, чтобы секция проявлялась, когда уже немного вошла в кадр.
       { rootMargin: '0px 0px -8% 0px', threshold: 0.1 },
     );
     for (const item of items) {

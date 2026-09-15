@@ -32,7 +32,7 @@ const meta = {
     onOpenAdmin: { control: false, table: { category: 'События' } },
     onSignOut: { control: false, table: { category: 'События' } },
   },
-  // Пункты живут внутри оверлея-меню навбара — воспроизводим панель (role="menu").
+  // Пункты рендерятся внутри меню навбара, поэтому воспроизводим панель с role="menu".
   decorators: [
     (Story) => (
       <div
@@ -56,7 +56,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Гость: единственный пункт — «Войти». */
+/** Гость видит только пункт входа. */
 export const LoggedOut: Story = {
   name: 'Гость',
   args: { user: undefined },
@@ -67,14 +67,14 @@ export const LoggedOut: Story = {
   },
 };
 
-/** Вошедший: карточка с аватаром профиля (инициалы имени) и «Выйти». */
+/** Вошедший пользователь: карточка с аватаром и выход. */
 export const LoggedIn: Story = {
   name: 'Вошедший',
   args: { user: admin, avatarName: 'Богдан Сутужко', avatarColor: '#238636' },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
     await expect(canvas.getByText('admin')).toBeInTheDocument();
-    // Аватар — из профиля: инициалы имени «БС», а не логина.
+    // Инициалы берутся из имени в профиле, а не из логина.
     await expect(
       canvas.getByRole('img', { name: 'Богдан Сутужко', hidden: true }),
     ).toBeInTheDocument();
@@ -83,7 +83,7 @@ export const LoggedIn: Story = {
   },
 };
 
-/** Аватар с загруженным фото (вместо инициалов). */
+/** Аватар с загруженным фото вместо инициалов. */
 export const WithPhoto: Story = {
   name: 'С фото',
   args: {
@@ -97,7 +97,7 @@ export const WithPhoto: Story = {
   },
 };
 
-/** Идёт выход — «Выйти» заблокирована. */
+/** Пока идёт выход, кнопка выхода заблокирована. */
 export const SigningOut: Story = {
   name: 'Выход',
   args: { user: admin, isSigningOut: true },

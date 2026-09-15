@@ -16,8 +16,8 @@ interface EducationPeriodProps {
 }
 
 /**
- * Период записи — два поля-месяца «начало — окончание». Начало обязательно (по нему
- * сортируется таймлайн), окончание можно не указывать (курс одной датой).
+ * Начало обязательно, потому что по нему сортируется таймлайн. Окончание можно не указывать,
+ * например у курса с одной датой.
  */
 export function EducationPeriod({ startMonth, endMonth, errors, onChange }: EducationPeriodProps) {
   const { t } = useTranslation();

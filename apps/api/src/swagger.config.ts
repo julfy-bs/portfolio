@@ -1,10 +1,6 @@
 import { DocumentBuilder } from '@nestjs/swagger';
 
-/**
- * Single source of the OpenAPI document config.
- * Shared by the running app (`/api/docs`) and the contract generator,
- * so the published contract always matches the live API.
- */
+// Один конфиг и для /api/docs, и для генератора контракта, чтобы контракт не разошёлся с API.
 export const swaggerConfig = new DocumentBuilder()
   .setTitle('Portfolio API')
   .setDescription(

@@ -41,7 +41,7 @@ export class DatabaseService {
         siblings.push(stub);
         stubsByFolder.set(folderId, siblings);
       } else {
-        // Статья без папки (или с битой ссылкой) — показываем в корне.
+        // Статьи без папки или с несуществующей папкой показываем в корне.
         rootArticles.push(stub);
       }
     }
@@ -114,8 +114,7 @@ export class DatabaseService {
     return names;
   }
 
-  // Бэклинки: другие статьи, чьё тело содержит вики-ссылку на целевую — по slug
-  // или по заголовку, в любой из локалей.
+  // Вики-ссылка может указывать и на slug, и на заголовок в любой локали.
   private findBacklinks(target: Article, articles: Article[], locale: Locale): ArticleLinkDto[] {
     const titleVariants = new Set(
       collectLocalizedStrings(target.title).map((title) => title.toLowerCase()),
@@ -131,7 +130,7 @@ export class DatabaseService {
       .map((article) => ({ slug: article.slug, title: localize(article.title, locale) }));
   }
 
-  // --- admin: папки ---
+  // Админка: папки
 
   async listFolders(): Promise<FolderAdminDto[]> {
     const folders = await this.prisma.folder.findMany({ orderBy: { order: 'asc' } });
@@ -178,7 +177,7 @@ export class DatabaseService {
     await this.prisma.folder.delete({ where: { id } });
   }
 
-  // --- admin: статьи ---
+  // Админка: статьи
 
   async getArticleAdmin(id: string): Promise<ArticleAdminDto> {
     const article = await this.prisma.article.findUnique({ where: { id } });
@@ -251,7 +250,7 @@ export class DatabaseService {
     }
   }
 
-  // Запрещаем циклы: новая родительская папка не может быть самой папкой или её потомком.
+  // Папку нельзя вложить в неё саму или в её потомка, иначе дерево зациклится.
   private async assertReparentable(id: string, parentId?: string): Promise<void> {
     if (!parentId) return;
     if (parentId === id) {

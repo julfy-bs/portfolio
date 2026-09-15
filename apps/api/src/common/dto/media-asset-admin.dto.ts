@@ -15,7 +15,7 @@ export class MediaFormatVariantDto {
   height: number;
 }
 
-// Responsive-варианты, сгенерированные при загрузке (для адаптивной отдачи на фронте).
+// Уменьшенные копии нарезаются один раз при загрузке, чтобы фронт мог отдавать подходящий размер.
 export class MediaFormatsDto {
   @ApiPropertyOptional({ type: () => MediaFormatVariantDto, nullable: true })
   thumbnail?: MediaFormatVariantDto | null;
@@ -30,7 +30,6 @@ export class MediaFormatsDto {
   large?: MediaFormatVariantDto | null;
 }
 
-// Полное admin-представление медиа: оригинал + форматы + метаданные.
 export class MediaAssetAdminDto {
   @ApiProperty()
   id: string;

@@ -11,11 +11,7 @@ export interface ContactLinksProps {
   readonly isLoading?: boolean;
 }
 
-/**
- * Сетка каналов связи (макет: CONTACT) — карточки-ссылки на Telegram, email,
- * GitHub и т.д. Презентационна: список приходит пропсом (из профиля), пока
- * грузится — скелетоны.
- */
+/** Сетка каналов связи. Список приходит пропсом из профиля, пока его нет, рисуем скелетоны. */
 export function ContactLinks({ contacts, isLoading }: ContactLinksProps) {
   if (isLoading || !contacts) {
     return (

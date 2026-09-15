@@ -1,15 +1,14 @@
 import { routePaths } from '@/shared/config';
 
 /**
- * Флейвор терминала консоли — статичные ASCII-арты и справочник роутов.
- * Это код (глифы и токены путей), а не пользовательский контент, поэтому
- * живёт в конфиге рядом с фичей, а не в i18n.
+ * ASCII-арты и справочник роутов терминала. Это глифы и токены путей, а не контент
+ * для пользователя, поэтому они в конфиге фичи, а не в i18n.
  */
 
 /** Пользователь в приглашении терминала (`visitor@portfolio:~$`). */
 export const CONSOLE_USER = 'visitor@portfolio';
 
-/** Заголовок окна консоли: `bash — <route>`. Часть до пути — код-токен. */
+/** Префикс заголовка окна. Это код-токен, поэтому не переводится. */
 export const CONSOLE_TITLE_PREFIX = 'bash — ';
 
 // ASCII-арт хранится построчно в одинарных кавычках: в фигурном шрифте есть
@@ -25,7 +24,7 @@ export const WELCOME_BANNER = [
   '   \\_/\\_/ \\___|_|\\___\\___/|_| |_| |_|\\___|',
 ].join('\n');
 
-/** Компактный арт команды `ascii`. */
+/** Компактный арт для `neofetch`. */
 export const ASCII_ART = [
   ' ____   ____',
   '| __ ) / ___|   bogdan.sutuzhko',
@@ -34,17 +33,17 @@ export const ASCII_ART = [
   '|____/ |____/',
 ].join('\n');
 
-/** Строка `uname` (короткая) и `uname -a` (полная) — флейвор «системы». */
+/** Вывод `uname` (короткий) и `uname -a` (полный). */
 export const UNAME = 'PortfolioOS';
 export const UNAME_ALL = 'PortfolioOS 1.0.0 github-dark · React · TypeScript · Vite · bash';
 
-/** Роут, доступный команде `cd` и списку `ls`: токен + реальный путь. */
+/** Роут для `cd` и `ls`: токен и настоящий путь. */
 export interface NavRoute {
   readonly token: string;
   readonly path: string;
 }
 
-/** Пользователь-навигируемые роуты («каталоги»). Единственный источник для `cd`/`ls`. */
+/** Роуты-каталоги, по которым можно ходить. Единственный источник для `cd` и `ls`. */
 export const NAV_ROUTES: readonly NavRoute[] = [
   { token: 'home', path: routePaths.home },
   { token: 'projects', path: routePaths.projects },
@@ -67,7 +66,7 @@ export const FS_FILES = [
   'resume.pdf',
 ] as const;
 
-/** Убирает протокол/`mailto:`/`www.`/хвостовой слэш — для человекочитаемого url. */
+/** Убирает протокол, `mailto:`, `www.` и хвостовой слэш, чтобы url читался глазами. */
 export function cleanUrl(url: string): string {
   return url
     .replace(/^mailto:/, '')
@@ -78,7 +77,7 @@ export function cleanUrl(url: string): string {
 
 /**
  * Приводит пользовательский ввод (`/projects`, `projects`, `Home`) к пути
- * приложения. Пустой ввод и `home` ведут на главную. Неизвестный роут → `null`.
+ * приложения. Пустой ввод и `home` ведут на главную. Для неизвестного роута вернёт `null`.
  */
 export function resolveRoute(input: string): string | null {
   const token = input.trim().replace(/^\/+/, '').toLowerCase();

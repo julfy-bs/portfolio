@@ -12,17 +12,14 @@ export interface HighlightItem {
 const SKELETON_COUNT = 4;
 
 export interface HighlightsProps {
-  /** Показатели (значение + подпись) из профиля. Пока не пришли — скелетон. */
+  /** Пока показатели не пришли, рисуем скелетон. */
   readonly items?: readonly HighlightItem[];
   readonly isLoading?: boolean;
   readonly className?: string;
 }
 
 /**
- * Секция ключевых показателей главной (макет: HIGHLIGHTS) — ряд карточек
- * «крупное значение + подпись». Заголовка секции нет намеренно: блок идёт сразу
- * за геро-полосой. Данные приходят с бэкенда (`profile.highlights`), пока
- * грузятся — скелетон повторяет раскладку карточек.
+ * Ряд ключевых показателей. Заголовка нет специально: блок идёт сразу за героем.
  */
 export function Highlights({ items, isLoading, className }: HighlightsProps) {
   if (isLoading || !items) {

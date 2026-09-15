@@ -7,7 +7,7 @@ import { SectionLabel, Skeleton } from '@sutuzhko/ui-kit';
 import styles from './about.module.css';
 
 export interface AboutProps {
-  /** Био в формате Markdown (локализованное поле профиля). */
+  /** Markdown, уже локализованный под язык приложения. */
   readonly bioMarkdown?: string;
   readonly isLoading?: boolean;
   /** Якорь секции для навигации и скролл-шпиона. */
@@ -16,9 +16,8 @@ export interface AboutProps {
 }
 
 /**
- * Секция «Обо мне» (макет: ABOUT) — заголовок `// обо мне` и текст-био в Markdown.
- * Био приходит с бэкенда (`profile.bioMarkdown`), локализовано по языку приложения,
- * поэтому пока профиль грузится — рендерим скелетон-абзацы.
+ * Секция «Обо мне». Био приходит с бэкенда, поэтому пока профиль грузится, показываем
+ * скелетон-абзацы.
  */
 export function About({ bioMarkdown, isLoading, id, className }: AboutProps) {
   const { t } = useTranslation();
@@ -36,7 +35,7 @@ export function About({ bioMarkdown, isLoading, id, className }: AboutProps) {
 }
 
 function AboutSkeleton() {
-  // Три абзаца-заглушки под структуру био (макет: 3 абзаца), высота строк = line-box.
+  // Обычно био состоит из трёх абзацев, под них и заглушки.
   return (
     <div className={cn(styles.about, styles.skeleton)} aria-busy="true" aria-live="polite">
       {[

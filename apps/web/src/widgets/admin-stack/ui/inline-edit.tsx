@@ -10,17 +10,13 @@ interface InlineEditProps {
   readonly placeholder?: string;
   readonly className?: string;
   readonly onChange: (value: string) => void;
-  /** Enter или потеря фокуса — зафиксировать. */
+  /** Срабатывает по Enter и при потере фокуса. */
   readonly onCommit: () => void;
-  /** Escape — отменить. */
+  /** Срабатывает по Escape. */
   readonly onCancel: () => void;
 }
 
-/**
- * Инлайн-поле ввода: авто-фокус при появлении, коммит по Enter/blur, отмена по
- * Escape. Ширина подстраивается под содержимое (`size`). Используется и для нового
- * чипа (технология/навык), и для переименования категории — стиль задаёт className.
- */
+/** Поле ввода внутри чипа или заголовка. Ширина тянется за текстом через `size`. */
 export function InlineEdit({
   value,
   ariaLabel,

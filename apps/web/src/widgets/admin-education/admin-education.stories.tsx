@@ -26,12 +26,12 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Всегда редактируемые карточки по двум секциям; «Сохранить» пакетом. */
+/** Карточки в двух секциях всегда открыты для правки, сохраняются все разом. */
 export const Default: Story = {
   name: 'Образование',
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
-    // Бар «Сохранить/Отменить» появляется только при заполненных правках — без них его нет.
+    // Пока правок нет, бара сохранения тоже нет.
     await expect(canvas.queryByRole('button', { name: /Сохранить/ })).not.toBeInTheDocument();
     await userEvent.click(canvas.getByRole('button', { name: '+ запись' }));
     const degrees = canvas.getAllByPlaceholderText('Степень / специальность');
@@ -39,7 +39,7 @@ export const Default: Story = {
     // Без даты начала запись не сохранить: поле подсвечено, кнопка неактивна.
     await expect(canvas.getByText('Укажите дату начала')).toBeInTheDocument();
     await expect(canvas.getByRole('button', { name: /Сохранить/ })).toBeDisabled();
-    // Секция «Высшее» идёт первой — поле даты новой карточки по индексу её степени.
+    // Секция «Высшее» идёт первой, поэтому поле даты ищем по тому же индексу, что и степень.
     await fireEvent.change(canvas.getAllByLabelText('Дата начала')[degrees.length - 1], {
       target: { value: '2024-09' },
     });
@@ -48,7 +48,7 @@ export const Default: Story = {
   },
 };
 
-/** Окончание раньше начала — поле подсвечено ошибкой, сохранить такую запись нельзя. */
+/** Если окончание раньше начала, поле подсвечивается ошибкой и сохранить запись нельзя. */
 export const InvalidPeriod: Story = {
   name: 'Ошибка периода',
   args: {
@@ -62,13 +62,13 @@ export const InvalidPeriod: Story = {
   },
 };
 
-/** Английская локаль — те же записи в переводе. */
+/** Те же записи на английском. */
 export const English: Story = {
   name: 'Локаль EN',
   args: { rows: buildRows(mockEducationAdmin, 'en') },
 };
 
-/** Пустой список — только кнопки добавления в обеих секциях. */
+/** Без записей в обеих секциях остаются только кнопки добавления. */
 export const Empty: Story = {
   name: 'Пусто',
   args: { rows: [] },

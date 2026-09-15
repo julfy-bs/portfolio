@@ -23,7 +23,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Заголовок `// стек` + карточки-слои с метками технологий. */
+/** Заголовок и карточки слоёв с технологиями. */
 export const Playground: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -33,7 +33,7 @@ export const Playground: Story = {
   },
 };
 
-/** Технологии грузятся — скелетон карточек-слоёв. */
+/** Технологии грузятся: скелетон карточек. */
 export const Loading: Story = {
   name: 'Ожидание данных (isLoading)',
   args: { isLoading: true },
@@ -43,7 +43,7 @@ export const Loading: Story = {
   },
 };
 
-/** Край: пустой стек — заголовок есть, карточек нет. */
+/** Край: стек пустой, заголовок есть, карточек нет. */
 export const Empty: Story = {
   name: 'Край: пустой стек',
   args: { technologies: [] },
@@ -53,7 +53,7 @@ export const Empty: Story = {
   },
 };
 
-/** Мобильная раскладка: грид слоёв 3 → 2 → 1. */
+/** Мобильная раскладка: грид сжимается с 3 колонок до 2, потом до 1. */
 export const Mobile: Story = {
   name: 'Мобильная раскладка',
   parameters: { viewport: { defaultViewport: 'mobile1' } },

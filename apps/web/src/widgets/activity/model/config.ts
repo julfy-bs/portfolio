@@ -1,6 +1,6 @@
 /**
- * Официальная палитра рангов Codewars (kyu → цвет): белый · жёлтый · синий ·
- * фиолетовый. Бренд-константы, не дизайн-токены, поэтому живут в конфиге виджета.
+ * Официальные цвета рангов Codewars. Это бренд-константы, а не дизайн-токены, поэтому
+ * они лежат в конфиге виджета.
  */
 const KYU_COLORS: Record<number, string> = {
   8: '#bcbfbf',
@@ -15,7 +15,7 @@ const KYU_COLORS: Record<number, string> = {
 
 const DEFAULT_KYU_COLOR = '#3c97e8';
 
-/** Цвет ранга по kyu (1 — высший). Неизвестный ранг — синий по умолчанию. */
+/** 1 kyu самый высокий ранг. Для неизвестного ранга берём синий. */
 export function kyuColor(kyu: number): string {
   return KYU_COLORS[kyu] ?? DEFAULT_KYU_COLOR;
 }

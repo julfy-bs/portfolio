@@ -10,9 +10,8 @@ import type { AppLanguage } from '@/shared/config';
 import { planMinimalOrders } from '@/shared/lib';
 
 /**
- * Модель вкладки «Стек и языки»: технологии — чипы, сгруппированные по редактируемым
- * категориям; языки — строки; навыки — плоские чипы. Всё правится в локальном
- * состоянии и уходит одним пакетом по «Сохранить» (контейнер считает разницу).
+ * Модель вкладки «Стек и языки». Все правки живут в локальном состоянии и уходят одним
+ * пакетом по «Сохранить», разницу считает контейнер.
  */
 
 let counter = 0;
@@ -21,12 +20,11 @@ function nextKey(prefix: string): string {
   return `${prefix}-${counter}`;
 }
 
-/* ---------- Технологии (чипы по редактируемым категориям) ---------- */
+// Технологии
 
 /**
- * Категория технологий. Отдельной сущности на бэке нет — категория живёт как поле
- * `category` на каждой технологии, поэтому у неё локальный `key` (переименование
- * не ломает связь чипов) и `name` (правится инлайн).
+ * Отдельной сущности на бэке у категории нет, это просто поле `category` у технологии.
+ * Поэтому держим локальный `key`: так переименование не рвёт связь с чипами.
  */
 export interface TechCategory {
   readonly key: string;
@@ -34,9 +32,8 @@ export interface TechCategory {
 }
 
 /**
- * Чип технологии; `id: null` — ещё не сохранённая. `categoryKey` — ссылка на локальную
- * категорию. `order` — сохранённая позиция с бэка (у новых — 0, назначится при сохранении):
- * по ней считаем минимальный дифф порядка, чтобы правка одного чипа не перенумеровывала все.
+ * `id: null` у ещё не сохранённого чипа. `order` берём с бэка (у новых 0, назначится при
+ * сохранении): по нему считаем минимальный дифф, чтобы правка одного чипа не перенумеровывала все.
  */
 export interface TechChip {
   readonly key: string;
@@ -46,7 +43,7 @@ export interface TechChip {
   readonly order: number;
 }
 
-/** Категории по порядку первого появления (с локальными ключами). */
+/** Порядок категорий определяется первым появлением среди технологий. */
 export function buildTechCategories(items: readonly TechnologyAdmin[]): TechCategory[] {
   const order: TechCategory[] = [];
   const seen = new Set<string>();
@@ -60,7 +57,6 @@ export function buildTechCategories(items: readonly TechnologyAdmin[]): TechCate
   return order;
 }
 
-/** Админ-технологии → чипы, привязанные к категориям по имени. */
 export function buildTechChips(
   items: readonly TechnologyAdmin[],
   categories: readonly TechCategory[],
@@ -75,17 +71,15 @@ export function buildTechChips(
   }));
 }
 
-/** Новая (локальная) категория; по умолчанию без имени — правится инлайн сразу. */
+/** По умолчанию без имени: его сразу вводят инлайн. */
 export function newTechCategory(name = ''): TechCategory {
   return { key: nextKey('new-cat'), name };
 }
 
-/** Новый пустой чип в категории — заполняется инлайн (order назначится на сохранении). */
 export function newTechChip(categoryKey: string): TechChip {
   return { key: nextKey('new-tech'), id: null, name: '', categoryKey, order: 0 };
 }
 
-/** Чип + имя категории + позиция → тело создания технологии. */
 export function techChipToCreate(
   chip: TechChip,
   categoryName: string,
@@ -94,9 +88,9 @@ export function techChipToCreate(
   return { name: chip.name.trim(), category: categoryName.trim() || undefined, order };
 }
 
-/* ---------- Языки (строки) ---------- */
+// Языки
 
-/** Строка языка; `id: null` — новая. `pct` — строка для инпута. */
+/** `pct` хранится строкой, потому что напрямую связан с инпутом. */
 export interface LangRow {
   readonly key: string;
   readonly id: string | null;
@@ -105,12 +99,11 @@ export interface LangRow {
   readonly pct: string;
 }
 
-/** Значение названия в активной локали (фолбэк на ru). */
+// Если перевода на en нет, показываем ru.
 function pickName(name: LocalizedText, locale: AppLanguage): string {
   return locale === 'en' ? (name.en ?? name.ru) : name.ru;
 }
 
-/** Админ-языки → строки редактора в активной локали. */
 export function buildLangRows(items: readonly LanguageAdmin[], locale: AppLanguage): LangRow[] {
   return items.map((item) => ({
     key: item.id,
@@ -121,25 +114,24 @@ export function buildLangRows(items: readonly LanguageAdmin[], locale: AppLangua
   }));
 }
 
-/** Пустая строка языка для добавления. */
 export function emptyLangRow(): LangRow {
   return { key: nextKey('new-lang'), id: null, name: '', level: '', pct: '' };
 }
 
-/** % владения → целое 0..100. */
+/** Из инпута может прийти что угодно, поэтому приводим к целому от 0 до 100. */
 export function clampPct(value: string): number {
   const parsed = Number.parseInt(value, 10);
   if (Number.isNaN(parsed)) return 0;
   return Math.max(0, Math.min(100, parsed));
 }
 
-// Название при создании: база ru всегда заполнена; при правке en дублируем в ru.
+// Бэк требует ru, поэтому при создании из en-локали дублируем значение в ru.
 function nameInput(locale: AppLanguage, value: string): { ru: string; en?: string } {
   return locale === 'en' ? { ru: value, en: value } : { ru: value };
 }
 
-// Название при обновлении: полная замена (UpdateLanguageDto.name — LocalizedTextInput),
-// активную локаль правим, вторую переносим из текущего значения.
+// UpdateLanguageDto.name заменяется целиком, так что вторую локаль переносим из текущего
+// значения, иначе перевод потеряется.
 function nameUpdate(
   current: LocalizedText,
   locale: AppLanguage,
@@ -149,7 +141,6 @@ function nameUpdate(
   return { ru: value, ...(current.en != null ? { en: current.en } : {}) };
 }
 
-/** Строка → тело создания языка. */
 export function rowToCreateLang(row: LangRow, locale: AppLanguage): CreateLanguage {
   return {
     name: nameInput(locale, row.name.trim()),
@@ -158,7 +149,6 @@ export function rowToCreateLang(row: LangRow, locale: AppLanguage): CreateLangua
   };
 }
 
-/** Строка → тело обновления языка (обе локали названия). */
 export function rowToUpdateLang(
   row: LangRow,
   current: LanguageAdmin,
@@ -171,9 +161,9 @@ export function rowToUpdateLang(
   };
 }
 
-/* ---------- Навыки (плоские чипы) ---------- */
+// Навыки
 
-/** Чип навыка; `id: null` — ещё не сохранённый. `name` — в активной локали. `order` — с бэка. */
+/** `name` хранится в активной локали. */
 export interface SkillChip {
   readonly key: string;
   readonly id: string | null;
@@ -181,7 +171,6 @@ export interface SkillChip {
   readonly order: number;
 }
 
-/** Админ-навыки → чипы в активной локали. */
 export function buildSkillChips(items: readonly SkillAdmin[], locale: AppLanguage): SkillChip[] {
   return items.map((item) => ({
     key: item.id,
@@ -191,12 +180,10 @@ export function buildSkillChips(items: readonly SkillAdmin[], locale: AppLanguag
   }));
 }
 
-/** Новый пустой чип навыка (локальный, без id) — заполняется инлайн (order — на сохранении). */
 export function newSkillChip(): SkillChip {
   return { key: nextKey('new-skill'), id: null, name: '', order: 0 };
 }
 
-/** Чип + позиция → тело создания навыка (имя в активной локали, база ru заполнена). */
 export function skillChipToCreate(
   chip: SkillChip,
   locale: AppLanguage,
@@ -205,9 +192,9 @@ export function skillChipToCreate(
   return { name: nameInput(locale, chip.name.trim()), order };
 }
 
-/* ---------- Минимальный дифф порядка (расчёт — `planMinimalOrders` из shared/lib) ---------- */
+// Порядок
 
-/** Порядок технологий: последовательность = категории по порядку × чипы внутри. */
+/** Технологии идут подряд по категориям, а внутри категории в порядке чипов. */
 export function planTechOrders(
   categories: readonly TechCategory[],
   chips: readonly TechChip[],
@@ -219,23 +206,19 @@ export function planTechOrders(
   return planMinimalOrders(seq);
 }
 
-/** То же для плоского списка навыков. */
 export function planSkillOrders(skillChips: readonly SkillChip[]): Map<string, number> {
   return planMinimalOrders(skillChips);
 }
 
-/* ---------- Счётчик изменений (для бара «N в диффе») ---------- */
+// Счётчик изменений
 
-/** Имя категории чипа в активном состоянии (по `categoryKey`). */
 function categoryNameOf(categories: readonly TechCategory[], categoryKey: string): string {
   return categories.find((category) => category.key === categoryKey)?.name.trim() ?? '';
 }
 
 /**
- * Число изменений вкладки — ровно тех, что уйдут мутациями на сохранении: удаления +
- * новые записи + существующие со сменой категории или позиции (минимальный дифф порядка).
- * Имена технологий здесь не правятся. Совпадает с логикой контейнера ⇒ «N в диффе» = числу
- * запросов, поэтому удаление одного чипа даёт 1, а не перенумерацию всех.
+ * Считает ровно те изменения, что уйдут запросами при сохранении, по той же логике, что и
+ * контейнер. Так счётчик в баре совпадает с числом запросов: удаление одного чипа даёт 1.
  */
 export function countStackChanges(args: {
   readonly initialCategories: readonly TechCategory[];

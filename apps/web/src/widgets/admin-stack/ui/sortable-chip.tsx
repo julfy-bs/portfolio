@@ -8,7 +8,7 @@ import { Icon } from '@sutuzhko/ui-kit';
 import styles from './admin-stack.module.css';
 
 interface SortableChipProps {
-  /** Ключ чипа = id сортировки dnd-kit. */
+  /** Он же id для сортировки в dnd-kit. */
   readonly id: string;
   readonly name: string;
   readonly removeLabel: string;
@@ -16,10 +16,8 @@ interface SortableChipProps {
 }
 
 /**
- * Перетаскиваемый чип технологии (dnd-kit sortable). Слушатели перетаскивания
- * (мышь + клавиатура) висят на ручке-грипе, а не на всём чипе, поэтому чип не
- * становится вложенной кнопкой, а × остаётся отдельной кнопкой (без nested
- * interactive). Новый порядок сохраняется в `Technology.order`.
+ * Тянуть чип можно только за ручку. Если повесить обработчики на весь чип, он станет
+ * кнопкой, и кнопка удаления окажется вложенной в неё.
  */
 export function SortableChip({ id, name, removeLabel, onRemove }: SortableChipProps) {
   const { t } = useTranslation();
@@ -30,8 +28,8 @@ export function SortableChip({ id, name, removeLabel, onRemove }: SortableChipPr
   return (
     <span
       ref={setNodeRef}
-      // Только translate, без scale: у чипов разная ширина, и `CSS.Transform` добавил бы
-      // scaleX/scaleY (подгонка под соседа) — от этого текст масштабируется и «плывёт».
+      // Берём только translate. У чипов разная ширина, и `CSS.Transform` добавил бы
+      // scale, из-за которого текст растягивается при перетаскивании.
       style={{ transform: CSS.Translate.toString(transform), transition }}
       className={cn(styles.chip, styles.chipSortable, isDragging && styles.chipDragging)}
     >

@@ -14,13 +14,12 @@ interface GithubUserResponse {
   created_at: string;
 }
 
-const CACHE_TTL_MS = 10 * 60 * 1000; // 10 минут — GitHub лимитирует анонимные запросы (60/час)
+const CACHE_TTL_MS = 10 * 60 * 1000; // анонимно GitHub пускает только 60 запросов в час
 const REQUEST_TIMEOUT_MS = 5000;
 const DEFAULT_USERNAME = 'sutuzhko';
 
-// Ключевые языки профиля курируются на сервере: живая агрегация по всем репозиториям
-// (N+1 запросов к GitHub) слишком дорога под анонимным rate-limit. При необходимости
-// вынесем в env/CMS. Список — из макета активности.
+// Языки заданы вручную: собирать их по всем репозиториям значит делать запрос на каждый,
+// а анонимный лимит GitHub этого не выдержит.
 const TOP_LANGUAGES = ['JavaScript', 'TypeScript', 'React', 'Vue', 'Node'];
 
 @Injectable()

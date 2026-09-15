@@ -11,11 +11,7 @@ export interface ErrorStateProps {
   readonly className?: string;
 }
 
-/**
- * Состояние ошибки загрузки в стиле терминала: карточка с красной меткой
- * `// error`, сообщением и моно-кнопкой повтора. Единый вид ошибок на всех
- * экранах, привязанных к API.
- */
+/** Ошибка загрузки в терминальном стиле, общая для всех экранов, которые ходят в API. */
 export function ErrorState({ message, retryLabel, onRetry, className }: ErrorStateProps) {
   return (
     <div className={cn(styles.root, className)} role="alert">

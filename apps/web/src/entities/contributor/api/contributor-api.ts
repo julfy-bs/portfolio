@@ -3,10 +3,8 @@ import { apiSlice } from '@/shared/api';
 import type { ContributorAdmin, CreateContributor, UpdateContributor } from '../model/types';
 
 /**
- * Эндпоинты контрибьюторов (общий каталог участников проектов). Список — для
- * выбора в форме проекта; создание/правка/удаление — чтобы вести каталог прямо
- * при редактировании проекта. Мутации инвалидируют тег `Contributor`, поэтому
- * каталог перезапрашивается и изменения сразу видны в выборе.
+ * Общий каталог участников проектов. Его ведут прямо из формы проекта, поэтому мутации
+ * инвалидируют тег `Contributor` и список в выборе сразу обновляется.
  */
 export const contributorApi = apiSlice.injectEndpoints({
   endpoints: (build) => ({

@@ -16,7 +16,7 @@ const baseProps: MarkdownEditorProps = {
   ariaLabel: 'Полное описание',
 };
 
-/** Управляемая обёртка — чтобы ввод реально менял значение. */
+// Без своего состояния ввод в управляемый редактор ничего бы не менял.
 function ControlledEditor(overrides: Partial<MarkdownEditorProps> = {}) {
   const [value, setValue] = useState(overrides.value ?? '');
   return <MarkdownEditor {...baseProps} {...overrides} value={value} onChange={setValue} />;
@@ -40,7 +40,6 @@ describe('MarkdownEditor', () => {
     expect(screen.getByRole('textbox')).toBeInTheDocument();
     await userEvent.click(screen.getByRole('button', { name: 'preview' }));
     expect(screen.queryByRole('textbox')).not.toBeInTheDocument();
-    // Превью остаётся видимым.
     expect(screen.getByTestId('preview')).toHaveTextContent('тело');
   });
 

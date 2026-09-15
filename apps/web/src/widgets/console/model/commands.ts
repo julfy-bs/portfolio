@@ -19,9 +19,7 @@ import {
 } from './config';
 
 /**
- * Единый реестр команд консоли. Одно место владеет всем поведением терминала —
- * добавление команды не требует правок в UI. Раннеры (2048) и тосты подключат
- * свои команды сюда же по мере готовности фич.
+ * Реестр всех команд консоли. Чтобы добавить команду, UI трогать не нужно.
  */
 
 /** Строка истории консоли: приветствие, эхо ввода, вывод текста или справка. */
@@ -52,15 +50,15 @@ export interface CommandServices {
    * проекта или `null`, если запускаемого проекта с такой командой нет.
    */
   readonly runProject: (command: string) => string | null;
-  /** Доступен ли роут (для `cd`/`ls` — выключенные страницы «не существуют»). */
+  /** Для `cd` и `ls`: выключенные страницы делают вид, что их нет. */
   readonly isRouteEnabled: (path: string) => boolean;
   /** Закрыть консоль (для `cd`/`exit`). */
   readonly close: () => void;
 }
 
-/** Контекст выполнения одной команды: сервисы + разобранный ввод + вывод. */
+/** Контекст одной команды: сервисы, разобранный ввод и вывод. */
 export interface CommandContext extends CommandServices {
-  /** Токены ввода после имени команды (`theme dark` → `['dark']`). */
+  /** Токены ввода после имени команды (`theme dark` даёт `['dark']`). */
   readonly args: readonly string[];
   /** История введённых команд (для `history`). */
   readonly history: readonly string[];
@@ -88,7 +86,7 @@ function isThemeMode(value: string | undefined): value is ThemeMode {
   return THEME_MODES.includes(value as ThemeMode);
 }
 
-/** Первый аргумент `notify` может быть уровнем тоста (со синонимами ok/warn/err). */
+/** Первый аргумент `notify` может быть уровнем тоста (понимает и синонимы ok/warn/err). */
 const TOAST_TYPE_BY_TOKEN: Record<string, ToastType> = {
   info: 'info',
   success: 'success',
@@ -104,7 +102,7 @@ function parseToastType(token: string | undefined): ToastType | undefined {
   return TOAST_TYPE_BY_TOKEN[token.toLowerCase()];
 }
 
-/** Содержимое «файла» терминала: строка, `null` — профиль ещё грузится, `undefined` — нет файла. */
+/** Содержимое «файла»: `null`, пока профиль грузится, и `undefined`, если файла нет. */
 function readVirtualFile(file: string, profile: Profile | undefined): string | null | undefined {
   switch (file) {
     case 'stack.txt':
@@ -153,7 +151,7 @@ export const COMMANDS: readonly CommandDefinition[] = [
     descriptionKey: 'console.help.rows.ls',
     run: (ctx) => {
       const files = FS_FILES.join('   ');
-      // Выключенные страницы не показываем — как будто каталога нет.
+      // Выключенные страницы не показываем, будто такого каталога нет.
       const dirs = FS_DIRS.filter((dir) => {
         const path = resolveRoute(dir);
         return path === null || ctx.isRouteEnabled(path);
@@ -342,7 +340,7 @@ export const COMMANDS: readonly CommandDefinition[] = [
     usage: 'notify [type] <text>',
     descriptionKey: 'console.help.rows.notify',
     run: (ctx) => {
-      // Первый токен — необязательный уровень; остальное (или всё) — текст тоста.
+      // Первый токен может оказаться уровнем, тогда текст начинается со второго.
       const type = parseToastType(ctx.args[0]);
       const text = (type ? ctx.args.slice(1) : ctx.args).join(' ').trim();
       if (!text) {
@@ -362,7 +360,7 @@ export const COMMANDS: readonly CommandDefinition[] = [
         ctx.print(ctx.t('console.msg.runUsage'));
         return;
       }
-      // Проекты хранят полную команду (`run 2048`) — восстанавливаем её из ввода.
+      // У проектов хранится полная команда (`run 2048`), поэтому собираем её обратно из ввода.
       const command = ['run', ...ctx.args].join(' ');
       const project = ctx.runProject(command);
       if (project === null) {

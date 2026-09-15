@@ -4,10 +4,9 @@ import { Icon } from '@sutuzhko/ui-kit';
 
 import styles from './admin-localization.module.css';
 
-/** Локаль ячейки. */
 export type LocLocale = 'ru' | 'en';
 
-/** Подписи ячейки (переводятся в контейнере). */
+/** Переводятся в контейнере. */
 export interface LocCellLabels {
   readonly edit: string;
   readonly done: string;
@@ -19,11 +18,10 @@ export interface LocCellLabels {
 
 export interface LocCellProps {
   readonly locale: LocLocale;
-  /** Текущее эффективное значение (с учётом правок). */
+  /** Уже с учётом несохранённых правок. */
   readonly value: string;
-  /** Ячейка в режиме редактирования. */
   readonly editing: boolean;
-  /** Есть несохранённая правка. */
+  /** Есть правка, которая ещё не сохранена. */
   readonly pending: boolean;
   readonly labels: LocCellLabels;
   readonly onEdit: () => void;
@@ -31,11 +29,7 @@ export interface LocCellProps {
   readonly onCancel: () => void;
 }
 
-/**
- * Ячейка одной локали: просмотр значения (с карандашом и точкой «не сохранено»)
- * либо инлайн-редактор (textarea + Готово/Отмена, ⌘↵ / Esc). Черновик — локальный,
- * фиксируется в общий дифф только по «Готово».
- */
+/** Черновик живёт внутри ячейки и попадает в общий дифф только по кнопке «Готово». */
 export function LocCell({
   locale,
   value,
@@ -49,8 +43,7 @@ export function LocCell({
   const [draft, setDraft] = useState(value);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  // Входим в правку — берём текущее значение как черновик и ставим фокус в поле
-  // (через ref, а не autoFocus — чтобы не глушить jsx-a11y).
+  // Фокус ставим через ref, а не autoFocus, чтобы не отключать правило jsx-a11y.
   useEffect(() => {
     if (editing) {
       setDraft(value);

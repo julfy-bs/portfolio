@@ -1,4 +1,3 @@
-/* Форма = вертикальный стек карточек (профиль + статус), как в макете. */
 .form {
   display: flex;
   flex-direction: column;
@@ -47,7 +46,6 @@
   align-items: center;
 }
 
-/* Индикатор активной локали редактирования: подпись + бейдж RU/EN. */
 .editingLocale {
   display: inline-flex;
   gap: 6px;
@@ -63,7 +61,6 @@
   padding: 22px;
 }
 
-/* Блок аватара: превью инициалов + палитра цвета, отбит снизу разделителем. */
 .avatarRow {
   display: flex;
   gap: 18px;
@@ -91,7 +88,7 @@
   align-items: center;
 }
 
-/* Кнопка «Загрузить фото» — обёртка над скрытым file input. */
+/* Это label, внутри которого спрятан file input. */
 .uploadBtn {
   display: inline-flex;
   gap: 7px;
@@ -115,7 +112,7 @@
   color: var(--color-fg-muted);
 }
 
-/* Скрываем нативный file input, но оставляем в a11y-дереве (клик — по label). */
+/* Прячем визуально, но не из дерева доступности: кликают по label. */
 .fileInput {
   position: absolute;
   width: 1px;
@@ -142,7 +139,6 @@
   color: var(--color-error);
 }
 
-/* Поле резюме: подпись + строка действий (загрузить / текущий файл / убрать). */
 .cvField {
   display: flex;
   flex-direction: column;
@@ -198,7 +194,7 @@
   color: var(--color-fg-muted);
 }
 
-/* Редактор показателей над «Обо мне»: строки «значение + подпись» + добавление. */
+/* Показатели над блоком «Обо мне». */
 .highlights {
   display: flex;
   flex-direction: column;
@@ -264,7 +260,6 @@
   align-self: flex-start;
 }
 
-/* Карточка «Статус для работодателей» — отдельная от профиля, как в макете. */
 .statusCard {
   padding: 22px;
   background: var(--color-surface);

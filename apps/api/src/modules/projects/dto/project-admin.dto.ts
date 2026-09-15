@@ -22,7 +22,7 @@ import {
   LocalizedTextPatch,
 } from '../../../common/i18n/localized.dto';
 
-// Ссылка проекта: label локализован, href — общий.
+// Подпись ссылки переводится, адрес у всех языков один.
 export class ProjectLinkAdminDto {
   @ApiProperty({ type: () => LocalizedTextDto })
   label: LocalizedTextDto;

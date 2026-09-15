@@ -7,7 +7,7 @@ import * as axeMatchers from 'vitest-axe/matchers';
 
 expect.extend(axeMatchers);
 
-// jsdom не реализует ResizeObserver — no-op заглушка для компонентов, меряющих раскладку.
+// В jsdom нет ResizeObserver, а компонентам, которые меряют раскладку, хватает пустой заглушки.
 class ResizeObserverStub implements ResizeObserver {
   observe(): void {}
   unobserve(): void {}
@@ -15,7 +15,7 @@ class ResizeObserverStub implements ResizeObserver {
 }
 globalThis.ResizeObserver = ResizeObserverStub;
 
-// jsdom не реализует matchMedia — считаем окружение «десктопом с клавиатурой».
+// В jsdom нет matchMedia. Считаем, что тесты идут на десктопе с клавиатурой.
 window.matchMedia = (query: string): MediaQueryList =>
   ({
     matches: true,
@@ -28,7 +28,7 @@ window.matchMedia = (query: string): MediaQueryList =>
     dispatchEvent: () => false,
   }) as MediaQueryList;
 
-// jsdom не реализует object URL — нужен ImageCropper для превью выбранного файла.
+// В jsdom нет object URL, а ImageCropper строит через него превью выбранного файла.
 if (typeof URL.createObjectURL !== 'function') {
   URL.createObjectURL = () => 'blob:mock';
   URL.revokeObjectURL = () => {};

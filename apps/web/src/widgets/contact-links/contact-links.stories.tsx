@@ -28,7 +28,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Карточки каналов. play: название + очищенное значение ссылки; email — в почте, не в новой вкладке. */
+/** Карточки каналов. play: название, очищенное значение и что email не открывает новую вкладку. */
 export const Loaded: Story = {
   name: 'С данными',
   play: async ({ canvasElement }) => {
@@ -39,19 +39,19 @@ export const Loaded: Story = {
     const links = canvas.getAllByRole('link');
     const mailto = links.find((link) => link.getAttribute('href')?.startsWith('mailto:'));
     const external = links.find((link) => link.getAttribute('href')?.startsWith('https://t.me'));
-    // Внешняя ссылка открывается в новой вкладке, email (mailto) — нет.
+    // Внешняя ссылка открывается в новой вкладке, а mailto нет.
     await expect(external).toHaveAttribute('target', '_blank');
     await expect(mailto).not.toHaveAttribute('target');
   },
 };
 
-/** Профиль грузится — скелетон-плитки той же высоты. */
+/** Профиль грузится: скелетон-плитки той же высоты. */
 export const Loading: Story = {
   name: 'Ожидание данных (isLoading)',
   args: { isLoading: true },
 };
 
-/** Край: единственный канал — сетка не растягивает карточку. */
+/** Край: канал один, и сетка не растягивает карточку. */
 export const SingleChannel: Story = {
   name: 'Край: один канал',
   args: { contacts: [{ icon: 'telegram', url: 'https://t.me/sutuzhko' }] },

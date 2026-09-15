@@ -3,8 +3,7 @@ import { validate } from 'class-validator';
 
 import { UpdateProfileDto } from './update-profile.dto';
 
-// Проверяем контракт «редактируем активную локаль»: в PATCH локализованного поля
-// допустима только ru, только en или обе — валидация не требует парности.
+// Админка шлёт в PATCH только активную локаль, так что валидация не должна требовать обе.
 describe('UpdateProfileDto — патч одной локали', () => {
   it('принимает локализованное поле только с en', async () => {
     const dto = plainToInstance(UpdateProfileDto, { roleTitle: { en: 'Full Stack Developer' } });

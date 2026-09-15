@@ -12,7 +12,6 @@ interface AppProvidersProps {
   readonly children: ReactNode;
 }
 
-/** Композиция всех глобальных провайдеров приложения. */
 export function AppProviders({ children }: AppProvidersProps) {
   return (
     <WithStore>

@@ -1,9 +1,8 @@
 import type { ProfileContact } from './types';
 
 /**
- * @-ник из Telegram-контакта профиля (`https://t.me/sutuzhko` → `@sutuzhko`).
- * Ник владельца — данные с бэкенда (`profile.contacts`), а не хардкод/i18n.
- * Возвращает `undefined`, если Telegram-контакта нет или ссылка нераспознаваема.
+ * Ник из Telegram-контакта: `https://t.me/sutuzhko` превращается в `@sutuzhko`. Берём его
+ * из `profile.contacts`, а не из i18n. Если контакта нет или ссылка странная, `undefined`.
  */
 export function telegramHandle(
   contacts: readonly ProfileContact[] | undefined,

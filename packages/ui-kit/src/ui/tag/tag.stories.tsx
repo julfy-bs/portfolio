@@ -40,7 +40,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Песочница. play подтверждает главное свойство: это `<span>`, а не кнопка — метка read-only. */
+/** Песочница. play проверяет, что это `<span>`, а не кнопка: метка только для чтения. */
 export const Playground: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -79,7 +79,7 @@ export const Tones: Story = {
   ),
 };
 
-/** Исчерпывающая матрица форма × тон — все четыре комбинации сразу. */
+/** Все четыре сочетания формы и тона. */
 export const Matrix: Story = {
   name: 'Матрица: форма × тон',
   parameters: { controls: { disable: true } },
@@ -133,7 +133,7 @@ export const InContext: Story = {
   ),
 };
 
-/** Край: длинное название не ломает ряд — перенос на стороне контейнера. */
+/** Край: длинное название не ломает ряд, переносом занимается контейнер. */
 export const LongLabel: Story = {
   name: 'Край: длинное название',
   args: { children: 'react-server-components-experimental' },

@@ -9,21 +9,17 @@ const noop = () => undefined;
 
 export interface ResumeBannerProps {
   /**
-   * Ссылка на PDF-резюме из профиля. `undefined` — грузится (скелетон),
-   * `null` — резюме нет (баннер скрыт), строка — показываем баннер.
+   * Ссылка на PDF из профиля. `undefined` значит, что профиль грузится, а `null`, что
+   * резюме нет и баннер не нужен.
    */
   readonly cvUrl?: string | null;
   readonly isLoading?: boolean;
-  /** Скачать резюме — действие владеет контейнер страницы. */
+  /** Само скачивание делает страница. */
   readonly onDownload?: () => void;
   readonly className?: string;
 }
 
-/**
- * Баннер скачивания резюме (макет: CONTACT → «Резюме (PDF)»). Отдельный блок под
- * карточками контактов: заголовок, описание и кнопка «Скачать резюме». Наличие
- * файла определяет `cvUrl` (приходит с бэкенда), пока грузится — скелетон.
- */
+/** Баннер со ссылкой на резюме под карточками контактов. Показывается, только если есть `cvUrl`. */
 export function ResumeBanner({
   cvUrl,
   isLoading,
@@ -54,7 +50,7 @@ export function ResumeBanner({
 function ResumeBannerSkeleton({ className }: { readonly className?: string }) {
   return (
     <section className={cn(styles.banner, className)} aria-busy="true" aria-live="polite">
-      {/* Строки-заглушки повторяют заголовок + описание, чтобы баннер не прыгал. */}
+      {/* Заглушки повторяют заголовок и описание, чтобы баннер не прыгал. */}
       <div className={styles.skeletonBody}>
         <Skeleton width="150px" height="20px" />
         <Skeleton width="min(320px, 70%)" height="15px" />

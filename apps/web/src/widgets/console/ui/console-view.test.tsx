@@ -60,7 +60,7 @@ describe('ConsoleView', () => {
       { id: 1, kind: 'help' },
     ];
     const { container } = renderView({ entries });
-    // `whoami` встречается и в приветствии, и в справке — сверяем по списку <dt>.
+    // `whoami` встречается и в приветствии, и в справке, поэтому сверяем по списку <dt>.
     const usages = Array.from(container.querySelectorAll('dt'), (dt) => dt.textContent);
     expect(usages).toContain('theme [dark|light]');
     expect(usages).toContain('cat <file>');

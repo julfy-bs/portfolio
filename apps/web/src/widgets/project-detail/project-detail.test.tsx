@@ -24,7 +24,7 @@ describe('ProjectDetail', () => {
   it('участник со ссылкой кликабелен, без ссылки — обычная строка', () => {
     renderWithProviders(<ProjectDetail project={mockProjectDetail} />);
 
-    // У Богдана в моке есть link → строка команды становится ссылкой в новую вкладку.
+    // У Богдана в моке есть link, поэтому его строка открывается ссылкой в новой вкладке.
     const member = screen.getByRole('link', { name: /Богдан Сутужко/ });
     expect(member).toHaveAttribute('href', 'https://github.com/sutuzhko');
     expect(member).toHaveAttribute('target', '_blank');

@@ -4,8 +4,7 @@ import { IsString, ValidateNested } from 'class-validator';
 
 import { LocalizedTextDto, LocalizedTextInput } from '../../../common/i18n/localized.dto';
 
-// Ключевой показатель под «Обо мне»: крупное значение + локализованная подпись.
-// Публичный ответ — подпись уже в нужной локали.
+// Показатель в блоке «Обо мне». В публичном ответе подпись уже переведена.
 export class ProfileHighlightDto {
   @ApiProperty({ description: 'значение показателя, напр. "3+" или "C1"' })
   value: string;
@@ -14,7 +13,7 @@ export class ProfileHighlightDto {
   label: string;
 }
 
-// Тот же показатель для CMS: подпись — обеими локалями.
+// Для админки подпись нужна сразу на обоих языках.
 export class ProfileHighlightAdminDto {
   @ApiProperty()
   value: string;
@@ -23,7 +22,6 @@ export class ProfileHighlightAdminDto {
   label: LocalizedTextDto;
 }
 
-// Показатель во входных данных admin-запроса.
 export class ProfileHighlightInput {
   @ApiProperty()
   @IsString()

@@ -17,8 +17,8 @@ const CACHE_TTL_MS = 10 * 60 * 1000; // 10 минут
 const REQUEST_TIMEOUT_MS = 5000;
 const DEFAULT_USERNAME = 'sutuzhko';
 
-// Пороги общего score для каждого ранга kyu (официальная прогрессия Codewars).
-// По ним считаем прогресс до следующего ранга для полоски в карточке активности.
+// Официальные пороги score по рангам. API их не отдаёт, а без них не посчитать
+// прогресс до следующего kyu.
 const KYU_SCORE_THRESHOLDS: Record<number, number> = {
   8: 0,
   7: 20,
@@ -30,8 +30,7 @@ const KYU_SCORE_THRESHOLDS: Record<number, number> = {
   1: 13147,
 };
 
-// Прогресс (0–100 %) от текущего ранга к следующему и номер следующего kyu.
-// Для 1 kyu (высший до dan) следующего нет — nextKyu = null, прогресс 100 %.
+// Прогресс в процентах. После 1 kyu начинаются dan, их не считаем и показываем 100.
 function rankProgress(kyu: number, score: number): { nextKyu: number | null; progress: number } {
   const nextKyu = kyu > 1 ? kyu - 1 : null;
   if (nextKyu === null) return { nextKyu: null, progress: 100 };
@@ -81,7 +80,7 @@ export class CodewarsStatsService {
     }
 
     const data = (await response.json()) as CodewarsUserResponse;
-    // Codewars отдаёт ранг отрицательным числом (−3 = 3 kyu); приводим к положительному.
+    // kyu-ранги Codewars отдаёт отрицательными: -3 означает 3 kyu.
     const kyu = Math.abs(data.ranks.overall.rank);
     const { nextKyu, progress } = rankProgress(kyu, data.ranks.overall.score);
 

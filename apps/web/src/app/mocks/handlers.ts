@@ -11,13 +11,12 @@ import { skillHandlers, skillAdminHandlers } from '@/entities/skill/mocks';
 import { statsHandlers } from '@/entities/stats/mocks';
 import { technologyAdminHandlers, technologyHandlers } from '@/entities/technology/mocks';
 
-/** Все MSW-обработчики приложения, собранные из публичных API сущностей. */
 export const handlers = [
   ...profileHandlers,
   ...profileAdminHandlers,
   ...statsHandlers,
-  // Админ-хендлеры раньше публичных: `GET /projects/admin` не должен перехватываться
-  // параметрическим `GET /projects/:slug` (иначе slug='admin' → 404).
+  // Админские хендлеры идут первыми, иначе `GET /projects/admin` попадёт в
+  // `GET /projects/:slug` со slug='admin' и получит 404.
   ...projectAdminHandlers,
   ...contributorHandlers,
   ...projectHandlers,

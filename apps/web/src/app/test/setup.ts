@@ -21,7 +21,7 @@ import { server } from '../mocks/server';
 
 expect.extend(axeMatchers);
 
-// jsdom не реализует ResizeObserver — no-op заглушка для замеров раскладки (теги featured).
+// В jsdom нет ResizeObserver, а на нём держится замер тегов в featured-карточках.
 class ResizeObserverStub implements ResizeObserver {
   observe(): void {}
   unobserve(): void {}
@@ -29,7 +29,7 @@ class ResizeObserverStub implements ResizeObserver {
 }
 globalThis.ResizeObserver = ResizeObserverStub;
 
-// jsdom не реализует matchMedia — считаем окружение «десктопом с клавиатурой».
+// В jsdom нет matchMedia. Отвечаем true на всё, как на десктопе с клавиатурой.
 window.matchMedia = (query: string): MediaQueryList =>
   ({
     matches: true,
@@ -42,20 +42,19 @@ window.matchMedia = (query: string): MediaQueryList =>
     dispatchEvent: () => false,
   }) as MediaQueryList;
 
-// Детерминированная платформа для ярлыка консоли (⌘K).
+// От платформы зависит подпись хоткея консоли, фиксируем Mac.
 Object.defineProperty(navigator, 'platform', { value: 'MacIntel', configurable: true });
 
-// jsdom не реализует object URL — заглушки для кадрирования аватара (превью файла).
+// В jsdom нет object URL, а он нужен превью при кадрировании аватара.
 if (typeof URL.createObjectURL !== 'function') {
   URL.createObjectURL = () => 'blob:mock';
   URL.revokeObjectURL = () => {};
 }
 
-// Детерминированный основной язык (ru): в jsdom navigator=en, поэтому подписи из
-// t() съезжали бы на английский. Сеем локаль до инициализации i18n-детектора.
+// В jsdom navigator отдаёт en, поэтому ставим ru до инициализации детектора языка.
 localStorage.setItem(languageStorageKey, 'ru');
 
-// Поднимаем MSW один раз на прогон; необработанные запросы — ошибка теста.
+// Запрос без обработчика валит тест, чтобы не пропустить забытый мок.
 beforeAll(() => {
   server.listen({ onUnhandledRequest: 'error' });
 });
@@ -73,12 +72,12 @@ afterEach(() => {
   resetMockProjects();
   resetMockContributors();
   cleanup();
-  // Тесты, переключающие локаль, не должны протекать в соседние — возвращаем ru.
-  // Только если i18n уже инициализирован (часть UI-тестов рендерит без провайдера).
+  // Возвращаем ru после тестов, которые переключали язык. Часть UI-тестов рендерит
+  // без провайдера, и i18n там может быть не инициализирован.
   if (i18n.isInitialized && i18n.resolvedLanguage !== 'ru') {
     void i18n.changeLanguage('ru');
   }
-  // Скролл-шпион мог выставить хэш — очищаем, чтобы не протекало между тестами.
+  // Хэш мог остаться от скролл-шпиона.
   if (window.location.hash) {
     window.history.replaceState(null, '', window.location.pathname);
   }

@@ -29,7 +29,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Песочница. play проверяет тег по умолчанию — заголовок секции `<h2>`. */
+/** Песочница. play проверяет, что по умолчанию рендерится `<h2>`. */
 export const Playground: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -37,7 +37,7 @@ export const Playground: Story = {
   },
 };
 
-/** Метки секций главной — единый «кодовый» акцент. */
+/** Метки секций главной страницы. */
 export const Sections: Story = {
   name: 'Метки секций',
   render: () => (
@@ -50,7 +50,7 @@ export const Sections: Story = {
   ),
 };
 
-/** Разные семантические теги при одном визуале (для вложенных секций / готового заголовка). */
+/** Один вид на разных тегах: для вложенных секций или когда заголовок уже есть. */
 export const Tags: Story = {
   name: 'Семантические теги',
   parameters: { controls: { disable: true } },

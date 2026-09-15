@@ -17,7 +17,7 @@ export class SkillsService {
     return items.map((item) => ({ id: item.id, name: localize(item.name, locale) }));
   }
 
-  // --- admin ---
+  // Админка
 
   async listAdmin(): Promise<SkillAdminDto[]> {
     const items = await this.prisma.skill.findMany({ orderBy: { order: 'asc' } });
@@ -32,7 +32,7 @@ export class SkillsService {
   }
 
   async update(id: string, dto: UpdateSkillDto): Promise<SkillAdminDto> {
-    // Текущее значение — чтобы патч одной локали не затирал вторую (mergeText).
+    // Текущая запись нужна, чтобы патч одной локали не затёр вторую.
     const current = await this.load(id);
     const data: Prisma.SkillUpdateInput = {};
     if (dto.name !== undefined) data.name = mergeText(current.name, dto.name);
@@ -47,8 +47,7 @@ export class SkillsService {
     await this.prisma.skill.delete({ where: { id } });
   }
 
-  // Возвращает навык или бросает 404; строку переиспользуют мёрж локали в
-  // update и проверка существования в remove.
+  // Бросает 404. Возвращает строку, чтобы update мог смёржить локаль без второго запроса.
   private async load(id: string): Promise<Skill> {
     const skill = await this.prisma.skill.findUnique({ where: { id } });
     if (!skill) {

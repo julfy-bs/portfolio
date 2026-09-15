@@ -4,9 +4,8 @@ import type { AppLanguage } from '@/shared/config';
 import type { CreateSkill, Skill, SkillAdmin, UpdateSkill } from '../model/types';
 
 /**
- * Эндпоинты навыков. Публичный список локализован (язык в аргументе). Мутации
- * админки инвалидируют тег `Skill` → и админ-список, и публичный `getSkills`
- * перезапрашиваются, поэтому экран «Опыт» сразу отражает правки.
+ * Публичный список локализован, язык передаётся аргументом. Мутации инвалидируют тег
+ * `Skill`, так что экран «Опыт» сразу видит правки.
  */
 export const skillApi = apiSlice.injectEndpoints({
   endpoints: (build) => ({

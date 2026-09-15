@@ -7,4 +7,4 @@ export {
 } from './api/contributor-api';
 export type { ContributorAdmin, CreateContributor, UpdateContributor } from './model/types';
 
-// Моки живут в отдельной точке входа './mocks' — чтобы msw не попадал в прод-бандл.
+// Моки лежат в отдельной точке входа './mocks', чтобы msw не попал в прод-бандл.

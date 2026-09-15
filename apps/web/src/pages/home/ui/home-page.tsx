@@ -11,15 +11,11 @@ import { useConsole } from '@/widgets/console';
 
 import { HomePageView } from './home-page-view';
 
-// Якоря крупных секций главной: попадают в хэш URL при скролле (скролл-шпион).
-// Баннер доступности `now` имеет id для прямых ссылок, но в шпионе не участвует —
-// он короткий и у низа страницы перекрывается «featured».
+// Якоря крупных секций, при скролле попадают в хэш URL. У баннера `now` тоже есть id
+// для прямых ссылок, но в шпион он не входит: он короткий, и у низа страницы его
+// перекрывает «featured».
 const SECTION_IDS = ['about', 'stack', 'activity', 'featured'] as const;
 
-/**
- * Контейнер главной: оркеструет запросы (профиль, статистика, проекты),
- * скролл-шпион и навигацию, отдаёт данные презентационному `HomePageView`.
- */
 export function HomePage() {
   const navigate = useNavigate();
   const { open: openConsole } = useConsole();

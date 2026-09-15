@@ -14,7 +14,6 @@ import {
 import styles from './terminal-card.module.css';
 
 export interface TerminalCardProps {
-  /** Открыть консоль по клику на «плашку». */
   readonly onOpenConsole: () => void;
   readonly className?: string;
 }
@@ -28,15 +27,11 @@ function Prompt() {
   );
 }
 
-/**
- * Терминал-карточка героя (правая колонка макета): «оконный» хром (декоративный
- * `WindowChrome` + заголовок), тело с командами и плашка-приглашение открыть
- * консоль. Содержимое терминала — статичный флейвор из конфига.
- */
+/** Декоративный терминал в герое. Содержимое берётся из конфига, плашка открывает консоль. */
 export function TerminalCard({ onOpenConsole, className }: TerminalCardProps) {
   const { t } = useTranslation();
   const clock = useMoscowClock();
-  // На тач-устройствах нет клавиатурных шорткатов — вместо ⌘K показываем «нажмите».
+  // На тач-устройствах шорткатов нет, поэтому вместо сочетания клавиш пишем «нажмите».
   const hasKeyboard = useHasKeyboard();
 
   return (

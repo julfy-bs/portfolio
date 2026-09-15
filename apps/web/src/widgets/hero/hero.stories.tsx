@@ -55,7 +55,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Полный герой. play: идентичность, печатающая строка и все три CTA + плашка консоли. */
+/** Герой целиком. play: идентичность, печатающая строка, три CTA и плашка консоли. */
 export const Playground: Story = {
   play: async ({ canvasElement, userEvent, args, step }) => {
     const canvas = within(canvasElement);
@@ -79,7 +79,7 @@ export const Playground: Story = {
   },
 };
 
-/** Контент профиля под скелетоном; CTA и терминал доступны сразу. */
+/** Контент профиля под скелетоном, а CTA и терминал доступны сразу. */
 export const Loading: Story = {
   name: 'Скелетон загрузки контента',
   args: { isLoading: true },

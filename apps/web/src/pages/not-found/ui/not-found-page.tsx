@@ -5,7 +5,6 @@ import { routePaths } from '@/shared/config';
 
 import styles from './not-found-page.module.css';
 
-/** Страница 404. */
 export function NotFoundPage() {
   const { t } = useTranslation();
 

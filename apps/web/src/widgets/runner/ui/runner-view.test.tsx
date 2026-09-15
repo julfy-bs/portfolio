@@ -50,7 +50,7 @@ describe('RunnerView', () => {
     vi.useFakeTimers();
     try {
       const { props } = renderView({ loadTimeoutMs: 1000 });
-      // До таймаута — обычный iframe, без ошибки.
+      // До таймаута обычный iframe, ошибки нет.
       expect(screen.getByTitle('Игра: 2048')).toBeInTheDocument();
       expect(screen.queryByRole('alert')).not.toBeInTheDocument();
 
@@ -60,7 +60,7 @@ describe('RunnerView', () => {
 
       const alert = screen.getByRole('alert');
       expect(alert).toHaveTextContent(/не удалось запустить «Игра: 2048»/i);
-      // iframe убран — вместо вечного спиннера показана заглушка.
+      // iframe убран, вместо спиннера заглушка.
       expect(screen.queryByTitle('Игра: 2048')).not.toBeInTheDocument();
       expect(props.onError).toHaveBeenCalledTimes(1);
     } finally {
@@ -93,7 +93,7 @@ describe('RunnerView', () => {
 
   it('нет нарушений доступности', async () => {
     const { container } = renderView();
-    // iframes:false — axe не заходит внутрь встроенного проекта (чужой origin).
+    // iframes:false, потому что внутри встроенный проект с чужого origin и axe туда не пустят.
     expect(await axe(container, { iframes: false })).toHaveNoViolations();
   });
 });

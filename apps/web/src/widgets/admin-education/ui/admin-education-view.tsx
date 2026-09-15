@@ -10,7 +10,6 @@ import { emptyRow, hasRowErrors, validateRow, type EducationRow } from '../model
 import { EducationPeriod } from './education-period';
 import styles from './admin-education.module.css';
 
-// Секции вкладки по типу записи (порядок и подписи — из макета).
 const SECTIONS: readonly { type: EducationType; titleKey: string; addKey: string }[] = [
   { type: 'MAIN', titleKey: 'admin.education.mainTitle', addKey: 'admin.education.addMain' },
   {
@@ -22,18 +21,12 @@ const SECTIONS: readonly { type: EducationType; titleKey: string; addKey: string
 
 export interface AdminEducationViewProps {
   readonly rows: readonly EducationRow[];
-  /** Идёт сохранение — блокируем действия. */
   readonly isBusy: boolean;
-  /** Сохранение: текущие строки + id удалённых записей (диф считает контейнер). */
+  /** Разницу со старыми данными считает контейнер. */
   readonly onSave: (rows: readonly EducationRow[], deletedIds: readonly string[]) => void;
 }
 
-/**
- * Вкладка «Образование»: всегда редактируемые карточки по двум секциям (высшее /
- * курсы) + пакетное «Сохранить». Локализованные поля правятся в активной локали,
- * период — два поля-месяца; контейнер по разнице строк шлёт create/update/delete.
- * Презентационная.
- */
+/** Карточки всегда в режиме правки, а все изменения уходят одним сохранением. */
 export function AdminEducationView({ rows: initialRows, isBusy, onSave }: AdminEducationViewProps) {
   const { t } = useTranslation();
   const [rows, setRows] = useState<EducationRow[]>(() => [...initialRows]);
@@ -50,14 +43,12 @@ export function AdminEducationView({ rows: initialRows, isBusy, onSave }: AdminE
     if (id !== null) setDeletedIds((prev) => [...prev, id]);
   };
 
-  // Отмена: вернуть строки к загруженным и забыть удаления.
   const cancel = (): void => {
     setRows([...initialRows]);
     setDeletedIds([]);
   };
 
-  // Счётчик правок (для бара «N в диффе»): удаления + новые строки + изменённые.
-  // Строка, отредактированная обратно к исходному значению, не считается.
+  // Строку, которую вернули к исходному значению, в счётчике не учитываем.
   const initialById = useMemo(
     () => new Map(initialRows.map((row) => [row.id, row])),
     [initialRows],
@@ -65,8 +56,8 @@ export function AdminEducationView({ rows: initialRows, isBusy, onSave }: AdminE
   const changeCount =
     deletedIds.length +
     rows.reduce((count, row) => {
-      // Новая строка считается изменением только с заполненным названием (иначе
-      // create не уйдёт — как в контейнере), чтобы «N в диффе» = числу запросов.
+      // Контейнер не создаёт запись без названия, так что и считать её не надо,
+      // иначе счётчик разойдётся с числом запросов.
       if (row.id === null) return row.degree.trim() !== '' ? count + 1 : count;
       const initial = initialById.get(row.id);
       if (initial === undefined) return count;

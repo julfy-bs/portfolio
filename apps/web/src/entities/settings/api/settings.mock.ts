@@ -25,15 +25,13 @@ const initialSettings: Settings = {
 // Состояние настроек мока: PATCH мутирует между запросами одного прогона.
 let settings: Settings = initialSettings;
 
-/** Сбрасывает настройки мока — для изоляции тестов. */
+/** Сбрасывает настройки мока, чтобы тесты не зависели друг от друга. */
 export function resetMockSettings(): void {
   settings = initialSettings;
 }
 
-/** Фикстура настроек — для тестов/историй. */
 export const mockSettings = initialSettings;
 
-/** MSW-обработчики настроек: чтение и частичный PATCH. */
 export const settingsHandlers = [
   http.get(`${env.apiBaseUrl}/settings`, () => HttpResponse.json(settings)),
   http.patch<Record<string, never>, UpdateSettings>(

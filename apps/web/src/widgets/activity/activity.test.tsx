@@ -38,7 +38,7 @@ describe('Activity', () => {
     expect(screen.getByText('18')).toBeInTheDocument();
     expect(screen.getByText('Codewars')).toBeInTheDocument();
     expect(screen.getByText('3 kyu')).toBeInTheDocument();
-    // Число форматируется с разделителем тысяч (ru → неразрывный пробел).
+    // В ru тысячи отделяются неразрывным пробелом.
     expect(screen.getByText('33 322')).toBeInTheDocument();
     // Прогресс до следующего ранга.
     expect(screen.getByText('до 2 kyu')).toBeInTheDocument();

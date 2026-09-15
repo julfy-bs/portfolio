@@ -9,7 +9,7 @@ import { cn } from '@/shared/lib';
 
 import styles from './admin-projects.module.css';
 
-/** Заливка чипа участника: градиент из его цвета аватара (иначе — нейтральная). */
+// Без цвета чип остаётся нейтральным, со цветом получает градиент как у аватара.
 function chipFill(color: string | null): CSSProperties | undefined {
   if (!color) return undefined;
   return {
@@ -20,13 +20,13 @@ function chipFill(color: string | null): CSSProperties | undefined {
 }
 
 interface SortableContributorChipProps {
-  /** id участника = id сортировки dnd-kit. */
+  /** Он же id для dnd-kit. */
   readonly id: string;
   readonly label: string;
   readonly color: string | null;
-  /** Выбран для текущего проекта. */
+  /** Участник выбран для текущего проекта. */
   readonly selected: boolean;
-  /** Открыта форма правки именно этого участника. */
+  /** Форма правки открыта именно для этого участника. */
   readonly editing: boolean;
   readonly disabled: boolean;
   readonly onToggle: () => void;
@@ -34,10 +34,8 @@ interface SortableContributorChipProps {
 }
 
 /**
- * Чип участника в каталоге проекта: ручка перетаскивания (dnd-kit sortable), тоггл
- * выбора для проекта и карандаш правки. Слушатели перетаскивания висят только на
- * ручке — тоггл и карандаш остаются обычными кнопками (без вложенных интерактивов).
- * Порядок каталога глобальный: в нём же участники идут на публичных плитках и в детали.
+ * Слушатели перетаскивания висят только на ручке, чтобы не вкладывать интерактивные элементы
+ * друг в друга: переключатель и карандаш остаются обычными кнопками.
  */
 export function SortableContributorChip({
   id,
@@ -58,8 +56,8 @@ export function SortableContributorChip({
   return (
     <span
       ref={setNodeRef}
-      // Только translate, без scale: у чипов разная ширина, и `CSS.Transform` добавил бы
-      // scaleX/scaleY (подгонка под соседа) — от этого текст масштабируется и «плывёт».
+      // Только translate, без scale. Чипы разной ширины, и `CSS.Transform` подгонял бы их
+      // под соседа через scaleX/scaleY, из-за чего текст растягивается и плывёт.
       style={{ transform: CSS.Translate.toString(transform), transition }}
       className={cn(styles.chipWrap, isDragging && styles.chipDragging)}
     >

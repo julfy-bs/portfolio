@@ -8,18 +8,13 @@ import styles from './admin-page.module.css';
 export interface AdminPageViewProps {
   readonly tabs: readonly TabItem[];
   readonly activeTab: string;
-  /** Доступное имя активной панели (название вкладки). */
+  /** Доступное имя активной панели, то есть название вкладки. */
   readonly activeLabel: string;
   readonly onTabChange: (id: string) => void;
   readonly onBack: () => void;
-  /** Контент активной вкладки. */
   readonly children: ReactNode;
 }
 
-/**
- * Оболочка личного кабинета: шапка, полоса вкладок и панель активной вкладки.
- * Презентационная — активная вкладка и её контент приходят пропами.
- */
 export function AdminPageView({
   tabs,
   activeTab,

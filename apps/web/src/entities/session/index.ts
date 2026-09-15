@@ -8,4 +8,4 @@ export {
 export { useAuth, type AuthState } from './model/use-auth';
 export type { AuthUser, LoginCredentials, UserRole, ChangePassword } from './model/types';
 
-// Моки живут в отдельной точке входа './mocks' — чтобы msw не попадал в прод-бандл.
+// Моки лежат в отдельной точке входа './mocks', чтобы msw не попал в прод-бандл.

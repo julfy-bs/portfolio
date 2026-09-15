@@ -9,17 +9,12 @@ const SKELETON_COUNT = 6;
 export interface ProjectListProps {
   readonly projects: readonly ProjectListItem[];
   readonly isLoading?: boolean;
-  /** Открыть проект по slug. */
   readonly onOpen: (slug: string) => void;
-  /** Сбросить фильтры из пустого состояния. */
+  /** Кнопка сброса в пустом состоянии. */
   readonly onClearFilters: () => void;
 }
 
-/**
- * Сетка карточек проектов (макет: PROJECTS grid). Презентационна: получает уже
- * отфильтрованный список. Три состояния — скелетоны при загрузке, пустое
- * состояние при нуле результатов и сама сетка. Плитка — доменный `ProjectTile`.
- */
+/** Сетка проектов. Фильтрует страница, сюда приходит уже готовый список. */
 export function ProjectList({ projects, isLoading, onOpen, onClearFilters }: ProjectListProps) {
   if (isLoading) {
     return (

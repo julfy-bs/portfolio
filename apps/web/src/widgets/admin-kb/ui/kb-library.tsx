@@ -13,7 +13,7 @@ export interface KbLibraryProps {
   readonly tree: DatabaseTree;
   readonly selectedSlug: string | null;
   readonly onSelectArticle: (slug: string) => void;
-  /** Открыть редактор новой статьи (в папке или в корне при `null`). */
+  /** `null` создаёт статью в корне. */
   readonly onNewArticle: (folderId: string | null) => void;
   readonly onCreateFolder: (name: string, parentId: string | null) => void;
   readonly onRenameFolder: (id: string, name: string) => void;
@@ -28,7 +28,7 @@ interface RenameState {
   readonly id: string;
   readonly kind: 'folder' | 'article';
   readonly value: string;
-  /** Исходное имя — чтобы не слать мутацию, если ничего не изменилось. */
+  /** Нужно, чтобы не слать мутацию, если имя не поменялось. */
   readonly original: string;
 }
 
@@ -37,7 +37,6 @@ interface NewFolderState {
   readonly parentId: string;
 }
 
-/** Левая панель БЗ: шапка со счётчиками и кнопками, форма новой папки и дерево. */
 export function KbLibrary({
   tree,
   selectedSlug,
@@ -64,7 +63,6 @@ export function KbLibrary({
 
   const newFolderInputRef = useRef<HTMLInputElement>(null);
   const isNewFolderOpen = newFolder !== null;
-  // Фокус в поле имени, как только форма новой папки раскрылась.
   useEffect(() => {
     if (isNewFolderOpen) newFolderInputRef.current?.focus();
   }, [isNewFolderOpen]);
@@ -80,7 +78,6 @@ export function KbLibrary({
   const commitRename = (): void => {
     if (rename === null) return;
     const value = rename.value.trim();
-    // Шлём мутацию только при реальном изменении непустого имени.
     if (value.length > 0 && value !== rename.original) {
       if (rename.kind === 'folder') onRenameFolder(rename.id, value);
       else onRenameArticle(rename.id, value);

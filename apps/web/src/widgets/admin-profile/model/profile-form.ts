@@ -11,10 +11,10 @@ import type {
 } from '@/entities/profile';
 import type { AppLanguage } from '@/shared/config';
 
-/** Порядок вариантов доступности (для карточек статуса). */
+/** В этом порядке показываются карточки статуса. */
 export const AVAILABILITY_OPTIONS: readonly AvailabilityStatus[] = ['ACTIVE', 'OPEN', 'NOTLOOKING'];
 
-/** Палитра цвета аватара (совпадает с палитрой плиток из макета). */
+/** Та же палитра, что у плиток проектов. */
 export const AVATAR_COLORS: readonly string[] = [
   '#238636',
   '#3c97e8',
@@ -26,11 +26,9 @@ export const AVATAR_COLORS: readonly string[] = [
 ];
 
 /**
- * Схема формы профиля. Локализованные поля правятся в АКТИВНОЙ локали (одно поле,
- * не пара RU/EN): язык берётся из приложения. Обязательность локализованного поля
- * держим только для базовой локали `ru` — при правке `en` пустое значение
- * допустимо (перевод может отсутствовать). Сообщения локализуются, поэтому схема —
- * фабрика от `t` и текущей локали.
+ * Локализованные поля правятся в активной локали приложения. Обязательны они только для
+ * `ru`: перевода на en может и не быть. Схема собирается от `t`, потому что сообщения
+ * об ошибках тоже переводятся.
  */
 export function createProfileSchema(t: TFunction, locale: AppLanguage) {
   const requiredForBase = (message: string) =>
@@ -41,9 +39,8 @@ export function createProfileSchema(t: TFunction, locale: AppLanguage) {
     projectsIntro: z.string(),
     experienceIntro: z.string(),
     contactIntro: z.string(),
-    // Показатели над «Обо мне»: значение + подпись в активной локали. `labelOther`
-    // несёт вторую (скрытую) локаль, чтобы одноязычная правка не затирала перевод —
-    // highlights бэкенд перезаписывает целым массивом, а не мёржит по элементу.
+    // Бэкенд перезаписывает highlights целым массивом и не мёржит элементы, поэтому
+    // вторую локаль носим в `labelOther`, иначе правка на одном языке затрёт перевод.
     highlights: z.array(
       z.object({
         value: z.string(),
@@ -73,22 +70,21 @@ export function createProfileSchema(t: TFunction, locale: AppLanguage) {
 
 export type ProfileFormValues = z.infer<ReturnType<typeof createProfileSchema>>;
 
-/** Значение локализованного текста в нужной локали (фолбэк на ru). */
+// Без перевода на en показываем ru.
 function pick(text: LocalizedText | null | undefined, locale: AppLanguage): string {
   if (!text) return '';
   return (locale === 'en' ? text.en : text.ru) ?? text.ru ?? '';
 }
 
-/** Значение НЕактивной локали (несём как есть, без фолбэка — чтобы не дублировать). */
+// Здесь фолбэка нет, иначе ru скопируется в en при следующем сохранении.
 function pickOther(text: LocalizedText | null | undefined, locale: AppLanguage): string {
   if (!text) return '';
   return (locale === 'en' ? text.ru : text.en) ?? '';
 }
 
 /**
- * Собирает `LocalizedTextInput` подписи показателя из активной и второй локали.
- * `ru` обязателен на бэке — если он не заполнен (новый показатель, введён в EN),
- * дублируем активное значение, чтобы запись прошла валидацию.
+ * Бэк требует `ru`. Если показатель новый и введён на en, ru ещё пуст, и мы подставляем
+ * туда то же значение, чтобы пройти валидацию.
  */
 function buildHighlightLabel(
   locale: AppLanguage,
@@ -101,17 +97,15 @@ function buildHighlightLabel(
   return other ? { ru: active, en: other } : { ru: active };
 }
 
-/** Патч одной локали: в тело PATCH уходит только активный язык, второй мёржится на бэке. */
+// Шлём только активный язык, второй бэк сохранит сам при мёрже.
 function localePatch(locale: AppLanguage, value: string): { ru?: string; en?: string } {
   return locale === 'en' ? { en: value } : { ru: value };
 }
 
-/** URL контакта по иконке (telegram/github) или пустая строка. */
 function findContactUrl(contacts: ProfileAdmin['contacts'], icon: string): string {
   return contacts.find((contact) => contact.icon === icon)?.url ?? '';
 }
 
-/** Админ-профиль → значения формы в активной локали. */
 export function profileToForm(profile: ProfileAdmin, locale: AppLanguage): ProfileFormValues {
   return {
     name: pick(profile.name, locale),
@@ -139,7 +133,6 @@ export function profileToForm(profile: ProfileAdmin, locale: AppLanguage): Profi
   };
 }
 
-/** Значения формы → тело PATCH: локализованные поля уходят в активной локали. */
 export function formToUpdate(values: ProfileFormValues, locale: AppLanguage): UpdateProfile {
   return {
     name: localePatch(locale, values.name.trim()),
@@ -160,8 +153,8 @@ export function formToUpdate(values: ProfileFormValues, locale: AppLanguage): Up
     projectsIntro: localePatch(locale, values.projectsIntro.trim()),
     experienceIntro: localePatch(locale, values.experienceIntro.trim()),
     contactIntro: localePatch(locale, values.contactIntro.trim()),
-    // Показатели без значения отбрасываем (незаполненная строка не имеет смысла);
-    // подпись собираем из обеих локалей, чтобы не потерять перевод.
+    // Показатель без значения не нужен. Подпись собираем из обеих локалей, чтобы не
+    // потерять перевод.
     highlights: values.highlights
       .filter((highlight) => highlight.value.trim() !== '')
       .map<ProfileHighlightInput>((highlight) => ({

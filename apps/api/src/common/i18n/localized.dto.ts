@@ -20,7 +20,7 @@ export class LocalizedListDto {
   en?: string[] | null;
 }
 
-// Двуязычный текст во входных данных admin-запросов: ru обязателен, en — опционален.
+// Во входных данных админки ru обязателен, en можно не присылать.
 export class LocalizedTextInput {
   @ApiProperty()
   @IsString()
@@ -45,9 +45,8 @@ export class LocalizedListInput {
   en?: string[];
 }
 
-// Патч локализованного текста: обе локали опциональны. Админка правит за раз
-// только активный язык, поэтому в PATCH может прийти лишь одна локаль — вторую
-// достраиваем из уже сохранённого значения (см. mergeText).
+// Админка правит только активный язык, поэтому в PATCH может прийти одна локаль.
+// Вторую берём из сохранённого значения (см. mergeText).
 export class LocalizedTextPatch {
   @ApiPropertyOptional()
   @IsOptional()
@@ -60,8 +59,7 @@ export class LocalizedTextPatch {
   en?: string;
 }
 
-// Патч локализованного списка: та же семантика, что у LocalizedTextPatch, но для
-// массивов (напр. bullets проекта). Присланная локаль накладывается на сохранённую.
+// То же, что LocalizedTextPatch, только для списков вроде bullets проекта.
 export class LocalizedListPatch {
   @ApiPropertyOptional({ type: [String] })
   @IsOptional()
@@ -75,8 +73,6 @@ export class LocalizedListPatch {
   @IsString({ each: true })
   en?: string[];
 }
-
-// --- чтение из Prisma Json в admin-DTO (обе локали) ---
 
 export function readText(value: unknown): LocalizedTextDto {
   if (typeof value === 'string') return { ru: value, en: null };
@@ -110,16 +106,12 @@ export function readListNullable(value: unknown): LocalizedListDto | null {
   return readList(value);
 }
 
-// --- запись из admin-входа в Prisma Json (опускаем пустой en) ---
-
 export function writeText(input: LocalizedTextInput): Prisma.InputJsonValue {
   return input.en === undefined ? { ru: input.ru } : { ru: input.ru, en: input.en };
 }
 
-// Накладывает патч одной/обеих локалей поверх уже сохранённого значения.
-// Локаль, которой нет в патче (undefined), остаётся прежней — patch только ru
-// не затирает en и наоборот. Пустая строка — это осознанная очистка локали,
-// поэтому её сохраняем (в отличие от undefined «не трогали»).
+// Локаль, которой нет в патче, остаётся как была, так что патч только ru не затирает en.
+// Пустая строка при этом сохраняется: так локаль очищают намеренно.
 export function mergeText(existing: unknown, patch: LocalizedTextPatch): Prisma.InputJsonValue {
   const current = readText(existing);
   const ru = patch.ru ?? current.ru;
@@ -127,8 +119,7 @@ export function mergeText(existing: unknown, patch: LocalizedTextPatch): Prisma.
   return en === undefined ? { ru } : { ru, en };
 }
 
-// То же, что mergeText, но для локализованного списка: патч одной локали не
-// затирает список другой (пустой массив — осознанная очистка локали).
+// То же, что mergeText, но для списков. Пустой массив тоже означает очистку локали.
 export function mergeList(existing: unknown, patch: LocalizedListPatch): Prisma.InputJsonValue {
   const current = readList(existing);
   const ru = patch.ru ?? current.ru;

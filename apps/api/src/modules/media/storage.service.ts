@@ -8,10 +8,8 @@ import { ConfigService } from '@nestjs/config';
 export const UPLOAD_DIR_DEFAULT = 'uploads';
 const PUBLIC_PREFIX = '/uploads';
 
-/**
- * Абстракция хранилища файлов. Текущая реализация — локальный диск; позже её
- * можно заменить на S3, не трогая вызовы (save/remove по публичному URL).
- */
+// Пока файлы лежат на локальном диске. Наружу торчат только save/remove по публичному URL,
+// так что переезд на S3 не затронет вызывающий код.
 @Injectable()
 export class StorageService {
   private readonly dir: string;
@@ -20,7 +18,6 @@ export class StorageService {
     this.dir = resolve(config.get<string>('UPLOAD_DIR') ?? UPLOAD_DIR_DEFAULT);
   }
 
-  // Сохраняет буфер под уникальным именем, возвращает публичный URL (/uploads/<name>).
   async save(buffer: Buffer, ext: string): Promise<string> {
     await mkdir(this.dir, { recursive: true });
     const name = `${randomUUID()}.${ext}`;
@@ -28,7 +25,7 @@ export class StorageService {
     return `${PUBLIC_PREFIX}/${name}`;
   }
 
-  // Удаляет файл по публичному URL; молча игнорирует чужие пути и отсутствие файла.
+  // Чужие URL и пути с попыткой выйти из каталога просто пропускаем.
   async remove(url: string): Promise<void> {
     if (!url.startsWith(`${PUBLIC_PREFIX}/`)) return;
     const name = url.slice(PUBLIC_PREFIX.length + 1);
@@ -36,7 +33,7 @@ export class StorageService {
     try {
       await unlink(join(this.dir, name));
     } catch {
-      // Файла уже нет — это не ошибка для идемпотентного удаления.
+      // Файла уже нет, для удаления это нормально.
     }
   }
 }

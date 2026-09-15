@@ -17,7 +17,7 @@ describe('ProfileMenuTrigger', () => {
   });
 
   it('залогиненный видит аватар профиля (инициалы имени)', async () => {
-    // Открываем сессию в моке (модульная переменная общая на прогон).
+    // Открываем сессию в моке. Переменная модульная, общая на весь прогон.
     const store = makeStore();
     await store
       .dispatch(sessionApi.endpoints.login.initiate({ username: 'admin', password: 'admin12345' }))

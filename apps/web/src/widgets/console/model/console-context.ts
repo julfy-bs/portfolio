@@ -9,10 +9,7 @@ export interface ConsoleContextValue {
 
 export const ConsoleContext = createContext<ConsoleContextValue | null>(null);
 
-/**
- * Доступ к состоянию консоли (открыть/закрыть). Бросает вне ConsoleProvider —
- * это ошибка композиции.
- */
+/** Вне ConsoleProvider бросает ошибку, чтобы кривая композиция сразу была видна. */
 export function useConsole(): ConsoleContextValue {
   const value = useContext(ConsoleContext);
   if (value === null) {

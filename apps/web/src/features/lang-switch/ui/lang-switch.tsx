@@ -6,12 +6,7 @@ import { useSiteLanguages } from '../model/use-site-languages';
 
 import styles from './lang-switch.module.css';
 
-/**
- * Переключатель языка: показывает текущий код локали и циклит по доступным языкам
- * сайта (набор задаёт владелец в кабинете). Если доступен только один язык —
- * переключать нечего, поэтому кнопку не показываем.
- * Собран из UI Kit (`Button variant="icon"` с моноширинной подписью кода).
- */
+/** Если на сайте доступен только один язык, переключать нечего и кнопку не показываем. */
 export function LangSwitch() {
   const { current, available, cycleNext } = useSiteLanguages();
   const { t } = useTranslation();
@@ -19,8 +14,8 @@ export function LangSwitch() {
   if (available.length <= 1) return null;
 
   const code = current.toUpperCase();
-  // Доступное имя включает видимый код (RU/EN) — иначе label-content-name-mismatch
-  // (WCAG 2.5.3): у кнопки с текстом имя должно содержать этот текст.
+  // Доступное имя должно содержать видимый код (RU/EN), иначе нарушаем WCAG 2.5.3
+  // (label-content-name-mismatch).
   const label = `${t('common.switchLanguage')}: ${code}`;
 
   return (

@@ -21,8 +21,7 @@
   }
 }
 
-/* Уважаем системную настройку «меньше движения»: гасим бегущий блик,
-   но сам плейсхолдер остаётся видимым. */
+/* При prefers-reduced-motion убираем блик, но сам плейсхолдер оставляем. */
 @media (prefers-reduced-motion: reduce) {
   .skeleton::after {
     animation: none;

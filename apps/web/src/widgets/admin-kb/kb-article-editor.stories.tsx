@@ -35,20 +35,19 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Новая статья: бар сохранения появляется только после первой правки. */
+/** Бар сохранения появляется только после первой правки. */
 export const New: Story = {
   name: 'Новая статья',
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    // Пустой черновик — плавающий SaveBar скрыт (visible={isDirty}), кнопки нет.
+    // SaveBar завязан на isDirty, так что у пустого черновика кнопки нет.
     await expect(canvas.queryByRole('button', { name: /Сохранить/ })).not.toBeInTheDocument();
     await userEvent.type(canvas.getByLabelText('Заголовок', { exact: false }), 'Черновик');
-    // После правки бар появляется, «Сохранить» доступна.
     await expect(canvas.getByRole('button', { name: /Сохранить/ })).toBeEnabled();
   },
 };
 
-/** Правка существующей статьи: поля заполнены, слева исходник, справа превью. */
+/** Поля заполнены, слева исходник, справа превью. */
 export const Edit: Story = {
   name: 'Редактирование',
   args: {
@@ -66,7 +65,7 @@ export const Edit: Story = {
   },
 };
 
-/** Режим preview: исходник скрыт, показан только рендер. */
+/** В режиме preview исходник скрыт и виден только результат. */
 export const PreviewMode: Story = {
   name: 'Только превью',
   args: {
@@ -85,7 +84,7 @@ export const PreviewMode: Story = {
   },
 };
 
-/** Серверная ошибка по slug (например, 409). */
+/** Сервер отклонил slug, например ответил 409. */
 export const SlugTaken: Story = {
   name: 'Slug занят',
   args: { serverSlugError: 'Такой slug уже занят' },

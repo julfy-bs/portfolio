@@ -1,10 +1,9 @@
 import type { components } from '@portfolio/contract';
 
-/** Контрибьютор в админ-виде (имя в обеих локалях) — для мультиселекта в проектах. */
+/** Имя в обеих локалях, используется в мультиселекте участников проекта. */
 export type ContributorAdmin = components['schemas']['ContributorAdminDto'];
 
-/** Тело создания контрибьютора (имя обязательно, остальное опционально). */
 export type CreateContributor = components['schemas']['CreateContributorDto'];
 
-/** Тело правки контрибьютора (частичное — правится активная локаль имени + цвет/ссылка). */
+/** Частичная правка: имя в активной локали, цвет и ссылка. */
 export type UpdateContributor = components['schemas']['UpdateContributorDto'];

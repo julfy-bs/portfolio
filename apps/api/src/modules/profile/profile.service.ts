@@ -18,10 +18,9 @@ type ProfileWithLinks = Profile & { contactLinks: ContactLink[] };
 
 const PROFILE_ID = 1;
 
-// Показатель как он хранится в JSON: значение + подпись LocalizedText.
 type StoredHighlight = { value: string; label: unknown };
 
-// Отсеивает мусор из хранимого массива показателей, оставляя валидные записи.
+// highlights лежит в Json без схемы, поэтому отбрасываем записи неверной формы.
 function parseHighlights(value: unknown): StoredHighlight[] {
   if (!Array.isArray(value)) return [];
   return value.flatMap((item) => {
@@ -76,7 +75,7 @@ export class ProfileService {
     };
   }
 
-  // --- admin ---
+  // Админка
 
   async getAdmin(): Promise<ProfileAdminDto> {
     const profile = await this.loadAdmin();
@@ -84,8 +83,7 @@ export class ProfileService {
   }
 
   async update(dto: UpdateProfileDto): Promise<ProfileAdminDto> {
-    // Текущее значение нужно, чтобы патч одной локали не затирал вторую:
-    // локализованные поля мёржим с уже сохранённым JSON (см. mergeText).
+    // Текущий профиль нужен, чтобы патч одной локали не затёр вторую.
     const current = await this.loadAdmin();
 
     const data: Prisma.ProfileUpdateInput = {};

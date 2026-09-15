@@ -4,7 +4,7 @@ import { z } from 'zod';
 import type { ArticleAdmin, CreateArticle, LocalizedText, UpdateArticle } from '@/entities/kb';
 import type { AppLanguage } from '@/shared/config';
 
-/** Значения формы статьи. Редактируется активная локаль; `folderId === ''` — корень. */
+/** Правится активная локаль. Пустой `folderId` означает корень. */
 export interface ArticleFormValues {
   title: string;
   slug: string;
@@ -12,7 +12,7 @@ export interface ArticleFormValues {
   folderId: string;
 }
 
-/** Схема валидации статьи (сообщения локализованы через `t`). Тип выводится — как в других формах кабинета. */
+/** Схема зависит от `t`, чтобы сообщения об ошибках переводились. */
 export function createArticleSchema(t: TFunction) {
   return z.object({
     title: z.string().trim().min(1, t('admin.kb.titleRequired')),
@@ -42,9 +42,8 @@ export function emptyArticleForm(folderId: string): ArticleFormValues {
   return { title: '', slug: '', body: '', folderId };
 }
 
-// Собираем двуязычный объект: активная локаль = value, вторая — из исходного текста
-// (правка) либо зеркалится в ru как фолбэк (создание), чтобы ru не оставался пустым.
-// Общий для формы статьи и инлайн-переименования узлов дерева.
+// Вторую локаль при правке берём из исходного текста. При создании копируем значение в ru,
+// чтобы ru не остался пустым. Используется и формой статьи, и переименованием узлов дерева.
 export function mergeLocalizedText(
   value: string,
   locale: AppLanguage,

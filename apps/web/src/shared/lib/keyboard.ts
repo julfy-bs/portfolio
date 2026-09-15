@@ -1,14 +1,10 @@
 import { useEffect, useState } from 'react';
 
-// Эвристика «есть аппаратная клавиатура»: точный указатель + доступный hover.
-// Телефоны/планшеты — грубый указатель без hover, поэтому клавиатурных шорткатов у них нет.
+// Напрямую клавиатуру не определить, поэтому судим по точному указателю с hover.
+// У телефонов и планшетов указатель грубый и hover нет.
 const KEYBOARD_QUERY = '(hover: hover) and (pointer: fine)';
 
-/**
- * Есть ли у устройства аппаратная клавиатура. На тач-устройствах — false,
- * поэтому клавиатурные подсказки (⌘K и т.п.) там не показываем. Реагирует на
- * смену устройства ввода (подключили/отключили мышь/клавиатуру).
- */
+/** Нужен, чтобы не показывать подсказки хоткеев на тач-устройствах. */
 export function useHasKeyboard(): boolean {
   const [hasKeyboard, setHasKeyboard] = useState(() => window.matchMedia(KEYBOARD_QUERY).matches);
 
@@ -22,7 +18,6 @@ export function useHasKeyboard(): boolean {
   return hasKeyboard;
 }
 
-/** Ярлык открытия консоли под платформу: `⌘K` на macOS, `Ctrl+K` на остальных. */
 export function consoleShortcut(): string {
   return /mac/i.test(navigator.platform) ? '⌘K' : 'Ctrl+K';
 }

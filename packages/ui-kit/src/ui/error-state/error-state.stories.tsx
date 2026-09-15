@@ -34,7 +34,7 @@ export const Playground: Story = {
   },
 };
 
-/** Без `onRetry` — только сообщение (например, ошибка невосстановима). */
+/** Без `onRetry` показывается только сообщение, например если ошибка невосстановима. */
 export const WithoutRetry: Story = {
   name: 'Без повтора',
   args: { onRetry: undefined },
@@ -44,7 +44,7 @@ export const WithoutRetry: Story = {
   },
 };
 
-/** Повтор доступен с клавиатуры: Tab → фокус, Enter вызывает onRetry. */
+/** Повтор доступен с клавиатуры: Tab ставит фокус, Enter вызывает onRetry. */
 export const KeyboardRetry: Story = {
   name: 'Повтор с клавиатуры',
   play: async ({ canvasElement, args, userEvent }) => {

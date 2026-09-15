@@ -5,28 +5,23 @@ import { cn } from '@/shared/lib';
 import styles from './markdown-editor.module.css';
 
 export interface MarkdownEditorProps {
-  /** Текущий Markdown-исходник. */
   readonly value: string;
   readonly onChange: (value: string) => void;
   readonly onBlur?: () => void;
-  /** Как рисовать превью исходника: проекты — общий `Markdown`, БЗ — `KbMarkdown`. */
+  /** Проекты рендерят общий `Markdown`, база знаний свой `KbMarkdown`. */
   readonly renderPreview: (source: string) => ReactNode;
-  /** Подпись панели исходника (визуальная). */
+  /** Только визуальная подпись, скрыта от скринридеров. */
   readonly sourceLabel: string;
   readonly splitLabel: string;
   readonly previewLabel: string;
-  /** Доступное имя textarea, если снаружи нет связанного `<label htmlFor>`. */
+  /** Нужен, если снаружи нет `<label htmlFor>`. */
   readonly ariaLabel?: string;
-  /** id textarea — чтобы связать внешний `<label htmlFor>`. */
+  /** Для связи с внешним `<label htmlFor>`. */
   readonly id?: string;
   readonly error?: string;
 }
 
-/**
- * Редактор Markdown с переключателем split / preview: слева исходник, справа
- * живое превью. Рендерер превью передаётся пропом, поэтому компонент не знает о
- * домене — БЗ подставляет `KbMarkdown` (вики-ссылки), формы — общий `Markdown`.
- */
+// Превью приходит пропом, чтобы редактор не зависел от домена.
 export function MarkdownEditor({
   value,
   onChange,

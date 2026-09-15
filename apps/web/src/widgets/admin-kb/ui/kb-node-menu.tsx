@@ -9,7 +9,7 @@ import styles from './admin-kb.module.css';
 
 export interface KbNodeMenuProps {
   readonly kind: 'folder' | 'article';
-  /** Папки, куда можно переместить узел (без себя и своих потомков — для папок). */
+  /** Для папки сюда не входят она сама и её потомки. */
   readonly moveTargets: readonly FolderOption[];
   readonly onRename: () => void;
   readonly onAddArticle: () => void;
@@ -19,7 +19,7 @@ export interface KbNodeMenuProps {
   readonly onClose: () => void;
 }
 
-/** Контекст-меню узла дерева: переименовать / (для папки) добавить / переместить / удалить. */
+/** Пункты добавления есть только у папок. */
 export function KbNodeMenu({
   kind,
   moveTargets,
@@ -35,7 +35,7 @@ export function KbNodeMenu({
 
   return (
     <>
-      {/* Ловушка клика по фону закрывает меню (как в макете). */}
+      {/* Невидимая подложка ловит клик мимо меню и закрывает его. */}
       <button
         type="button"
         aria-label={t('admin.kb.cancel')}

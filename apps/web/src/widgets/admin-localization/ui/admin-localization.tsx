@@ -24,10 +24,8 @@ import { AdminLocalizationView, type LocEditing } from './admin-localization-vie
 import type { LocLocale } from './loc-cell';
 
 /**
- * Контейнер вкладки «Локализация»: тянет admin-данные всех локализуемых сущностей,
- * собирает плоские строки сверки, копит правки обеих локалей в локальном диффе и по
- * «Сохранить» раскидывает их PATCH-ами по эндпоинтам источников (инвалидация тегов
- * обновляет строки серверными значениями). UI-строки приложения тут не участвуют.
+ * Правки обеих локалей копятся локально и при сохранении расходятся PATCH-запросами по
+ * эндпоинтам сущностей. UI-строки приложения здесь не редактируются.
  */
 export function AdminLocalization() {
   const { t } = useTranslation();
@@ -120,7 +118,7 @@ export function AdminLocalization() {
     setEdits((prev) => {
       const current = effective(row, prev);
       const next = { ...current, [locale]: value };
-      // Правка вернула серверное значение — убираем строку из диффа.
+      // Если значение вернули к серверному, строка больше не считается изменённой.
       if (next.ru === row.ru && next.en === row.en) {
         return Object.fromEntries(Object.entries(prev).filter(([key]) => key !== rowId));
       }

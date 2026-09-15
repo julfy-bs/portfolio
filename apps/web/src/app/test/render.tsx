@@ -11,7 +11,7 @@ import { ConsoleProvider } from '@/widgets/console';
 import { RunnerProvider } from '@/widgets/runner';
 
 function Providers({ children }: { children: ReactNode }) {
-  // Свежий store на каждый рендер — кэш RTK Query не протекает между тестами.
+  // Новый store на каждый рендер, чтобы кэш RTK Query не переходил из теста в тест.
   const [store] = useState(makeStore);
   const i18n = setupI18n();
 
@@ -30,7 +30,6 @@ function Providers({ children }: { children: ReactNode }) {
   );
 }
 
-/** Рендерит компонент со всеми глобальными провайдерами приложения. */
 export function renderWithProviders(
   ui: ReactElement,
   options?: Omit<RenderOptions, 'wrapper'>,

@@ -9,7 +9,7 @@ import styles from './kb-article.module.css';
 
 export interface KbArticleProps {
   readonly article: ArticleDetail | undefined;
-  /** Выбрана ли статья в дереве (иначе — приглашающее пустое состояние). */
+  /** Если статья не выбрана, показываем пустое состояние с приглашением. */
   readonly hasSelection: boolean;
   readonly isLoading?: boolean;
   readonly isError?: boolean;
@@ -19,9 +19,7 @@ export interface KbArticleProps {
 }
 
 /**
- * Читатель статьи БЗ: хлебные крошки, теги, тело в Markdown и блок бэклинков.
- * Презентационный — состояние приходит пропами: нет выбора → приглашение,
- * загрузка → скелетон, ошибка → карточка ошибки.
+ * Статья базы знаний: крошки, теги, Markdown и бэклинки. Всё состояние приходит пропами.
  */
 export function KbArticle({
   article,

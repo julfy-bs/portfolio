@@ -2,9 +2,8 @@ import { KeyboardSensor, PointerSensor, useSensor, useSensors } from '@dnd-kit/c
 import { sortableKeyboardCoordinates } from '@dnd-kit/sortable';
 
 /**
- * Сенсоры сортируемых списков dnd-kit: мышь/тач — только после сдвига на 6px, чтобы
- * клики по кнопкам внутри элемента (×, карандаш, тоггл) не превращались в перетаскивание;
- * плюс клавиатура (пробел — взять, стрелки — двигать).
+ * Перетаскивание начинается только после сдвига на 6px, иначе клик по кнопкам внутри
+ * элемента превращался бы в drag.
  */
 export function useSortableSensors(): ReturnType<typeof useSensors> {
   return useSensors(

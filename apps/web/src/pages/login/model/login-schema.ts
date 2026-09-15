@@ -2,8 +2,8 @@ import type { TFunction } from 'i18next';
 import { z } from 'zod';
 
 /**
- * Схема формы входа. Сообщения локализуются, поэтому схема — фабрика от `t`:
- * компонент собирает её на текущем языке. Форма совпадает по форме с `LoginDto`.
+ * Сообщения локализуются, поэтому схема собирается фабрикой от `t` на текущем
+ * языке. По полям совпадает с `LoginDto`.
  */
 export function createLoginSchema(t: TFunction) {
   return z.object({

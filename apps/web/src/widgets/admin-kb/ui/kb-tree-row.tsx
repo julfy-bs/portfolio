@@ -30,7 +30,6 @@ export interface KbTreeRowProps {
   readonly onDelete: () => void;
 }
 
-/** Одна строка дерева библиотеки: папка (свернуть/раскрыть) или статья (выбрать), с ⋮-меню и инлайн-переименованием. */
 export function KbTreeRow({
   row,
   selected,
@@ -55,7 +54,6 @@ export function KbTreeRow({
   const pad = row.depth * 16 + 8;
   const isFolder = row.kind === 'folder';
   const inputRef = useRef<HTMLInputElement>(null);
-  // Фокус в поле, как только строка перешла в режим переименования.
   useEffect(() => {
     if (renaming) inputRef.current?.focus();
   }, [renaming]);

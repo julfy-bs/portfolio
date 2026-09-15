@@ -13,7 +13,7 @@ export interface ConsoleWelcomeProps {
   readonly clock: string;
 }
 
-/** Строка приветствия: приглашение с командой + её вывод (или скелетон). */
+/** Команда из приветствия и её вывод или скелетон. */
 function WelcomeLine({ command, output }: { readonly command: string; readonly output?: string }) {
   return (
     <div className={styles.welcomeLine}>
@@ -27,9 +27,8 @@ function WelcomeLine({ command, output }: { readonly command: string; readonly o
 }
 
 /**
- * Приветственный экран консоли: ASCII-баннер и «сеанс» из трёх команд, чьи
- * ответы — данные профиля (имя/роль, стек, локация). Пока профиль грузится,
- * ответы показывают скелетон — как и везде для бэкенд-данных.
+ * Приветствие консоли: ASCII-баннер и три команды, ответы на которые берутся из профиля.
+ * Пока профиль грузится, вместо ответов скелетон.
  */
 export function ConsoleWelcome({ profile, clock }: ConsoleWelcomeProps) {
   const { t } = useTranslation();

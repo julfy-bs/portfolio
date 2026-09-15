@@ -21,7 +21,7 @@ const button = cva(styles.base, {
     },
   },
   compoundVariants: [
-    // icon-вариант квадратный — перекрываем текстовые паддинги размера
+    // icon-вариант квадратный, поэтому перекрываем паддинги текстовых размеров
     { variant: 'icon', size: 'md', class: styles.iconMd },
     { variant: 'icon', size: 'sm', class: styles.iconSm },
   ],
@@ -35,8 +35,8 @@ export interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof button> {}
 
 /**
- * Базовая кнопка дизайн-системы. Варианты: primary (главное действие),
- * ghost/mono (вторичные), icon (квадратная, только иконка — обязателен aria-label).
+ * Варианты: primary для главного действия, ghost и mono для вторичных, icon для квадратной
+ * кнопки с одной иконкой (ей обязателен aria-label).
  */
 export function Button({
   variant,

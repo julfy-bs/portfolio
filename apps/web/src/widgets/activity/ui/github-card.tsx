@@ -15,10 +15,7 @@ interface GithubCardProps {
   readonly isError?: boolean;
 }
 
-/**
- * Карточка GitHub: бренд, счётчики репозиториев/подписчиков/подписок и топ языков.
- * Независимо грузится (скелетон) и деградирует до фолбэка при недоступности сервиса.
- */
+/** Карточка GitHub. Если сервис недоступен, вместо данных показывает фолбэк. */
 export function GithubCard({ data, isError }: GithubCardProps) {
   const { t } = useTranslation();
   const format = useNumberFormat();

@@ -3,7 +3,6 @@ import { describe, expect, it } from 'vitest';
 import en from './locales/en/translation.json';
 import ru from './locales/ru/translation.json';
 
-/** Плоские пути всех листовых ключей объекта переводов (`a.b.c`). */
 function keyPaths(value: unknown, prefix = ''): string[] {
   if (value === null || typeof value !== 'object' || Array.isArray(value)) {
     return [prefix];
@@ -14,8 +13,7 @@ function keyPaths(value: unknown, prefix = ''): string[] {
 }
 
 describe('i18n locale parity', () => {
-  // Правило проекта: каждая user-facing строка существует и в ru, и в en. Тест не
-  // даёт наборам ключей разъехаться (частая причина «пропал перевод» на другой локали).
+  // Ключ, добавленный только в одну локаль, на другой молча покажется без перевода.
   it('ru и en содержат один и тот же набор ключей', () => {
     const ruKeys = new Set(keyPaths(ru));
     const enKeys = new Set(keyPaths(en));

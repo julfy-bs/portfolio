@@ -22,18 +22,18 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Копирайт + подсказка консоли. play: подвал — landmark contentinfo с именем и ярлыком. */
+/** Копирайт и подсказка про консоль. play: подвал это landmark contentinfo с именем и ярлыком. */
 export const Playground: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await expect(canvas.getByRole('contentinfo')).toBeInTheDocument();
     await expect(canvas.getByText(/Bogdan Sutuzhko/)).toBeInTheDocument();
-    // На десктопе (есть клавиатура) видна подсказка с ярлыком консоли (…K).
+    // На десктопе есть клавиатура, поэтому видна подсказка с шорткатом консоли.
     await expect(canvas.getByText(/K$/)).toBeInTheDocument();
   },
 };
 
-/** Имя ещё грузится — на месте копирайта скелетон. */
+/** Имя ещё грузится, на месте копирайта скелетон. */
 export const Loading: Story = {
   name: 'Имя грузится (скелетон)',
   args: { owner: undefined },

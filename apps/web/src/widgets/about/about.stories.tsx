@@ -25,7 +25,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Био в Markdown. play: заголовок секции + ссылка открывается в новой вкладке. */
+/** Био в Markdown. play: проверяет заголовок и что ссылка открывается в новой вкладке. */
 export const Playground: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -36,7 +36,7 @@ export const Playground: Story = {
   },
 };
 
-/** Профиль грузится — три скелетон-абзаца (высота строк = line-box). */
+/** Профиль грузится: три скелетон-абзаца высотой в line-box. */
 export const Loading: Story = {
   name: 'Скелетон загрузки',
   args: { isLoading: true },

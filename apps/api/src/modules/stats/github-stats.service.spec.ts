@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config';
 
 import { GithubStatsService } from './github-stats.service';
 
-// Конфиг с фиксированным логином — внешние вызовы мокаем, сеть не трогаем.
+// Логин фиксированный, а fetch замокан, так что в сеть тест не ходит.
 const config = { get: () => 'octocat' } as unknown as ConfigService;
 
 const githubPayload = {

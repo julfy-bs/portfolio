@@ -3,12 +3,10 @@ import type { AppLanguage } from '@/shared/config';
 import type { LocalizedText, Profile, ProfileAdmin } from '../model/types';
 
 /**
- * Единый источник правды для моков профиля: двуязычный профиль, как он лежит в БД.
- *
- * Публичный `GET /profile` и админский `GET /profile/admin` читают ОДНО состояние,
- * поэтому правка в CRM видна на публичных экранах — ровно как с реальным API.
- * Раньше это были две независимые фикстуры, и `dev:mock` врал: сохранение в кабинете
- * не меняло сайт, а в русской локали показывалось латинское имя (бэкенд локализует `name`).
+ * Двуязычный профиль в том виде, как он лежит в БД. Публичный `GET /profile` и админский
+ * `GET /profile/admin` читают одно состояние, поэтому правка в CRM видна на сайте, как с
+ * реальным API. Пока фикстур было две, `dev:mock` врал: сохранение в кабинете не меняло
+ * сайт, а в русской локали показывалось латинское имя (бэкенд локализует `name`).
  */
 const initialAdminProfile: ProfileAdmin = {
   name: { ru: 'Богдан Сутужко', en: 'Bogdan Sutuzhko' },
@@ -96,12 +94,11 @@ export function setMockProfileState(next: ProfileAdmin): void {
   adminProfile = next;
 }
 
-/** Сбрасывает профиль мока — для изоляции тестов. */
+/** Сбрасывает профиль мока, чтобы тесты не зависели друг от друга. */
 export function resetMockProfileAdmin(): void {
   adminProfile = initialAdminProfile;
 }
 
-/** Фикстура админ-профиля (обе локали) — для тестов/историй. */
 export const mockProfileAdmin = initialAdminProfile;
 
 // Повторяют `localize`/`localizeNullable` бэкенда: для `en` откатываемся на `ru`,
@@ -118,8 +115,8 @@ function localizeNullable(text: LocalizedText | null, language: AppLanguage): st
 }
 
 /**
- * Разрешает двуязычный профиль в публичный `ProfileDto` — как `ProfileService.get`:
- * скрытое био отдаётся как `null`, скрытые контакты не отдаются вовсе, порядок — по `order`.
+ * Собирает публичный `ProfileDto` так же, как `ProfileService.get`: скрытое био отдаётся
+ * как `null`, скрытые контакты не отдаются вовсе, порядок по `order`.
  */
 export function localizeProfile(admin: ProfileAdmin, language: AppLanguage): Profile {
   return {
@@ -148,8 +145,7 @@ export function localizeProfile(admin: ProfileAdmin, language: AppLanguage): Pro
   };
 }
 
-/** Фикстура публичного профиля (русская локаль) для тестов и историй. */
 export const mockProfile: Profile = localizeProfile(initialAdminProfile, 'ru');
 
-/** Та же фикстура в английской локали — проверяет локализацию контента бэкендом. */
+/** Английская версия, чтобы проверять локализацию контента бэкендом. */
 export const mockProfileEn: Profile = localizeProfile(initialAdminProfile, 'en');

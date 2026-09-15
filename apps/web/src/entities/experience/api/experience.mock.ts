@@ -14,8 +14,8 @@ type LocalizedList = ExperienceAdmin['bullets'];
 type TextPatch = { ru?: string; en?: string };
 type ListPatch = { ru?: string[]; en?: string[] };
 
-// Каталог названий технологий по id — зеркалит сид сущности technology, чтобы
-// публичный список опыта резолвил technologyIds → имена без кросс-импорта слоёв.
+// Копия сида technology: по ней публичный список опыта превращает technologyIds в имена,
+// не импортируя соседнюю сущность.
 const TECH_CATALOG: Record<string, string> = {
   '0': 'React',
   '1': 'Vue 3',
@@ -89,12 +89,12 @@ function buildInitial(): ExperienceAdmin[] {
   ];
 }
 
-// Общее состояние: публичный список и админ-CRUD читают/пишут его — правки в
-// кабинете сразу видны на публичном экране опыта (как на реальном бэкенде).
+// Публичный список и админ-CRUD работают с одним состоянием, чтобы правки из кабинета
+// сразу были видны на экране опыта, как с реальным бэкендом.
 let records: ExperienceAdmin[] = buildInitial();
 let nextId = records.length;
 
-/** Сбрасывает опыт мока — для изоляции тестов. */
+/** Сбрасывает опыт мока, чтобы тесты не зависели друг от друга. */
 export function resetMockExperience(): void {
   records = buildInitial();
   nextId = records.length;
@@ -138,17 +138,15 @@ function toPublic(record: ExperienceAdmin, language: AppLanguage): Experience {
   };
 }
 
-// Как на бэке: свежее выше — по убыванию даты начала.
+// Как на бэке: свежие записи выше, по убыванию даты начала.
 const sorted = (): ExperienceAdmin[] =>
   [...records].sort((a, b) => b.startDate.localeCompare(a.startDate));
 
-/** Фикстура опыта (русская локаль) для тестов и историй. */
 export const mockExperience: Experience[] = sorted().map((record) => toPublic(record, 'ru'));
 
-/** Фикстура опыта в админ-виде (обе локали). */
 export const mockExperienceAdmin: ExperienceAdmin[] = buildInitial();
 
-/** Публичный MSW-обработчик опыта. Локаль читается из `Accept-Language`. */
+/** Локаль берётся из `Accept-Language`. */
 export const experienceHandlers = [
   http.get(`${env.apiBaseUrl}/experience`, ({ request }) => {
     const language = normalizeLanguage(request.headers.get('Accept-Language') ?? undefined);
@@ -156,7 +154,6 @@ export const experienceHandlers = [
   }),
 ];
 
-/** Админ MSW-обработчики опыта: список обеих локалей + CRUD над общим состоянием. */
 export const experienceAdminHandlers = [
   http.get(`${env.apiBaseUrl}/experience/admin`, () => HttpResponse.json(sorted())),
   http.post<Record<string, never>, CreateExperience>(

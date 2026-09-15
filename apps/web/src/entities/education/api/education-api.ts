@@ -4,9 +4,8 @@ import type { AppLanguage } from '@/shared/config';
 import type { CreateEducation, Education, EducationAdmin, UpdateEducation } from '../model/types';
 
 /**
- * Эндпоинты образования. Публичный список локализован (степень/место) → язык в
- * аргументе. Админ отдаёт обе локали и CRUD; мутации инвалидируют тег `Education`
- * → и админ-список, и публичный `getEducation` перезапрашиваются.
+ * Публичный список локализован (степень, место), поэтому язык передаётся аргументом.
+ * Мутации инвалидируют тег `Education`, и перезапрашиваются админ-список и `getEducation`.
  */
 export const educationApi = apiSlice.injectEndpoints({
   endpoints: (build) => ({

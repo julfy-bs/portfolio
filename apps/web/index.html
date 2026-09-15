@@ -11,14 +11,13 @@
       name="description"
       content="Портфолио фуллстек-разработчика Богдана Сутужко: проекты, опыт, стек технологий (React, Vue, Node, NestJS, TypeScript) и интерактивный терминал."
     />
-    <!-- Цвет UI браузера/сплэша PWA — под тёмную тему по умолчанию. -->
+    <!-- Под тёмную тему, она по умолчанию. -->
     <meta name="theme-color" content="#0d1117" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Шрифты грузим НЕблокирующе (media=print→all по onload): первый кадр
-         рисуется системным фолбэком сразу, затем Geist/JetBrains подменяются
-         (`display=swap`) — ускоряет FCP на мобильном троттлинге. -->
+    <!-- Трюк с media="print" не даёт шрифтам блокировать первую отрисовку: сначала
+         показываем системный шрифт, потом подменяем. На слабых телефонах FCP заметно лучше. -->
     <link
       rel="preload"
       as="style"
@@ -39,9 +38,8 @@
 
     <title>Bogdan Sutuzhko — Full Stack Developer</title>
 
-    <!-- Тема до первого кадра (без вспышки). Приоритет: явный выбор в localStorage →
-         системная prefers-color-scheme → (для нового гостя без системной темы —
-         settings.defaultTheme применит React после загрузки настроек). -->
+    <!-- Ставим тему до первого кадра, чтобы не мигала. Сначала выбор гостя, потом
+         системная. Если нет ни того, ни другого, тему из настроек применит React. -->
     <script>
       (() => {
         try {
@@ -53,9 +51,9 @@
           } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
             document.documentElement.dataset.theme = 'light';
           }
-          /* иначе data-theme не ставим — нет системного предпочтения, ждём settings.defaultTheme */
+          /* иначе ждём settings.defaultTheme */
         } catch {
-          /* localStorage/matchMedia недоступны — остаётся тема по умолчанию */
+          /* без localStorage или matchMedia остаётся тема по умолчанию */
         }
       })();
     </script>

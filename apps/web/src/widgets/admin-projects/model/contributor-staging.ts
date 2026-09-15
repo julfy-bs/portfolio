@@ -9,35 +9,31 @@ import { planMinimalOrders } from '@/shared/lib';
 import type { ContributorDraft } from '../ui/contributor-form';
 
 /**
- * Черновик каталожной записи участника. Весь CRUD (создание/правка/удаление) и
- * перестановка копятся локально и применяются одним пакетом на «Сохранить» проекта —
- * до этого изменения обратимы «Отменой». Запись = каталожная (`ContributorAdmin`)
- * плюс флаги стадии; порядок черновика = желаемый порядок каталога.
+ * Все правки каталога участников, включая перестановку, копятся локально и применяются
+ * вместе с сохранением проекта, чтобы их можно было откатить отменой. Порядок черновика
+ * и есть желаемый порядок каталога.
  */
 export interface StagedContributor extends ContributorAdmin {
-  /** Создан локально — реальный id придёт с бэка после применения. */
+  /** Реальный id придёт с бэка только после сохранения. */
   readonly isNew: boolean;
-  /** Помечен на удаление: существующий → DELETE, новый → просто выбрасывается. */
+  /** Существующего удалим запросом, а нового просто выбросим из списка. */
   readonly isDeleted: boolean;
-  /** Существующий, изменённый относительно исходного → PATCH. */
   readonly isEdited: boolean;
 }
 
 const TEMP_PREFIX = 'tmp-contributor-';
 
-/** Временный ли это id (несохранённый участник). */
 export function isTempContributorId(id: string): boolean {
   return id.startsWith(TEMP_PREFIX);
 }
 
-/** Уникальный временный id, детерминированно выбранный по текущему списку. */
+// Без случайности: id зависит только от текущего списка.
 function makeTempId(list: readonly StagedContributor[]): string {
   let index = list.length + 1;
   while (list.some((entry) => entry.id === `${TEMP_PREFIX}${index}`)) index += 1;
   return `${TEMP_PREFIX}${index}`;
 }
 
-/** Инициализирует черновик из каталога: все записи существующие, без изменений. */
 export function initStaged(contributors: readonly ContributorAdmin[]): StagedContributor[] {
   return contributors.map((contributor) => ({
     ...contributor,
@@ -47,7 +43,7 @@ export function initStaged(contributors: readonly ContributorAdmin[]): StagedCon
   }));
 }
 
-/** Правит активную локаль имени, сохраняя вторую (перевод не теряется). */
+// Вторую локаль не трогаем, чтобы не потерять перевод.
 function applyName(
   name: ContributorAdmin['name'],
   locale: AppLanguage,
@@ -56,7 +52,6 @@ function applyName(
   return locale === 'ru' ? { ...name, ru: value } : { ru: name.ru, en: value };
 }
 
-/** Добавляет нового участника (временный id) в конец списка. */
 export function stageCreate(
   list: readonly StagedContributor[],
   draft: ContributorDraft,
@@ -80,7 +75,6 @@ export function stageCreate(
   return [...list, entry];
 }
 
-/** Правит существующего/нового участника; существующий помечается изменённым. */
 export function stageUpdate(
   list: readonly StagedContributor[],
   id: string,
@@ -101,7 +95,6 @@ export function stageUpdate(
   );
 }
 
-/** Помечает существующего на удаление; нового — выбрасывает совсем. */
 export function stageDelete(list: readonly StagedContributor[], id: string): StagedContributor[] {
   return list.flatMap((entry) => {
     if (entry.id !== id) return [entry];
@@ -109,10 +102,7 @@ export function stageDelete(list: readonly StagedContributor[], id: string): Sta
   });
 }
 
-/**
- * Перетаскивание: участник `activeId` встаёт на место `overId`. Меняется только
- * последовательность черновика — новые `order` посчитает план на сохранении.
- */
+/** Меняем только последовательность, сами значения `order` посчитаются при сохранении. */
 export function stageReorder(
   list: readonly StagedContributor[],
   activeId: string,
@@ -127,35 +117,31 @@ export function stageReorder(
   return next;
 }
 
-/** Видимые записи (без помеченных на удаление) — для чипов и предпросмотра плитки. */
 export function visibleStaged(list: readonly StagedContributor[]): StagedContributor[] {
   return list.filter((entry) => !entry.isDeleted);
 }
 
-/** Каталог-форма для `formToTile`/мультиселекта: без флагов и удалённых. */
+/** Для `formToTile` и мультиселекта флаги черновика не нужны. */
 export function stagedToCatalog(list: readonly StagedContributor[]): ContributorAdmin[] {
   return visibleStaged(list).map(({ isNew: _n, isDeleted: _d, isEdited: _e, ...rest }) => rest);
 }
 
-/** Запись плана вместе с целевой позицией в каталоге. */
 export interface PlannedContributor {
   readonly entry: StagedContributor;
   readonly order: number;
 }
 
-/** План применения черновика к API. */
 export interface ContributorStagingPlan {
   readonly creates: readonly PlannedContributor[];
-  /** Существующие с правкой полей и/или сдвинутые перетаскиванием. */
+  /** Сюда попадают и правки полей, и сдвиги перетаскиванием. */
   readonly updates: readonly PlannedContributor[];
   readonly deletes: readonly StagedContributor[];
 }
 
 /**
- * Раскладывает черновик на операции create/update/delete. Позиции — минимальным
- * диффом по видимой последовательности (как у технологий): сохранённые участники,
- * чей порядок не нарушен, остаются якорями, а сдвинутые и новые встают дробной
- * позицией между соседями — перенос одного участника = один PATCH.
+ * Позиции считаются минимальным диффом, как у технологий: участники с ненарушенным порядком
+ * остаются на месте, а сдвинутые и новые получают дробную позицию между соседями. Перенос
+ * одного участника стоит одного PATCH.
  */
 export function planContributorStaging(list: readonly StagedContributor[]): ContributorStagingPlan {
   const visible = visibleStaged(list);
@@ -176,18 +162,16 @@ export function planContributorStaging(list: readonly StagedContributor[]): Cont
   };
 }
 
-/** Есть ли что применять (для гейта «Сохранить» и счётчика диффа). */
 export function countContributorChanges(list: readonly StagedContributor[]): number {
   const plan = planContributorStaging(list);
   return plan.creates.length + plan.updates.length + plan.deletes.length;
 }
 
-/** Имя записи → тело запроса (en опускается, если пуст). */
+// Пустой en не отправляем вовсе.
 function toNameInput(name: ContributorAdmin['name']): CreateContributor['name'] {
   return name.en ? { ru: name.ru, en: name.en } : { ru: name.ru };
 }
 
-/** Тело create для записи плана (с позицией в каталоге). */
 export function stagedToCreateBody({ entry, order }: PlannedContributor): CreateContributor {
   return {
     name: toNameInput(entry.name),
@@ -198,16 +182,14 @@ export function stagedToCreateBody({ entry, order }: PlannedContributor): Create
   };
 }
 
-/**
- * Тело update: правка полей шлёт их целиком, перетаскивание — только новый `order`
- * (PATCH лишь того, что изменилось).
- */
+/** Если участника только перетащили, в PATCH уходит один `order`, без остальных полей. */
 export function stagedToUpdateBody({ entry, order }: PlannedContributor): UpdateContributor {
   const orderPatch = order === entry.order ? {} : { order };
   if (!entry.isEdited) return orderPatch;
   return {
     name: toNameInput(entry.name),
-    // Сброшенный цвет шлём пустой строкой (бэк маппит в null) — undefined бы «не менять».
+    // Сброшенный цвет шлём пустой строкой, бэк превратит её в null. undefined значил бы
+    // "не менять".
     color: entry.color ?? '',
     image: entry.image ?? undefined,
     link: entry.link ?? undefined,

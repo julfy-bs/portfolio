@@ -10,7 +10,7 @@ interface ProjectTagsProps {
   readonly tags: readonly string[];
 }
 
-/** Ряд технологий карточки: первые несколько + счётчик «+N» остатка. */
+/** Первые несколько технологий, остальные сворачиваем в счётчик «+N». */
 export function ProjectTags({ tags }: ProjectTagsProps) {
   const { t } = useTranslation();
   const shown = tags.slice(0, MAX_TAGS);

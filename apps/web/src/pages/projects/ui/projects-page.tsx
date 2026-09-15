@@ -6,11 +6,7 @@ import { projectPath, routePaths } from '@/shared/config';
 
 import { ProjectsPageView } from './projects-page-view';
 
-/**
- * Контейнер списка проектов: запрашивает проекты (`entities/project`,
- * локализованно) и навигацию, отдаёт данные презентационному `ProjectsPageView`.
- * Интро экрана берётся из профиля (`profile.projectsIntro`).
- */
+/** Интро экрана берётся из `profile.projectsIntro`. */
 export function ProjectsPage() {
   const navigate = useNavigate();
   const { data, isLoading, isError, refetch } = useProjects();

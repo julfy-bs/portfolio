@@ -15,7 +15,7 @@ describe('planMinimalOrders', () => {
   });
 
   it('перенос в середину даёт дробную позицию только перенесённому', () => {
-    // a(0) b(1) c(2) d(3) → d между a и b.
+    // a(0) b(1) c(2) d(3), переносим d между a и b.
     const seq = [saved('a', 0), saved('d', 3), saved('b', 1), saved('c', 2)];
     const plan = planMinimalOrders(seq);
     expect(plan.get('d')).toBe(0.5);

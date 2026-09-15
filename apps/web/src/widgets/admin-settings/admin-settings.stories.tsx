@@ -40,8 +40,8 @@ export const Saving: Story = {
   args: { isSaving: true },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    // Бар сохранения появляется только при изменениях — правим, затем проверяем,
-    // что во время сохранения «Сохранить» заблокирована.
+    // Бар сохранения появляется только после правки, поэтому сначала меняем поле,
+    // а потом проверяем, что кнопка блокируется на время сохранения.
     await userEvent.click(canvas.getByRole('radio', { name: 'Light' }));
     await expect(canvas.getByRole('button', { name: /Сохранить/ })).toBeDisabled();
   },

@@ -58,7 +58,7 @@ describe('Database / knowledge base (e2e)', () => {
     expect(Array.isArray(body.folders)).toBe(true);
     const frontend = body.folders.find((f) => f.id === 'frontend');
     expect(frontend).toBeDefined();
-    // Вложенность: js и react — подпапки frontend.
+    // В сиде у frontend две подпапки: js и react.
     expect(frontend?.children.length).toBeGreaterThanOrEqual(2);
   });
 

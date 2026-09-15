@@ -1,6 +1,6 @@
 import type { ProjectListItem } from '@/entities/project';
 
-/** Уникальные технологии всех проектов (для чипов фильтра), в порядке появления. */
+/** Уникальные технологии всех проектов в порядке появления. */
 export function collectTechOptions(projects: readonly ProjectListItem[]): readonly string[] {
   const seen = new Set<string>();
   for (const project of projects) {

@@ -31,7 +31,7 @@ describe('About', () => {
     renderWithProviders(<About isLoading />);
     expect(screen.queryByRole('link')).not.toBeInTheDocument();
     expect(screen.queryByText('Первый абзац о себе.')).not.toBeInTheDocument();
-    // Заголовок секции остаётся — грузится только текст.
+    // Заголовок на месте, грузится только текст.
     expect(screen.getByRole('heading', { name: '// обо мне' })).toBeInTheDocument();
   });
 

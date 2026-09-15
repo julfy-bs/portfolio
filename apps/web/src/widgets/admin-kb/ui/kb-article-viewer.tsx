@@ -7,14 +7,13 @@ import styles from './admin-kb.module.css';
 
 export interface KbArticleViewerProps {
   readonly article: ArticleDetail | undefined;
-  /** Выбрана ли статья (иначе — приглашающее пустое состояние). */
+  /** Без выбора показываем приглашение выбрать статью. */
   readonly hasSelection: boolean;
   readonly isLoading: boolean;
   readonly onEdit: () => void;
   readonly onNavigate: (slug: string) => void;
 }
 
-/** Правая панель БЗ в режиме просмотра: пусто / скелетон / статья с бэклинками. */
 export function KbArticleViewer({
   article,
   hasSelection,

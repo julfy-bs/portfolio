@@ -44,7 +44,7 @@ export const Loading: Story = {
   args: { isLoading: true },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    // В состоянии загрузки кнопки нет — только скелетон-заглушки.
+    // Пока грузится, кнопки нет, только заглушки.
     await expect(canvas.queryByRole('button')).not.toBeInTheDocument();
   },
 };
@@ -54,12 +54,12 @@ export const NoResume: Story = {
   args: { cvUrl: null },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    // Баннер скрыт целиком — ни кнопки, ни заголовка.
+    // Баннер скрыт целиком, нет ни кнопки, ни заголовка.
     await expect(canvas.queryByRole('button')).not.toBeInTheDocument();
   },
 };
 
-/** Скачивание доступно с клавиатуры: Tab → фокус, Enter вызывает onDownload. */
+/** Скачать можно с клавиатуры: Tab ставит фокус, Enter вызывает onDownload. */
 export const KeyboardDownload: Story = {
   name: 'Скачивание с клавиатуры',
   play: async ({ canvasElement, args, userEvent }) => {

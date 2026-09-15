@@ -19,7 +19,7 @@
 }
 
 .value {
-  /* 25px нет в шкале токенов — фиксируем локальной переменной, а не «магией». */
+  /* 25px нет в шкале токенов, поэтому держим его в локальной переменной. */
   --highlight-value-size: 25px;
 
   font-family: var(--font-mono), monospace;
@@ -29,14 +29,14 @@
   color: var(--color-primary-bright);
 }
 
-/* Планшет: два столбца (макет ~768 → --bp-md) */
+/* На планшетах два столбца (--bp-md) */
 @media (width <= 768px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* Мобильный: один столбец (--bp-sm 480) */
+/* На мобильных один столбец (--bp-sm, 480px) */
 @media (width <= 480px) {
   .grid {
     grid-template-columns: 1fr;

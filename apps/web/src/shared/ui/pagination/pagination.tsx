@@ -3,21 +3,16 @@ import { cn } from '@/shared/lib';
 import styles from './pagination.module.css';
 
 export interface PaginationProps {
-  /** Текущая страница (1-based). */
+  /** Нумерация с 1. */
   readonly page: number;
   readonly pageCount: number;
   readonly onChange: (page: number) => void;
-  /** Доступное имя навигации и подписи стрелок (локаль — у потребителя). */
   readonly ariaLabel: string;
   readonly prevLabel: string;
   readonly nextLabel: string;
 }
 
-/**
- * Простая клиентская пагинация: «назад», номера страниц, «вперёд». Номеров
- * немного (десятки проектов), поэтому рисуем все без свёртки. Активная страница
- * помечена `aria-current`.
- */
+// Страниц немного, поэтому показываем все номера без сокращения через многоточие.
 export function Pagination({
   page,
   pageCount,

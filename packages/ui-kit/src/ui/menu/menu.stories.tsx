@@ -78,7 +78,7 @@ export const ArrowNavigation: Story = {
     const canvas = within(canvasElement);
     await userEvent.click(canvas.getByRole('button', { name: 'Открыть меню' }));
     const items = canvas.getAllByRole('menuitem');
-    // При открытии фокус — на первом пункте.
+    // При открытии фокус встаёт на первый пункт.
     await expect(items[0]).toHaveFocus();
     await userEvent.keyboard('{ArrowDown}');
     await expect(items[1]).toHaveFocus();

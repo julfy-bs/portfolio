@@ -24,11 +24,7 @@ export interface AdminSettingsViewProps {
   readonly onSave: (settings: Settings) => void;
 }
 
-/**
- * Форма «Настройки приложения» (`PATCH /api/settings`) по макету: название сайта и
- * пароль раздела Interview, язык/тема по умолчанию (сегменты) и тумблеры поведения
- * (свечение консоли, блок активности). Презентационная — сохранение уходит колбэком.
- */
+/** Форма настроек сайта. Сама ничего не отправляет, сохранение отдаёт наверх через колбэк. */
 export function AdminSettingsView({ settings, isSaving, onSave }: AdminSettingsViewProps) {
   const { t } = useTranslation();
   const {
@@ -144,13 +140,13 @@ export function AdminSettingsView({ settings, isSaving, onSave }: AdminSettingsV
             control={control}
             name="availableLanguages"
             render={({ field }) => {
-              // Устойчивость к настройкам без поля (старый бэк без миграции): не падаем.
+              // Старый бэк без миграции может не прислать это поле, падать из-за этого не хотим.
               const selected = field.value ?? [];
               return (
                 <div className={styles.cardGrid}>
                   {LANGUAGE_FIELDS.map((language) => {
                     const enabled = selected.includes(language.code);
-                    // Хотя бы один язык должен остаться — последний включённый не выключить.
+                    // Хотя бы один язык должен остаться, поэтому последний включённый выключить нельзя.
                     const isLastEnabled = enabled && selected.length <= 1;
                     return (
                       <ToggleField

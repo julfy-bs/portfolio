@@ -85,7 +85,7 @@ export function toProjectDetail(project: ProjectDetailPayload, locale: Locale): 
   };
 }
 
-// --- admin (обе локали) ---
+// Админка, отдаём обе локали
 
 function readProjectLinks(value: unknown): ProjectLinkAdminDto[] {
   if (!Array.isArray(value)) return [];

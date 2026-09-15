@@ -46,7 +46,7 @@ describe('AdminEducationView', () => {
   it('новую запись нельзя сохранить без даты начала', async () => {
     renderView();
     expect(screen.queryByRole('button', { name: /Сохранить/ })).not.toBeInTheDocument();
-    // Пустая новая карточка не считается изменением — бар остаётся скрытым.
+    // Пустая новая карточка изменением не считается, бар не появляется.
     await userEvent.click(screen.getByRole('button', { name: '+ запись' }));
     expect(screen.queryByRole('button', { name: /Сохранить/ })).not.toBeInTheDocument();
 
@@ -55,7 +55,7 @@ describe('AdminEducationView', () => {
     expect(screen.getByText('Укажите дату начала')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /Сохранить/ })).toBeDisabled();
 
-    // Секция «Высшее» идёт первой, поэтому поле даты новой карточки — по индексу её степени.
+    // Секция «Высшее» идёт первой, поэтому поле даты ищем по тому же индексу, что и степень.
     const starts = screen.getAllByLabelText('Дата начала');
     fireEvent.change(starts[degrees.length - 1], { target: { value: '2024-09' } });
     expect(screen.getByRole('button', { name: /Сохранить/ })).toBeEnabled();

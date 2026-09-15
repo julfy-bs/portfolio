@@ -12,9 +12,8 @@ import type {
 } from '../model/types';
 
 /**
- * Эндпоинты проектов. Публичные список/деталь локализованы (title/description/body)
- * → язык в аргументе. Админ отдаёт обе локали и CRUD; мутации инвалидируют тег
- * `Project` → и админ-список, и публичные экраны перезапрашиваются.
+ * Публичные список и деталь локализованы (title, description, body), поэтому язык передаётся
+ * аргументом. Мутации инвалидируют тег `Project`, и перезапрашиваются админка и публичные экраны.
  */
 export const projectApi = apiSlice.injectEndpoints({
   endpoints: (build) => ({
@@ -42,8 +41,8 @@ export const projectApi = apiSlice.injectEndpoints({
       query: (id) => ({ url: `/projects/${id}`, method: 'DELETE' }),
       invalidatesTags: ['Project'],
     }),
-    // Галерея проекта: загрузка идёт multipart (файл + id проекта). Инвалидация
-    // `Project` перезапрашивает админ-запись — новый скриншот появляется в форме.
+    // Скриншот уходит multipart вместе с id проекта. Инвалидация `Project` перезапрашивает
+    // админ-запись, и новый скриншот появляется в форме.
     uploadGalleryImage: build.mutation<ProjectMediaAdmin, UploadGalleryImage>({
       query: ({ projectId, file, altRu, altEn }) => {
         const form = new FormData();

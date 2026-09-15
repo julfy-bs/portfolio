@@ -1,8 +1,6 @@
-// Prisma-схема — Console Portfolio.
-//
-// Локализация: поля типа `Json` с пометкой `// LocalizedText` хранят двуязычное
-// значение вида `{ ru: string; en?: string }` (или `{ ru: string[]; en?: string[] }` для списков).
-// API отдаёт нужную локаль с откатом на `ru`. См. BACKEND.md.
+// Поля `Json` с пометкой `// LocalizedText` хранят двуязычное значение
+// `{ ru: string; en?: string }` (для списков `{ ru: string[]; en?: string[] }`).
+// API отдаёт нужную локаль, а если её нет, то `ru`. Подробнее в BACKEND.md.
 
 generator client {
   provider = "prisma-client-js"
@@ -13,11 +11,8 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// ---------------------------------------------------------------- enums
-
 enum UserRole {
   ADMIN
-  // VIEWER — доступ к приватной зоне только на чтение, возможно добавим позже.
 }
 
 enum AvailabilityStatus {
@@ -42,8 +37,6 @@ enum MediaType {
   CV
 }
 
-// ---------------------------------------------------------------- identity / auth
-
 model User {
   id            String         @id @default(cuid())
   username      String         @unique
@@ -66,26 +59,24 @@ model RefreshToken {
   @@index([userId])
 }
 
-// ---------------------------------------------------------------- profile
-
 model Profile {
   id              Int                @id @default(1) // синглтон
-  name            Json // LocalizedText — имя владельца по локали (ru/en)
+  name            Json // LocalizedText
   roleTitle       Json // LocalizedText
-  headline        Json // LocalizedText — питч героя (2–3 предложения)
+  headline        Json // LocalizedText, короткий питч в шапке главной
   location        Json // LocalizedText
   email           String
   avatarPhotoUrl  String?
   avatarColor     String?
-  cvUrl           Json? // LocalizedText — ссылка на PDF-резюме по локали (ru/en)
-  heroStack       String[] // слова печатающей строки героя: React, Vue 3, Node · NestJS, …
-  // Ключевые показатели над «Обо мне»: [{ value: string, label: LocalizedText }]
+  cvUrl           Json? // LocalizedText, у каждой локали своё PDF-резюме
+  heroStack       String[] // слова, которые по очереди печатаются в шапке главной
+  // Показатели над блоком «Обо мне»: [{ value: string, label: LocalizedText }]
   highlights      Json               @default("[]")
   availability    AvailabilityStatus @default(OPEN)
   bioMarkdown     Json // LocalizedText
   isBioHidden     Boolean            @default(false)
   bioUpdatedAt    DateTime?
-  // Интро-абзацы экранов (LocalizedText): текст под заголовком страницы
+  // Вводный абзац под заголовком страницы (LocalizedText)
   projectsIntro   Json?
   experienceIntro Json?
   contactIntro    Json?
@@ -96,7 +87,7 @@ model Profile {
 
 model ContactLink {
   id        String  @id @default(cuid())
-  icon      String // telegram | codewars | linkedin | github | email | ...
+  icon      String // telegram, codewars, linkedin, github, email и т.п.
   url       String
   hidden    Boolean @default(false)
   order     Int     @default(0)
@@ -106,14 +97,12 @@ model ContactLink {
   @@index([profileId])
 }
 
-// ---------------------------------------------------------------- projects & taxonomy
-
 model Technology {
   id          String       @id @default(cuid())
   name        String
   category    String?
-  // Float, чтобы перестановка меняла порядок ОДНОЙ записи (дробная позиция между
-  // соседями), а не перенумеровывала все — минимальный дифф при drag&drop.
+  // Float позволяет при drag&drop поставить запись между соседями с дробной позицией
+  // и не перенумеровывать остальные.
   order       Float        @default(0)
   primaryFor  Project[]    @relation("ProjectPrimaryLanguage")
   projects    Project[]    @relation("ProjectTechnologies")
@@ -126,7 +115,7 @@ model Contributor {
   image    String?
   color    String?
   link     String?
-  order    Float     @default(0) // Float — как у Technology.order (минимальный дифф порядка)
+  order    Float     @default(0) // Float по той же причине, что у Technology.order
   projects Project[] @relation("ProjectContributors")
 }
 
@@ -135,7 +124,7 @@ model Project {
   slug              String        @unique
   title             Json // LocalizedText
   description       Json // LocalizedText (short)
-  subtitle          Json? // LocalizedText (подзаголовок плитки/детали)
+  subtitle          Json? // LocalizedText, подзаголовок плитки и страницы проекта
   bodyMarkdown      Json // LocalizedText (full)
   bullets           Json? // LocalizedText list { ru: string[]; en?: string[] }
   role              Json? // LocalizedText
@@ -179,8 +168,6 @@ model MediaAsset {
   @@index([projectId])
 }
 
-// ---------------------------------------------------------------- experience / education / skills
-
 model Experience {
   id        String       @id @default(cuid())
   role      Json // LocalizedText
@@ -195,14 +182,14 @@ model Experience {
   tech      Technology[] @relation("ExperienceTech")
 }
 
-// Опыт и образование — таймлайны: порядок задаёт startDate (свежее выше), не ручной order.
+// Опыт и образование показываются таймлайном, поэтому сортируем по startDate, а не по order.
 model Education {
   id        String        @id @default(cuid())
   type      EducationType @default(MAIN)
   degree    Json // LocalizedText
   place     Json? // LocalizedText
   startDate DateTime
-  endDate   DateTime? // null — курс одной датой
+  endDate   DateTime? // null, если курс укладывается в одну дату
 }
 
 model Language {
@@ -216,11 +203,10 @@ model Language {
 model Skill {
   id    String @id @default(cuid())
   name  Json // LocalizedText
-  order Float  @default(0) // Float — как у Technology.order (минимальный дифф порядка)
+  order Float  @default(0) // Float по той же причине, что у Technology.order
 }
 
-// ---------------------------------------------------------------- knowledge base (private)
-
+// База знаний, видна только в приватной зоне
 model Folder {
   id       String    @id @default(cuid())
   name     Json // LocalizedText
@@ -249,28 +235,25 @@ model Article {
   @@index([folderId])
 }
 
-// ---------------------------------------------------------------- settings
-
 model Settings {
   id                Int      @id @default(1) // синглтон
   siteTitle         String   @default("bogdan.sutuzhko")
   interviewPassword String   @default("interview2026")
   defaultTheme      String   @default("dark")
-  accentColor       String   @default("green") // акцент оформления (green | blue | bright)
-  defaultLang       String   @default("ru") // язык по умолчанию (гость + фолбэк)
-  // Языки, доступные на сайте (подмножество поддерживаемых платформой). Выключенный
-  // язык скрыт из переключателя; уже переведённый контент не удаляется, лишь не показывается.
+  accentColor       String   @default("green") // green, blue или bright
+  defaultLang       String   @default("ru") // язык для нового гостя и запасной язык
+  // Языки, включённые на сайте. Выключенный язык пропадает из переключателя, но его
+  // переводы остаются в базе.
   availableLanguages String[] @default(["ru", "en"])
   consoleGlow       Boolean  @default(true) // свечение за курсором в консоли
-  // Видимость секций главной (вкл/выкл из кабинета). Hero всегда включён — это идентичность.
-  showHighlights    Boolean  @default(true) // блок показателей
-  showAbout         Boolean  @default(true) // блок «Обо мне»
-  showStack         Boolean  @default(true) // блок стека
-  showActivity      Boolean  @default(true) // блок активности (GitHub/Codewars) на главной
-  showNow           Boolean  @default(true) // баннер доступности (open-to-work)
-  showFeatured      Boolean  @default(true) // блок избранных проектов
-  // Видимость публичных страниц-роутов (вкл/выкл из кабинета). Выключенная страница
-  // недоступна по URL (404) и скрыта из навигации (консоль cd/ls, CTA главной).
+  // Какие секции главной показывать. Шапку с именем не выключаем, без неё главная теряет смысл.
+  showHighlights    Boolean  @default(true) // показатели
+  showAbout         Boolean  @default(true) // «Обо мне»
+  showStack         Boolean  @default(true) // стек
+  showActivity      Boolean  @default(true) // активность на GitHub и Codewars
+  showNow           Boolean  @default(true) // баннер open-to-work
+  showFeatured      Boolean  @default(true) // избранные проекты
+  // Выключенная страница отдаёт 404 и пропадает из навигации, в том числе из cd/ls в консоли.
   showProjects      Boolean  @default(true) // страница /projects
   showExperience    Boolean  @default(true) // страница /experience
   showContact       Boolean  @default(true) // страница /contact

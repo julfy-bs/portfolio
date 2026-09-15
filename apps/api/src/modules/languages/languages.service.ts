@@ -22,7 +22,7 @@ export class LanguagesService {
     }));
   }
 
-  // --- admin ---
+  // Админка
 
   async listAdmin(): Promise<LanguageAdminDto[]> {
     const items = await this.prisma.language.findMany({ orderBy: { order: 'asc' } });

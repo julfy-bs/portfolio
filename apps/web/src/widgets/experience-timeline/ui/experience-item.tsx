@@ -10,11 +10,10 @@ interface ExperienceItemProps {
   readonly job: Experience;
 }
 
-/** Одна запись таймлайна: точка-маркер и карточка (роль/компания/период, буллеты, стек). */
 export function ExperienceItem({ job }: ExperienceItemProps) {
   const { t } = useTranslation();
   const language = useAppLanguage();
-  // Текущее место — открытый период «… — наст. время», даже если endDate остался от правки.
+  // Для текущего места период всегда открытый, даже если endDate остался после редактирования.
   const period = formatMonthRange(
     job.startDate,
     job.current ? null : job.endDate,

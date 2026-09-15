@@ -8,15 +8,11 @@ import { routePaths } from '@/shared/config';
 import { PageGate } from './page-gate';
 import { RequireAuth } from './require-auth';
 
-/**
- * Маршрутизатор приложения. Все маршруты обёрнуты в корневой лейаут (навбар +
- * подвал). Страницы подгружаются лениво (code splitting): каждый маршрут — в
- * отдельном чанке; сам лейаут в основном бандле, т.к. нужен всегда.
- */
+// Страницы грузятся лениво, каждая своим чанком. Лейаут нужен всегда, поэтому он в
+// основном бандле.
 export const router = createBrowserRouter([
   {
     element: <RootLayout />,
-    // Ошибка рендера/загрузки любого маршрута показывает страницу 500.
     errorElement: <ServerErrorPage />,
     children: [
       {
@@ -27,7 +23,7 @@ export const router = createBrowserRouter([
         },
       },
       {
-        // Проекты (список + деталь) скрываются вместе флагом `showProjects`.
+        // Список и страница проекта скрываются вместе, одним флагом `showProjects`.
         element: <PageGate page="projects" />,
         children: [
           {
@@ -78,7 +74,6 @@ export const router = createBrowserRouter([
         },
       },
       {
-        // Приватная зона — только для авторизованных (иначе редирект на /login).
         element: <RequireAuth />,
         children: [
           {
@@ -89,7 +84,7 @@ export const router = createBrowserRouter([
             },
           },
           {
-            // Голый `/admin` редиректит на вкладку профиля в текущей локали.
+            // С голого `/admin` уводим на профиль в текущей локали.
             path: routePaths.admin,
             lazy: async () => {
               const { AdminIndexRedirect } = await import('@/pages/admin');
@@ -97,8 +92,7 @@ export const router = createBrowserRouter([
             },
           },
           {
-            // Вкладка кабинета: `/admin/:tab/:locale` (+ опц. `:detail` — id или `new`
-            // для детальных редакторов). Локаль редактирования — в маршруте.
+            // `:detail` нужен редакторам отдельных записей: это id или `new`.
             path: `${routePaths.admin}/:tab/:locale/:detail?`,
             lazy: async () => {
               const { AdminPage } = await import('@/pages/admin');
@@ -108,9 +102,8 @@ export const router = createBrowserRouter([
         ],
       },
       {
-        // NotFoundPage не ленивая: она уже в основном графе (PageGate рендерит
-        // её синхронно для выключенных страниц), поэтому отдельный lazy-чанк для
-        // неё неэффективен (Rollup предупреждал INEFFECTIVE_DYNAMIC_IMPORT).
+        // Не lazy: PageGate и так импортирует её напрямую, и отдельный чанк ничего не
+        // даёт (Rollup ругался INEFFECTIVE_DYNAMIC_IMPORT).
         path: routePaths.notFound,
         Component: NotFoundPage,
       },

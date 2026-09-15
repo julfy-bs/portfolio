@@ -4,7 +4,6 @@ import styles from './admin-settings.module.css';
 
 const ROWS = [0, 1, 2, 3];
 
-/** Скелетон формы настроек на время загрузки. */
 export function AdminSettingsSkeleton() {
   return (
     <div className={styles.form} aria-busy="true" aria-live="polite">

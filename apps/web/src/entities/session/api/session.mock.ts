@@ -11,18 +11,17 @@ export const mockAuthUser: AuthUser = {
   role: 'ADMIN',
 };
 
-/** Логин мока — совпадает с сидом бэкенда (admin). Пароль изменяем — см. `currentPassword`. */
+/** Логин совпадает с сидом бэкенда (admin). Пароль можно сменить, см. `currentPassword`. */
 const USERNAME = 'admin';
 const INITIAL_PASSWORD = 'admin12345';
 // Текущий пароль мока: смена пароля его меняет, поэтому dev:mock ведёт себя как бэк.
 let currentPassword = INITIAL_PASSWORD;
 
-// Мок различает два «токена», как реальный бэкенд:
-//   - `session` (модульная переменная) = короткоживущий access: сбрасывается при
-//     перезагрузке страницы, как истёкшая access-cookie;
-//   - маркер в localStorage = долгоживущий refresh: переживает перезагрузку.
-// Благодаря этому в dev:mock работает тот же сценарий, что в проде: после reload
-// `/auth/me` даёт 401, baseQuery дёргает `/auth/refresh`, сессия восстанавливается.
+// Как и бэкенд, мок различает два токена. Модульная переменная `session` играет роль
+// короткого access и пропадает при перезагрузке, как истёкшая cookie. Маркер в localStorage
+// играет роль refresh и перезагрузку переживает. Поэтому в dev:mock сценарий тот же, что в
+// проде: после reload `/auth/me` даёт 401, baseQuery дёргает `/auth/refresh`, сессия
+// восстанавливается.
 const REFRESH_KEY = 'mock_refresh_token';
 let session: AuthUser | null = null;
 
@@ -39,18 +38,18 @@ function setRefreshToken(value: boolean): void {
     if (value) localStorage.setItem(REFRESH_KEY, '1');
     else localStorage.removeItem(REFRESH_KEY);
   } catch {
-    /* localStorage недоступен — работаем только с in-memory сессией */
+    /* localStorage недоступен, обходимся in-memory сессией */
   }
 }
 
-/** Сбрасывает сессию и пароль мока — для изоляции тестов. */
+/** Сбрасывает сессию и пароль мока, чтобы тесты не зависели друг от друга. */
 export function resetMockSession(): void {
   session = null;
   currentPassword = INITIAL_PASSWORD;
   setRefreshToken(false);
 }
 
-/** MSW-обработчики аутентификации: stateful login/me/refresh/logout/change-password. */
+/** Обработчики со состоянием: login, me, refresh, logout и смена пароля. */
 export const sessionHandlers = [
   http.post<Record<string, never>, LoginCredentials>(
     `${env.apiBaseUrl}/auth/login`,

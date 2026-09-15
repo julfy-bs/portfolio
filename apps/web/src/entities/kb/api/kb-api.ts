@@ -12,18 +12,16 @@ import type {
   UpdateFolder,
 } from '../model/types';
 
-/** Аргументы запроса статьи: slug + язык (сегментирует кэш и уходит заголовком). */
+/** Язык нужен и для разделения кэша, и для заголовка `Accept-Language`. */
 export interface ArticleQueryArgs {
   readonly slug: string;
   readonly language: AppLanguage;
 }
 
 /**
- * Эндпоинты приватной базы знаний: чтение (дерево, статья по slug) и админ-CRUD
- * (папки, статьи). Приватны на бэкенде (cookie-сессия), фронт вызывает их только
- * за гардом `RequireAuth`. Язык сегментирует кэш RTK Query и уходит заголовком
- * `Accept-Language`. Мутации инвалидируют тег `Kb` → дерево и открытая статья
- * перезапрашиваются; правка конкретной статьи дополнительно освежает её admin-кэш.
+ * База знаний приватная: бэкенд закрывает её cookie-сессией, фронт ходит сюда только из-под
+ * `RequireAuth`. Мутации инвалидируют тег `Kb`, поэтому дерево и открытая статья
+ * перезапрашиваются, а правка статьи дополнительно освежает её admin-кэш.
  */
 export const kbApi = apiSlice.injectEndpoints({
   endpoints: (build) => ({
@@ -36,7 +34,7 @@ export const kbApi = apiSlice.injectEndpoints({
       providesTags: ['Kb'],
     }),
 
-    // --- админ: папки ---
+    // Админка: папки
     getFolders: build.query<FolderAdmin[], void>({
       query: () => ({ url: '/database/folders' }),
       providesTags: ['Kb'],
@@ -54,7 +52,7 @@ export const kbApi = apiSlice.injectEndpoints({
       invalidatesTags: ['Kb'],
     }),
 
-    // --- админ: статьи ---
+    // Админка: статьи
     getArticleAdmin: build.query<ArticleAdmin, string>({
       query: (id) => ({ url: `/database/articles/admin/${id}` }),
       providesTags: (_result, _error, id) => [{ type: 'KbArticle', id }],

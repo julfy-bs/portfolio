@@ -25,7 +25,7 @@ function makeShot(id: string): ProjectMediaAdmin {
 
 const shots: ProjectMediaAdmin[] = [makeShot('m1')];
 
-/** Файл с заданным размером без реальной аллокации байтов. */
+// Подменяем size, чтобы не выделять память под настоящий файл.
 function fileOfSize(name: string, size: number): File {
   const file = new File(['x'], name, { type: 'image/png' });
   Object.defineProperty(file, 'size', { value: size });

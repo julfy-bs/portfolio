@@ -4,7 +4,6 @@ import styles from './admin-experience.module.css';
 
 const ROWS = [0, 1, 2];
 
-/** Скелетон списка опыта на время загрузки. */
 export function AdminExperienceSkeleton() {
   return (
     <div className={styles.card} aria-busy="true" aria-live="polite">

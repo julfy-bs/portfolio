@@ -1,11 +1,9 @@
-# Реверс-прокси + раздача SPA. Один origin для фронта и API — поэтому HttpOnly
-# cookie сессии работают без CORS. HTTPS-сертификаты Caddy получает автоматически
-# (Let's Encrypt), нужен только домен, направленный на этот сервер, и порты 80/443.
+# Фронт и API отдаются с одного origin, поэтому HttpOnly-cookie сессии работают без CORS.
+# Сертификаты Caddy выпускает сам через Let's Encrypt, нужны только домен и открытые 80/443.
 
 sutuzhko.space, www.sutuzhko.space {
 	encode gzip zstd
 
-	# API и загруженные файлы — на бэкенд-контейнер (тот же origin).
 	handle /api/* {
 		reverse_proxy api:3000
 	}
@@ -13,27 +11,23 @@ sutuzhko.space, www.sutuzhko.space {
 		reverse_proxy api:3000
 	}
 
-	# Всё остальное — статика собранного SPA, с фолбэком на index.html
-	# (клиентский роутинг React Router).
+	# Неизвестные пути отдаём как index.html, дальше разбирается React Router.
 	handle {
 		root * /srv
 		try_files {path} /index.html
 		file_server
 	}
 
-	# Долгий кэш для хешированных ассетов, без кэша для index.html.
+	# У ассетов хеш в имени, их можно кэшировать навсегда. index.html не кэшируем.
 	@assets path /assets/*
 	header @assets Cache-Control "public, max-age=31536000, immutable"
 	@html path /index.html
 	header @html Cache-Control "no-cache"
 }
 
-# ВРЕМЕННО: тестовый стенд baby-tracker (закрытая бета) на этом же сервере — отдаём
-# поддомен на контейнер baby-web из стека /home/deploy/baby-tracker. Внешний HTTPS и
-# сертификат берёт на себя этот Caddy; портфолио отдаётся как раньше.
-# 🔴 По окончании теста — удалить весь этот блок и запушить (маршрут и сертификат
-# отпадут). Полная очистка сервера от baby-tracker — в docs/DEPLOY_TEST.md репозитория
-# baby-tracker.
+# Временный тестовый стенд baby-tracker на этом же сервере (контейнер baby-web из стека
+# /home/deploy/baby-tracker). После закрытия беты блок удаляем, как почистить сервер,
+# описано в docs/DEPLOY_TEST.md репозитория baby-tracker.
 baby-test.sutuzhko.space {
 	reverse_proxy baby-web:80
 }

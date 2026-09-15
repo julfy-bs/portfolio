@@ -4,7 +4,7 @@ import { env } from '@/shared/config';
 
 import type { CodewarsStats, GithubStats } from '../model/types';
 
-/** Фикстура GitHub-статистики — форма контрактного GithubStatsDto. */
+/** Повторяет форму контрактного GithubStatsDto. */
 export const mockGithubStats: GithubStats = {
   handle: '@sutuzhko',
   url: 'https://github.com/sutuzhko',
@@ -15,7 +15,7 @@ export const mockGithubStats: GithubStats = {
   topLanguages: ['JavaScript', 'TypeScript', 'React', 'Vue', 'Node'],
 };
 
-/** Фикстура Codewars-статистики — форма контрактного CodewarsStatsDto. */
+/** Повторяет форму контрактного CodewarsStatsDto. */
 export const mockCodewarsStats: CodewarsStats = {
   handle: 'sutuzhko',
   url: 'https://www.codewars.com/users/sutuzhko',
@@ -28,7 +28,6 @@ export const mockCodewarsStats: CodewarsStats = {
   progress: 62,
 };
 
-/** MSW-обработчики эндпоинтов внешней статистики. */
 export const statsHandlers = [
   http.get(`${env.apiBaseUrl}/stats/github`, () => HttpResponse.json(mockGithubStats)),
   http.get(`${env.apiBaseUrl}/stats/codewars`, () => HttpResponse.json(mockCodewarsStats)),

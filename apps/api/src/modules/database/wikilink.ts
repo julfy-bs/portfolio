@@ -1,10 +1,8 @@
-// Утилиты для вики-ссылок базы знаний. В теле статей ссылки задаются как `[[slug]]`
-// (или `[[Заголовок]]`); на их основе вычисляются бэклинки между статьями.
+// В теле статьи ссылка пишется как `[[slug]]` или `[[Заголовок]]`, по ним считаются бэклинки.
 
 const WIKILINK_RE = /\[\[\s*([^[\]]+?)\s*\]\]/g;
 
-// Приводит токен ссылки к slug-виду: те же правила, что и в редакторе дизайна
-// (нижний регистр, пробелы → дефис), чтобы `[[event loop]]` совпал с `event-loop`.
+// Нормализуем ссылку, чтобы `[[event loop]]` находил статью `event-loop`.
 export function slugifyToken(token: string): string {
   return token
     .toLowerCase()
@@ -14,8 +12,7 @@ export function slugifyToken(token: string): string {
     .replace(/-+/g, '-');
 }
 
-// Достаёт строковые значения из LocalizedText (`{ru,en}`) или простой строки —
-// бэклинки ищем по тексту во всех локалях.
+// Бэклинки ищем сразу во всех локалях, поэтому собираем все строки значения.
 export function collectLocalizedStrings(value: unknown): string[] {
   if (typeof value === 'string') return [value];
   if (value === null || typeof value !== 'object') return [];
@@ -24,7 +21,6 @@ export function collectLocalizedStrings(value: unknown): string[] {
   );
 }
 
-// Возвращает все токены вики-ссылок из переданных текстов.
 export function extractWikilinks(texts: string[]): string[] {
   const tokens: string[] = [];
   for (const text of texts) {

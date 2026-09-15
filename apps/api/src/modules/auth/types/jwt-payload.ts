@@ -1,6 +1,6 @@
 import { UserRole } from '@prisma/client';
 
-// Полезная нагрузка JWT. `sub` — id пользователя (стандартное claim-имя).
+// id пользователя лежит в стандартном claim `sub`.
 export interface JwtPayload {
   readonly sub: string;
   readonly username: string;

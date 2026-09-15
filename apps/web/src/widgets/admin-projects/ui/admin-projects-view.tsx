@@ -15,9 +15,9 @@ const MAX_TAGS = 3;
 
 export interface AdminProjectsViewProps {
   readonly items: readonly ProjectAdmin[];
-  /** Технологии — чтобы показать имена по technologyIds в строке. */
+  /** В проекте хранятся только technologyIds, имена берём отсюда. */
   readonly technologies: readonly TechnologyAdmin[];
-  /** Каталог участников — чтобы показать имена по contributorIds в строке. */
+  /** Аналогично для contributorIds. */
   readonly contributors: readonly ContributorAdmin[];
   readonly locale: AppLanguage;
   readonly isBusy: boolean;
@@ -31,11 +31,7 @@ function tileGradient(color: string | null): string {
   return `linear-gradient(135deg, ${base}, color-mix(in srgb, ${base} 55%, #000))`;
 }
 
-/**
- * Список проектов: плитка-градиент, название, значок «избранное», бейдж «скрыт»,
- * теги, статус. Добавление/правка ведут на детальные маршруты, удаление — с
- * подтверждением. Презентационная.
- */
+/** Формы здесь нет: добавление и правка открываются на отдельных маршрутах. */
 export function AdminProjectsView({
   items,
   technologies,

@@ -48,7 +48,7 @@ describe('Hero', () => {
     renderWithProviders(<Hero isLoading />);
     expect(screen.queryByRole('heading')).not.toBeInTheDocument();
     expect(screen.queryByText('Сейчас пишу на')).not.toBeInTheDocument();
-    // Питч — данные профиля, поэтому под скелетоном при загрузке.
+    // Питч берётся из профиля, поэтому при загрузке он под скелетоном.
     expect(screen.queryByText(/Строю аккуратный фронтенд/)).not.toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Скачать резюме' })).toBeInTheDocument();
   });

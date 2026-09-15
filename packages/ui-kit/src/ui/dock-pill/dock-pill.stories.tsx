@@ -40,7 +40,7 @@ export const Playground: Story = {
   },
 };
 
-/** Пилюля раннера — та же пилюля с другой подписью. */
+/** Пилюля раннера: та же пилюля с другой подписью. */
 export const Runner: Story = {
   name: 'Раннер',
   args: { label: '2048 — game' },

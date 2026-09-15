@@ -1,5 +1,4 @@
-// `cn` живёт в UI Kit (на нём построены варианты его компонентов) и ре-экспортируется
-// отсюда, чтобы приложение по-прежнему брало утилиты из одной точки — `@/shared/lib`.
+// `cn` живёт в UI Kit, реэкспортируем, чтобы все утилиты брались из `@/shared/lib`.
 export { cn, type ClassValue } from '@sutuzhko/ui-kit';
 export { countDirtyFields } from './count-dirty-fields';
 export { downloadFile } from './download-file';

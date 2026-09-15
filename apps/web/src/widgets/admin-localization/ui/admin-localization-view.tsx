@@ -9,7 +9,6 @@ import type { LocCellLabels, LocLocale } from './loc-cell';
 import { LocTableRow } from './loc-table-row';
 import styles from './admin-localization.module.css';
 
-/** Редактируемая ячейка: строка + локаль (или null — ничего не правится). */
 export interface LocEditing {
   readonly rowId: string;
   readonly locale: LocLocale;
@@ -41,11 +40,6 @@ const FILTERS: readonly { readonly value: LocFilter; readonly labelKey: string }
   { value: 'changed', labelKey: 'admin.locale.filters.changed' },
 ];
 
-/**
- * Презентационный вид вкладки «Локализация»: покрытие + статистика, поиск/фильтры,
- * таблица сверки RU/EN по секциям и плавающая панель сохранения диффа. Данные и
- * колбэки — пропами; логика диффа/фан-аута живёт в контейнере.
- */
 export function AdminLocalizationView({
   stats,
   groups,

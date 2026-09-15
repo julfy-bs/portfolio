@@ -1,19 +1,18 @@
 import type { ProjectListItem } from '@/entities/project';
 
-/** Порядок отображения проектов, выбираемый посетителем. */
 export type ProjectSortKey = 'default' | 'name' | 'newest';
 
 export const PROJECT_SORT_KEYS: readonly ProjectSortKey[] = ['default', 'name', 'newest'];
 
-/** Год из строки периода («2021», «2023–2024») — для сортировки по свежести. */
+/** Первый год из периода вроде «2021» или «2023-2024», по нему сортируем по свежести. */
 function periodYear(period: string | null): number {
   const match = period?.match(/\d{4}/);
   return match ? Number(match[0]) : 0;
 }
 
 /**
- * Клиентская сортировка списка проектов. `default` сохраняет серверный
- * (курируемый) порядок — избранные и `order`. Не мутирует вход.
+ * `default` оставляет порядок с сервера: сначала избранные, затем по `order`.
+ * Входной массив не мутирует.
  */
 export function sortProjects(
   projects: readonly ProjectListItem[],

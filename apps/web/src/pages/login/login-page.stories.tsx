@@ -34,7 +34,7 @@ export const Playground: Story = {
   name: 'Интерактивный пример',
 };
 
-/** Сервер отклонил учётные данные — под полями видна ошибка. */
+/** Сервер отклонил учётные данные, под полями видна ошибка. */
 export const Invalid: Story = {
   name: 'Неверные данные',
   args: { invalid: true },
@@ -44,7 +44,7 @@ export const Invalid: Story = {
   },
 };
 
-/** Идёт запрос входа — кнопка заблокирована. */
+/** Пока идёт вход, кнопка заблокирована. */
 export const Submitting: Story = {
   name: 'Отправка',
   args: { isSubmitting: true },
@@ -54,7 +54,7 @@ export const Submitting: Story = {
   },
 };
 
-/** Заполнение и отправка формы вызывает onSubmit с учётными данными. */
+/** Отправка заполненной формы вызывает onSubmit с учётными данными. */
 export const FilledSubmit: Story = {
   name: 'Отправка валидной формы',
   play: async ({ canvasElement, args }) => {
@@ -77,7 +77,7 @@ export const Validation: Story = {
   },
 };
 
-/** Профиль ещё грузится — ник поддержки под скелетоном. */
+/** Профиль ещё грузится, ник поддержки под скелетоном. */
 export const ContactLoading: Story = {
   name: 'Загрузка контакта',
   args: { telegram: undefined, isProfileLoading: true },

@@ -24,8 +24,8 @@ import { ADMIN_TABS, type AdminTabId } from '../model/tabs';
 
 import { AdminPageView } from './admin-page-view';
 
-/** Контент активной вкладки. Локаль редактирования — из маршрута; детальные вкладки
- * получают текущий `detail` (id/`new`) и колбэк навигации по детальным маршрутам. */
+/** Детальные вкладки получают текущий `detail` (id или `new`) и колбэк навигации
+ * по детальным маршрутам. */
 function renderTab(
   tab: AdminTabId,
   locale: AppLanguage,
@@ -55,10 +55,9 @@ function renderTab(
 }
 
 /**
- * Контейнер личного кабинета: активная вкладка и локаль редактирования — из
- * маршрута (`/admin/:tab/:locale`). Локаль следует за языком приложения: сменили
- * язык — редиректим на тот же экран в новой локали (чистый ремонт данных).
- * Маршрут за гардом `RequireAuth`.
+ * Вкладка и локаль редактирования берутся из маршрута `/admin/:tab/:locale`. Локаль
+ * следует за языком приложения: при смене языка редиректим на тот же экран, и он
+ * монтируется заново с чистыми данными. Маршрут закрыт гардом `RequireAuth`.
  */
 export function AdminPage() {
   const { t } = useTranslation();
@@ -69,8 +68,8 @@ export function AdminPage() {
   const activeTab: AdminTabId = ADMIN_TABS.find((item) => item.id === tab)?.id ?? 'profile';
   const editLocale = normalizeLanguage(locale);
 
-  // Локаль в URL всегда равна языку приложения: при смене языка (или кривой локали
-  // в URL) редиректим на ту же вкладку/деталь в актуальной локали.
+  // Локаль в URL всегда совпадает с языком приложения. Если язык сменили или локаль
+  // в URL кривая, редиректим на тот же экран в актуальной локали.
   useEffect(() => {
     if (locale !== appLanguage) {
       const target =

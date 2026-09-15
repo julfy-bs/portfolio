@@ -5,7 +5,7 @@ import type { AppLanguage } from '@/shared/config';
 
 import type { CreateSkill, Skill, SkillAdmin, UpdateSkill } from '../model/types';
 
-// Навыки — технические токены, одинаковы в обеих локалях (в seed en = ru).
+// Навыки это технические токены, в обеих локалях они одинаковы (в seed en = ru).
 const SKILL_NAMES = [
   'REST API',
   'Accessibility',
@@ -26,12 +26,12 @@ function buildInitial(): SkillAdmin[] {
   }));
 }
 
-// Общее состояние: и публичный список, и админ-CRUD читают/пишут его, поэтому
-// правки навыков в кабинете сразу видны на экране «Опыт» (как на реальном бэке).
+// Публичный список и админ-CRUD работают с одним состоянием, чтобы правки из кабинета
+// сразу были видны на экране «Опыт», как с реальным бэкендом.
 let skills: SkillAdmin[] = buildInitial();
 let nextId = skills.length;
 
-/** Сбрасывает навыки мока — для изоляции тестов. */
+/** Сбрасывает навыки мока, чтобы тесты не зависели друг от друга. */
 export function resetMockSkills(): void {
   skills = buildInitial();
   nextId = skills.length;
@@ -45,13 +45,11 @@ function toPublic(skill: SkillAdmin, language: AppLanguage): Skill {
   };
 }
 
-/** Фикстура навыков (публичный вид) для тестов и историй. */
 export const mockSkills: Skill[] = buildInitial().map((skill) => toPublic(skill, 'ru'));
 
-/** Фикстура навыков (админ-вид). */
 export const mockSkillsAdmin: SkillAdmin[] = buildInitial();
 
-/** Публичный MSW-обработчик навыков (локализуется по `Accept-Language`). */
+/** Локаль берётся из `Accept-Language`. */
 export const skillHandlers = [
   http.get(`${env.apiBaseUrl}/skills`, ({ request }) => {
     const language = normalizeLanguage(request.headers.get('Accept-Language') ?? undefined);
@@ -61,7 +59,6 @@ export const skillHandlers = [
   }),
 ];
 
-/** Админ MSW-обработчики навыков: список + CRUD над общим состоянием. */
 export const skillAdminHandlers = [
   http.get(`${env.apiBaseUrl}/skills/admin`, () =>
     HttpResponse.json([...skills].sort((a, b) => a.order - b.order)),
@@ -83,7 +80,7 @@ export const skillAdminHandlers = [
       const body = await request.json();
       const skill = skills.find((item) => item.id === params.id);
       if (skill === undefined) return new HttpResponse(null, { status: 404 });
-      // Имя перезаписывается целиком (как writeText на бэке) — фронт шлёт обе локали.
+      // Имя перезаписываем целиком, как writeText на бэке: фронт шлёт обе локали.
       if (body.name !== undefined) {
         skill.name = { ru: body.name.ru ?? skill.name.ru, en: body.name.en ?? skill.name.en };
       }

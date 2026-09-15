@@ -61,7 +61,7 @@ export const Playground: Story = {
   },
 };
 
-/** Типовые применения: тема, язык, три режима — сразу. */
+/** Типичные применения: тема, язык, три режима. */
 export const Examples: Story = {
   name: 'Примеры применения',
   parameters: { controls: { disable: true } },

@@ -28,7 +28,7 @@ import { ArticleDetailDto } from './dto/article-detail.dto';
 import { DatabaseTreeDto } from './dto/database-tree.dto';
 import { CreateFolderDto, FolderAdminDto, UpdateFolderDto } from './dto/folder-admin.dto';
 
-// База знаний — приватная зона: доступ только владельцу (ADMIN) под логином.
+// База знаний целиком приватная, публичных роутов здесь нет.
 @ApiTags('database')
 @AdminAuth()
 @Controller('database')
@@ -42,7 +42,7 @@ export class DatabaseController {
     return this.databaseService.getTree(locale);
   }
 
-  // --- папки ---
+  // Папки
 
   @Get('folders')
   @ApiOkResponse({ type: FolderAdminDto, isArray: true })
@@ -74,7 +74,7 @@ export class DatabaseController {
     return this.databaseService.removeFolder(id);
   }
 
-  // --- статьи (admin-роуты до публичного `:slug`) ---
+  // Статьи. `articles/admin/:id` должен идти раньше `articles/:slug`, иначе тот его перехватит.
 
   @Get('articles/admin/:id')
   @ApiOkResponse({ type: ArticleAdminDto })

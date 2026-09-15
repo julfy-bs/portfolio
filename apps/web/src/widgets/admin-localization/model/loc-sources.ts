@@ -1,11 +1,8 @@
 /**
- * Реестр источников вкладки «Локализация»: как собрать плоские строки `LocRow` из
- * admin-ответов сущностей и как разложить накопленные правки обратно в PATCH-и по
- * их эндпоинтам. UI-строки приложения (`translation.json`) сюда НЕ входят — они
- * управляются в репозитории на этапе сборки, а не через CMS; локализуется только
- * контент с бэкенда (профиль, проекты, опыт, образование). База знаний исключена
- * по задумке (ведётся на одном языке). Стек пропущен — у технологий нет
- * локализуемых полей.
+ * Источники вкладки «Локализация»: из admin-ответов собираем плоские строки `LocRow`, а правки
+ * раскладываем обратно в PATCH по эндпоинтам. UI-строки из `translation.json` здесь не участвуют,
+ * они живут в репозитории. База знаний ведётся на одном языке, а у технологий нет
+ * локализуемых полей, поэтому их тоже нет.
  */
 
 import type { EducationAdmin, UpdateEducation } from '@/entities/education';
@@ -15,13 +12,12 @@ import type { ProjectAdmin, UpdateProject } from '@/entities/project';
 
 import { effective, isChanged, type LocEdits, type LocRow, type LocSourceId } from './loc-rows';
 
-/** Локализованное значение из admin-DTO (обе локали, en — опционален). */
 interface Localized {
   readonly ru: string;
   readonly en?: string | null;
 }
 
-/** Снимок данных со всех источников (из RTK-кэша контейнера). */
+/** Данные приходят из RTK-кэша контейнера. */
 export interface LocData {
   readonly profile?: ProfileAdmin;
   readonly projects?: readonly ProjectAdmin[];
@@ -29,7 +25,7 @@ export interface LocData {
   readonly educations?: readonly EducationAdmin[];
 }
 
-/** Локализованные подписи секций (переводятся в контейнере, модель остаётся чистой). */
+/** Подписи переводит контейнер, чтобы модель не зависела от i18n. */
 export interface LocSectionLabels {
   readonly profile: string;
   readonly projectPrefix: string;
@@ -37,15 +33,14 @@ export interface LocSectionLabels {
   readonly education: string;
 }
 
-/** Дескриптор одного локализуемого поля сущности. */
 interface FieldSpec<R> {
-  /** Имя поля = свойство Update-DTO (адрес PATCH). */
+  /** Совпадает со свойством Update-DTO, по нему и уходит PATCH. */
   readonly field: string;
-  /** Читатель локализованного значения (null/undefined → строки нет). */
+  /** Если вернул null или undefined, строку для поля не создаём. */
   readonly pick: (record: R) => Localized | null | undefined;
 }
 
-// Локализуемые поля профиля (имена = свойства UpdateProfileDto).
+// Имена полей совпадают со свойствами UpdateProfileDto.
 const PROFILE_FIELDS = [
   { field: 'name', pick: (p: ProfileAdmin) => p.name },
   { field: 'roleTitle', pick: (p: ProfileAdmin) => p.roleTitle },
@@ -57,7 +52,7 @@ const PROFILE_FIELDS = [
   { field: 'contactIntro', pick: (p: ProfileAdmin) => p.contactIntro },
 ] as const satisfies readonly FieldSpec<ProfileAdmin>[];
 
-// Локализуемые поля проекта (имена = свойства UpdateProjectDto).
+// Имена полей совпадают со свойствами UpdateProjectDto.
 const PROJECT_FIELDS = [
   { field: 'title', pick: (p: ProjectAdmin) => p.title },
   { field: 'description', pick: (p: ProjectAdmin) => p.description },
@@ -66,26 +61,25 @@ const PROJECT_FIELDS = [
   { field: 'runHint', pick: (p: ProjectAdmin) => p.runHint },
 ] as const satisfies readonly FieldSpec<ProjectAdmin>[];
 
-// Локализуемые поля опыта (имена = свойства UpdateExperienceDto).
+// Имена полей совпадают со свойствами UpdateExperienceDto.
 const EXPERIENCE_FIELDS = [
   { field: 'role', pick: (e: ExperienceAdmin) => e.role },
   { field: 'location', pick: (e: ExperienceAdmin) => e.location },
   { field: 'sub', pick: (e: ExperienceAdmin) => e.sub },
 ] as const satisfies readonly FieldSpec<ExperienceAdmin>[];
 
-// Локализуемые поля образования (имена = свойства UpdateEducationDto).
+// Имена полей совпадают со свойствами UpdateEducationDto.
 const EDUCATION_FIELDS = [
   { field: 'degree', pick: (e: EducationAdmin) => e.degree },
   { field: 'place', pick: (e: EducationAdmin) => e.place },
 ] as const satisfies readonly FieldSpec<EducationAdmin>[];
 
-// Ключи полей выводятся из дескрипторов (единый источник правды, литеральные типы).
+// Ключи берём из дескрипторов, чтобы не дублировать списки и сохранить литеральные типы.
 const PROFILE_KEYS = PROFILE_FIELDS.map((f) => f.field);
 const PROJECT_KEYS = PROJECT_FIELDS.map((f) => f.field);
 const EXPERIENCE_KEYS = EXPERIENCE_FIELDS.map((f) => f.field);
 const EDUCATION_KEYS = EDUCATION_FIELDS.map((f) => f.field);
 
-/** Адрес и подписи строк одной сущности. */
 interface RowParams {
   readonly sourceId: LocSourceId;
   readonly entityId: string;
@@ -94,7 +88,6 @@ interface RowParams {
   readonly keyPrefix: string;
 }
 
-/** Строки одной сущности: по полю с непустым значением (иначе строку не создаём). */
 function rowsFor<R>(record: R, fields: readonly FieldSpec<R>[], params: RowParams): LocRow[] {
   const rows: LocRow[] = [];
   for (const spec of fields) {
@@ -115,7 +108,6 @@ function rowsFor<R>(record: R, fields: readonly FieldSpec<R>[], params: RowParam
   return rows;
 }
 
-/** Разворачивает снимок данных в плоский список строк для таблицы сверки. */
 export function buildLocRows(data: LocData, labels: LocSectionLabels): LocRow[] {
   const rows: LocRow[] = [];
 
@@ -170,26 +162,20 @@ export function buildLocRows(data: LocData, labels: LocSectionLabels): LocRow[] 
   return rows;
 }
 
-/** Значение поля для PATCH (обе локали). */
 export interface LocFieldValue {
   readonly ru: string;
   readonly en: string;
 }
 
-/** Тело PATCH: изменённые поля одной сущности. */
 export type LocFieldPatch = Record<string, LocFieldValue>;
 
-/** Один PATCH: адрес сущности + тело из изменённых полей. */
 export interface LocSave {
   readonly sourceId: LocSourceId;
   readonly entityId: string;
   readonly body: LocFieldPatch;
 }
 
-/**
- * Группирует изменённые строки по сущности в PATCH-и. Тело шлёт обе локали
- * (эффективные значения) — бэкенд мёржит, незатронутая локаль сохраняется.
- */
+/** Шлём обе локали с учётом правок. Бэкенд мёржит, так что незатронутая локаль не пострадает. */
 export function buildSaves(rows: readonly LocRow[], edits: LocEdits): LocSave[] {
   const byEntity = new Map<string, LocSave>();
   for (const row of rows) {
@@ -206,11 +192,7 @@ export function buildSaves(rows: readonly LocRow[], edits: LocEdits): LocSave[] 
   return [...byEntity.values()];
 }
 
-/**
- * Собирает типизированное тело PATCH из известных ключей: `Partial<Record<K,…>>`
- * присваивается конкретному Update-DTO без приведения типов (все ключи — валидные
- * локализуемые поля этого DTO).
- */
+/** `Partial<Record<K, ...>>` присваивается нужному Update-DTO без приведения типов. */
 function pickPatch<K extends string>(
   body: LocFieldPatch,
   keys: readonly K[],
@@ -223,7 +205,7 @@ function pickPatch<K extends string>(
   return out;
 }
 
-/** Триггеры мутаций (тонкие обёртки над RTK Query, передаёт контейнер). */
+/** Тонкие обёртки над мутациями RTK Query, их передаёт контейнер. */
 export interface LocMutations {
   readonly updateProfile: (body: UpdateProfile) => Promise<unknown>;
   readonly updateProject: (id: string, body: UpdateProject) => Promise<unknown>;
@@ -231,7 +213,7 @@ export interface LocMutations {
   readonly updateEducation: (id: string, body: UpdateEducation) => Promise<unknown>;
 }
 
-/** Раскидывает PATCH-и по эндпоинтам источников. Пробрасывает первую ошибку. */
+/** Запросы идут по очереди, на первой ошибке останавливаемся и пробрасываем её. */
 export async function applySaves(
   saves: readonly LocSave[],
   mutations: LocMutations,

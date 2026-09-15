@@ -5,20 +5,19 @@ import { Icon } from '@sutuzhko/ui-kit';
 import styles from './admin-projects.module.css';
 
 interface BulletsEditorProps {
-  /** Пункты, склеенные через `\n` (формат хранения формы). */
+  /** В форме пункты хранятся одной строкой через `\n`. */
   readonly value: string;
   readonly onChange: (value: string) => void;
 }
 
-/** Разбирает строку в массив строк-пунктов (пустая строка → нет пунктов). */
+// Без этой проверки пустая строка превратилась бы в один пустой пункт.
 function toRows(value: string): string[] {
   return value.length > 0 ? value.split('\n') : [];
 }
 
 /**
- * Редактор «Ключевых пунктов»: нумерованные строки-инпуты с добавлением/удалением.
- * Управляемый адаптер над строковым полем формы (`\n`-разделённым) — модель и
- * бэкенд-формат не меняются, пустые пункты отсекаются при сохранении.
+ * Отдельные поля поверх того же строкового значения, так что модель формы и формат бэкенда
+ * не меняются. Пустые пункты отбрасываются при сохранении.
  */
 export function BulletsEditor({ value, onChange }: BulletsEditorProps) {
   const { t } = useTranslation();

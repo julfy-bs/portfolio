@@ -15,15 +15,10 @@ export interface ProjectPageViewProps {
   readonly isError?: boolean;
   readonly onBack?: () => void;
   readonly onRetry?: () => void;
-  /** Запустить проект в раннере (для запускаемых проектов с embedUrl). */
+  /** Запуск в раннере, есть только у проектов с embedUrl. */
   readonly onRun?: () => void;
 }
 
-/**
- * Презентационный слой детали проекта: кнопка «назад» и виджет детали. Данные и
- * `isLoading`/`isError` приходят пропсами — запрос и навигацию делает контейнер
- * `ProjectPage`. Состояние загрузки наглядно управляется в Storybook.
- */
 export function ProjectPageView({
   project,
   isLoading,

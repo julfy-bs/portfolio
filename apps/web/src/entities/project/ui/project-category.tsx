@@ -6,7 +6,7 @@ interface ProjectCategoryProps {
   readonly category: string;
 }
 
-/** Бейдж категории проекта на карточке (локализован; сырое значение — фолбэк). */
+/** Если перевода категории нет, показываем её сырое значение. */
 export function ProjectCategory({ category }: ProjectCategoryProps) {
   const { t } = useTranslation();
 

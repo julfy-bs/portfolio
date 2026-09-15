@@ -41,7 +41,7 @@ async function fillRequired(): Promise<void> {
   await userEvent.type(screen.getByLabelText('Полное описание', { exact: false }), 'Тело');
 }
 
-// Технологии выбираются из панели: «+ добавить» → клик по чипу → «Готово».
+// Технологию выбирают в панели: открыть её, кликнуть по чипу и нажать «Готово».
 async function selectTech(name: string): Promise<void> {
   await userEvent.click(screen.getByRole('button', { name: '+ добавить' }));
   await userEvent.click(screen.getByRole('button', { name }));
@@ -75,7 +75,7 @@ describe('ProjectForm', () => {
     await fillRequired();
     await selectTech('React');
 
-    // Инлайн-создание участника — до «Сохранить» никакого запроса нет.
+    // Участник создаётся в форме, и до сохранения никаких запросов нет.
     await userEvent.click(screen.getByRole('button', { name: '+ создать участника' }));
     await userEvent.type(screen.getByRole('textbox', { name: 'Имя' }), 'Пётр');
     await userEvent.type(
@@ -86,12 +86,12 @@ describe('ProjectForm', () => {
 
     await userEvent.click(screen.getByRole('button', { name: /Сохранить/ }));
 
-    // Новый участник уходит во втором аргументе (черновик) и выбран в проекте
-    // по временному id — реальный проставит контейнер после применения.
+    // Черновик приходит вторым аргументом, а в проекте участник выбран по временному id.
+    // Реальный id подставит контейнер.
     const [body, staged] = onCreate.mock.calls[0] ?? [undefined, []];
     const created = staged.find((entry) => entry.isNew && entry.name.ru === 'Пётр');
     expect(created).toBeDefined();
-    // URL аватара доходит до черновика (раньше `image` был захардкожен в null).
+    // Регрессия: раньше `image` всегда был null.
     expect(created?.image).toBe('https://example.com/p.png');
     expect(body?.contributorIds?.some(isTempContributorId)).toBe(true);
   });
@@ -101,7 +101,7 @@ describe('ProjectForm', () => {
     renderForm({ onCreate });
     await fillRequired();
     await selectTech('React');
-    // Включаем «Запускается» → появляются поля embed/команда/подсказка.
+    // Поля для запуска появляются только после включения «Запускается».
     await userEvent.click(screen.getByRole('switch', { name: /Запускается/ }));
     await userEvent.type(
       screen.getByLabelText('Подсказка управления', { exact: false }),
@@ -137,7 +137,7 @@ describe('ProjectForm', () => {
       >();
     renderForm({ onCreate });
     await fillRequired();
-    // Панель добавления → создаём новую, она автоматически выбирается.
+    // Созданная в панели технология сразу становится выбранной.
     await userEvent.click(screen.getByRole('button', { name: '+ добавить' }));
     await userEvent.click(screen.getByRole('button', { name: '+ создать технологию' }));
     await userEvent.type(screen.getByRole('textbox', { name: 'Название технологии' }), 'Vite');

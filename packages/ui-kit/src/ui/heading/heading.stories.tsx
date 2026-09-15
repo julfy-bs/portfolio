@@ -49,7 +49,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Песочница. play проверяет тег по умолчанию для level=h2 → `<h2>`. */
+/** Песочница. play проверяет, что level=h2 по умолчанию рендерит `<h2>`. */
 export const Playground: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -86,7 +86,7 @@ export const Tones: Story = {
   ),
 };
 
-/** Исчерпывающая матрица уровень × тон. */
+/** Все сочетания уровня и тона. */
 export const Matrix: Story = {
   name: 'Матрица: уровень × тон',
   parameters: { controls: { disable: true } },
@@ -109,8 +109,8 @@ export const Matrix: Story = {
 };
 
 /**
- * Ключевая возможность: визуальный размер отделён от семантики. Крупный display —
- * но в DOM это `<h2>`, чтобы не появлялся второй `h1`. play подтверждает уровень.
+ * Размер отделён от семантики: выглядит как display, но в DOM это `<h2>`, чтобы на странице
+ * не появился второй `h1`. play проверяет уровень.
  */
 export const SemanticVsVisual: Story = {
   name: 'Размер отдельно от семантики',
@@ -127,7 +127,7 @@ export const SemanticVsVisual: Story = {
   },
 };
 
-/** В контексте: шапка страницы — заголовок + приглушённый подзаголовок. */
+/** В контексте: шапка страницы с заголовком и приглушённым подзаголовком. */
 export const InContext: Story = {
   name: 'В контексте: шапка страницы',
   render: () => (

@@ -1,13 +1,13 @@
 name: Deploy
 
-# Пуш в main → собираем образы api/web в CI, публикуем в GHCR, затем на сервере
-# только тянем их и перезапускаем. Сервер (1 ГБ) ничего не собирает.
+# Образы собираем здесь и публикуем в GHCR, сервер их только скачивает и перезапускает.
+# На 1 ГБ памяти сборка на сервере не вытягивается.
 on:
   push:
     branches: [main]
   workflow_dispatch:
 
-# Один деплой за раз — параллельные пуши не дерутся за сервер.
+# Деплои идут строго по очереди, чтобы два пуша подряд не мешали друг другу на сервере.
 concurrency:
   group: deploy-production
   cancel-in-progress: false
@@ -69,7 +69,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Кладём актуальный compose на сервер (Caddyfile вшит в web-образ, git не нужен).
+      # Кроме compose, серверу ничего из репозитория не нужно: Caddyfile уже внутри web-образа.
       - name: Copy compose to server
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -88,8 +88,8 @@ jobs:
           script: |
             set -e
             cd ~/portfolio
-            # .env собирается из GitHub Secrets. Кавычки у 'EOF' — чтобы shell на
-            # сервере не трогал спецсимволы в значениях (значения уже подставлены).
+            # Значения подставляет Actions, а 'EOF' в кавычках не даёт shell на сервере
+            # раскрыть спецсимволы в секретах.
             umask 177
             cat > .env <<'EOF'
             POSTGRES_USER=${{ vars.POSTGRES_USER }}

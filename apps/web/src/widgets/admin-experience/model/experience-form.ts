@@ -6,10 +6,9 @@ import type { AppLanguage } from '@/shared/config';
 import { isoToMonthInput, monthInputToIso } from '@/shared/lib';
 
 /**
- * Схема формы места работы. Локализованные поля (роль, локация, буллеты) правятся
- * в АКТИВНОЙ локали; обязательность держим только для базовой локали `ru`.
- * Компания и дата начала обязательны всегда (не локализованы). Схема — фабрика от
- * `t` и локали, чтобы сообщения локализовались.
+ * Локализованные поля правятся в активной локали и обязательны только для `ru`. Компания и
+ * дата начала не локализуются, поэтому обязательны всегда. Схема зависит от `t`, чтобы
+ * сообщения об ошибках переводились.
  */
 export function createExperienceSchema(t: TFunction, locale: AppLanguage) {
   const requiredForBase = (message: string) =>
@@ -29,7 +28,7 @@ export function createExperienceSchema(t: TFunction, locale: AppLanguage) {
 
 export type ExperienceFormValues = z.infer<ReturnType<typeof createExperienceSchema>>;
 
-/** Значение локализованного текста в активной локали (фолбэк на ru). */
+/** Если перевода на en нет, возвращает ru. */
 export function pickText(text: ExperienceAdmin['role'] | null, locale: AppLanguage): string {
   if (!text) return '';
   return (locale === 'en' ? text.en : text.ru) ?? text.ru ?? '';
@@ -39,7 +38,7 @@ function pickList(list: ExperienceAdmin['bullets'], locale: AppLanguage): string
   return (locale === 'en' ? list.en : list.ru) ?? list.ru;
 }
 
-// Достижения: строка textarea ↔ массив (по строке на буллет, пустые отбрасываем).
+// В textarea каждый пункт на своей строке, пустые строки отбрасываем.
 function toBullets(text: string): string[] {
   return text
     .split('\n')
@@ -47,8 +46,7 @@ function toBullets(text: string): string[] {
     .filter((line) => line.length > 0);
 }
 
-// Ввод локализованного текста при создании: база ru всегда заполнена (публичный
-// фолбэк идёт на ru), при правке en значение дублируется в ru.
+// Публичная часть откатывается на ru, поэтому при создании из en-локали дублируем значение в ru.
 function localeInput(locale: AppLanguage, value: string): { ru: string; en?: string } {
   return locale === 'en' ? { ru: value, en: value } : { ru: value };
 }
@@ -57,7 +55,7 @@ function localeListInput(locale: AppLanguage, value: string[]): { ru: string[]; 
   return locale === 'en' ? { ru: value, en: value } : { ru: value };
 }
 
-// Патч одной локали: в PATCH уходит только активный язык, второй мёржится на бэке.
+// Шлём только активный язык, второй бэк сохранит сам при мёрже.
 function localePatch(locale: AppLanguage, value: string): { ru?: string; en?: string } {
   return locale === 'en' ? { en: value } : { ru: value };
 }
@@ -66,7 +64,6 @@ function localeListPatch(locale: AppLanguage, value: string[]): { ru?: string[];
   return locale === 'en' ? { en: value } : { ru: value };
 }
 
-/** Пустые значения формы для создания новой записи. */
 export function emptyForm(): ExperienceFormValues {
   return {
     company: '',
@@ -80,7 +77,6 @@ export function emptyForm(): ExperienceFormValues {
   };
 }
 
-/** Админ-запись → значения формы в активной локали. */
 export function experienceToForm(
   record: ExperienceAdmin,
   locale: AppLanguage,
@@ -97,7 +93,6 @@ export function experienceToForm(
   };
 }
 
-/** Значения формы → тело создания (`POST /api/experience`). */
 export function formToCreate(values: ExperienceFormValues, locale: AppLanguage): CreateExperience {
   const location = values.location.trim();
   return {
@@ -112,7 +107,6 @@ export function formToCreate(values: ExperienceFormValues, locale: AppLanguage):
   };
 }
 
-/** Значения формы → тело обновления (`PATCH /api/experience/:id`, мёрж локали). */
 export function formToUpdate(values: ExperienceFormValues, locale: AppLanguage): UpdateExperience {
   const update: UpdateExperience = {
     company: values.company.trim(),
@@ -123,8 +117,8 @@ export function formToUpdate(values: ExperienceFormValues, locale: AppLanguage):
     current: values.current,
     technologyIds: values.technologyIds,
   };
-  // endDate нельзя обнулить через DTO — при «текущем» опускаем (флаг current
-  // управляет отображением «наст. время»), иначе шлём конкретный месяц.
+  // Обнулить endDate через DTO нельзя. Для текущего места работы поле просто не шлём:
+  // «по настоящее время» показывается по флагу current.
   if (!values.current && values.endDate) update.endDate = monthInputToIso(values.endDate);
   return update;
 }

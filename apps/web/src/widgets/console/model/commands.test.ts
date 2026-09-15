@@ -9,7 +9,7 @@ import type { Profile } from '@/entities/profile';
 const t = setupI18n().getFixedT('ru');
 
 interface RunOptions {
-  // `null` = «профиль ещё не загружен» (передача `undefined` сработала бы как дефолт).
+  // `null` значит, что профиль ещё не загружен. С `undefined` сработал бы дефолт.
   readonly profile?: Profile | null;
   readonly currentPath?: string;
   readonly history?: readonly string[];
@@ -201,7 +201,7 @@ describe('реестр команд консоли', () => {
 
   it('sudo и neofetch печатают статичный вывод', () => {
     expect(run('sudo').printed[0]).toContain('sudoers');
-    // neofetch печатает ASCII-арт (команда `ascii` убрана как избыточная).
+    // ASCII-арт теперь печатает neofetch, отдельной команды `ascii` нет.
     expect(run('neofetch').printed[0]).toContain('bogdan.sutuzhko');
   });
 

@@ -33,8 +33,8 @@ const projects = [
   makeProject({ slug: 'beta', title: 'Beta', technologies: ['Vue'], contributors: [] }),
 ];
 
-// Обёртка связывает панель с контроллером и показывает число результатов —
-// так проверяем интеграцию UI + логики фильтра.
+// Обёртка подключает панель к контроллеру и выводит число результатов, так UI
+// проверяется вместе с логикой фильтра.
 function Harness() {
   const filter = useProjectFilter(projects);
   return (

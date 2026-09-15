@@ -5,31 +5,31 @@ import type { ToastType } from '@sutuzhko/ui-kit';
 import { DEFAULT_DURATION, MAX_TOASTS, TOAST_EXIT_MS } from './config';
 import type { ToastOptions } from './toaster-context';
 
-/** Тост в очереди: разобранные опции + id + фаза ухода. */
+/** Разобранные опции тоста плюс id и фаза ухода. */
 export interface ToastItem {
   readonly id: number;
   readonly type: ToastType;
   readonly title: string;
   readonly description?: string;
-  /** Полное время автозакрытия, мс (`0` — не закрывать). */
+  /** Полное время автозакрытия, мс. `0` не закрывает. */
   readonly duration: number;
-  /** `true`, пока играет анимация ухода перед удалением из DOM. */
+  /** `true`, пока перед удалением из DOM играет анимация ухода. */
   readonly leaving: boolean;
 }
 
-/** Состояние таймера автозакрытия одного тоста (живёт вне рендера). */
+/** Таймер автозакрытия одного тоста, живёт вне рендера. */
 interface DismissTimer {
-  /** Остаток до автозакрытия, мс — уменьшается при паузе. */
+  /** Сколько осталось до автозакрытия, мс. Уменьшается при паузе. */
   remaining: number;
-  /** Момент запуска текущего таймера, мс — для вычисления остатка при паузе. */
+  /** Когда запущен текущий таймер, мс. Нужно, чтобы посчитать остаток на паузе. */
   startedAt: number;
-  /** Активный таймер или `undefined`, если он на паузе. */
+  /** `undefined`, пока таймер на паузе. */
   handle: ReturnType<typeof setTimeout> | undefined;
 }
 
 export interface ToasterQueue {
   readonly toasts: readonly ToastItem[];
-  /** Стек на паузе (курсор над ним) — полосы отсчёта замирают. */
+  /** Курсор над стеком, полосы отсчёта замирают. */
   readonly paused: boolean;
   readonly notify: (options: ToastOptions) => number;
   readonly dismiss: (id: number) => void;
@@ -38,13 +38,11 @@ export interface ToasterQueue {
 }
 
 /**
- * Очередь тостов: хранит список, сам заводит таймеры автозакрытия и умеет их
- * приостанавливать (наведение мышью), чтобы читатель успел прочитать сообщение.
+ * Таймеры автозакрытия встают на паузу при наведении, чтобы сообщение успели дочитать.
  *
- * Таймеры живут в ref, а не в state: они не влияют на разметку, и их изменение не
- * должно провоцировать рендер. Автозакрытие ведём на JS-таймерах, а не на
- * CSS-анимации полосы, — чтобы оно работало и при `prefers-reduced-motion`, и
- * было детерминированно тестируемым.
+ * Таймеры держим в ref: на разметку они не влияют и рендер вызывать не должны.
+ * Закрываем по JS-таймеру, а не по окончании CSS-анимации полосы, чтобы это работало
+ * при `prefers-reduced-motion` и предсказуемо тестировалось.
  */
 export function useToasterQueue(): ToasterQueue {
   const [toasts, setToasts] = useState<readonly ToastItem[]>([]);
@@ -125,7 +123,7 @@ export function useToasterQueue(): ToasterQueue {
 
       if (duration > 0) {
         if (pausedRef.current) {
-          // Курсор над стеком — заводим «на паузе», запустит `resume`.
+          // Курсор над стеком: заводим сразу на паузе, запустит его `resume`.
           dismissTimers.current.set(id, {
             remaining: duration,
             startedAt: Date.now(),
@@ -164,7 +162,7 @@ export function useToasterQueue(): ToasterQueue {
     }
   }, [dismiss, schedule]);
 
-  // Гасим все таймеры при размонтировании — без утечек.
+  // При размонтировании гасим все таймеры, чтобы не утекали.
   useEffect(() => {
     const dismissMap = dismissTimers.current;
     const removalMap = removalTimers.current;

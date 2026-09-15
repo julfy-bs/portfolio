@@ -31,7 +31,7 @@ describe('KbArticleViewer', () => {
     renderViewer();
     expect(screen.getByText('#react')).toBeInTheDocument();
     expect(screen.getByText(/обновлено/)).toBeInTheDocument();
-    // «## Правила хуков» из тела рендерится заголовком.
+    // Строка «## Правила хуков» из тела статьи должна стать заголовком.
     expect(screen.getByText('Правила хуков')).toBeInTheDocument();
   });
 

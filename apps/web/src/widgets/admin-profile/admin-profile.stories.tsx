@@ -35,13 +35,13 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Форма профиля в активной локали RU: правится только русский текст. */
+/** В локали RU правится только русский текст. */
 export const Default: Story = {
   name: 'Форма профиля (RU)',
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
-    // Спрашиваем по роли: у обязательных полей в <label> есть звёздочка `aria-hidden`,
-    // она попадает в textContent (getByLabelText), но не в доступное имя.
+    // Ищем по роли, а не через getByLabelText: звёздочка обязательного поля с `aria-hidden`
+    // попадает в textContent, но не в доступное имя.
     await expect(canvas.getByRole('textbox', { name: 'Роль' })).toHaveValue(
       'Fullstack-разработчик',
     );
@@ -53,7 +53,7 @@ export const Default: Story = {
   },
 };
 
-/** Та же форма в локали EN: подставляются английские значения, патч уйдёт в `en`. */
+/** В локали EN подставляются английские значения, и изменения уйдут в `en`. */
 export const English: Story = {
   name: 'Форма профиля (EN)',
   args: { locale: 'en' },
@@ -63,7 +63,7 @@ export const English: Story = {
   },
 };
 
-/** Редактор показателей: добавление строки «значение + подпись». */
+/** Добавление нового показателя со значением и подписью. */
 export const Highlights: Story = {
   name: 'Показатели (добавление)',
   play: async ({ canvasElement }) => {
@@ -74,7 +74,7 @@ export const Highlights: Story = {
   },
 };
 
-/** Идёт сохранение — кнопка заблокирована (бар появляется после правки). */
+/** Пока идёт сохранение, кнопка заблокирована. Сам бар появляется после правки. */
 export const Saving: Story = {
   name: 'Сохранение',
   args: { isSaving: true },

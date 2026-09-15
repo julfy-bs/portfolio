@@ -10,16 +10,10 @@ import { AdminSettingsView } from './admin-settings-view';
 import { ChangePasswordForm } from './change-password-form';
 import styles from './admin-settings.module.css';
 
-/** Ошибка RTK Query с HTTP-статусом 401 (неверный текущий пароль). */
 function isUnauthorized(error: unknown): boolean {
   return typeof error === 'object' && error !== null && 'status' in error && error.status === 401;
 }
 
-/**
- * Контейнер вкладки «Настройки»: настройки сайта (`PATCH /api/settings`) плюс
- * смена пароля администратора (`POST /api/auth/change-password`). Обе операции
- * показывают тост об успехе/ошибке.
- */
 export function AdminSettings() {
   const { t } = useTranslation();
   const { notify } = useToaster();
@@ -41,7 +35,7 @@ export function AdminSettings() {
       await changePassword(body).unwrap();
       notify({ type: 'success', title: t('admin.account.changed') });
     } catch (error) {
-      // 401 от бэкенда = неверный текущий пароль (а не «сессия истекла»).
+      // Здесь 401 означает неверный текущий пароль, а не истёкшую сессию.
       notify({
         type: 'error',
         title: isUnauthorized(error) ? t('admin.account.errors.wrong') : t('admin.saveError'),
@@ -60,8 +54,8 @@ export function AdminSettings() {
   return (
     <div className={styles.stack}>
       <AdminSettingsView
-        // Ремонтируем форму по содержимому: после сохранения рефетч возвращает новые
-        // настройки → ключ меняется → форма пересобирается чистой (бар сохранения скрыт).
+        // После сохранения рефетч приносит новые настройки, ключ меняется, и форма
+        // монтируется заново уже без несохранённых правок.
         key={JSON.stringify(settings)}
         settings={settings}
         isSaving={isSaving}

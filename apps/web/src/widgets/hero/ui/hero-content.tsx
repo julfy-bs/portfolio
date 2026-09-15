@@ -4,8 +4,7 @@ import { HeroIdentity, HeroIdentitySkeleton } from './hero-identity';
 import { Pitch, PitchSkeleton } from './pitch';
 import { TypingLine, TypingSkeleton } from './typing-line';
 
-/** Профиле-зависимый контент левой колонки: идентичность, строка стека, питч.
- * Всё под скелетоном при загрузке — это данные профиля (`entities/profile`). */
+/** Левая колонка героя. Всё здесь берётся из профиля, поэтому при загрузке под скелетоном. */
 export function HeroContent({ profile }: { readonly profile: Profile }) {
   return (
     <>

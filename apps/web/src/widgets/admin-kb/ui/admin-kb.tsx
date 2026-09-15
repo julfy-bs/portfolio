@@ -36,7 +36,7 @@ import { KbArticleViewer } from './kb-article-viewer';
 import { KbLibrary } from './kb-library';
 
 export interface AdminKbProps {
-  /** Активная локаль редактирования (из маршрута кабинета). */
+  /** Берётся из маршрута кабинета. */
   readonly locale: AppLanguage;
 }
 
@@ -64,10 +64,8 @@ function statusOf(error: unknown): number | undefined {
 }
 
 /**
- * Контейнер вкладки «База знаний»: дерево + просмотр/редактор статьи. Данные и
- * мутации — из `entities/kb` (мутации инвалидируют тег `Kb`, дерево и статья сами
- * обновляются). UI-состояние дерева (раскрытие, меню, переименование) живёт в
- * `KbLibrary`; здесь — выбор, режим редактора и подтверждение удаления.
+ * Раскрытие папок, меню и переименование живут в `KbLibrary`. Здесь остаются выбор статьи,
+ * режим редактора и подтверждение удаления.
  */
 export function AdminKb({ locale }: AdminKbProps) {
   const { t } = useTranslation();

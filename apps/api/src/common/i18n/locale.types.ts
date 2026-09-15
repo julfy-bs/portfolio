@@ -4,7 +4,7 @@ export type Locale = (typeof LOCALES)[number];
 
 export const DEFAULT_LOCALE: Locale = 'ru';
 
-// Двуязычный текст контентных сущностей; ru — запасной язык.
+// ru обязателен, потому что на него откатываемся, когда перевода нет.
 export interface LocalizedText {
   ru: string;
   en?: string;

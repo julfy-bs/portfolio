@@ -6,10 +6,9 @@ import { cn } from '@/shared/lib';
 import styles from './featured.module.css';
 
 /**
- * Ряд тегов, который вмещает столько технологий, сколько влезает по ширине, а
- * остаток сворачивает в счётчик «+N». Считаем по фактическим ширинам: лишние теги
- * держим в потоке измеримыми (`position:absolute; visibility:hidden`), пересчёт —
- * на ResizeObserver. Так контент ограничивается счётчиком, а не обрезается.
+ * Показывает столько тегов, сколько влезает по ширине, остальные сворачивает в «+N».
+ * Лишние теги остаются в DOM невидимыми, чтобы их можно было измерить, а пересчёт
+ * запускает ResizeObserver.
  */
 export function TagRow({ tags }: { readonly tags: readonly string[] }) {
   const { t } = useTranslation();

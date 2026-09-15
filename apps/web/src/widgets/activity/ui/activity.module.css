@@ -104,7 +104,7 @@
 }
 
 .statValue {
-  /* 19px — из макета, между h3(17) и h2(23); держим локальной переменной. */
+  /* 19px нет в шкале (между h3 17 и h2 23), поэтому держим локальной переменной. */
   --stat-value-size: 19px;
 
   font-family: var(--font-mono), monospace;
@@ -138,8 +138,8 @@
   gap: var(--space-2);
 }
 
-/* Бейдж ранга Codewars: шестиугольник и подпись в одной grid-ячейке (без absolute).
-   Цвет — из inline-стиля по kyu, поэтому SVG использует currentColor. */
+/* Шестиугольник и подпись лежат в одной grid-ячейке, без absolute.
+   Цвет приходит inline-стилем по kyu, поэтому SVG рисует через currentColor. */
 .kyu {
   display: inline-grid;
   flex: none;
@@ -207,7 +207,7 @@
   color: var(--color-fg-muted);
 }
 
-/* Мобильный: карточки в один столбец (--bp-md 768) */
+/* На мобильных карточки в один столбец (--bp-md, 768px) */
 @media (width <= 768px) {
   .grid {
     grid-template-columns: 1fr;

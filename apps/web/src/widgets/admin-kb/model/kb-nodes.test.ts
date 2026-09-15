@@ -20,7 +20,7 @@ const folder = (
   children: FolderNode[],
 ): FolderNode => ({ id, name, order: 0, articles, children });
 
-// Frontend { Hooks; вложенная React { Fiber } } + корневая статья Welcome.
+// Папка Frontend со статьёй Hooks и вложенной папкой React (в ней Fiber), плюс Welcome в корне.
 const tree: DatabaseTree = {
   folders: [
     folder(

@@ -14,13 +14,9 @@ import { Runner, useRunner } from '@/widgets/runner';
 import styles from './root-layout.module.css';
 
 /**
- * Управляет позицией прокрутки при навигации:
- * — переход по хэшу (`/#about`) скроллит к секции;
- * — обычный переход между страницами возвращает наверх;
- * — первый рендер (перезагрузка страницы) не трогаем — позицию восстановит браузер.
- *
- * Скролл-шпион обновляет хэш через `replaceState` (в обход React Router),
- * поэтому эти обновления сюда не долетают и прокрутку не сбивают.
+ * При переходе по хэшу скроллит к секции, при смене страницы возвращает наверх. На первом
+ * рендере ничего не делает, позицию после перезагрузки восстановит браузер. Скролл-шпион
+ * меняет хэш через `replaceState` в обход роутера, так что сюда эти изменения не доходят.
  */
 function ScrollManager() {
   const { pathname, hash } = useLocation();
@@ -47,32 +43,26 @@ function ScrollManager() {
   return null;
 }
 
-/**
- * Корневой лейаут приложения: липкий навбар сверху, контент маршрута по центру,
- * подвал снизу. Каждая страница рендерит свой `<main>`.
- */
+// Каждая страница рендерит свой `<main>`, поэтому здесь его нет.
 export function RootLayout() {
-  // Открытие консоли (⌘K) — из глобального состояния; сам оверлей ниже.
   const { open } = useConsole();
-  // Запуск проекта в раннере — связку виджетов (консоль ↔ раннер) сводит app-слой.
+  // Виджеты не знают друг о друге, консоль с раннером связываем здесь, на уровне app.
   const { open: openRunner } = useRunner();
-  // Имя владельца в подвале — из профиля (данные с бэкенда).
   const { data: profile } = useProfile();
-  // Список проектов нужен, чтобы команда консоли `run <cmd>` нашла запускаемый проект.
+  // Нужны консоли, чтобы по команде `run <cmd>` найти проект.
   const { data: projects } = useProjects();
-  // Логотип в шапке настраивается в кабинете (`siteTitle`); до загрузки — дефолт навбара.
+  // Пока настройки не пришли, навбар показывает свой логотип по умолчанию.
   const { data: settings } = useGetSettingsQuery();
 
-  // Акцент оформления сайта (green | blue | bright) — общий для всех посетителей,
-  // ставится на <html data-accent>; тему (data-theme) отдельно ведёт ThemeProvider.
+  // Акцент один на всех посетителей и задаётся в кабинете. Темой занимается
+  // ThemeProvider отдельно.
   const accentColor = settings?.accentColor;
   useEffect(() => {
     if (accentColor) document.documentElement.dataset.accent = accentColor;
   }, [accentColor]);
 
-  // Тема по умолчанию (settings.defaultTheme) — только для НОВОГО гостя: применяем,
-  // если нет явного выбора в localStorage И нет системного prefers-color-scheme
-  // (иначе приоритет у выбора → системной темы, их уже применил бутстрап-скрипт).
+  // Тема из настроек нужна только новому гостю. Если он уже выбирал тему или у системы
+  // есть предпочтение, их применил бутстрап-скрипт, и они важнее.
   const { mode, applyDefaultMode } = useTheme();
   const defaultTheme = settings?.defaultTheme;
   useEffect(() => {
@@ -93,8 +83,7 @@ export function RootLayout() {
     if (defaultTheme !== mode) applyDefaultMode(defaultTheme);
   }, [defaultTheme, mode, applyDefaultMode]);
 
-  // Ищет запускаемый проект по его команде (`run 2048`) и открывает раннер.
-  // Возвращает название запущенного проекта или null, если совпадения нет.
+  // Возвращает название запущенного проекта или null, если такой команды нет.
   const runProject = useCallback(
     (command: string): string | null => {
       const match = projects?.find(

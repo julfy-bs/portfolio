@@ -17,17 +17,15 @@ import { ConsoleView, type ConsoleWindowState } from './console-view';
 
 export interface ConsoleProps {
   /**
-   * Запуск проекта командой `run <cmd>`. Раннер — соседний виджет, поэтому связку
-   * пробрасывает app-слой: сама консоль про него не знает (изоляция слайсов FSD).
-   * Возвращает название запущенного проекта или `null`, если совпадения нет.
+   * Запуск проекта командой `run <cmd>`. Раннер живёт в соседнем виджете, поэтому связывает
+   * их app-слой, а консоль про раннер не знает. Вернёт название проекта или `null`.
    */
   readonly onRunProject: (command: string) => string | null;
 }
 
 /**
- * Контейнер консоли: связывает глобальное состояние открытия, сессию команд и
- * сервисы приложения (навигация, тема, профиль, скачивание CV, запуск проекта) с
- * презентационным `ConsoleView`. Монтируется один раз в корневом лейауте.
+ * Связывает состояние консоли, сессию команд и сервисы приложения с `ConsoleView`.
+ * Монтируется один раз в корневом лейауте.
  */
 export function Console({ onRunProject }: ConsoleProps) {
   const { t } = useTranslation();
@@ -43,13 +41,13 @@ export function Console({ onRunProject }: ConsoleProps) {
   const clock = useMoscowClock();
   const [windowState, setWindowState] = useState<ConsoleWindowState>('normal');
 
-  // Закрытие сбрасывает размер окна — следующее открытие всегда «нормальное».
+  // При закрытии сбрасываем размер, чтобы консоль всегда открывалась в обычном виде.
   useEffect(() => {
     if (!isOpen) setWindowState('normal');
   }, [isOpen]);
 
   const downloadCv = useCallback(() => downloadFile(profile?.cvUrl), [profile?.cvUrl]);
-  // navigate из React Router возвращает Promise — оборачиваем в void-функцию
+  // navigate из React Router возвращает Promise, поэтому оборачиваем в void-функцию
   // под сигнатуру сервисов команд.
   const navigateTo = useCallback((path: string) => void navigate(path), [navigate]);
   const openUrl = useCallback((url: string) => {

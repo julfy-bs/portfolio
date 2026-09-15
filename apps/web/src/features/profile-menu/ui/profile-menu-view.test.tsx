@@ -10,8 +10,8 @@ import { ProfileMenuView, type ProfileMenuViewProps } from './profile-menu-view'
 
 const admin: AuthUser = { id: 'u1', username: 'admin', role: 'ADMIN' };
 
-// Пункты меню требуют родителя role="menu" (иначе нарушение aria-required-parent);
-// провайдеры дают i18n, чтобы подписи были на русском.
+// Пунктам меню нужен родитель с role="menu", иначе падает aria-required-parent.
+// Провайдеры подключают i18n, чтобы подписи были на русском.
 function renderInMenu(props: Partial<ProfileMenuViewProps> = {}) {
   return renderWithProviders(
     <div role="menu" aria-label="Меню профиля">
@@ -73,7 +73,7 @@ describe('ProfileMenuView', () => {
 
   it('карточка показывает аватар профиля (инициалы имени, не логина)', () => {
     renderInMenu({ user: admin, avatarName: 'Богдан Сутужко', avatarColor: '#238636' });
-    // Инициалы берутся из имени профиля («БС»), а не из логина «admin» → «A».
+    // Инициалы берутся из имени профиля («БС»), а не из логина «admin».
     expect(screen.getByRole('img', { name: 'Богдан Сутужко', hidden: true })).toBeInTheDocument();
   });
 

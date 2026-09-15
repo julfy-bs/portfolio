@@ -3,11 +3,8 @@ import axios, { type AxiosRequestConfig } from 'axios';
 
 import { env } from '@/shared/config';
 
-/**
- * Аргументы запроса, которые описывают эндпоинты RTK Query.
- * Тела/параметры типизируем как unknown (а не any из AxiosRequestConfig),
- * чтобы не протаскивать any сквозь типобезопасный код.
- */
+// body и params типизированы как unknown, а не any из AxiosRequestConfig, чтобы any не
+// расползался по коду.
 export interface AxiosBaseQueryArgs {
   readonly url: string;
   readonly method?: AxiosRequestConfig['method'];
@@ -16,31 +13,26 @@ export interface AxiosBaseQueryArgs {
   readonly headers?: Record<string, string>;
 }
 
-/** Нормализованная ошибка: HTTP-статус (если был ответ) и тело/сообщение. */
 export interface AxiosBaseQueryError {
+  /** Нет, если ответа от сервера не было. */
   readonly status?: number;
   readonly data: unknown;
 }
 
-// Единственный axios-инстанс. withCredentials — для HttpOnly-cookie авторизации (FE-3).
+// withCredentials нужен, чтобы ходили HttpOnly-cookie авторизации.
 const client = axios.create({
   baseURL: env.apiBaseUrl,
   withCredentials: true,
 });
 
-// Эндпоинты, на 401 которых бессмысленно пытаться обновлять сессию:
-//   - `/auth/refresh` — иначе рекурсия;
-//   - `/auth/login` — 401 здесь значит «неверный логин/пароль», а не «истёк доступ».
+// На refresh получили бы рекурсию, а 401 на login означает неверный пароль, а не
+// истёкший токен.
 const NO_REFRESH_URLS = ['/auth/refresh', '/auth/login'];
 
-// Один общий refresh на все параллельные 401: пока он в полёте, остальные запросы
-// ждут его результата, а не поднимают по своему refresh (иначе — ротация-гонка).
+// Параллельные 401 ждут один общий refresh. Если каждый запустит свой, бэкенд
+// ротирует токены несколько раз и сессия развалится.
 let refreshInFlight: Promise<boolean> | null = null;
 
-/**
- * Пытается обновить сессию по HttpOnly refresh-cookie. Бэкенд `POST /auth/refresh`
- * ротирует токены и ставит новые cookie. Возвращает `true`, если сессия продлена.
- */
 async function refreshSession(): Promise<boolean> {
   refreshInFlight ??= client
     .post('/auth/refresh')
@@ -53,13 +45,8 @@ async function refreshSession(): Promise<boolean> {
 }
 
 /**
- * baseQuery для RTK Query поверх axios. Держит весь HTTP в одном месте: эндпоинты
- * описывают только url/method/body.
- *
- * Прозрачное продление сессии: access-токен живёт 15 минут, поэтому после паузы
- * (в т.ч. перезагрузки страницы) запрос упирается в `401`. Тогда мы один раз дёргаем
- * `/auth/refresh` (refresh-токен живёт 30 дней) и повторяем исходный запрос — так
- * авторизованный пользователь не разлогинивается на ровном месте и не видит `401`.
+ * Access-токен живёт 15 минут, так что после паузы запрос получает 401. В этом случае
+ * один раз обновляем сессию и повторяем запрос, чтобы не разлогинивать на ровном месте.
  */
 export function axiosBaseQuery(): BaseQueryFn<AxiosBaseQueryArgs, unknown, AxiosBaseQueryError> {
   return async (args) => {
@@ -68,7 +55,6 @@ export function axiosBaseQuery(): BaseQueryFn<AxiosBaseQueryArgs, unknown, Axios
       return first;
     }
 
-    // 401 на обычном запросе — пробуем продлить сессию и повторить один раз.
     const refreshed = await refreshSession();
     return refreshed ? request(args) : first;
   };

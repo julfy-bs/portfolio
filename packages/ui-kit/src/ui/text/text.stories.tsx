@@ -66,7 +66,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Песочница. play проверяет тег по умолчанию — абзац `<p>`. */
+/** Песочница. play проверяет, что по умолчанию рендерится `<p>`. */
 export const Playground: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -120,7 +120,7 @@ export const Weights: Story = {
   ),
 };
 
-/** Исчерпывающая матрица размер × насыщенность. */
+/** Все сочетания размера и насыщенности. */
 export const Matrix: Story = {
   name: 'Матрица: размер × насыщенность',
   parameters: { controls: { disable: true } },

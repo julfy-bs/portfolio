@@ -1,6 +1,6 @@
 import type { IconName } from '@sutuzhko/ui-kit';
 
-/** Идентификаторы вкладок админки (union расширяется по мере готовности вкладок). */
+/** Union пополняется, когда очередная вкладка готова. */
 export type AdminTabId =
   'profile' | 'projects' | 'experience' | 'stack' | 'education' | 'kb' | 'locale' | 'settings';
 
@@ -10,7 +10,7 @@ export interface AdminTabDef {
   readonly icon: IconName;
 }
 
-/** Вкладки личного кабинета — единый источник для навигации и контента. */
+/** Единый список вкладок и для навигации, и для контента. */
 export const ADMIN_TABS: readonly AdminTabDef[] = [
   { id: 'profile', labelKey: 'admin.tabs.profile', icon: 'user' },
   { id: 'projects', labelKey: 'admin.tabs.projects', icon: 'layers' },

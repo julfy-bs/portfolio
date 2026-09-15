@@ -9,8 +9,8 @@ interface UseLanguageResult {
 }
 
 /**
- * Низкоуровневое чтение/смена языка через i18next. Политику доступных языков и
- * язык по умолчанию накладывает `useSiteLanguages` поверх этого хука.
+ * Только чтение и смена языка в i18next. Какие языки доступны и какой из них по
+ * умолчанию, решает `useSiteLanguages`.
  */
 export function useLanguage(): UseLanguageResult {
   const { i18n } = useTranslation();

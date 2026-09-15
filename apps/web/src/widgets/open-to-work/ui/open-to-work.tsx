@@ -11,23 +11,18 @@ import styles from './open-to-work.module.css';
 const noop = () => undefined;
 
 export interface OpenToWorkProps {
-  /** Статус доступности из профиля. Пока грузится — показываем скелетон. */
+  /** Статус из профиля. Пока его нет, показываем скелетон. */
   readonly availability?: AvailabilityStatus;
   readonly isLoading?: boolean;
-  /** Перейти к разделу «Опыт» (экран в разработке — по умолчанию заглушка). */
   readonly onViewExperience?: () => void;
-  /** Показывать кнопку «Смотреть опыт» (скрыта, если страница опыта выключена). */
+  /** false, если страница опыта выключена. */
   readonly showViewExperience?: boolean;
   /** Якорь секции для навигации и скролл-шпиона. */
   readonly id?: string;
   readonly className?: string;
 }
 
-/**
- * Баннер доступности к работе (макет: NOW / OPEN TO WORK) — точка-индикатор,
- * статус и описание (по `availability`, локализованы) и переход к опыту.
- * Данные с бэкенда, поэтому пока профиль грузится — рендерим скелетон той же высоты.
- */
+/** Баннер «открыт к работе». Пока профиль грузится, на его месте скелетон той же высоты. */
 export function OpenToWork({
   availability,
   isLoading,
@@ -70,8 +65,8 @@ function OpenToWorkSkeleton({
   return (
     <section id={id} className={cn(styles.banner, className)} aria-busy="true" aria-live="polite">
       <Skeleton width="var(--dot-size)" height="var(--dot-size)" radius="var(--radius-pill)" />
-      {/* Строки-заглушки повторяют раскладку контента (заголовок + описание),
-          высоты — их line-box, чтобы баннер не прыгал при появлении данных. */}
+      {/* Заглушки повторяют заголовок и описание по высоте line-box, чтобы баннер
+          не прыгал, когда придут данные. */}
       <div className={styles.skeletonBody}>
         <Skeleton width="190px" height="18px" />
         <Skeleton width="min(360px, 70%)" height="15px" />

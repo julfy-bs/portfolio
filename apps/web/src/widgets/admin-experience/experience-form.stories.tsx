@@ -34,12 +34,11 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Создание новой записи опыта. */
 export const New: Story = {
   name: 'Создание',
 };
 
-/** Правка существующей записи (поля заполнены из данных). */
+/** Поля заранее заполнены данными записи. */
 export const Edit: Story = {
   name: 'Правка',
   args: { record: mockExperienceAdmin[0] ?? null },

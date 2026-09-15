@@ -4,10 +4,7 @@ import { Button, Icon } from '@sutuzhko/ui-kit';
 
 import { useTheme } from '../model/theme-context';
 
-/**
- * Кнопка переключения светлой/тёмной темы. Иконка показывает текущую тему,
- * подпись — целевую. Собрана из UI Kit (`Button variant="icon"` + `Icon`).
- */
+/** Иконка показывает текущую тему, а подпись ту, на которую переключим. */
 export function ThemeSwitch() {
   const { mode, toggle } = useTheme();
   const { t } = useTranslation();

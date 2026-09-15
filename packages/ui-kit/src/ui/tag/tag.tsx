@@ -23,8 +23,8 @@ const tag = cva(styles.tag, {
 export interface TagProps extends HTMLAttributes<HTMLSpanElement>, VariantProps<typeof tag> {}
 
 /**
- * Read-only метка: технология, счётчик (`+3`), статусный бейдж.
- * Не интерактивна — для переключаемого фильтра используйте Chip.
+ * Неинтерактивная метка: технология, счётчик (`+3`), статусный бейдж. Для фильтра-переключателя
+ * есть Chip.
  */
 export function Tag({ shape, tone, className, ...rest }: TagProps) {
   return <span className={tag({ shape, tone, className })} {...rest} />;

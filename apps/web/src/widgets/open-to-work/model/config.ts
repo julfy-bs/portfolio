@@ -1,9 +1,8 @@
 import type { AvailabilityStatus } from '@/entities/profile';
 
 /**
- * Сегмент ключа для статуса доступности (макет: NOW / OPEN TO WORK). Один и тот же
- * ключ ведёт и к тексту в i18n (`home.now.<key>.{title,desc}`), и к CSS-модификатору
- * точки-индикатора (цвет и пульсация — в стилях, где им и место).
+ * Один ключ используется и в i18n (`home.now.<key>.{title,desc}`), и как CSS-модификатор
+ * точки, цвет и пульсация которой описаны в стилях.
  */
 export const AVAILABILITY_KEY: Record<AvailabilityStatus, 'active' | 'open' | 'notLooking'> = {
   ACTIVE: 'active',

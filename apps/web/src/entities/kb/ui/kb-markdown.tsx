@@ -9,17 +9,15 @@ const WIKILINK = /\[\[([^[\]]+)\]\]/g;
 const WIKI_HREF = '#wiki:';
 
 export interface KbMarkdownProps {
-  /** Тело статьи в Markdown. */
   readonly source: string;
-  /** Переход по вики-ссылке `[[slug]]`. Без него ссылки неактивны (например, в превью). */
+  /** Без обработчика вики-ссылки неактивны, например в превью. */
   readonly onNavigate?: (slug: string) => void;
 }
 
 /**
- * Тело статьи БЗ в Markdown с поддержкой вики-ссылок `[[slug]]`. Общий для
- * публичного читателя и кабинета (просмотр + живое превью редактора): `[[slug]]`
- * превращаем в ссылку со служебной схемой и разбираем кастомным рендерером —
- * чтобы кликать по связям, не таща remark-плагин. Внешние ссылки — в новой вкладке.
+ * Общий рендер статьи для читателя и кабинета (просмотр и живое превью). `[[slug]]`
+ * превращаем в ссылку со служебной схемой и ловим своим рендерером, чтобы не тащить
+ * remark-плагин. Внешние ссылки открываются в новой вкладке.
  */
 export function KbMarkdown({ source, onNavigate }: KbMarkdownProps) {
   const prepared = useMemo(
@@ -31,7 +29,7 @@ export function KbMarkdown({ source, onNavigate }: KbMarkdownProps) {
   const components = useMemo<Components>(
     () => ({
       a: ({ node: _node, href, children, ...props }) => {
-        // Не-вики ссылка — отдаём обычную внешнюю (стили берёт общий `.prose a`).
+        // Обычная внешняя ссылка, стили берёт общий `.prose a`.
         if (href === undefined || !href.startsWith(WIKI_HREF)) {
           return (
             <a {...props} href={href} target="_blank" rel="noopener noreferrer">

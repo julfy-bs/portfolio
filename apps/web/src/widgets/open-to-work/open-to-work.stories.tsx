@@ -27,7 +27,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Открыт к предложениям. play: клик «Смотреть опыт →» вызывает onViewExperience. */
+/** Открыт к предложениям. play: кнопка «Смотреть опыт» вызывает onViewExperience. */
 export const Playground: Story = {
   play: async ({ canvasElement, args, userEvent }) => {
     const canvas = within(canvasElement);
@@ -50,7 +50,7 @@ export const AllStatuses: Story = {
   ),
 };
 
-/** В активном поиске — пульсирующий ореол (уважает `prefers-reduced-motion`). */
+/** В активном поиске точка пульсирует, если не включён `prefers-reduced-motion`. */
 export const Active: Story = {
   name: 'В активном поиске (пульсация)',
   args: { availability: 'ACTIVE' },
@@ -62,7 +62,7 @@ export const NotLooking: Story = {
   args: { availability: 'NOTLOOKING' },
 };
 
-/** Профиль грузится — скелетон той же высоты. */
+/** Профиль грузится: скелетон той же высоты. */
 export const Loading: Story = {
   name: 'Скелетон загрузки',
   args: { isLoading: true },

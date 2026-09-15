@@ -13,13 +13,13 @@ import '../src/app/styles/index.css';
 
 // import { themes, ensure } from 'storybook/theming';
 
-// Детерминированный основной язык (ru): сеем localStorage до языкового детектора,
-// иначе в headless-Chromium подхватывается navigator=en и подписи «уезжают».
+// Фиксируем ru до запуска детектора языка. Иначе headless Chromium отдаёт
+// navigator=en, и подписи в историях меняются.
 localStorage.setItem(languageStorageKey, 'ru');
 
 const i18n = setupI18n();
-// Общий store для историй: виджеты с RTK-хуками (например, RootLayout → useProfile)
-// не падают. Без MSW запросы не резолвятся — истории показывают состояние загрузки.
+// Store нужен, чтобы не падали виджеты с RTK-хуками. Без MSW запросы так и висят,
+// и истории показывают загрузку.
 const store = makeStore();
 
 const preview: Preview = {
@@ -42,8 +42,7 @@ const preview: Preview = {
 
     docs: {
       theme: themes.dark,
-      // Блоки <Source /> по умолчанию подсвечивают код светлой темой —
-      // выравниваем их с тёмной темой доков на уровне всего Storybook.
+      // По умолчанию <Source /> подсвечивает код светлой темой, а доки у нас тёмные.
       source: {
         dark: true,
       },
@@ -57,8 +56,7 @@ const preview: Preview = {
       },
       defaultTheme: 'dark',
     }),
-    // ThemeProvider нужен виджетам, использующим useTheme (например, ThemeSwitch).
-    // Он же синхронизирует <html data-theme>, от которого зависят токены.
+    // ThemeProvider ещё и ставит <html data-theme>, без него не работают токены.
     (Story: Story) => (
       <Provider store={store}>
         <I18nextProvider i18n={i18n}>

@@ -76,7 +76,7 @@
   border-color: var(--color-border-strong);
 }
 
-/* Текстовая кнопка без рамки — для третичных действий (напр. «Связаться») */
+/* Текстовая кнопка без рамки для третичных действий */
 .text {
   color: var(--color-fg-muted);
   background-color: transparent;

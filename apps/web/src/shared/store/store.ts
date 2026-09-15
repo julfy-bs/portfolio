@@ -3,11 +3,7 @@ import { setupListeners } from '@reduxjs/toolkit/query';
 
 import { apiSlice } from '@/shared/api';
 
-/**
- * Корневой store. Сейчас содержит только серверный кэш RTK Query —
- * клиентское UI-состояние (тема, язык) намеренно живёт ближе к месту
- * использования (context / i18next), а не в Redux.
- */
+// Тут только кэш RTK Query. Тема и язык живут в context и i18next, в Redux им делать нечего.
 export function makeStore() {
   return configureStore({
     reducer: {
@@ -19,8 +15,8 @@ export function makeStore() {
 
 export const store = makeStore();
 
-// Включаем события refetchOnReconnect/refetchOnFocus для RTK Query (сам refetch
-// на реконнект уже включён в apiSlice) — нужно для досинхронизации после офлайна.
+// Без слушателей refetchOnReconnect в apiSlice не сработает, и после офлайна данные
+// останутся старыми.
 setupListeners(store.dispatch);
 
 export type AppStore = ReturnType<typeof makeStore>;

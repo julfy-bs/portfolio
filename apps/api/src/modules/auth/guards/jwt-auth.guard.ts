@@ -10,10 +10,7 @@ import { ACCESS_COOKIE, readCookie } from '../auth.cookies';
 import { TokenService } from '../token.service';
 import type { JwtPayload } from '../types/jwt-payload';
 
-/**
- * Пропускает запрос только с валидным access-токеном из HttpOnly-cookie и кладёт
- * полезную нагрузку в `request.user`. При отсутствии/невалидности — 401.
- */
+/** Проверяет access-токен из HttpOnly-cookie и кладёт его payload в `request.user`. */
 @Injectable()
 export class JwtAuthGuard implements CanActivate {
   constructor(private readonly tokenService: TokenService) {}

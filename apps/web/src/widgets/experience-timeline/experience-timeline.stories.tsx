@@ -21,7 +21,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Таймлайн мест работы. play: роль текущего места отображается. */
+/** Таймлайн мест работы. play: роль на текущем месте видна. */
 export const Loaded: Story = {
   name: 'С данными',
   play: async ({ canvasElement }) => {
@@ -30,13 +30,13 @@ export const Loaded: Story = {
   },
 };
 
-/** Опыт грузится — скелетон-карточки с той же точкой-линией. */
+/** Опыт грузится: скелетон-карточки с такими же точками и линией. */
 export const Loading: Story = {
   name: 'Ожидание данных (isLoading)',
   args: { isLoading: true },
 };
 
-/** Край: единственная запись — линия под точкой скрыта (последний элемент). */
+/** Край: запись одна, поэтому линии под точкой нет. */
 export const SingleJob: Story = {
   name: 'Край: одна запись',
   args: { jobs: mockExperience.slice(0, 1) },

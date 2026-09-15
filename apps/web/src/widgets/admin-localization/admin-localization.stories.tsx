@@ -113,7 +113,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Сверка RU/EN: покрытие, статистика, секции по сущностям и флаги строк. */
+/** Покрытие переводом, статистика, секции по сущностям и флаги у строк. */
 export const Default: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -123,12 +123,12 @@ export const Default: Story = {
   },
 };
 
-/** Одна ячейка в режиме правки: textarea + Готово/Отмена. */
+/** Ячейка в режиме правки с полем ввода и кнопками «Готово» и «Отмена». */
 export const Editing: Story = {
   args: { editing: { rowId: 'profile:profile:name', locale: 'en' } },
 };
 
-/** Есть несохранённые правки — снизу плавающая панель «Сохранить N». */
+/** При несохранённых правках снизу появляется панель сохранения со счётчиком. */
 export const WithChanges: Story = {
   args: {
     changedCount: 2,
@@ -142,7 +142,7 @@ export const WithChanges: Story = {
   },
 };
 
-/** Сохранение в процессе — кнопки панели заблокированы. */
+/** Пока идёт сохранение, кнопки панели заблокированы. */
 export const Saving: Story = {
   args: { changedCount: 2, isSaving: true },
 };
@@ -152,7 +152,7 @@ export const Empty: Story = {
   args: { groups: [], filter: 'changed' },
 };
 
-/** Узкий экран: карточки и панель адаптируются. */
+/** На узком экране карточки и панель перестраиваются. */
 export const Mobile: Story = {
   parameters: { viewport: { defaultViewport: 'mobile1' } },
 };

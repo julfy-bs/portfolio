@@ -12,7 +12,7 @@ interface FilterRowProps {
   readonly onToggle: (value: string) => void;
 }
 
-/** Строка фасета фильтра: подпись слева и переключаемые чипы (технологии/люди). */
+/** Подпись слева и переключаемые чипы. */
 export function FilterRow({ label, options, selected, onToggle }: FilterRowProps) {
   return (
     <div className={styles.row}>
@@ -34,7 +34,7 @@ export function FilterRow({ label, options, selected, onToggle }: FilterRowProps
   );
 }
 
-/** Скелетон строки фасета: подпись и плейсхолдеры-чипы, пока грузятся опции. */
+/** Показываем, пока грузятся опции. */
 export function FilterRowSkeleton({ label }: { readonly label: string }) {
   return (
     <div className={styles.row}>

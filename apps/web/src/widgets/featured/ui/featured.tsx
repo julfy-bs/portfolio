@@ -10,23 +10,17 @@ import styles from './featured.module.css';
 const noop = () => undefined;
 
 export interface FeaturedProps {
-  /** Избранные (закреплённые) проекты. Пока грузятся — скелетоны. */
+  /** Закреплённые проекты. Пока их нет, показываем скелетоны. */
   readonly projects?: readonly ProjectListItem[];
   readonly isLoading?: boolean;
-  /** Открыть проект по slug (экран детали — позже). */
   readonly onSelect?: (slug: string) => void;
-  /** Перейти ко всем проектам (экран Projects — позже). */
   readonly onViewAll?: () => void;
   /** Якорь секции для навигации и скролл-шпиона. */
   readonly id?: string;
   readonly className?: string;
 }
 
-/**
- * Секция избранных проектов главной (макет: FEATURED PROJECTS) — плитки-градиенты
- * с категорией, названием, описанием, аватарами контрибьюторов и тегами.
- * Презентационна: список приходит пропсом (страница фильтрует закреплённые).
- */
+/** Избранные проекты на главной. Закреплённые отбирает страница, сюда приходит готовый список. */
 export function Featured({
   projects,
   isLoading,

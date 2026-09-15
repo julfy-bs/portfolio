@@ -52,7 +52,7 @@
   outline-offset: 2px;
 }
 
-/* Мобильный: одна колонка (--bp-md 768) */
+/* На мобильных одна колонка (--bp-md, 768px) */
 @media (width <= 768px) {
   .grid {
     grid-template-columns: 1fr;

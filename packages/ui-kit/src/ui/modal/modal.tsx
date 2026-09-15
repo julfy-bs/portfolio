@@ -19,9 +19,8 @@ export interface ModalProps {
 }
 
 /**
- * Модальное окно поверх страницы: затемнённый фон, центрированная панель,
- * закрытие по Escape, клику по фону и крестику. Блокирует скролл фона и
- * портируется в `body`. Фон — кнопка (a11y: без onClick на неинтерактивном div).
+ * Модальное окно в портале в `body`. Закрывается по Escape, клику по фону и крестику, скролл
+ * страницы на это время блокируется. Фон сделан кнопкой, чтобы не вешать onClick на div.
  */
 export function Modal({
   open,
@@ -34,7 +33,7 @@ export function Modal({
 }: ModalProps) {
   const panelRef = useRef<HTMLDivElement>(null);
   const titleId = useId();
-  // onClose в ref: эффект зависит только от `open`, не пере-подписывается каждый рендер.
+  // onClose в ref, чтобы эффект зависел только от `open` и не переподписывался на каждый рендер.
   const onCloseRef = useRef(onClose);
   onCloseRef.current = onClose;
 

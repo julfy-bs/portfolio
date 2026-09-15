@@ -41,21 +41,20 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Категории-блоки технологий + строки языков + навыки, одно «Сохранить». */
+/** Технологии по категориям, языки и навыки сохраняются одной кнопкой. */
 export const Default: Story = {
   name: 'Стек и языки',
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await expect(canvas.getByText('React')).toBeInTheDocument();
     await expect(canvas.getByText('NestJS')).toBeInTheDocument();
-    // Карандаш переименования категории «Frontend» доступен.
     await expect(
       canvas.getByRole('button', { name: 'Переименовать «Frontend»' }),
     ).toBeInTheDocument();
   },
 };
 
-/** Добавление технологии: «+» в блоке раскрывает пустой инлайн-чип. */
+/** Плюс в блоке добавляет пустой чип, который сразу можно заполнить. */
 export const AddTechnology: Story = {
   name: 'Добавить технологию',
   play: async ({ canvasElement }) => {
@@ -67,7 +66,7 @@ export const AddTechnology: Story = {
   },
 };
 
-/** Переименование категории: карандаш открывает инлайн-поле заголовка. */
+/** Карандаш у категории открывает поле для нового названия. */
 export const RenameCategory: Story = {
   name: 'Переименовать блок',
   play: async ({ canvasElement }) => {
@@ -77,7 +76,7 @@ export const RenameCategory: Story = {
   },
 };
 
-/** Добавление блока-категории: «+ блок» у заголовка «Технологии». */
+/** Новая категория добавляется кнопкой у заголовка «Технологии». */
 export const AddCategory: Story = {
   name: 'Добавить блок',
   play: async ({ canvasElement }) => {
@@ -87,19 +86,19 @@ export const AddCategory: Story = {
   },
 };
 
-/** Удаление блока целиком: корзина у заголовка убирает категорию с её чипами. */
+/** Корзина у заголовка удаляет категорию вместе со всеми её чипами. */
 export const DeleteBlock: Story = {
   name: 'Удалить блок',
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await userEvent.click(canvas.getByRole('button', { name: 'Удалить блок «Tooling»' }));
     await expect(canvas.queryByText('Tooling')).not.toBeInTheDocument();
-    // Правка включает «Сохранить» (по умолчанию заблокирована — гейт «isDirty»).
+    // Пока нет правок, «Сохранить» заблокирована, после правки становится активной.
     await expect(canvas.getByRole('button', { name: /Сохранить/ })).toBeEnabled();
   },
 };
 
-/** Пустой стек — только «+ блок», пустые языки и навыки. Бар сохранения скрыт. */
+/** Пустой стек: есть только кнопка новой категории, бар сохранения скрыт. */
 export const Empty: Story = {
   name: 'Пусто',
   args: { techCategories: [], chips: [], langRows: [], skillChips: [] },

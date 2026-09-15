@@ -9,16 +9,11 @@ import styles from './project-detail.module.css';
 export interface ProjectDetailProps {
   readonly project?: ProjectDetailData;
   readonly isLoading?: boolean;
-  /** Запустить проект в раннере (кнопка «▶ Запустить»). Страница даёт обработчик. */
+  /** Открывает проект в раннере. Если не передан, кнопки запуска нет. */
   readonly onRun?: () => void;
 }
 
-/**
- * Деталь проекта (макет: PROJECT DETAIL) — шапка-баннер, основная колонка
- * (описание, «что внутри», галерея) и боковая карточка (роль, период, стек,
- * ссылки). Запускаемый проект получает кнопку «▶ Запустить». Презентационна:
- * данные приходят пропсом (страница оркеструет запрос), пока грузятся — скелетон.
- */
+/** Детальная карточка проекта. Данные запрашивает страница, пока их нет, рисуем скелетон. */
 export function ProjectDetail({ project, isLoading, onRun }: ProjectDetailProps) {
   if (isLoading || !project) {
     return <ProjectDetailSkeleton />;
@@ -53,7 +48,7 @@ export function ProjectDetail({ project, isLoading, onRun }: ProjectDetailProps)
   );
 }
 
-/** Скелетон детали: держит раскладку баннера и колонок, пока проект грузится. */
+/** Держит раскладку баннера и колонок, пока проект грузится. */
 function ProjectDetailSkeleton() {
   return (
     <div className={styles.detail} aria-busy="true" aria-live="polite">

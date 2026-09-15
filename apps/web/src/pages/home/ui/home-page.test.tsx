@@ -19,12 +19,12 @@ describe('HomePage', () => {
       </MemoryRouter>,
     );
 
-    // Пока запрос в полёте — контент героя ещё не отрисован (виден скелетон).
+    // Пока запрос в полёте, вместо контента героя виден скелетон.
     expect(screen.queryByRole('heading', { name: 'Богдан Сутужко' })).not.toBeInTheDocument();
 
-    // Данные приходят из MSW-мока профиля (русская локаль): имя тоже локализовано,
-    // как и на бэкенде. Роль встречается и в герое, и в тексте «обо мне», поэтому
-    // проверяем наличие, а не единственность.
+    // Данные из MSW-мока профиля на русском, имя локализовано так же, как на бэкенде.
+    // Роль встречается и в герое, и в «обо мне», поэтому проверяем наличие, а не
+    // единственность.
     expect(await screen.findByRole('heading', { name: 'Богдан Сутужко' })).toBeInTheDocument();
     expect(screen.getAllByText(/Fullstack-разработчик/).length).toBeGreaterThan(0);
   });
@@ -36,9 +36,9 @@ describe('HomePage', () => {
       </MemoryRouter>,
     );
 
-    // Highlights приходят с бэкенда (profile.highlights) — появляются после загрузки.
+    // Highlights приходят с бэкенда (profile.highlights) и появляются после загрузки.
     expect(await screen.findByText('3+')).toBeInTheDocument();
-    // Stack — заголовок секции сразу, группы приходят с бэкенда (MSW).
+    // Заголовок Stack виден сразу, а группы приходят с бэкенда (MSW).
     expect(screen.getByRole('heading', { name: '// стек' })).toBeInTheDocument();
     expect(await screen.findByText('Frontend')).toBeInTheDocument();
   });
@@ -64,14 +64,14 @@ describe('HomePage', () => {
       />,
     );
 
-    // Проекты и контакты выключены → их ссылки с главной пропадают.
+    // Проекты и контакты выключены, их ссылки с главной пропадают.
     expect(screen.queryByRole('button', { name: /^Проекты/ })).not.toBeInTheDocument();
     expect(screen.queryByRole('button', { name: 'Связаться' })).not.toBeInTheDocument();
     expect(screen.queryByText('Все проекты')).not.toBeInTheDocument();
     expect(
       screen.queryByRole('button', { name: new RegExp(featured[0].title) }),
     ).not.toBeInTheDocument();
-    // Опыт включён → ссылка «Смотреть опыт» остаётся.
+    // Опыт включён, ссылка «Смотреть опыт» остаётся.
     expect(screen.getByRole('button', { name: /Смотреть опыт/ })).toBeInTheDocument();
   });
 

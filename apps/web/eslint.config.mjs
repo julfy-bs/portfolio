@@ -25,7 +25,7 @@ export default tseslint.config(
     ],
   },
 
-  // Основной слой: исходники приложения с типобезопасными правилами.
+  // Исходники приложения, правила с проверкой типов.
   {
     files: ['src/**/*.{ts,tsx}'],
     extends: [js.configs.recommended, ...tseslint.configs.recommendedTypeChecked],
@@ -40,13 +40,11 @@ export default tseslint.config(
     },
     settings: {
       react: { version: 'detect' },
-      // Резолвер TypeScript: без него boundaries не понимает ни `.ts`/`.tsx`, ни
-      // алиас `@/` (штатный node-резолвер знает только `.js`), и правило границ
-      // молча пропускает все импорты. Читаем `paths` из tsconfig приложения.
+      // Без TypeScript-резолвера boundaries не видит `.ts`/`.tsx` и алиас `@/`
+      // (node-резолвер знает только `.js`) и молча пропускает все импорты.
       'import/resolver': {
         typescript: { alwaysTryTypes: true, project: './tsconfig.app.json' },
       },
-      // Слои FSD для контроля направления зависимостей.
       'boundaries/elements': [
         { type: 'app', pattern: 'src/app' },
         { type: 'pages', pattern: 'src/pages/*' },
@@ -74,7 +72,6 @@ export default tseslint.config(
       'react-hooks/exhaustive-deps': 'warn',
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
 
-      // Запреты из стандартов проекта: никаких any / non-null assertion.
       '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/no-non-null-assertion': 'error',
       '@typescript-eslint/consistent-type-imports': [
@@ -86,15 +83,10 @@ export default tseslint.config(
         { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
       ],
 
-      // Границы FSD в одном правиле — направление зависимостей + публичное API:
-      //   1) слой может тянуть только «нижние» слои (напр. widgets → entities, но
-      //      не наоборот);
-      //   2) снаружи элемент импортируется ТОЛЬКО через свою точку входа —
-      //      `index.ts` (публичное API) или `mocks.ts` (вторичная точка входа для
-      //      MSW-моков, чтобы msw не попадал в прод-бандл).
-      // Импорты внутри одного элемента правило не проверяет (`checkInternals`
-      // по умолчанию false), поэтому относительные `./` внутри слайса — разрешены
-      // и являются штатным способом связывать файлы слайса между собой.
+      // Слой импортирует только нижележащие слои и только через точку входа:
+      // `index.ts` или `mocks.ts`. Моки вынесены в отдельный вход, чтобы msw не
+      // попал в прод-бандл. Импорты внутри слайса не проверяются (`checkInternals`
+      // выключен), так что относительные `./` там в порядке.
       'boundaries/dependencies': [
         'error',
         {
@@ -152,13 +144,12 @@ export default tseslint.config(
     },
   },
 
-  // Stories — дополнительные правила Storybook поверх основного слоя.
   {
     files: ['src/**/*.stories.{ts,tsx}'],
     extends: [storybook.configs['flat/recommended']],
   },
 
-  // Тестовая инфраструктура: HMR-правило неактуально (это не код приложения).
+  // Тесты не участвуют в HMR, правило react-refresh им ни к чему.
   {
     files: ['src/**/*.{test,spec}.{ts,tsx}', 'src/app/test/**/*.{ts,tsx}'],
     rules: {
@@ -166,6 +157,6 @@ export default tseslint.config(
     },
   },
 
-  // Prettier — последним, чтобы выключить конфликтующие стилистические правила.
+  // Prettier идёт последним, чтобы перекрыть конфликтующие правила стиля.
   prettierRecommended,
 );

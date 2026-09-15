@@ -12,19 +12,18 @@ import { useLanguage } from './use-language';
 
 interface UseSiteLanguagesResult {
   readonly current: AppLanguage;
-  /** Языки, доступные на сайте (из настроек ∩ поддерживаемые платформой). */
+  /** Языки из настроек сайта, которые поддерживает платформа. */
   readonly available: readonly AppLanguage[];
-  /** Явный выбор языка пользователем (запоминается как выбор). */
+  /** Явный выбор языка, запоминается. */
   readonly choose: (language: AppLanguage) => void;
-  /** Переключить на следующий доступный язык (по кругу). */
+  /** Следующий доступный язык, по кругу. */
   readonly cycleNext: () => void;
 }
 
 /**
- * Язык сайта с учётом настроек: набор доступных языков и язык по умолчанию задаёт
- * владелец в кабинете (не константа). Здесь же — политика приведения активного
- * языка: язык вне доступных уводим на дефолтный; гостю без явного выбора
- * показываем язык по умолчанию. Пока настройки не загрузились — ничего не меняем.
+ * Набор языков и язык по умолчанию задаёт владелец в кабинете. Если активный язык
+ * недоступен, переключаем на дефолтный; гость без явного выбора тоже получает
+ * дефолтный. Пока настройки не загрузились, ничего не трогаем.
  */
 export function useSiteLanguages(): UseSiteLanguagesResult {
   const { current, change } = useLanguage();
@@ -33,8 +32,8 @@ export function useSiteLanguages(): UseSiteLanguagesResult {
   const available = useMemo<readonly AppLanguage[]>(() => {
     const configured = data?.availableLanguages;
     if (!configured) return supportedLanguages;
-    // Контент существует только для поддерживаемых платформой языков — пересекаем,
-    // сохраняя их порядок. Пустое пересечение = не даём остаться без языка.
+    // Контент есть только на языках платформы, поэтому пересекаем с ними и держим их
+    // порядок. Если пересечение пустое, отдаём все языки, чтобы сайт не остался без языка.
     const list = supportedLanguages.filter((language) => configured.includes(language));
     return list.length > 0 ? list : supportedLanguages;
   }, [data?.availableLanguages]);

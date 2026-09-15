@@ -11,7 +11,7 @@ import styles from './admin-settings.module.css';
 
 export interface ChangePasswordFormProps {
   readonly isSaving: boolean;
-  /** Отправка смены пароля. Успех/ошибку показывает контейнер тостом. */
+  /** Результат показывает контейнер тостом. */
   readonly onSubmit: (body: ChangePassword) => void;
 }
 
@@ -30,11 +30,6 @@ function createSchema(t: ReturnType<typeof useTranslation>['t']) {
 
 type FormValues = z.infer<ReturnType<typeof createSchema>>;
 
-/**
- * Форма смены пароля администратора (`POST /api/auth/change-password`): текущий
- * пароль + новый + подтверждение. Презентационная — сохранение уходит колбэком,
- * успех/ошибку (в т.ч. неверный текущий пароль) показывает контейнер.
- */
 export function ChangePasswordForm({ isSaving, onSubmit }: ChangePasswordFormProps) {
   const { t } = useTranslation();
   const schema = useMemo(() => createSchema(t), [t]);

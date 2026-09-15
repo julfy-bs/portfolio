@@ -7,7 +7,6 @@ import { EMPTY_FILTER, filterProjects, hasActiveFilters } from './filter-project
 import { type ProjectSortKey, sortProjects } from './sort-projects';
 import type { ProjectFilterState } from './types';
 
-/** Публичный контроллер фильтра: состояние, производный список и действия. */
 export interface ProjectFilter {
   readonly state: ProjectFilterState;
   readonly filtered: readonly ProjectListItem[];
@@ -27,9 +26,8 @@ function toggle(list: readonly string[], value: string): readonly string[] {
 }
 
 /**
- * Управляет состоянием фильтра проектов и отдаёт отфильтрованный список + опции
- * фасетов. Состояние локальное (принадлежит экрану); фильтрация — на клиенте
- * (набор проектов мал, мгновенный отклик без перезапроса).
+ * Состояние локальное для экрана. Фильтруем на клиенте: проектов немного, и так
+ * отклик мгновенный, без перезапроса.
  */
 export function useProjectFilter(projects: readonly ProjectListItem[]): ProjectFilter {
   const [state, setState] = useState<ProjectFilterState>(EMPTY_FILTER);

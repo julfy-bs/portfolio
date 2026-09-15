@@ -3,7 +3,7 @@ import { expect, fn, waitFor, within } from 'storybook/test';
 
 import { RunnerView } from './ui/runner-view';
 
-// Самодостаточная «начинка» для демонстрации без сети: рисуем плитку 2048.
+// Рисуем плитку 2048 прямо здесь, чтобы история работала без сети.
 const demoEmbed =
   'data:text/html,' +
   encodeURIComponent(
@@ -43,7 +43,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Запущенный проект встроен через iframe в оконный «хром». */
+/** Проект открыт в iframe внутри окна. */
 export const Running: Story = {
   name: 'Запущен',
   play: async ({ canvasElement, args, userEvent }) => {
@@ -65,7 +65,7 @@ export const Minimized: Story = {
   name: 'Свёрнут в трей',
   args: { windowState: 'minimized' },
   play: async ({ canvasElement }) => {
-    // Пилюля порталится в body — ищем по всему документу, а не по canvas.
+    // Пилюля порталится в body, поэтому ищем по всему документу, а не в canvas.
     const body = within(document.body);
     await expect(body.getByRole('button', { name: 'Игра: 2048' })).toBeInTheDocument();
     await expect(within(canvasElement).queryByRole('dialog')).not.toBeInTheDocument();
@@ -73,15 +73,14 @@ export const Minimized: Story = {
 };
 
 /**
- * Проект не загрузился (переехал/офлайн): вместо вечного спиннера — bash-подобная
- * ошибка в окне, а контейнер шлёт тост. Короткий `loadTimeoutMs` + пустой URL,
- * чтобы состояние наступало сразу, без сети.
+ * Проект не загрузился: в окне ошибка в стиле bash, а контейнер показывает тост.
+ * `loadTimeoutMs` короткий, чтобы история не ждала сеть.
  */
 export const Failed: Story = {
   name: 'Не удалось запустить',
   args: {
-    // 192.0.2.0/24 — зарезервированная TEST-NET, никуда не маршрутизируется:
-    // onLoad не сработает, наступит таймаут → состояние ошибки.
+    // 192.0.2.0/24 это зарезервированная TEST-NET, она никуда не маршрутизируется.
+    // onLoad не придёт, сработает таймаут, и мы получим ошибку.
     project: { title: 'Игра: 2048', embedUrl: 'https://192.0.2.1/' },
     loadTimeoutMs: 50,
   },
@@ -89,7 +88,7 @@ export const Failed: Story = {
     const canvas = within(canvasElement);
     const alert = await canvas.findByRole('alert');
     await expect(alert).toHaveTextContent(/не удалось запустить/i);
-    // Уведомление шлёт passive-эффект — он выполняется уже после отрисовки панели.
+    // Уведомление шлёт passive-эффект, а он срабатывает уже после отрисовки панели.
     await waitFor(() => expect(args.onError).toHaveBeenCalledTimes(1));
   },
 };

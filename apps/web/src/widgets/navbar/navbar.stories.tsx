@@ -6,8 +6,8 @@ import { Avatar, MenuItem } from '@sutuzhko/ui-kit';
 
 import { Navbar } from './ui/navbar';
 
-// Демонстрационные пункты меню профиля. В приложении содержимое зависит от
-// авторизации и приходит из приватной зоны (FE-3) — здесь только показываем оверлей.
+// Пункты меню для примера. В приложении они зависят от авторизации и приходят из
+// приватной зоны, а здесь нужны только чтобы показать оверлей.
 const profileMenu = (
   <>
     <MenuItem icon="user">Профиль</MenuItem>
@@ -27,7 +27,7 @@ const meta = {
     controls: { expanded: true },
   },
 
-  // Бренд-ссылка использует React Router — оборачиваем истории в MemoryRouter.
+  // Бренд-ссылке нужен React Router, поэтому истории обёрнуты в MemoryRouter.
   decorators: [(Story) => <MemoryRouter>{Story()}</MemoryRouter>],
 
   args: {
@@ -64,13 +64,13 @@ export const Playground: Story = {
 };
 
 /**
- * Залогиненный пользователь: в триггере профиля — его аватар (фото/инициалы) вместо
- * обобщённой иконки. В приложении узел приходит из `ProfileMenuTrigger`.
+ * Пользователь вошёл: в триггере профиля его аватар вместо общей иконки. В приложении
+ * этот узел приходит из `ProfileMenuTrigger`.
  */
 export const AuthenticatedTrigger: Story = {
   name: 'Аватар в триггере (вошедший)',
   args: {
-    // Аватар заполняет кнопку (скруглённый квадрат); декоративен → aria-hidden.
+    // Аватар заполняет кнопку и чисто декоративный, поэтому aria-hidden.
     profileTrigger: (
       <span aria-hidden="true">
         <Avatar name="Богдан Сутужко" color="#238636" size={38} shape="square" />
@@ -85,7 +85,7 @@ export const AuthenticatedTrigger: Story = {
   },
 };
 
-/** Профиль без меню: клик просто вызывает `onProfileClick` (оверлей не открывается). */
+/** Профиль без меню: клик просто вызывает `onProfileClick`, оверлея нет. */
 export const WithoutMenu: Story = {
   name: 'Профиль без меню (коллбэк)',
   args: { profileMenu: undefined, onProfileClick: fn() },
@@ -97,7 +97,7 @@ export const WithoutMenu: Story = {
   },
 };
 
-/** Мобильная ширина (320px): управление доступно, бренд на ≤480 скрыт. */
+/** Ширина 320px: кнопки на месте, бренд уже скрыт (он прячется до 480px). */
 export const Mobile: Story = {
   name: 'Мобильная ширина (320px)',
   parameters: {

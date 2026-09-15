@@ -42,7 +42,7 @@
   align-items: center;
 }
 
-/* --- список --- */
+/* Список */
 
 .list {
   display: flex;
@@ -142,7 +142,6 @@
   color: var(--color-fg-dim);
 }
 
-/* Участники проекта строкой — моно, приглушённо, с иконкой. */
 .contributors {
   display: inline-flex;
   gap: 5px;
@@ -181,7 +180,7 @@
   color: var(--color-fg-dim);
 }
 
-/* --- форма --- */
+/* Форма */
 
 .grid2 {
   display: grid;
@@ -211,7 +210,7 @@
   content: '*';
 }
 
-/* Рамка вокруг MarkdownEditor — чтобы поле читалось как единый блок редактора. */
+/* Без рамки MarkdownEditor не читается как одно поле. */
 .mdFrame {
   overflow: hidden;
   border: 1px solid var(--color-border);
@@ -232,7 +231,6 @@
   align-items: center;
 }
 
-/* Цвет плитки: палитра свотчей. */
 .palette {
   display: flex;
   flex-wrap: wrap;
@@ -252,7 +250,7 @@
   border-color: var(--color-fg);
 }
 
-/* «Без цвета»: нейтральная плитка с диагональной чертой-«запретом». */
+/* Вариант без цвета перечёркнут по диагонали. */
 .swatchNone {
   background: linear-gradient(
       to top left,
@@ -266,7 +264,6 @@
   border-color: var(--color-border-strong);
 }
 
-/* Галерея скриншотов: 2 колонки, плитки 4/3 + пунктирная плитка загрузки. */
 .galleryGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -351,17 +348,16 @@
   border: 0;
 }
 
-/* Управление участниками: ручка перетаскивания + чип-выбор + карандаш правки; форма под чипами. */
+/* Участники */
 
-/* Ручка, чип и кнопка правки — единый блок (переносится перетаскиванием целиком). */
+/* Ручка, чип и карандаш перетаскиваются вместе, одним блоком. */
 .chipWrap {
   display: inline-flex;
   gap: 3px;
   align-items: center;
 }
 
-/* Ручка перетаскивания участника: слушатели dnd-kit только на ней, поэтому чип и
-   карандаш остаются обычными кнопками. */
+/* Слушатели dnd-kit висят только на ручке, поэтому чип и карандаш остаются обычными кнопками. */
 .chipHandle {
   display: inline-flex;
   align-items: center;
@@ -394,15 +390,13 @@
   outline-offset: 1px;
 }
 
-/* Пока участника тащат — приподнимаем и подсвечиваем. */
 .chipDragging {
   z-index: 1;
   opacity: 65%;
   box-shadow: var(--shadow);
 }
 
-/* Чип коллаборатора: заливка цветом аватара (или нейтральная), приглушён когда
-   не выбран для проекта. Тех-чипы используют общий UI-kit `Chip` (зелёный при выборе). */
+/* Для участника свой чип, а не `Chip` из UI-kit: заливка берётся из цвета аватара. */
 .collabChip {
   display: inline-flex;
   align-items: center;
@@ -429,7 +423,7 @@
   outline-offset: 2px;
 }
 
-/* Не выбран для проекта — приглушаем (но цвет аватара сохраняем). */
+/* Участник не в проекте: приглушаем прозрачностью, чтобы цвет аватара остался узнаваем. */
 .collabChipOff {
   opacity: 45%;
 }
@@ -451,7 +445,7 @@
   color: var(--color-primary-bright);
 }
 
-/* Активный (открыта форма правки именно этого чипа) — зелёная рамка, как в макете. */
+/* Форма правки открыта именно для этого чипа. */
 .chipEditActive {
   color: var(--color-primary-bright);
   border-color: var(--color-primary-bright);
@@ -467,13 +461,11 @@
   outline-offset: 2px;
 }
 
-/* Кнопка «Удалить» в форме правки — прижата вправо, красный акцент. */
 .contributorDelete {
   margin-left: auto;
   color: var(--color-error);
 }
 
-/* «+ создать» — пунктирная кнопка последним элементом ряда чипов (как в макете). */
 .chipAdd {
   display: inline-flex;
   align-items: center;
@@ -498,7 +490,7 @@
   opacity: 50%;
 }
 
-/* Чип выбранной технологии проекта (стиль вкладки «Стек»): имя + × (убрать из проекта). */
+/* Выглядит так же, как чипы на вкладке «Стек». */
 .techChip {
   display: inline-flex;
   flex: none;
@@ -534,8 +526,7 @@
   color: var(--color-fg-muted);
 }
 
-/* Инлайн-форма создания/правки (участник/технология) — полноширинный вложенный
-   бокс на тёмном фоне (как в макете), а не узкая карточка. */
+/* Общая инлайн-форма для участников и технологий, во всю ширину на тёмном фоне. */
 .contributorCreate {
   display: flex;
   flex-direction: column;
@@ -552,13 +543,12 @@
   gap: var(--space-2);
 }
 
-/* ---------- Редактор v2: двухколоночная раскладка из карточек ---------- */
+/* Редактор проекта */
 
 .form {
   display: block;
 }
 
-/* Шапка редактора: имя проекта + эндпоинт, справа — закрыть. */
 .editorBar {
   display: flex;
   gap: 16px;
@@ -590,7 +580,6 @@
   color: var(--color-fg-dim);
 }
 
-/* Две колонки: контент + липкий сайдбар. */
 .formGrid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 348px;
@@ -611,7 +600,6 @@
   top: 90px;
 }
 
-/* Карточка-секция: моно-зелёная шапка + тело. */
 .formCard {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -649,14 +637,13 @@
   padding: 20px 22px;
 }
 
-/* Роль + Год в «Основном». */
 .roleYear {
   display: grid;
   grid-template-columns: 1fr 92px;
   gap: 12px;
 }
 
-/* Структурные строки: «Ключевые пункты» и «Ссылки». */
+/* Общие стили для ключевых пунктов и ссылок. */
 .rowsField {
   display: flex;
   flex-direction: column;
@@ -752,7 +739,6 @@
   border-color: var(--color-primary-bright);
 }
 
-/* Публикация: тумблеры + поля раннера + строка статуса. */
 .toggleStack {
   display: flex;
   flex-direction: column;
@@ -787,13 +773,12 @@
   background: var(--color-primary-bright);
 }
 
-/* Плитка-превью в сайдбаре. */
 .tilePreviewBox {
   overflow: hidden;
   border-radius: var(--radius-card);
 }
 
-/* Сайдбар уходит под контент на узких экранах — липкость отключаем. */
+/* На узких экранах сайдбар уходит под контент, и липкость там только мешает. */
 @media (width <= 900px) {
   .formGrid {
     grid-template-columns: 1fr;

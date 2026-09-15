@@ -3,10 +3,8 @@ import type { AppLanguage } from '@/shared/config';
 import type { AxiosBaseQueryArgs } from './axios-base-query';
 
 /**
- * Добавляет к аргументам запроса заголовок `Accept-Language` — единая точка
- * локализации HTTP. Бэкенд по нему выбирает язык ответа, а язык-аргумент
- * эндпоинта заодно сегментирует кэш RTK Query, поэтому смена локали
- * автоматически перезапрашивает данные.
+ * По `Accept-Language` бэкенд выбирает язык ответа. Язык при этом входит в аргументы
+ * эндпоинта, так что у каждой локали свой кэш, и при смене языка данные перезапрашиваются.
  */
 export function withLocale(
   language: AppLanguage,

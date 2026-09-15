@@ -3,7 +3,7 @@ import { fn } from 'storybook/test';
 
 import { ImageCropper } from './image-cropper';
 
-// Пейзаж 600×400 — панорамирование по горизонтали имеет смысл.
+// Пейзаж 600x400, чтобы было что двигать по горизонтали.
 const SAMPLE = `data:image/svg+xml;utf8,${encodeURIComponent(
   "<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400'>" +
     "<defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>" +
@@ -34,7 +34,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Перетаскивание + масштаб над круглой маской. */
+/** Перетаскивание и масштаб с круглой маской. */
 export const Default: Story = {
   name: 'Кадрирование',
 };

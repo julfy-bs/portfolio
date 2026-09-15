@@ -3,10 +3,9 @@ import { apiSlice } from '@/shared/api';
 import type { AuthUser, ChangePassword, LoginCredentials } from '../model/types';
 
 /**
- * Эндпоинты аутентификации. Сессия живёт в HttpOnly-cookie (их ставит бэкенд),
- * поэтому клиент хранит не токены, а лишь текущего пользователя из `getMe`.
- * `login`/`logout` инвалидируют тег `Session` → `getMe` перезапрашивается,
- * и всё приложение видит новый статус авторизации без ручной синхронизации.
+ * Сессия живёт в HttpOnly-cookie, которые ставит бэкенд, поэтому клиент хранит не токены,
+ * а только текущего пользователя из `getMe`. `login` и `logout` инвалидируют тег `Session`,
+ * `getMe` перезапрашивается, и приложение видит новый статус без ручной синхронизации.
  */
 export const sessionApi = apiSlice.injectEndpoints({
   endpoints: (build) => ({

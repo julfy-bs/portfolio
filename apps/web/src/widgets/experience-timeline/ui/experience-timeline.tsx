@@ -11,11 +11,7 @@ export interface ExperienceTimelineProps {
   readonly isLoading?: boolean;
 }
 
-/**
- * Таймлайн опыта работы (макет: EXPERIENCE → TIMELINE) — вертикальная линия с
- * точками-маркерами и карточками мест работы. Презентационен: список приходит
- * пропсом, пока грузится — скелетоны той же раскладки.
- */
+/** Таймлайн опыта. Пока список не пришёл, показываем скелетоны в той же раскладке. */
 export function ExperienceTimeline({ jobs, isLoading }: ExperienceTimelineProps) {
   if (isLoading || !jobs) {
     return (

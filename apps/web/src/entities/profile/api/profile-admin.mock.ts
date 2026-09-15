@@ -15,9 +15,8 @@ import { getMockProfileState, setMockProfileState } from './profile-store.mock';
 
 export { mockProfileAdmin, resetMockProfileAdmin } from './profile-store.mock';
 
-// Мёрж локали как на бэкенде (mergeText): присланная локаль накладывается на
-// сохранённую, вторая не затирается. Нужно, чтобы мок вёл себя как реальный API
-// при частичном (одноязычном) PATCH.
+// Мёрж локали как mergeText на бэкенде: присланная локаль ложится поверх сохранённой,
+// вторая не затирается. Иначе одноязычный PATCH в моке вёл бы себя не как в API.
 function mergeLocale(
   base: LocalizedText | null,
   patch: { ru?: string; en?: string },
@@ -25,9 +24,9 @@ function mergeLocale(
   return { ru: patch.ru ?? base?.ru ?? '', en: patch.en ?? base?.en ?? null };
 }
 
-// Накладывает PATCH на текущий админ-профиль: скаляры заменяются, локализованные
-// поля мёржатся по локали (см. mergeLocale). highlights бэкенд перезаписывает
-// массивом целиком (обе локали приходят в подписи) — повторяем это.
+// Накладывает PATCH на админ-профиль: скаляры заменяются, локализованные поля мёржатся
+// по локали (см. mergeLocale). highlights бэкенд перезаписывает целиком, подписи приходят
+// сразу в обеих локалях, делаем так же.
 function applyProfilePatch(current: ProfileAdmin, patch: UpdateProfile): ProfileAdmin {
   const next: ProfileAdmin = { ...current };
   if (patch.name !== undefined) next.name = mergeLocale(current.name, patch.name);
@@ -68,10 +67,9 @@ const MOCK_AVATAR_URL = `data:image/svg+xml;utf8,${encodeURIComponent(
   '<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3c97e8"/><stop offset="1" stop-color="#866cc7"/></linearGradient></defs><rect width="128" height="128" fill="url(#g)"/></svg>',
 )}`;
 
-// Мок кадрирует аватар как реальный бэкенд (sharp extract → 512²): вырезает
-// присланный квадрат [cropX,cropY,size] и рисует в 512×512, отдаёт data-URI. Так в
-// dev:mock видно РЕАЛЬНЫЙ результат кадрирования, а не заглушку. В jsdom (тесты)
-// canvas недоступен → падаем на заглушку (этот хендлер там всё равно не вызывается).
+// Кадрируем аватар как бэкенд (sharp extract в 512 на 512): вырезаем присланный квадрат
+// [cropX,cropY,size] и отдаём data-URI, чтобы в dev:mock был виден настоящий результат, а
+// не заглушка. В jsdom canvas нет, там падаем на заглушку (в тестах хендлер и не вызывается).
 const AVATAR_SIDE = 512;
 
 async function cropUploadedAvatar(request: Request): Promise<string> {
@@ -92,7 +90,7 @@ async function cropUploadedAvatar(request: Request): Promise<string> {
   if (Number.isFinite(x) && Number.isFinite(y) && Number.isFinite(size) && size > 0) {
     ctx.drawImage(bitmap, x, y, size, size, 0, 0, AVATAR_SIDE, AVATAR_SIDE);
   } else {
-    // Без кропа — центрированный квадрат (как fallback бэкенда).
+    // Без кропа берём квадрат по центру, как fallback бэкенда.
     const side = Math.min(bitmap.width, bitmap.height);
     const left = (bitmap.width - side) / 2;
     const top = (bitmap.height - side) / 2;
@@ -101,7 +99,6 @@ async function cropUploadedAvatar(request: Request): Promise<string> {
   return canvas.toDataURL('image/webp');
 }
 
-/** MSW-обработчики админ-профиля: чтение обеих локалей и частичный PATCH. */
 export const profileAdminHandlers = [
   http.get(`${env.apiBaseUrl}/profile/admin`, () => HttpResponse.json(getMockProfileState())),
   http.post(`${env.apiBaseUrl}/media/avatar`, async ({ request }) => {

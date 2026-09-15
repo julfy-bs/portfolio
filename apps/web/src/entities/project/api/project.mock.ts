@@ -31,7 +31,7 @@ const contributors = {
   },
 };
 
-// Локализуется только описание — названия проектов и категории общие для локалей.
+// Локализуется только описание, названия проектов и категории общие для локалей.
 const descriptions: Record<
   AppLanguage,
   { procharity: string; deepFocus: string; game2048: string }
@@ -184,8 +184,8 @@ const detailText: Record<AppLanguage, Record<string, DetailText>> = {
   },
 };
 
-// Плейсхолдер-скриншот: SVG-градиент с подписью, отдаётся как data-URI. Без сети
-// показывает, как выглядит галерея; реальные проекты отдают загруженные файлы `/uploads`.
+// Плейсхолдер-скриншот: SVG-градиент с подписью в data-URI, чтобы галерея выглядела живой
+// без сети. Реальные проекты отдают загруженные файлы из `/uploads`.
 function shot(label: string, from: string, to: string): ProjectMedia {
   const svg =
     `<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400">` +
@@ -201,7 +201,7 @@ function shot(label: string, from: string, to: string): ProjectMedia {
   };
 }
 
-// Две-три «карточки экрана» на проект, чтобы галерея детали была наглядной.
+// По два-три скриншота на проект, чтобы галерея на странице проекта не пустовала.
 const galleryBySlug: Record<string, readonly ProjectMedia[]> = {
   procharity: [
     shot('dashboard.png', '#1d6f74', '#0f3d40'),
@@ -232,13 +232,11 @@ function firstParam(value: string | readonly string[]): string {
   return typeof value === 'string' ? value : value[0];
 }
 
-/** Фикстура списка проектов (русская локаль) для тестов. */
 export const mockProjects: ProjectListItem[] = buildProjects('ru');
 
-/** Фикстура детали проекта (Procharity, русская локаль) для тестов и историй. */
 export const mockProjectDetail: ProjectDetail = buildProjectDetails('ru').procharity;
 
-/** MSW-обработчики проектов. Локаль читается из `Accept-Language`. */
+/** Локаль берётся из `Accept-Language`. */
 export const projectHandlers = [
   http.get(`${env.apiBaseUrl}/projects`, ({ request }) => {
     const language = normalizeLanguage(request.headers.get('Accept-Language') ?? undefined);
@@ -251,7 +249,7 @@ export const projectHandlers = [
   }),
 ];
 
-// --- admin (обе локали + связи по id) ---
+// Админка: обе локали и связи по id
 
 type LocalizedText = ProjectAdmin['title'];
 type LocalizedList = NonNullable<ProjectAdmin['bullets']>;
@@ -335,7 +333,7 @@ function buildAdminInitial(): ProjectAdmin[] {
 let projectRecords: ProjectAdmin[] = buildAdminInitial();
 let nextProjectId = projectRecords.length;
 
-/** Сбрасывает админ-проекты мока — для изоляции тестов. */
+/** Сбрасывает админ-проекты мока, чтобы тесты не зависели друг от друга. */
 export function resetMockProjects(): void {
   projectRecords = buildAdminInitial();
   nextProjectId = projectRecords.length;
@@ -355,12 +353,10 @@ function mergeList(existing: LocalizedList | null, patch: ListPatch): LocalizedL
   return en === undefined ? { ru } : { ru, en };
 }
 
-/** Фикстура админ-проектов (обе локали) для тестов и историй. */
 export const mockProjectsAdmin: ProjectAdmin[] = buildAdminInitial();
 
 const sortedAdmin = (): ProjectAdmin[] => [...projectRecords].sort((a, b) => a.order - b.order);
 
-/** Админ MSW-обработчики проектов: список обеих локалей + CRUD над общим состоянием. */
 export const projectAdminHandlers = [
   http.get(`${env.apiBaseUrl}/projects/admin`, () => HttpResponse.json(sortedAdmin())),
   http.post<Record<string, never>, CreateProject>(
@@ -440,8 +436,8 @@ export const projectAdminHandlers = [
     projectRecords = projectRecords.filter((item) => item.id !== params.id);
     return new HttpResponse(null, { status: 204 });
   }),
-  // Загрузка скриншота в галерею: показываем реальный выбранный файл (object URL),
-  // как настоящий бэкенд отдал бы `/uploads/...`. Кладём в галерею нужного проекта.
+  // Показываем реально выбранный файл через object URL, как бэкенд отдал бы `/uploads/...`,
+  // и кладём его в галерею нужного проекта.
   http.post(`${env.apiBaseUrl}/media/gallery`, async ({ request }) => {
     const form = await request.formData();
     const file = form.get('file');
@@ -450,7 +446,7 @@ export const projectAdminHandlers = [
     if (record === undefined || !(file instanceof Blob)) {
       return new HttpResponse(null, { status: 400 });
     }
-    // Лимит 10 на проект — зеркалит бэкенд (`media.service`).
+    // Лимит 10 на проект, как на бэкенде (`media.service`).
     if (record.gallery.length >= 10) {
       return new HttpResponse(null, { status: 400 });
     }

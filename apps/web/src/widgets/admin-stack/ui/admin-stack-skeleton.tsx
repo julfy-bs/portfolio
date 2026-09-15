@@ -4,7 +4,6 @@ import styles from './admin-stack.module.css';
 
 const COLUMNS = [0, 1, 2];
 
-/** Скелетон вкладки «Стек и языки»: сетка технологий + строки языков. */
 export function AdminStackSkeleton() {
   return (
     <div className={styles.card} aria-busy="true" aria-live="polite">

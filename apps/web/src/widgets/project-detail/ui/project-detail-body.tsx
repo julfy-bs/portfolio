@@ -11,7 +11,6 @@ interface ProjectDetailBodyProps {
   readonly gallery: readonly ProjectMedia[];
 }
 
-/** Основная колонка детали: описание (Markdown), список «что внутри» и галерея. */
 export function ProjectDetailBody({ bodyMarkdown, bullets, gallery }: ProjectDetailBodyProps) {
   const { t } = useTranslation();
 

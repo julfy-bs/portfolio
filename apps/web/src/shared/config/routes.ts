@@ -1,34 +1,30 @@
-/** Пути маршрутов приложения. Единый источник правды для роутера и ссылок. */
 export const routePaths = {
   home: '/',
   projects: '/projects',
-  /** Деталь проекта — паттерн с параметром `:slug` для роутера. */
+  /** Шаблон для роутера. Для ссылок есть `projectPath`. */
   project: '/projects/:slug',
   experience: '/experience',
   contact: '/contact',
   login: '/login',
-  /** Приватная база знаний (за гардом авторизации). */
+  /** Приватная база знаний, только после входа. */
   database: '/database',
-  /** Личный кабинет / CMS (за гардом авторизации). */
   admin: '/admin',
   notFound: '*',
 } as const;
 
-/** Строит путь к странице конкретного проекта по его slug. */
 export function projectPath(slug: string): string {
   return `/projects/${slug}`;
 }
 
 /**
- * Путь к вкладке кабинета в заданной локали редактирования. Локаль живёт в
- * маршруте: смена языка приложения меняет URL → компоненты пересобираются на
- * свежих данных нужной локали (нет риска показать данные другой локали).
+ * Локаль лежит в URL, чтобы при смене языка редактор пересобрался на данных новой
+ * локали и не показал на секунду старые.
  */
 export function adminTabPath(tab: string, locale: string): string {
   return `/admin/${tab}/${locale}`;
 }
 
-/** Путь к детальному редактору элемента вкладки (`id` существующего или `new`). */
+/** `detail` это id записи или `new`. */
 export function adminDetailPath(tab: string, locale: string, detail: string): string {
   return `/admin/${tab}/${locale}/${detail}`;
 }

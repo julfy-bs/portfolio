@@ -13,8 +13,7 @@ export default tseslint.config(
     ignores: ['dist', 'coverage', 'storybook-static', '.storybook', '*.config.*'],
   },
 
-  // Исходники библиотеки: те же запреты, что и в приложении (any / non-null).
-  // Правил boundaries здесь нет — у пакета один слой, дизайн-система плоская.
+  // Те же запреты, что и в приложении. boundaries не нужен: у пакета один плоский слой.
   {
     files: ['src/**/*.{ts,tsx}'],
     extends: [js.configs.recommended, ...tseslint.configs.recommendedTypeChecked],
@@ -44,7 +43,6 @@ export default tseslint.config(
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
 
-      // Запреты из стандартов проекта: никаких any / non-null assertion.
       '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/no-non-null-assertion': 'error',
       '@typescript-eslint/consistent-type-imports': [

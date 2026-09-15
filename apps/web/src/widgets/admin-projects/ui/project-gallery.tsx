@@ -9,11 +9,11 @@ import { MAX_GALLERY_ITEMS, partitionGalleryFiles } from '../model/gallery';
 import { pickText } from '../model/project-form';
 import styles from './admin-projects.module.css';
 
-/** Что пропущено при выборе файлов (для предупреждающих тостов у контейнера). */
+/** По этим числам контейнер показывает предупреждения. */
 export interface GalleryRejection {
-  /** Сколько файлов пропущено из-за превышения лимита размера. */
+  /** Файлы больше допустимого размера. */
   readonly tooLarge: number;
-  /** Сколько файлов не влезло в оставшиеся слоты (лимит 10). */
+  /** Файлы, которым не хватило места в галерее из десяти снимков. */
   readonly overflow: number;
 }
 
@@ -21,19 +21,17 @@ interface ProjectGalleryProps {
   readonly gallery: readonly ProjectMediaAdmin[];
   readonly locale: AppLanguage;
   readonly disabled: boolean;
-  /** Загрузить пачку прошедших проверку файлов (до 10 суммарно на проект). */
+  /** Сюда приходят только файлы, прошедшие проверку. */
   readonly onUpload: (files: readonly File[]) => void;
-  /** Часть файлов не прошла проверку (размер/лимит) — контейнер покажет тост. */
   readonly onReject: (rejection: GalleryRejection) => void;
   readonly onDelete: (mediaId: string) => void;
-  /** Скопировать URL изображения (для вставки в Markdown-описание проекта). */
+  /** URL копируют, чтобы вставить картинку в Markdown-описание. */
   readonly onCopyUrl: (url: string) => void;
 }
 
 /**
- * Галерея скриншотов проекта: сетка загруженных изображений с удалением + загрузка
- * нового файла. Доступна только у уже сохранённого проекта — загрузке нужен его id.
- * Видео/GIF пока не поддержаны (бэкенд `MediaType` = только изображения).
+ * Показывается только у сохранённого проекта, потому что загрузке нужен его id. Видео и GIF
+ * не поддерживаются: `MediaType` на бэкенде знает только изображения.
  */
 export function ProjectGallery({
   gallery,

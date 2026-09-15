@@ -11,12 +11,11 @@ interface LinkRow {
 }
 
 interface LinksEditorProps {
-  /** Ссылки, каждая строкой «Название | URL» (формат хранения формы). */
+  /** В форме каждая ссылка хранится отдельной строкой «Название | URL». */
   readonly value: string;
   readonly onChange: (value: string) => void;
 }
 
-/** Разбирает строки «Название | URL» в пары (пустое значение → нет ссылок). */
 function toRows(value: string): LinkRow[] {
   if (value.length === 0) return [];
   return value.split('\n').map((line) => {
@@ -26,15 +25,13 @@ function toRows(value: string): LinkRow[] {
   });
 }
 
-/** Собирает пары обратно в строку «Название | URL» на строку. */
 function serialize(rows: readonly LinkRow[]): string {
   return rows.map((row) => `${row.name} | ${row.url}`).join('\n');
 }
 
 /**
- * Редактор «Ссылок»: строки «Название | URL» с добавлением/удалением. Управляемый
- * адаптер над строковым полем формы — модель и бэкенд-формат не меняются (пустые
- * ссылки отсекаются при сохранении).
+ * Отдельные поля поверх того же строкового значения, так что модель формы и формат бэкенда
+ * не меняются. Пустые ссылки отбрасываются при сохранении.
  */
 export function LinksEditor({ value, onChange }: LinksEditorProps) {
   const { t } = useTranslation();

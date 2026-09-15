@@ -6,17 +6,15 @@ interface ConsoleProviderProps {
   readonly children: ReactNode;
 }
 
-/** Совпадает с ⌘K на macOS и Ctrl+K на остальных платформах. */
+/** Cmd+K на macOS и Ctrl+K на остальных платформах. */
 function isToggleShortcut(event: KeyboardEvent): boolean {
   return (event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k';
 }
 
 /**
- * Владеет глобальным состоянием консоли и вешает клавиатурные слушатели:
- * ⌘K/Ctrl+K переключают консоль из любого места, Escape — закрывает.
- *
- * При открытии запоминает активный элемент и возвращает ему фокус при закрытии —
- * чтобы клавиатурная навигация не «терялась» после консоли.
+ * Глобальное состояние консоли и горячие клавиши: Cmd+K или Ctrl+K открывают её откуда
+ * угодно, Escape закрывает. После закрытия фокус возвращается на прежний элемент, иначе
+ * клавиатурная навигация теряется.
  */
 export function ConsoleProvider({ children }: ConsoleProviderProps) {
   const [isOpen, setIsOpen] = useState(false);

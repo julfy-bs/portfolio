@@ -104,7 +104,7 @@ export const AllTypes: Story = {
   },
 };
 
-/** Уходящий тост (фаза `leaving`) — играет анимация исчезновения. */
+/** Тост в фазе `leaving`, играет анимация исчезновения. */
 export const Leaving: Story = {
   name: 'Уход тоста',
   args: {
@@ -113,7 +113,7 @@ export const Leaving: Story = {
   },
 };
 
-/** Край: длинные заголовок и описание переносятся, не ломая карточку. */
+/** Длинные заголовок и описание переносятся и не ломают карточку. */
 export const LongContent: Story = {
   name: 'Край: длинный текст',
   args: {
@@ -137,8 +137,8 @@ export const Mobile: Story = {
 };
 
 /**
- * Живой поток: кнопки вызывают `notify` через `useToaster`. Тосты сами
- * встают в стек, отсчитывают время и закрываются.
+ * Кнопки вызывают `notify` через `useToaster`, дальше тосты сами встают в стек,
+ * отсчитывают время и закрываются.
  */
 export const Interactive: Story = {
   name: 'Живой поток (notify)',
@@ -150,7 +150,7 @@ export const Interactive: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await userEvent.click(canvas.getByRole('button', { name: 'success' }));
-    // Тост порталится в document.body — ищем там.
+    // Тост порталится в document.body, ищем там.
     await expect(within(document.body).getByText('Готово')).toBeInTheDocument();
   },
 };

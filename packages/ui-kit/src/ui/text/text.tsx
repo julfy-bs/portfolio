@@ -5,8 +5,7 @@ import styles from './text.module.css';
 
 const text = cva(styles.text, {
   variants: {
-    // Размер завязан на типографическую шкалу токенов, а не на конкретный тег —
-    // так один и тот же визуальный размер доступен на любом семантическом элементе.
+    // Размер привязан к шкале, а не к тегу, чтобы его можно было дать любому элементу.
     size: {
       body: styles.body,
       small: styles.small,
@@ -51,9 +50,8 @@ export interface TextProps extends HTMLAttributes<HTMLElement>, VariantProps<typ
 }
 
 /**
- * Универсальный текст дизайн-системы. Отделяет визуальный размер/тон от тега:
- * заголовки — это Heading, а весь остальной текст (абзацы, подписи, моно-метки)
- * проходит через Text, чтобы не разъезжались шкала и цвета.
+ * Весь текст, кроме заголовков (для них Heading), идёт через этот компонент, чтобы шкала и цвета
+ * не разъезжались. Размер и тон не зависят от тега.
  */
 export function Text({ as, size, tone, weight, family, truncate, className, ...rest }: TextProps) {
   const Component: ElementType = as ?? 'p';

@@ -13,7 +13,7 @@ const DEFAULT_REFRESH_TTL = '30d';
 
 const UNIT_SECONDS: Record<string, number> = { s: 1, m: 60, h: 3600, d: 86400 };
 
-// Парсит длительность вида `15m` / `30d` в секунды (используем и для JWT, и для maxAge cookie).
+// Секунды нужны и для JWT, и для maxAge cookie, поэтому парсим сами.
 function parseDurationSeconds(value: string): number {
   const match = /^(\d+)([smhd])$/.exec(value.trim());
   if (!match) {
@@ -27,10 +27,7 @@ function parseDurationSeconds(value: string): number {
   return amount * unitSeconds;
 }
 
-/**
- * Подпись и проверка токенов + управление cookie. Доступ и refresh подписываются
- * разными секретами, чтобы токены нельзя было подменить между потоками.
- */
+// У access и refresh разные секреты, чтобы один токен нельзя было выдать за другой.
 @Injectable()
 export class TokenService {
   private readonly accessSecret: string;
@@ -62,8 +59,8 @@ export class TokenService {
   }
 
   signRefresh(payload: JwtPayload): Promise<string> {
-    // Уникальный jti гарантирует, что два refresh-токена, выпущенные в одну секунду
-    // с одинаковой нагрузкой (логин → сразу refresh), не совпадут байт-в-байт.
+    // Без jti логин и мгновенный refresh в ту же секунду дают одинаковый токен,
+    // и хэши в БД совпадут.
     return this.jwt.signAsync(payload, {
       secret: this.refreshSecret,
       expiresIn: this.refreshTtlSeconds,

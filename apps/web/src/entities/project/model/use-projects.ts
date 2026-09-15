@@ -3,8 +3,8 @@ import { useAppLanguage } from '@/shared/config';
 import { useGetProjectsQuery } from '../api/project-api';
 
 /**
- * Список проектов в текущей локали приложения. Инкапсулирует привязку к языку:
- * кэш RTK Query сегментирован по языку, смена локали перезапрашивает список.
+ * Список проектов в текущей локали. Кэш разделён по языку, так что смена локали
+ * перезапрашивает список.
  */
 export function useProjects() {
   const language = useAppLanguage();

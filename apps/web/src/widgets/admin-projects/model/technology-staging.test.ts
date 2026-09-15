@@ -46,9 +46,9 @@ describe('technology-staging', () => {
   it('stageDeleteTech: существующую помечает, новую выбрасывает', () => {
     const withNew = stageCreateTech(initTechStaged(catalog), { name: 'Vite', category: '' });
     const tempId = withNew[withNew.length - 1]?.id ?? '';
-    // удаление новой — исчезает совсем
+    // Новая технология исчезает из списка совсем.
     expect(stageDeleteTech(withNew, tempId)).toHaveLength(catalog.length);
-    // удаление существующей — помечается на удаление
+    // Существующая только помечается на удаление.
     const afterDelete = stageDeleteTech(initTechStaged(catalog), 't1');
     expect(planTechnologyStaging(afterDelete).deletes).toHaveLength(1);
     expect(stagedToTechCatalog(afterDelete)).toHaveLength(catalog.length - 1);

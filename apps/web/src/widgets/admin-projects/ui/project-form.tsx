@@ -52,15 +52,15 @@ import { ProjectGallery, type GalleryRejection } from './project-gallery';
 import styles from './admin-projects.module.css';
 
 export interface ProjectFormProps {
-  /** Редактируемый проект или `null` — создание. */
+  /** `null`, когда проект создаётся. */
   readonly record: ProjectAdmin | null;
   readonly technologies: readonly TechnologyAdmin[];
   readonly contributors: readonly ContributorAdmin[];
   readonly locale: AppLanguage;
   readonly isBusy: boolean;
   /**
-   * Сохранение проекта. `staged`/`techStaged` — накопленный CRUD участников и
-   * технологий, применяется до самого проекта (чтобы ремапнуть временные id).
+   * `staged` и `techStaged` применяются раньше самого проекта: сначала нужны реальные id
+   * вместо временных.
    */
   readonly onCreate: (
     body: CreateProject,
@@ -73,23 +73,19 @@ export interface ProjectFormProps {
     staged: readonly StagedContributor[],
     techStaged: readonly StagedTechnology[],
   ) => void;
-  /** Загрузить пачку скриншотов в галерею проекта (только у сохранённого проекта). */
+  /** Доступно только сохранённому проекту: загрузке нужен его id. */
   readonly onUploadGallery: (projectId: string, files: readonly File[]) => void;
-  /** Часть выбранных файлов не прошла проверку размера/лимита. */
+  /** Часть файлов не прошла по размеру или лимиту. */
   readonly onRejectGallery: (rejection: GalleryRejection) => void;
-  /** Удалить скриншот из галереи. */
   readonly onDeleteGallery: (mediaId: string) => void;
-  /** Скопировать URL скриншота (для вставки в Markdown-описание). */
+  /** URL копируют, чтобы вставить картинку в Markdown-описание. */
   readonly onCopyGalleryUrl: (url: string) => void;
   readonly onCancel: () => void;
 }
 
 /**
- * Форма проекта (создание/правка) на отдельном детальном маршруте. Локализованные
- * поля правятся в активной локали; период/категория — общие. Технологии и
- * коллабораторы — мультиселект чипами; цвет плитки — палитра с превью-градиентом.
- * Весь CRUD каталога участников копится в `staged` и применяется одним пакетом
- * при сохранении проекта (до самого проекта, чтобы ремапнуть временные id).
+ * Локализованные поля правятся в активной локали, остальные общие. Правки каталогов
+ * участников и технологий копятся локально и уходят вместе с проектом.
  */
 export function ProjectForm({
   record,
@@ -118,8 +114,7 @@ export function ProjectForm({
     defaultValues: record ? projectToForm(record, locale) : emptyForm(),
   });
 
-  // Черновики каталогов участников и технологий: инициализируются каталогом, дальше
-  // правятся локально (create/edit/delete) и уходят на бэк только при «Сохранить».
+  // На бэк черновики каталогов уходят только при сохранении проекта.
   const [staged, setStaged] = useState<readonly StagedContributor[]>(() =>
     initStaged(contributors),
   );
@@ -130,9 +125,8 @@ export function ProjectForm({
 
   const isRunnable = watch('runnable');
 
-  // Плитка перерисовывается на каждый штрих в форме — `watch()` без аргументов
-  // подписывает форму целиком, поэтому предпросмотр всегда отражает черновик.
-  // Участники и технологии берутся из черновиков — новые/переименованные видны сразу.
+  // `watch()` без аргументов подписывает всю форму, так что превью обновляется на каждое
+  // нажатие. Участников и технологий берём из черновиков, чтобы новые были видны сразу.
   const draft = watch();
   const tile = formToTile(draft, stagedToTechCatalog(techStaged), stagedToCatalog(staged), locale, {
     title: t('admin.projects.newTitle'),
@@ -149,7 +143,6 @@ export function ProjectForm({
 
   return (
     <form className={styles.form} onSubmit={(event) => void handleSubmit(submit)(event)} noValidate>
-      {/* Шапка редактора: имя проекта + эндпоинт (как в макете), справа — закрыть. */}
       <header className={styles.editorBar}>
         <div className={styles.editorBarText}>
           <h2 className={styles.editorTitle}>
@@ -170,7 +163,6 @@ export function ProjectForm({
       </header>
 
       <div className={styles.formGrid}>
-        {/* ЛЕВАЯ КОЛОНКА — контент */}
         <div className={styles.formCol}>
           <FormCard title={t('admin.projects.cardMain')}>
             <div className={styles.grid2}>
@@ -285,7 +277,7 @@ export function ProjectForm({
                   onStageCreate={(techDraft) => {
                     const next = stageCreateTech(techStaged, techDraft);
                     setTechStaged(next);
-                    // Автовыбор только что созданной (по временному id).
+                    // Только что созданную технологию сразу отмечаем в проекте.
                     const added = next[next.length - 1];
                     if (added) field.onChange([...field.value, added.id]);
                   }}
@@ -312,7 +304,7 @@ export function ProjectForm({
                   onStageCreate={(contributorDraft) => {
                     const next = stageCreate(staged, contributorDraft, locale);
                     setStaged(next);
-                    // Автовыбор только что созданного (по временному id).
+                    // Только что созданного участника сразу отмечаем в проекте.
                     const added = next[next.length - 1];
                     if (added) field.onChange([...field.value, added.id]);
                   }}
@@ -332,7 +324,6 @@ export function ProjectForm({
           </FormCard>
         </div>
 
-        {/* ПРАВАЯ КОЛОНКА — липкий сайдбар */}
         <aside className={styles.formSidebar}>
           <FormCard title={t('admin.projects.cardPublish')}>
             <Controller
@@ -434,7 +425,7 @@ export function ProjectForm({
                     role="radiogroup"
                     aria-label={t('admin.projects.tileColor')}
                   >
-                    {/* «Без цвета» — сброс к нейтральной плитке (на сохранении → null). */}
+                    {/* Сброс к нейтральной плитке, на сохранении цвет станет null. */}
                     <button
                       type="button"
                       role="radio"
@@ -472,7 +463,7 @@ export function ProjectForm({
             />
           </FormCard>
 
-          {/* Скриншоты — только у сохранённого проекта: загрузке нужен его id. */}
+          {/* Скриншоты есть только у сохранённого проекта, загрузке нужен его id. */}
           {record !== null ? (
             <FormCard
               title={t('admin.projects.gallery')}

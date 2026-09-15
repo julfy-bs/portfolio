@@ -10,7 +10,7 @@ export interface ToggleProps extends Omit<
 > {
   readonly checked?: boolean;
   readonly onCheckedChange?: (checked: boolean) => void;
-  /** Компактный размер (38×22) для флагов в формах. */
+  /** Компактный размер (38x22) для флагов в формах. */
   readonly compact?: boolean;
 }
 

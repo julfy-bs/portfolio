@@ -35,7 +35,7 @@ describe('LoginPageView', () => {
     await userEvent.type(screen.getByLabelText('пароль'), 'admin12345');
     await userEvent.click(screen.getByRole('button', { name: 'Войти' }));
 
-    // React Hook Form вызывает onSubmit как (data, event) — сверяем первый аргумент.
+    // React Hook Form вызывает onSubmit как (data, event), сверяем только первый аргумент.
     await waitFor(() => {
       expect(onSubmit).toHaveBeenCalled();
     });

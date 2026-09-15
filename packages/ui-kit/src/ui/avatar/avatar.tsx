@@ -5,14 +5,14 @@ import { cn, initials } from '../../lib';
 import styles from './avatar.module.css';
 
 export interface AvatarProps {
-  /** Имя — источник инициалов и доступной подписи. */
+  /** Из имени берутся инициалы и доступная подпись. */
   readonly name: string;
   readonly src?: string | null;
   /** Размер квадрата в px. По умолчанию 40. */
   readonly size?: number;
-  /** Сплошной цвет фона (для контрибьюторов). Без него — зелёный градиент. */
+  /** Сплошной цвет фона (для контрибьюторов). Без него фон будет зелёным градиентом. */
   readonly color?: string | null;
-  /** Форма: `circle` (по умолчанию) или `square` — скруглённый квадрат (--radius-button). */
+  /** `circle` (по умолчанию) или `square`, скруглённый квадрат с --radius-button. */
   readonly shape?: 'circle' | 'square';
   readonly className?: string;
 }

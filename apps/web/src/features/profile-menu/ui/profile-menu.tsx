@@ -9,16 +9,15 @@ import { routePaths } from '@/shared/config';
 import { ProfileMenuView } from './profile-menu-view';
 
 /**
- * Контейнер меню профиля: берёт статус авторизации, ведёт выход (с тостом) и
- * навигацию на вход. Рендерится в слоте `profileMenu` навбара — поэтому виджеты
- * навбара не знают об авторизации, а связку сводит эта фича.
+ * Рендерится в слот `profileMenu`, чтобы навбар ничего не знал об авторизации:
+ * статус, выход и переход на вход собраны здесь.
  */
 export function ProfileMenu() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { notify } = useToaster();
   const { user } = useAuth();
-  // Аватар берём из профиля (то же фото/инициалы, что видит посетитель сайта).
+  // Тот же аватар, что видит посетитель сайта.
   const { data: profile } = useProfile();
   const [logout, { isLoading }] = useLogoutMutation();
 

@@ -1,9 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
 
-/**
- * E2E прогоняются против прод-сборки в preview с включёнными MSW-моками
- * (VITE_ENABLE_MOCKS=true), пока публичные экраны не подключены к реальному API.
- */
+// E2E гоняем на прод-сборке в preview, но с MSW-моками вместо бэкенда.
 export default defineConfig({
   testDir: './e2e',
   fullyParallel: true,
@@ -13,9 +10,7 @@ export default defineConfig({
   use: {
     baseURL: 'http://localhost:4173',
     trace: 'on-first-retry',
-    // Детерминированная локаль: иначе Chromium отдаёт `navigator.language = en-US`,
-    // языковой детектор уводит приложение в EN и подписи «уезжают».
-    // Тот же приём, что в Storybook и unit-тестах.
+    // Chromium по умолчанию отдаёт en-US, и детектор переключил бы приложение на английский.
     locale: 'ru-RU',
   },
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'], locale: 'ru-RU' } }],

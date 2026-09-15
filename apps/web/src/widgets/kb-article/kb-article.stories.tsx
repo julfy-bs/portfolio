@@ -54,7 +54,7 @@ export const Loaded: Story = {
   },
 };
 
-/** Вики-ссылка `[[slug]]` в тексте — кликабельна. */
+/** Вики-ссылка `[[slug]]` в тексте кликабельна. */
 export const WithWikilink: Story = {
   name: 'С вики-ссылкой',
   args: { article: withWikilink },
@@ -65,7 +65,7 @@ export const WithWikilink: Story = {
   },
 };
 
-/** Ничего не выбрано — приглашение выбрать статью. */
+/** Ничего не выбрано, предлагаем выбрать статью. */
 export const Empty: Story = {
   name: 'Без выбора',
   args: { hasSelection: false, article: undefined },

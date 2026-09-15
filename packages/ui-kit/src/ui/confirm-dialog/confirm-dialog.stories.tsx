@@ -38,7 +38,7 @@ export const Default: Story = {
   name: 'Удаление',
 };
 
-/** Операция в процессе — кнопки заблокированы. */
+/** Пока идёт операция, кнопки заблокированы. */
 export const Busy: Story = {
   name: 'В процессе',
   args: { busy: true },

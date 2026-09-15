@@ -12,7 +12,7 @@ interface ProjectAvatarsProps {
   readonly people: readonly ProjectContributor[];
 }
 
-/** Стопка аватаров контрибьюторов на карточке: до двух + счётчик «+N» остатка. */
+/** Показываем до двух аватаров, остальных сворачиваем в счётчик «+N». */
 export function ProjectAvatars({ people }: ProjectAvatarsProps) {
   const { t } = useTranslation();
   const shown = people.slice(0, MAX_AVATARS);

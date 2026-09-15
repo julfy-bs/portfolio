@@ -11,7 +11,7 @@ const meta = {
     color: { control: 'text', table: { category: 'Контент' } },
     className: { control: false, table: { disable: true } },
   },
-  // Фон позиционируется абсолютно — даём relative-контейнер с размерами плитки.
+  // Фон позиционируется абсолютно, поэтому нужен relative-контейнер размером с плитку.
   decorators: [
     (Story) => (
       <div
@@ -34,10 +34,10 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Песочница: меняйте `color` — сплошной цвет или градиент. */
+/** Песочница: в `color` можно передать сплошной цвет или градиент. */
 export const Playground: Story = {};
 
-/** Пресеты градиентов из макета — примеры значений `tileColor`. */
+/** Готовые градиенты, примеры значений `tileColor`. */
 export const Presets: Story = {
   name: 'Пресеты',
   parameters: { controls: { disable: true } },
@@ -69,25 +69,23 @@ export const Presets: Story = {
   ),
 };
 
-/** Бирюзовый. */
 export const Teal: Story = {
   name: 'Бирюзовый',
   args: { color: 'linear-gradient(135deg, #1d6f74, #0f3d40)' },
 };
 
-/** Фиолетовый. */
 export const Violet: Story = {
   name: 'Фиолетовый',
   args: { color: 'linear-gradient(135deg, #7d4bd1, #3a1d66)' },
 };
 
-/** Без цвета (`null`) — нейтральный токен `--color-raised`. */
+/** Без цвета (`null`) берётся нейтральный токен `--color-raised`. */
 export const Fallback: Story = {
   name: 'Без цвета — фолбэк',
   args: { color: null },
 };
 
-/** В контексте: затемняющий градиент снизу обеспечивает читаемость белого текста. */
+/** Затемняющий градиент снизу нужен, чтобы белый текст читался. */
 export const InCard: Story = {
   name: 'В контексте: контент поверх',
   render: (args) => (

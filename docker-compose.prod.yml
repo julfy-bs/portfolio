@@ -1,9 +1,7 @@
-# Прод-окружение: Postgres + API + Caddy. Образы api/web собираются в GitHub
-# Actions и публикуются в GHCR, сервер их только тянет:
+# Образы api и web собираются в GitHub Actions и лежат в GHCR, сервер их только скачивает:
 #   docker compose -f docker-compose.prod.yml pull
 #   docker compose -f docker-compose.prod.yml up -d
-# `build:` оставлен для локальной сборки при желании (`... build`).
-# Секреты задаются через .env рядом с этим файлом.
+# build оставлен на случай локальной сборки. Секреты берутся из .env рядом с файлом.
 
 services:
   db:
@@ -41,17 +39,16 @@ services:
       JWT_REFRESH_TTL: ${JWT_REFRESH_TTL:-30d}
       GITHUB_USERNAME: ${GITHUB_USERNAME:-sutuzhko}
       CODEWARS_USERNAME: ${CODEWARS_USERNAME:-sutuzhko}
-      # Учётка админа CRM — читается сидом (`prisma:seed`). Пароль обязательно смени.
+      # Нужны только сиду (prisma:seed), он создаёт по ним админа.
       ADMIN_USERNAME: ${ADMIN_USERNAME:-admin}
       ADMIN_PASSWORD: ${ADMIN_PASSWORD:?need ADMIN_PASSWORD}
     volumes:
       - portfolio-uploads:/data/uploads
-    # Публичного порта нет — API доступен только внутри compose-сети, снаружи его
-    # проксирует Caddy (сервис web). Так API не торчит в интернет напрямую.
+    # Порт наружу не публикуем: снаружи до API можно достучаться только через Caddy.
     expose:
       - '3000'
 
-  # Caddy: авто-HTTPS, раздаёт собранный SPA и проксирует /api,/uploads на api.
+  # Caddy с SPA внутри, заодно проксирует /api и /uploads.
   web:
     image: ghcr.io/sutuzhko/portfolio-web:${IMAGE_TAG:-latest}
     build:

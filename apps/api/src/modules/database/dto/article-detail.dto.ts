@@ -30,7 +30,7 @@ export class ArticleDetailDto {
   @ApiProperty({ format: 'date-time' })
   updatedAt: string;
 
-  // Хлебные крошки — названия папок от корня к статье.
+  // Названия папок от корня до статьи.
   @ApiProperty({ type: [String] })
   breadcrumb: string[];
 

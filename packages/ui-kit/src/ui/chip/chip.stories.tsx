@@ -46,7 +46,7 @@ export const Playground: Story = {
   },
 };
 
-/** Галерея всех состояний сразу: выбран/не выбран × доступен/недоступен. */
+/** Все состояния: выбран или нет, доступен или нет. */
 export const States: Story = {
   name: 'Все состояния',
   parameters: { controls: { disable: true } },
@@ -82,7 +82,7 @@ export const Toggling: Story = {
   },
 };
 
-/** Активация с клавиатуры: Tab → фокус, Пробел переключает. */
+/** С клавиатуры: Tab ставит фокус, Пробел переключает. */
 export const KeyboardActivation: Story = {
   name: 'Активация с клавиатуры',
   render: (args) => {

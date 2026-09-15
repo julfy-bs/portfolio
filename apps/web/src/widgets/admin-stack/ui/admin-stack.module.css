@@ -41,9 +41,8 @@
   color: var(--color-fg-muted);
 }
 
-/* ---------- Технологии: сетка по категориям ---------- */
+/* Технологии */
 
-/* Заголовок секции «Технологии» + кнопка «+ блок» (появляется при наведении). */
 .sectionHead {
   display: flex;
   gap: 10px;
@@ -83,7 +82,7 @@
   border-color: var(--color-primary-bright);
 }
 
-/* Максимум 3 колонки; лишние категории переносятся на следующий ряд. */
+/* Не больше трёх колонок, остальные категории переносятся на следующий ряд. */
 .techGrid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -110,13 +109,11 @@
   min-width: 0;
 }
 
-/* Пока блок тащат — приподнимаем над соседями и слегка гасим. */
 .columnDragging {
   z-index: 1;
   opacity: 75%;
 }
 
-/* Ручка перетаскивания блока — грип слева в заголовке, проявляется при наведении. */
 .categoryDrag {
   display: inline-flex;
   align-items: center;
@@ -155,7 +152,6 @@
   opacity: 100%;
 }
 
-/* Заголовок категории: имя + карандаш переименования (появляется при наведении). */
 .categoryHead {
   display: flex;
   gap: 6px;
@@ -219,7 +215,7 @@
   color: var(--color-danger);
 }
 
-/* Инлайн-поле переименования категории — под стиль моно-заголовка. */
+/* Поле переименования повторяет стиль заголовка, чтобы при правке ничего не прыгало. */
 .categoryInput {
   font-family: var(--font-mono), monospace;
   font-size: 11px;
@@ -238,8 +234,8 @@
 .chip {
   display: inline-flex;
 
-  /* не сжиматься в flex-контейнере: во время drag'а иначе схлопывается до min-content
-     и текст переносится по буквам (узкая «колонка»). nowrap держит подпись в строку. */
+  /* Без этого во время drag чип сжимается до min-content и текст ломается по буквам.
+     nowrap держит подпись в одну строку. */
   flex: none;
   gap: 6px;
   align-items: center;
@@ -269,7 +265,7 @@
   color: var(--color-danger);
 }
 
-/* Перетаскиваемый чип: слева ручка-грип берёт левый отступ. */
+/* Слева уже стоит ручка, поэтому отступ меньше. */
 .chipSortable {
   padding-left: 5px;
 }
@@ -301,14 +297,13 @@
   outline-offset: 1px;
 }
 
-/* Пока чип тащат — приподнимаем и подсвечиваем. */
 .chipDragging {
   z-index: 1;
   opacity: 65%;
   box-shadow: var(--shadow);
 }
 
-/* Инлайн-поле нового чипа (технология/навык) — выглядит как чип. */
+/* Поле ввода нового чипа должно выглядеть как сам чип. */
 .inlineInput {
   padding: 5px 9px;
   font-family: var(--font-mono), monospace;
@@ -326,7 +321,6 @@
   color: var(--color-fg-dim);
 }
 
-/* Чип-кнопка «+» для добавления в блок — появляется при наведении на блок. */
 .addChip {
   display: inline-flex;
   align-items: center;
@@ -356,14 +350,14 @@
   border-color: var(--color-primary-bright);
 }
 
-/* ---------- Языки ---------- */
+/* Языки */
 .langSection {
   margin-top: 24px;
   padding-top: 22px;
   border-top: 1px solid var(--color-border);
 }
 
-/* Навыки — плоские чипы (как технологии, но без категорий); показываются на «Опыте». */
+/* Навыки: чипы без категорий, на сайте выводятся на странице «Опыт». */
 .skillSection {
   margin-top: 24px;
   padding-top: 22px;

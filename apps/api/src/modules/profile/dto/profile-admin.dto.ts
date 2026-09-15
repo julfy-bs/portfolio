@@ -5,7 +5,7 @@ import { LocalizedTextDto } from '../../../common/i18n/localized.dto';
 import { AdminContactLinkDto } from './contact-link.dto';
 import { ProfileHighlightAdminDto } from './profile-highlight.dto';
 
-// Профиль для CMS: локализованные поля отдаются обеими локалями, контакты — все (включая скрытые).
+// В админку отдаём обе локали и все контакты, включая скрытые.
 export class ProfileAdminDto {
   @ApiProperty({ type: () => LocalizedTextDto })
   name: LocalizedTextDto;

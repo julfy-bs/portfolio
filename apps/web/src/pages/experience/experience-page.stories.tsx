@@ -51,12 +51,12 @@ export const Loaded: Story = {
 
 export const Loading: Story = {
   name: 'Ожидание данных',
-  // Данных ещё нет (опыт + intro профиля undefined) → скелетоны. Скелетон завязан
-  // на отсутствие данных: если бы intro пришёл (из кэша), он бы показался текстом.
+  // Опыта и intro ещё нет, поэтому скелетоны. Скелетон зависит от наличия данных:
+  // если бы intro уже лежал в кэше, он показался бы текстом.
   args: { isLoading: true, intro: undefined },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    // Интро без данных (undefined) — под скелетоном, не текстом.
+    // Интро без данных показывается скелетоном, а не текстом.
     await expect(canvas.queryByText(/Уверенно работаю и с Vue/)).not.toBeInTheDocument();
   },
 };

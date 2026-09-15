@@ -4,7 +4,6 @@ import styles from './admin-kb.module.css';
 
 const ROWS = ['a', 'b', 'c', 'd', 'e', 'f'] as const;
 
-/** Скелетон вкладки БЗ: колонка библиотеки + правая панель, пока грузится дерево. */
 export function AdminKbSkeleton() {
   return (
     <div className={styles.grid} aria-hidden="true">

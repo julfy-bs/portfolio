@@ -9,4 +9,4 @@ export {
 export { useSkills } from './model/use-skills';
 export type { Skill, SkillAdmin, CreateSkill, UpdateSkill } from './model/types';
 
-// Моки живут в отдельной точке входа './mocks' — чтобы msw не попадал в прод-бандл.
+// Моки лежат в отдельной точке входа './mocks', чтобы msw не попал в прод-бандл.

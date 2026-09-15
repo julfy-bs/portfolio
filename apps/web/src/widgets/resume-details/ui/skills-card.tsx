@@ -10,7 +10,6 @@ interface SkillsCardProps {
   readonly isLoading?: boolean;
 }
 
-/** Карточка навыков: набор моно-тегов. */
 export function SkillsCard({ skills, isLoading }: SkillsCardProps) {
   const { t } = useTranslation();
 

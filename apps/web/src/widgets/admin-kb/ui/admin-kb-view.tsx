@@ -7,7 +7,7 @@ export interface AdminKbViewProps {
   readonly main: ReactNode;
 }
 
-/** Двухпанельная раскладка вкладки БЗ: библиотека слева, статья/редактор справа. */
+/** Библиотека слева, статья или редактор справа. */
 export function AdminKbView({ library, main }: AdminKbViewProps) {
   return (
     <div className={styles.grid}>

@@ -5,7 +5,7 @@ import { routePaths } from '@/shared/config';
 
 import styles from './forbidden-page.module.css';
 
-/** Страница 403 — нет прав доступа (используется гардами приватной зоны). */
+/** Её показывают гарды приватной зоны, когда не хватает прав. */
 export function ForbiddenPage() {
   const { t } = useTranslation();
 

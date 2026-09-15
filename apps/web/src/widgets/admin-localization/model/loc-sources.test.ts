@@ -19,7 +19,7 @@ const labels = {
   education: 'Образование',
 };
 
-// Фикстуры на базе моков сущностей (полные типы) с контролируемыми значениями.
+// Берём готовые моки ради полных типов и переопределяем только нужные поля.
 const baseProject = mockProjectsAdmin[0];
 const baseExperience = mockExperienceAdmin[0];
 const baseEducation = mockEducationAdmin[0];
@@ -41,7 +41,7 @@ const experience: ExperienceAdmin = {
   ...baseExperience,
   id: 'e1',
   company: 'Точка',
-  role: { ru: 'Разработчик', en: '' }, // нет EN
+  role: { ru: 'Разработчик', en: '' }, // перевода нет
   location: null,
   sub: null,
 };
@@ -49,7 +49,7 @@ const experience: ExperienceAdmin = {
 const education: EducationAdmin = {
   ...baseEducation,
   id: 'ed1',
-  degree: { ru: 'Бакалавр', en: 'Бакалавр' }, // EN == RU
+  degree: { ru: 'Бакалавр', en: 'Бакалавр' }, // en совпадает с ru
   place: null,
 };
 
@@ -73,7 +73,6 @@ describe('loc-sources: buildLocRows', () => {
     const rows = buildLocRows(data, labels);
     const byId = new Map(rows.map((r) => [r.id, r]));
 
-    // profile.role=null пропущен у проекта; project.title даёт строку.
     const title = byId.get('project:p1:title');
     expect(title).toMatchObject({
       sectionLabel: 'Проект · Альфа',
@@ -82,15 +81,15 @@ describe('loc-sources: buildLocRows', () => {
       en: 'Alpha',
     });
 
-    // Пустые/null поля не создают строк.
+    // Поля со значением null строк не дают.
     expect(byId.has('project:p1:role')).toBe(false);
     expect(byId.has('experience:e1:location')).toBe(false);
     expect(byId.has('education:ed1:place')).toBe(false);
 
-    // en отсутствует → пустая строка (не undefined).
+    // Отсутствующий en превращается в пустую строку, а не в undefined.
     expect(byId.get('experience:e1:role')?.en).toBe('');
 
-    // profile.name присутствует, отключённые интро — нет.
+    // Имя профиля есть, а обнулённых интро нет.
     expect(byId.get('profile:profile:name')?.sectionLabel).toBe('Профиль');
     expect(byId.has('profile:profile:projectsIntro')).toBe(false);
   });
@@ -106,16 +105,16 @@ describe('loc-sources: buildSaves', () => {
   it('группирует правки по сущности и шлёт обе локали', () => {
     const rows = buildLocRows(data, labels);
     const edits: LocEdits = {
-      'project:p1:title': { ru: 'Альфа', en: 'Alpha 2' }, // изменён EN
+      'project:p1:title': { ru: 'Альфа', en: 'Alpha 2' }, // поменялся en
       'project:p1:description': {
         ru: byRow(rows, 'project:p1:description').ru,
         en: 'New description',
       },
-      'profile:profile:name': { ru: 'Богдан', en: 'Bogdan' }, // не изменён — не в саве
+      'profile:profile:name': { ru: 'Богдан', en: 'Bogdan' }, // без изменений, сохранять нечего
     };
 
     const saves = buildSaves(rows, edits);
-    // Профиль без реальных изменений не попадает; проект — один сейв с двумя полями.
+    // Профиль по сути не изменился, а проект уходит одним запросом с двумя полями.
     expect(saves).toHaveLength(1);
     const [save] = saves;
     expect(save).toMatchObject({ sourceId: 'project', entityId: 'p1' });

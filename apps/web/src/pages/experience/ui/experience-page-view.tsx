@@ -18,7 +18,7 @@ export interface ExperiencePageViewProps {
   readonly education?: readonly Education[];
   readonly languages?: readonly Language[];
   readonly skills?: readonly Skill[];
-  /** Интро-абзац экрана (серверное поле профиля). */
+  /** Интро-абзац, поле профиля с сервера. */
   readonly intro?: string | null;
   readonly isLoading?: boolean;
   readonly isError?: boolean;
@@ -26,11 +26,6 @@ export interface ExperiencePageViewProps {
   readonly onRetry?: () => void;
 }
 
-/**
- * Презентационный слой экрана опыта: шапка-«крошка», таймлайн опыта и блок
- * образование/языки/навыки. Данные и `isLoading`/`isError` приходят пропсами —
- * запросы и навигацию делает контейнер `ExperiencePage`.
- */
 export function ExperiencePageView({
   experience,
   education,
@@ -68,9 +63,8 @@ export function ExperiencePageView({
       <Heading level="h1" className={styles.title}>
         {t('experience.title')}
       </Heading>
-      {/* Интро — серверное поле профиля. Скелетон — только когда данных нет
-          (intro === undefined). Профиль обычно уже в кэше (его тянет футер),
-          поэтому текст показываем сразу, не мигая скелетоном из-за загрузки опыта. */}
+      {/* Скелетон только при intro === undefined. Профиль обычно уже в кэше (его
+          запрашивает футер), так что текст виден сразу и не мигает, пока грузится опыт. */}
       <PageIntro intro={intro} />
 
       <ExperienceTimeline jobs={experience} isLoading={isLoading} />

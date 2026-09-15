@@ -3,10 +3,9 @@ import { createContext, useContext } from 'react';
 export type ThemeMode = 'dark' | 'light';
 
 /**
- * Ключ localStorage с ЯВНЫМ выбором темы (синхронизирован с бутстрап-скриптом в
- * index.html). Пишется ТОЛЬКО при ручном переключении темы пользователем — поэтому
- * по его наличию отличаем «гость не выбирал» от «выбрал». Применение темы по
- * умолчанию/системной сюда НЕ пишет.
+ * Ключ localStorage с явным выбором темы, тот же, что в бутстрап-скрипте index.html.
+ * Пишем его только при ручном переключении: по нему отличаем гостя, который тему
+ * ещё не выбирал. Системная тема и тема по умолчанию сюда не попадают.
  */
 export const themeStorageKey = 'portfolio.theme';
 
@@ -17,15 +16,15 @@ export interface ThemeContextValue {
   readonly toggle: () => void;
   readonly setMode: (mode: ThemeMode) => void;
   /**
-   * Применить тему без пометки как выбор пользователя (системная `prefers-color-scheme`
-   * или `settings.defaultTheme` для нового гостя). В localStorage не пишет.
+   * Применяет тему, не запоминая её как выбор: системную `prefers-color-scheme` или
+   * `settings.defaultTheme` для нового гостя. В localStorage не пишет.
    */
   readonly applyDefaultMode: (mode: ThemeMode) => void;
 }
 
 export const ThemeContext = createContext<ThemeContextValue | null>(null);
 
-/** Доступ к теме. Бросает, если вызван вне ThemeProvider — это ошибка композиции. */
+/** Вне ThemeProvider бросает ошибку: значит, провайдер забыли подключить. */
 export function useTheme(): ThemeContextValue {
   const value = useContext(ThemeContext);
   if (value === null) {

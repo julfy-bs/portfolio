@@ -70,7 +70,6 @@ describe('AdminLocalizationView', () => {
 
   it('пустой EN помечается флагом и подсказкой', () => {
     renderView();
-    // Флаг «нет EN» и подсказка отсутствия перевода.
     expect(screen.getAllByText('нет EN').length).toBeGreaterThan(0);
     expect(screen.getByText(/нет перевода/)).toBeInTheDocument();
   });

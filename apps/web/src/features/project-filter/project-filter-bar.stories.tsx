@@ -41,20 +41,20 @@ const projects: ProjectListItem[] = [
   }),
 ];
 
-// Панель управляемая — связываем её с контроллером `useProjectFilter` в обёртке.
+// Панель управляемая, поэтому в обёртке подключаем её к `useProjectFilter`.
 function FilterHarness() {
   const filter = useProjectFilter(projects);
   return <ProjectFilterBar filter={filter} />;
 }
 
-// Скелетон фасетов: опций ещё нет (проекты грузятся), панель в режиме isLoading.
+// Проекты ещё грузятся, опций нет, панель в режиме isLoading.
 function LoadingHarness() {
   const filter = useProjectFilter([]);
   return <ProjectFilterBar filter={filter} isLoading />;
 }
 
-// Обязательный проп `filter` для типа истории; реальный (живой) контроллер даёт
-// `render` через `FilterHarness`, поэтому это значение не используется.
+// Проп `filter` обязателен по типу истории, но настоящий контроллер подставляет
+// `FilterHarness` в `render`, так что это значение не используется.
 const staticFilter: ProjectFilter = {
   state: { query: '', techs: [], contributors: [] },
   filtered: projects,
@@ -82,7 +82,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Песочница: строка поиска + фасеты технологий/контрибьюторов. */
+/** Песочница с поиском и фасетами технологий и контрибьюторов. */
 export const Playground: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -91,18 +91,18 @@ export const Playground: Story = {
   },
 };
 
-/** Пока проекты грузятся — фасеты показывают скелетон-чипы. */
+/** Пока проекты грузятся, вместо чипов скелетоны. */
 export const Loading: Story = {
   name: 'Загрузка (скелетон)',
   render: () => <LoadingHarness />,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    // Опций-чипов ещё нет — только поиск и плейсхолдеры.
+    // Чипов ещё нет, есть только поиск и плейсхолдеры.
     await expect(canvas.queryByRole('button', { name: 'React' })).not.toBeInTheDocument();
   },
 };
 
-/** Живая фильтрация: ввод в поиск и переключение фасета (появляется сброс). */
+/** Ввод в поиск и переключение фасета, после чего появляется сброс. */
 export const Filtering: Story = {
   name: 'Живая фильтрация',
   render: () => <FilterHarness />,

@@ -29,7 +29,7 @@ function renderEditor(overrides: Partial<Parameters<typeof KbArticleEditor>[0]> 
 describe('KbArticleEditor', () => {
   it('бар сохранения скрыт, пока форма не изменена, и появляется после правки', async () => {
     renderEditor();
-    // Пока правок нет — бара сохранения нет (выйти можно кнопкой «Закрыть»).
+    // Без правок бара нет, выйти можно кнопкой «Закрыть».
     expect(screen.queryByRole('button', { name: /Сохранить/ })).not.toBeInTheDocument();
     await userEvent.type(screen.getByLabelText('Заголовок', { exact: false }), 'Черновик');
     expect(await screen.findByRole('button', { name: /Сохранить/ })).toBeEnabled();
@@ -38,7 +38,7 @@ describe('KbArticleEditor', () => {
   it('пустые обязательные поля не дают сохранить и показывают ошибку', async () => {
     const onSave = vi.fn();
     renderEditor({ onSave });
-    // Делаем форму «грязной» правкой заголовка, но slug/тело пустые.
+    // Меняем только заголовок: форма становится dirty, а slug и текст остаются пустыми.
     await userEvent.type(screen.getByLabelText('Заголовок', { exact: false }), 'Только заголовок');
     await userEvent.click(screen.getByRole('button', { name: /Сохранить/ }));
     expect(onSave).not.toHaveBeenCalled();

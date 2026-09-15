@@ -3,8 +3,7 @@ import { expect, within } from 'storybook/test';
 
 import { Highlights } from './ui/highlights';
 
-// Показатели для историй — форма `profile.highlights` с бэкенда; их можно
-// редактировать прямо в контролах Storybook.
+// Та же форма, что у `profile.highlights` с бэкенда. Значения можно менять в контролах.
 const defaultItems = [
   { value: '3+', label: 'года в коммерческой разработке' },
   { value: '3', label: 'UI-kit построил с нуля' },
@@ -47,7 +46,7 @@ export const Playground: Story = {
   },
 };
 
-/** Профиль грузится — скелетон повторяет раскладку карточек (`aria-busy`). */
+/** Профиль грузится: скелетон повторяет раскладку карточек (`aria-busy`). */
 export const Loading: Story = {
   name: 'Загрузка (скелетон)',
   args: { isLoading: true },
@@ -72,7 +71,7 @@ export const LongLabels: Story = {
   },
 };
 
-/** Мобильная раскладка: грид 4 → 2 → 1. */
+/** Мобильная раскладка: грид сжимается с 4 колонок до 2, потом до 1. */
 export const Mobile: Story = {
   name: 'Мобильная раскладка',
   parameters: { viewport: { defaultViewport: 'mobile1' } },

@@ -6,20 +6,13 @@ import styles from './setting-card.module.css';
 
 export interface SettingCardProps {
   readonly title: string;
-  /** Пояснение под заголовком (опционально). */
   readonly description?: string;
-  /** Ведущая иконка (опционально). */
   readonly icon?: IconName;
-  /** Управляющий элемент справа (Toggle, Segmented и т.п.). */
+  /** Контрол справа: Toggle, Segmented и подобные. */
   readonly children: ReactNode;
 }
 
-/**
- * Карточка настройки: заголовок (+ опц. описание/иконка) и управляющий элемент в
- * ограниченной рамке. Единый вид всех настроек админки (тумблеры, сегменты) —
- * вместо разрозненных строк, где контрол улетал к краю широкого контейнера.
- * Презентационный; контрол передаётся `children`.
- */
+// Рамка ограничивает ширину, иначе в широком контейнере контрол уезжает к дальнему краю.
 export function SettingCard({ title, description, icon, children }: SettingCardProps) {
   return (
     <div className={styles.card}>

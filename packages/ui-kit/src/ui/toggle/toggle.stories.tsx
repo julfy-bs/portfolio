@@ -38,7 +38,7 @@ type Story = StoryObj<typeof meta>;
 /** Песочница. */
 export const Playground: Story = {};
 
-/** Все состояния сразу: выкл/вкл × обычный/компактный × недоступный. */
+/** Все состояния: выключен и включён, обычный и компактный, недоступный. */
 export const States: Story = {
   name: 'Все состояния',
   parameters: { controls: { disable: true } },
@@ -104,7 +104,7 @@ export const Toggling: Story = {
   },
 };
 
-/** Активация с клавиатуры: Tab → фокус, Пробел переключает. */
+/** С клавиатуры: Tab ставит фокус, Пробел переключает. */
 export const KeyboardActivation: Story = {
   name: 'Активация с клавиатуры',
   render: (args) => {
@@ -122,8 +122,8 @@ export const KeyboardActivation: Story = {
 };
 
 /**
- * В контексте: строка настройки. Видимый текст — доступное имя через
- * `aria-labelledby` (у кнопки-switch нет `label[for]`).
+ * В контексте: строка настройки. Видимый текст служит доступным именем через `aria-labelledby`
+ * (у кнопки-switch нет `label[for]`).
  */
 export const WithLabel: Story = {
   name: 'В контексте: строка настройки',

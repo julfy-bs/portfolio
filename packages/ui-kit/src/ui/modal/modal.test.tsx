@@ -35,7 +35,7 @@ describe('Modal', () => {
   it('клик по фону закрывает окно', async () => {
     const onClose = vi.fn();
     setup({ onClose });
-    // Первая кнопка «Закрыть» — фон (лежит под панелью), вторая — крестик.
+    // Первая кнопка «Закрыть» это фон под панелью, вторая крестик.
     await userEvent.click(screen.getAllByRole('button', { name: 'Закрыть' })[0]);
     expect(onClose).toHaveBeenCalledOnce();
   });

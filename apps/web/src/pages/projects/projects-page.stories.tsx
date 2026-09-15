@@ -44,13 +44,13 @@ export const Loaded: Story = {
 
 export const Loading: Story = {
   name: 'Ожидание данных',
-  // Данных ещё нет (список + intro профиля undefined) → скелетоны. Скелетон завязан
-  // на отсутствие данных: если бы intro пришёл (из кэша), он бы показался текстом.
+  // Списка и intro ещё нет, поэтому скелетоны. Скелетон зависит от наличия данных:
+  // если бы intro уже лежал в кэше, он показался бы текстом.
   args: { isLoading: true, intro: undefined },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     await expect(canvas.queryByRole('button', { name: /Procharity/ })).not.toBeInTheDocument();
-    // Интро без данных (undefined) — под скелетоном, не текстом.
+    // Интро без данных показывается скелетоном, а не текстом.
     await expect(canvas.queryByText(/Коммерческие продукты и pet-проекты/)).not.toBeInTheDocument();
   },
 };
@@ -73,7 +73,7 @@ export const Failed: Story = {
   },
 };
 
-// 15 проектов (>12) — чтобы показать пагинацию: 12 на первой странице, 3 на второй.
+// 15 проектов, чтобы появилась пагинация: 12 на первой странице и 3 на второй.
 const manyProjects = Array.from({ length: 15 }, (_, index) => {
   const base = mockProjects[index % mockProjects.length];
   return {

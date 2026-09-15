@@ -1,11 +1,8 @@
 import { Injectable, OnModuleDestroy } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
 
-/**
- * Prisma подключается лениво при первом запросе — приложение стартует даже без БД
- * (удобно для фронт-трека и генерации контракта). Доступность базы показывает
- * GET /api/health, а не падение на старте.
- */
+// Явного $connect нет: Prisma подключится при первом запросе, и приложение поднимется
+// даже без БД, например для генерации контракта. Состояние базы видно в GET /api/health.
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleDestroy {
   async onModuleDestroy(): Promise<void> {

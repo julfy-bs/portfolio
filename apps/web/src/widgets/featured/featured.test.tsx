@@ -43,9 +43,9 @@ describe('Featured', () => {
 
   it('ограничивает аватары, сворачивая остаток в «+N»', () => {
     renderWithProviders(<Featured projects={projects} />);
-    // 4 контрибьютора → 3 аватара + «+1» (число тегов считается по ширине в рантайме).
+    // Из 4 контрибьюторов видно 3 аватара и «+1». Число тегов зависит от ширины, его не проверяем.
     expect(screen.getByText('+1')).toBeInTheDocument();
-    // Теги-технологии присутствуют в DOM (замер ширины делает ResizeObserver в браузере).
+    // Проверяем только наличие тегов в DOM: ширину меряет ResizeObserver, а его здесь нет.
     expect(screen.getByText('TypeScript')).toBeInTheDocument();
   });
 

@@ -10,8 +10,8 @@ export interface PageVisibility {
 }
 
 /**
- * Видимость страниц из настроек. Пока настройки не загрузились — считаем страницы
- * видимыми (не мигаем 404 и не прячем навигацию на время запроса).
+ * Пока настройки не загрузились, считаем страницы видимыми, чтобы не мигать 404 и не прятать
+ * навигацию на время запроса.
  */
 export function usePageVisibility(): PageVisibility {
   const { data } = useGetSettingsQuery();
@@ -23,9 +23,8 @@ export function usePageVisibility(): PageVisibility {
 }
 
 /**
- * Разрешён ли путь при данной видимости (для гейтинга роутов и консольного `cd`/`ls`).
- * Деталь проекта (`/projects/:slug`) следует за флагом страницы проектов.
- * Неизвестные/приватные пути (admin, database, login) — всегда разрешены.
+ * Нужен и роутам, и консольным `cd`/`ls`. Деталь проекта `/projects/:slug` следует за флагом
+ * страницы проектов, а неизвестные и приватные пути (admin, database, login) разрешены всегда.
  */
 export function isPathEnabled(path: string, visibility: PageVisibility): boolean {
   if (path === routePaths.projects || path.startsWith(`${routePaths.projects}/`)) {

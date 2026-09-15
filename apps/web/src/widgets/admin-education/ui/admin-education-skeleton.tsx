@@ -7,7 +7,6 @@ const SECTIONS = [
   { key: 'extra', rows: [0] },
 ];
 
-/** Скелетон вкладки образования на время загрузки. */
 export function AdminEducationSkeleton() {
   return (
     <div className={styles.card} aria-busy="true" aria-live="polite">

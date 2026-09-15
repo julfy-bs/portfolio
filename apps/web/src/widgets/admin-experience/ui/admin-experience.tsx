@@ -18,19 +18,17 @@ import { AdminExperienceView } from './admin-experience-view';
 import { ExperienceForm } from './experience-form';
 
 export interface AdminExperienceProps {
-  /** Локаль редактирования из маршрута. */
+  /** Берётся из маршрута. */
   readonly locale: AppLanguage;
-  /** Детальный сегмент маршрута: `undefined`=список, `new`=создание, иначе id записи. */
+  /** `undefined` для списка, `new` для создания, иначе id записи. */
   readonly detail: string | undefined;
-  /** Навигация по детальным маршрутам (`null` — назад к списку). */
+  /** `null` возвращает к списку. */
   readonly onNavigateDetail: (detail: string | null) => void;
 }
 
 /**
- * Контейнер вкладки «Опыт работы»: по детальному сегменту маршрута показывает
- * список или форму записи. Создание/редактирование живут на отдельных маршрутах
- * (`/admin/experience/:locale/new` и `/:id`), поэтому смена локали ремонтирует
- * форму с данными нужного языка. Мутации инвалидируют тег `Experience`.
+ * Форма живёт на отдельном маршруте с локалью (`/admin/experience/:locale/new` и `/:id`),
+ * поэтому при смене языка она монтируется заново на нужных данных.
  */
 export function AdminExperience({ locale, detail, onNavigateDetail }: AdminExperienceProps) {
   const { t } = useTranslation();
@@ -80,8 +78,7 @@ export function AdminExperience({ locale, detail, onNavigateDetail }: AdminExper
     return <AdminExperienceSkeleton />;
   }
 
-  // Детальный редактор: `new` — создание, существующий id — правка. Несуществующий
-  // id (устаревшая ссылка) откатывается к списку.
+  // По устаревшей ссылке с несуществующим id просто показываем список.
   const record =
     detail !== undefined && detail !== 'new'
       ? (items.find((item) => item.id === detail) ?? null)

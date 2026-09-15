@@ -14,7 +14,7 @@ describe('Footer', () => {
   });
 
   it('показывает подсказку с клавиатурным ярлыком консоли', () => {
-    // В тест-окружении matchMedia → есть клавиатура, платформа Mac → «⌘K».
+    // В тестах matchMedia говорит, что клавиатура есть, а платформа Mac, отсюда «⌘K».
     renderWithProviders(<Footer owner="Bogdan Sutuzhko" />);
     expect(screen.getByText('⌘K')).toBeInTheDocument();
   });

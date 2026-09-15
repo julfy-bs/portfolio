@@ -1,6 +1,5 @@
 import { createContext, useContext } from 'react';
 
-/** Запускаемый проект: что показать в заголовке окна и что встроить в iframe. */
 export interface RunnerProject {
   readonly title: string;
   /** URL проекта для встраивания (`Project.embedUrl`). */
@@ -10,17 +9,14 @@ export interface RunnerProject {
 export interface RunnerContextValue {
   /** Запущенный проект или `null`, если раннер закрыт. */
   readonly project: RunnerProject | null;
-  /** Открыть раннер с проектом (клик «▶ Запустить» или команда консоли `run`). */
+  /** Вызывается кнопкой запуска на странице проекта и командой `run` в консоли. */
   readonly open: (project: RunnerProject) => void;
   readonly close: () => void;
 }
 
 export const RunnerContext = createContext<RunnerContextValue | null>(null);
 
-/**
- * Доступ к состоянию раннера (что запущено / запустить / закрыть). Бросает вне
- * RunnerProvider — это ошибка композиции.
- */
+/** Вне RunnerProvider бросает ошибку, чтобы кривая композиция сразу была видна. */
 export function useRunner(): RunnerContextValue {
   const value = useContext(RunnerContext);
   if (value === null) {

@@ -27,7 +27,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Строка → абзац под заголовком экрана. */
+/** Строка показывается абзацем под заголовком экрана. */
 export const Playground: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -35,7 +35,7 @@ export const Playground: Story = {
   },
 };
 
-/** `undefined` → скелетон из двух строк (высота = высота абзаца, без скачка вёрстки). */
+/** `undefined` даёт скелетон из двух строк высотой с абзац, чтобы вёрстка не прыгала. */
 export const Loading: Story = {
   name: 'Загрузка (скелетон)',
   args: { intro: undefined },
@@ -45,7 +45,7 @@ export const Loading: Story = {
   },
 };
 
-/** `null` → интро для экрана нет, ничего не рендерится. */
+/** `null` значит, что интро нет, и ничего не рендерится. */
 export const Empty: Story = {
   name: 'Без интро (null)',
   args: { intro: null },

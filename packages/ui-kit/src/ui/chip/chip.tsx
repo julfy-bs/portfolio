@@ -9,7 +9,7 @@ export interface ChipProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>,
   readonly selected?: boolean;
 }
 
-/** Переключаемый чип-фильтр (технология/контрибьютор). Кнопка-тоггл с aria-pressed. */
+/** Чип-фильтр (технология, контрибьютор): кнопка-переключатель с aria-pressed. */
 export function Chip({ selected = false, className, type = 'button', ...rest }: ChipProps) {
   return (
     <button

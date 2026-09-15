@@ -1,7 +1,5 @@
 /**
- * Отображение канала связи по типу иконки из бэкенда. Бренд-названия и
- * аббревиатуры-бейджи одинаковы в обеих локалях, поэтому живут в конфиге виджета,
- * а не в i18n. Неизвестный канал деградирует к сокращению из самого значения.
+ * Бренд-названия и бейджи каналов одинаковы в обеих локалях, поэтому они здесь, а не в i18n.
  */
 const BADGES: Record<string, string> = {
   telegram: 'TG',
@@ -19,12 +17,12 @@ const LABELS: Record<string, string> = {
   linkedin: 'LinkedIn',
 };
 
-/** Короткий бейдж канала (фолбэк — первые две буквы типа). */
+/** Для неизвестного канала берём первые две буквы типа. */
 export function contactBadge(icon: string): string {
   return BADGES[icon] ?? icon.slice(0, 2).toUpperCase();
 }
 
-/** Название канала (фолбэк — тип с заглавной буквы). */
+/** Для неизвестного канала берём тип с заглавной буквы. */
 export function contactLabel(icon: string): string {
   return LABELS[icon] ?? `${icon.charAt(0).toUpperCase()}${icon.slice(1)}`;
 }

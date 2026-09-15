@@ -13,7 +13,7 @@ const SKELETON_GROUPS = [0, 1, 2];
 const SKELETON_TAG_WIDTHS = [64, 52, 78, 48];
 
 export interface StackProps {
-  /** Технологии стека (с категориями). Пока не пришли — рендерим скелетон. */
+  /** Пока технологии не пришли, рисуем скелетон. */
   readonly technologies?: readonly Technology[];
   readonly isLoading?: boolean;
   /** Якорь секции для навигации и скролл-шпиона. */
@@ -21,11 +21,7 @@ export interface StackProps {
   readonly className?: string;
 }
 
-/**
- * Секция стека главной (макет: STACK) — заголовок `// стек` и карточки-слои
- * с технологиями. Технологии приходят с бэкенда (`entities/technology`, с
- * категориями) и группируются по слою; пока грузятся — скелетон.
- */
+/** Стек на главной: технологии с бэкенда группируются по категориям в карточки. */
 export function Stack({ technologies, isLoading, id, className }: StackProps) {
   const { t } = useTranslation();
   const groups = useMemo(() => groupTechnologies(technologies ?? []), [technologies]);

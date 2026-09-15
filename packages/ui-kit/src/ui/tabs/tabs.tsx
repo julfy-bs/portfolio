@@ -20,8 +20,8 @@ export interface TabsProps {
 }
 
 /**
- * Полоса вкладок (role=tablist). Управляется снаружи; стрелки/Home/End
- * перемещают активную вкладку, в табуляции участвует только выбранная.
+ * Полоса вкладок (role=tablist), управляется снаружи. Стрелки и Home/End переключают вкладку,
+ * в порядке табуляции только выбранная.
  */
 export function Tabs({ tabs, value, onChange, className, 'aria-label': ariaLabel }: TabsProps) {
   const handleKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {

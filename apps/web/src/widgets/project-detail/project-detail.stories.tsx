@@ -5,7 +5,7 @@ import { mockProjectDetail } from '@/entities/project/mocks';
 
 import { ProjectDetail } from './ui/project-detail';
 
-// Запускаемый проект: с embedUrl и подсказкой — показывает кнопку «▶ Запустить».
+// У проекта есть embedUrl и подсказка, поэтому появляется кнопка запуска.
 const runnableProject = {
   ...mockProjectDetail,
   slug: '2048',
@@ -32,7 +32,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Полная деталь: баннер, тело (Markdown + «что внутри» + галерея), сайдбар. */
+/** Всё сразу: баннер, Markdown, «что внутри», галерея и сайдбар. */
 export const Loaded: Story = {
   name: 'С данными',
   play: async ({ canvasElement }) => {
@@ -41,7 +41,7 @@ export const Loaded: Story = {
   },
 };
 
-/** Запускаемый проект: primary-кнопка «▶ Запустить» открывает раннер. */
+/** Проект можно запустить: primary-кнопка открывает раннер. */
 export const Runnable: Story = {
   name: 'Запускаемый (▶ Запустить)',
   args: { project: runnableProject, onRun: fn() },
@@ -52,7 +52,7 @@ export const Runnable: Story = {
   },
 };
 
-/** Данные грузятся — скелетон той же раскладки. */
+/** Данные грузятся: скелетон в той же раскладке. */
 export const Loading: Story = {
   name: 'Ожидание данных (isLoading)',
   args: { isLoading: true },

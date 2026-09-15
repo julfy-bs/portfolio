@@ -11,12 +11,12 @@ function buildInitial(): LanguageAdmin[] {
   ];
 }
 
-// Общее состояние: и публичный список, и админ-CRUD читают/пишут его, поэтому
-// правки в кабинете сразу видны в блоке языков (как на реальном бэкенде).
+// Публичный список и админ-CRUD работают с одним состоянием, чтобы правки из кабинета
+// сразу были видны в блоке языков, как с реальным бэкендом.
 let languages: LanguageAdmin[] = buildInitial();
 let nextId = languages.length;
 
-/** Сбрасывает языки мока — для изоляции тестов. */
+/** Сбрасывает языки мока, чтобы тесты не зависели друг от друга. */
 export function resetMockLanguages(): void {
   languages = buildInitial();
   nextId = languages.length;
@@ -30,12 +30,10 @@ const toPublic = (lang: LanguageAdmin, locale: AppLanguage): Language => ({
   pct: lang.pct,
 });
 
-/** Фикстура языков (русская локаль) для тестов и историй. */
 export const mockLanguages: Language[] = buildInitial().map((lang) => toPublic(lang, 'ru'));
-/** Фикстура языков в админ-виде. */
 export const mockLanguagesAdmin: LanguageAdmin[] = buildInitial();
 
-/** Публичный MSW-обработчик языков. Локаль читается из `Accept-Language`. */
+/** Локаль берётся из `Accept-Language`. */
 export const languageHandlers = [
   http.get(`${env.apiBaseUrl}/languages`, ({ request }) => {
     const locale = normalizeLanguage(request.headers.get('Accept-Language') ?? undefined);
@@ -45,7 +43,6 @@ export const languageHandlers = [
   }),
 ];
 
-/** Админ MSW-обработчики языков: список + CRUD над общим состоянием. */
 export const languageAdminHandlers = [
   http.get(`${env.apiBaseUrl}/languages/admin`, () =>
     HttpResponse.json([...languages].sort((a, b) => a.order - b.order)),
@@ -72,7 +69,7 @@ export const languageAdminHandlers = [
       const body = await request.json();
       const lang = languages.find((item) => item.id === params.id);
       if (lang === undefined) return new HttpResponse(null, { status: 404 });
-      // name — LocalizedTextInput (полная замена, как writeText на бэкенде).
+      // name приходит целиком (LocalizedTextInput) и заменяется, как writeText на бэкенде.
       if (body.name !== undefined) lang.name = { ru: body.name.ru, en: body.name.en ?? null };
       if (body.level !== undefined) lang.level = body.level;
       if (body.pct !== undefined) lang.pct = body.pct;

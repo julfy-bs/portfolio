@@ -17,8 +17,8 @@ import type {
   UpdateFolder,
 } from '../model/types';
 
-// Плоское состояние (папки + статьи), из которого собирается дерево и админ-списки.
-// MSW-мок держит его в памяти, чтобы CRUD из кабинета отражался в дереве без бэка.
+// Плоское состояние папок и статей, из него собираются дерево и админ-списки.
+// Держим его в памяти, чтобы CRUD из кабинета отражался в дереве без бэка.
 
 interface FolderRecord {
   id: string;
@@ -118,7 +118,7 @@ function seedArticles(): ArticleRecord[] {
 let folders: FolderRecord[] = seedFolders();
 let articles: ArticleRecord[] = seedArticles();
 
-/** Сброс состояния мока к начальному сиду — для изоляции тестов. */
+/** Возвращает мок к начальному сиду, чтобы тесты не зависели друг от друга. */
 export function resetKbMock(): void {
   folders = seedFolders();
   articles = seedArticles();
@@ -223,17 +223,17 @@ const toArticleAdmin = (article: ArticleRecord): ArticleAdmin => ({
   updatedAt: article.updatedAt,
 });
 
-/** Первый slug статьи по умолчанию — для тестов/историй. */
+/** Статья, которую тесты и истории открывают по умолчанию. */
 export const mockArticleSlug = 'react-hooks';
 
-/** MSW-обработчики базы знаний. Локаль читается из `Accept-Language`. */
+/** Локаль берётся из `Accept-Language`. */
 export const kbHandlers = [
   http.get(`${env.apiBaseUrl}/database/tree`, ({ request }) => {
     const language = normalizeLanguage(request.headers.get('Accept-Language') ?? undefined);
     return HttpResponse.json(buildTree(language));
   }),
 
-  // --- папки ---
+  // Папки
   http.get(`${env.apiBaseUrl}/database/folders`, () =>
     HttpResponse.json(folders.map(toFolderAdmin)),
   ),
@@ -273,7 +273,7 @@ export const kbHandlers = [
     return new HttpResponse(null, { status: 204 });
   }),
 
-  // --- статьи: admin-роут регистрируем ДО публичного `:slug` ---
+  // Статьи. Admin-роут регистрируем раньше публичного `:slug`, иначе его перехватит slug.
   http.get<{ id: string }>(`${env.apiBaseUrl}/database/articles/admin/:id`, ({ params }) => {
     const article = articles.find((candidate) => candidate.id === params.id);
     return article
@@ -339,7 +339,7 @@ export const kbHandlers = [
   }),
 ];
 
-// Снимки начального состояния — для историй и тестов (без обращения к живому стору).
+// Снимки начального состояния для историй и тестов, чтобы не трогать живой стор.
 export const mockDatabaseTree: DatabaseTree = buildTree('ru');
 export const mockArticle: ArticleDetail = articleDetail('react-hooks', 'ru') ?? {
   slug: 'react-hooks',

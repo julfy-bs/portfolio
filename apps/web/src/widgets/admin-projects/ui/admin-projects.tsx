@@ -46,19 +46,17 @@ import { ProjectForm } from './project-form';
 import type { GalleryRejection } from './project-gallery';
 
 export interface AdminProjectsProps {
-  /** Локаль редактирования из маршрута. */
+  /** Берётся из маршрута. */
   readonly locale: AppLanguage;
-  /** Детальный сегмент: `undefined`=список, `new`=создание, иначе id проекта. */
+  /** `undefined` для списка, `new` для создания, иначе id проекта. */
   readonly detail: string | undefined;
-  /** Навигация по детальным маршрутам (`null` — назад к списку). */
+  /** `null` возвращает к списку. */
   readonly onNavigateDetail: (detail: string | null) => void;
 }
 
 /**
- * Контейнер вкладки «Проекты»: по детальному сегменту маршрута показывает список
- * или форму. Форма живёт на отдельном маршруте (`/admin/projects/:locale/new`|`/:id`),
- * поэтому смена локали ремонтирует её на данных нужного языка. Мутации
- * инвалидируют тег `Project` — публичные экраны проектов тоже обновляются.
+ * Форма живёт на отдельном маршруте с локалью, поэтому при смене языка она монтируется
+ * заново на нужных данных.
  */
 export function AdminProjects({ locale, detail, onNavigateDetail }: AdminProjectsProps) {
   const { t } = useTranslation();
@@ -100,11 +98,9 @@ export function AdminProjects({ locale, detail, onNavigateDetail }: AdminProject
     }
   };
 
-  // Применяет накопленный черновик участников одним пакетом ДО сохранения
-  // проекта: создания дают реальные id (карта временный→реальный, чтобы
-  // ремапнуть выбор проекта), затем правки (включая новый порядок после
-  // перетаскивания) и удаления. Возвращает карту id или `null` при ошибке —
-  // тогда проект не сохраняем.
+  // Участников сохраняем раньше проекта: созданные получают реальные id, и выбор в проекте
+  // надо на них переназначить. Возвращает карту временных id в реальные, а при ошибке null,
+  // и тогда проект не сохраняется.
   const applyContributorStaging = async (
     staged: readonly StagedContributor[],
   ): Promise<Record<string, string> | null> => {
@@ -131,8 +127,7 @@ export function AdminProjects({ locale, detail, onNavigateDetail }: AdminProject
     }
   };
 
-  // Тот же паттерн, что и для участников, но для каталога технологий: применяем
-  // накопленный CRUD до сохранения проекта и возвращаем карту временный→реальный id.
+  // То же самое для каталога технологий.
   const applyTechnologyStaging = async (
     techStaged: readonly StagedTechnology[],
   ): Promise<Record<string, string> | null> => {
@@ -156,9 +151,8 @@ export function AdminProjects({ locale, detail, onNavigateDetail }: AdminProject
     }
   };
 
-  // Пачка скриншотов: грузим по одному (эндпоинт принимает один файл), считаем
-  // успехи/неудачи и показываем один итоговый тост. Бэк режет по лимиту 10 → часть
-  // может не пройти.
+  // Эндпоинт принимает один файл, поэтому грузим по очереди и показываем итог одним тостом.
+  // Бэк ограничивает галерею десятью снимками, так что часть файлов может не пройти.
   const addScreenshots = async (projectId: string, files: readonly File[]): Promise<void> => {
     let ok = 0;
     for (const file of files) {
@@ -166,7 +160,7 @@ export function AdminProjects({ locale, detail, onNavigateDetail }: AdminProject
         await uploadGallery({ projectId, file }).unwrap();
         ok += 1;
       } catch {
-        // продолжаем — считаем неуспехи по разнице
+        // Не прерываемся, неудачи посчитаем по разнице.
       }
     }
     if (ok > 0) {
@@ -180,7 +174,7 @@ export function AdminProjects({ locale, detail, onNavigateDetail }: AdminProject
     }
   };
 
-  // Файлы, отсеянные ещё до загрузки (размер / лимит) — предупреждаем.
+  // Эти файлы отсеялись по размеру или лимиту ещё до загрузки.
   const rejectScreenshots = ({ tooLarge, overflow }: GalleryRejection): void => {
     if (tooLarge > 0) {
       notify({ type: 'warning', title: t('admin.projects.galleryTooLarge', { n: tooLarge }) });
@@ -202,7 +196,7 @@ export function AdminProjects({ locale, detail, onNavigateDetail }: AdminProject
     }
   };
 
-  // Абсолютный URL скриншота в буфер — чтобы вставить в Markdown: `![](url)`.
+  // Копируем абсолютный URL, чтобы его можно было вставить в Markdown как `![](url)`.
   const copyScreenshotUrl = async (url: string): Promise<void> => {
     const absolute = new URL(url, window.location.origin).href;
     try {
@@ -213,7 +207,6 @@ export function AdminProjects({ locale, detail, onNavigateDetail }: AdminProject
     }
   };
 
-  // Заменяет временные id на реальные (после применения черновика каталога).
   const remapIds = (ids: readonly string[] | undefined, idMap: Record<string, string>): string[] =>
     (ids ?? []).map((id) => idMap[id] ?? id);
 

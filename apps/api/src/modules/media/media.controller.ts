@@ -51,7 +51,6 @@ const imageFilePipe = new ParseFilePipe({
   ],
 });
 
-// Резюме — только PDF.
 const pdfFilePipe = new ParseFilePipe({
   validators: [
     new MaxFileSizeValidator({ maxSize: MAX_FILE_SIZE }),

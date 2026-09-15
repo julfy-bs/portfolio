@@ -1,4 +1,3 @@
-/* Вкладка «База знаний»: двухпанельная сетка библиотека / статья по макету. */
 .grid {
   position: relative;
   display: grid;
@@ -13,7 +12,7 @@
   }
 }
 
-/* ---------- Библиотека (левая панель) ---------- */
+/* Библиотека */
 .library {
   position: sticky;
   top: calc(var(--navbar-height) + var(--space-3));
@@ -402,7 +401,7 @@
   background: var(--color-surface);
 }
 
-/* ---------- Правая панель ---------- */
+/* Правая панель */
 .rightPane {
   min-height: 340px;
   overflow: hidden;
@@ -554,7 +553,7 @@
   color: var(--color-primary-bright);
 }
 
-/* ---------- Редактор статьи ---------- */
+/* Редактор статьи */
 .editor {
   display: flex;
   flex-direction: column;
@@ -638,7 +637,7 @@
   color: var(--color-danger);
 }
 
-/* ---------- Скелетоны ---------- */
+/* Скелетоны */
 .skelHeadTitle {
   width: 60%;
   height: 12px;

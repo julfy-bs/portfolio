@@ -1,15 +1,14 @@
 import type { Technology } from '@/entities/technology';
 
 export interface StackGroup {
-  /** Название слоя стека (Frontend / Backend / Tooling). */
+  /** Frontend, Backend или Tooling. */
   readonly group: string;
-  /** Технологии слоя. */
   readonly items: readonly string[];
 }
 
 /**
- * Группирует технологии по категории. Порядок групп — по первому появлению
- * категории; технологии без категории пропускаются.
+ * Группы идут в порядке первого появления категории. Технологии без категории
+ * пропускаются.
  */
 export function groupTechnologies(technologies: readonly Technology[]): StackGroup[] {
   const groups = new Map<string, string[]>();

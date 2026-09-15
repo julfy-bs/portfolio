@@ -1,9 +1,9 @@
-/* Базовая «коробка» поля ввода. Подключается через composes в Input/Textarea/Select. */
+/* Общая основа полей, подключается через composes в Input, Textarea и Select. */
 .control {
   width: 100%;
   padding: 11px 13px;
 
-  /* По умолчанию терминальный моно; форма-вариант переопределяет --control-font. */
+  /* По умолчанию моноширинный, вариант формы переопределяет --control-font. */
   font-family: var(--control-font, var(--font-mono)), monospace;
   font-size: var(--font-size-small);
   color: var(--color-fg);

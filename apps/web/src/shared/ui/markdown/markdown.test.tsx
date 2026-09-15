@@ -25,7 +25,7 @@ describe('Markdown', () => {
   it('оборачивает таблицу в скролл-контейнер', () => {
     renderWithProviders(<Markdown>{TABLE}</Markdown>);
     const table = screen.getByRole('table');
-    // Таблица лежит внутри div-обёртки (для overflow-x), а не напрямую в .prose.
+    // Таблица обёрнута в div ради overflow-x, так что в .prose она не напрямую.
     expect(table.parentElement?.tagName).toBe('DIV');
   });
 

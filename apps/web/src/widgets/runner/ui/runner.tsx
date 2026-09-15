@@ -9,9 +9,8 @@ import type { RunnerProject } from '../model/runner-context';
 import { RunnerView, type RunnerWindowState } from './runner-view';
 
 /**
- * Открытый раннер: владеет размером окна. Монтируется, только пока проект
- * запущен, поэтому каждый запуск начинает с обычного размера, а закрытие
- * сбрасывает состояние окна.
+ * Монтируется только на время запуска, поэтому каждый проект открывается в обычном
+ * размере окна.
  */
 function RunnerSession({
   project,
@@ -24,8 +23,8 @@ function RunnerSession({
   const { notify } = useToaster();
   const [windowState, setWindowState] = useState<RunnerWindowState>('normal');
 
-  // Проект не загрузился (переехал/офлайн) — тост-уведомление рядом с bash-ошибкой
-  // в самом окне. Окно оставляем открытым: пользователь закроет его сам.
+  // Проект не загрузился: кроме ошибки в окне показываем тост. Окно не закрываем,
+  // пусть пользователь сделает это сам.
   const handleError = useCallback(() => {
     notify({
       type: 'error',
@@ -49,14 +48,10 @@ function RunnerSession({
   );
 }
 
-/**
- * Контейнер раннера: по глобальному состоянию (`useRunner`) решает, запущен ли
- * проект, и монтирует сессию с оверлеем. Запуск приходит из карточки/детали
- * проекта или консоли. Монтируется один раз в корневом лейауте.
- */
+/** Монтируется один раз в корневом лейауте и открывает окно, когда что-то запущено. */
 export function Runner() {
   const { project, close } = useRunner();
   if (project === null) return null;
-  // key по URL — смена проекта пересоздаёт сессию (обычный размер + перезагрузка iframe).
+  // key по URL: новый проект получает свежую сессию с обычным размером и новым iframe.
   return <RunnerSession key={project.embedUrl} project={project} onClose={close} />;
 }

@@ -9,7 +9,7 @@ import type {
   UpdateTechnology,
 } from '../model/types';
 
-// Технологии — англоязычные термины, одинаковы в обеих локалях. Категория
+// Технологии называются по-английски и в обеих локалях одинаковы. Категория
 // (Frontend/Backend/Tooling) курируется на сервере и задаёт группировку.
 const BY_CATEGORY: Record<string, readonly string[]> = {
   Frontend: ['React', 'Vue 3', 'Next.js', 'TypeScript', 'SCSS', 'Tailwind'],
@@ -27,12 +27,12 @@ function buildInitial(): TechnologyAdmin[] {
   return result;
 }
 
-// Общее состояние: и публичный список, и админ-CRUD читают/пишут его, поэтому
-// правки в кабинете сразу видны на публичном стеке (как на реальном бэкенде).
+// Публичный список и админ-CRUD работают с одним состоянием, чтобы правки из кабинета
+// сразу были видны в публичном стеке, как с реальным бэкендом.
 let technologies: TechnologyAdmin[] = buildInitial();
 let nextId = technologies.length;
 
-/** Сбрасывает технологии мока — для изоляции тестов. */
+/** Сбрасывает технологии мока, чтобы тесты не зависели друг от друга. */
 export function resetMockTechnologies(): void {
   technologies = buildInitial();
   nextId = technologies.length;
@@ -44,16 +44,14 @@ const toPublic = (tech: TechnologyAdmin): Technology => ({
   category: tech.category,
 });
 
-/** Фикстуры технологий для тестов и историй. */
 export const mockTechnologies: Technology[] = buildInitial().map(toPublic);
 export const mockTechnologiesAdmin: TechnologyAdmin[] = buildInitial();
 
-/** Публичный MSW-обработчик технологий (не локализуются). */
+/** Технологии не локализуются, локаль не нужна. */
 export const technologyHandlers = [
   http.get(`${env.apiBaseUrl}/technologies`, () => HttpResponse.json(technologies.map(toPublic))),
 ];
 
-/** Админ MSW-обработчики технологий: список + CRUD над общим состоянием. */
 export const technologyAdminHandlers = [
   http.get(`${env.apiBaseUrl}/technologies/admin`, () =>
     HttpResponse.json([...technologies].sort((a, b) => a.order - b.order)),

@@ -6,18 +6,14 @@ import type { ProjectTileData } from '@/entities/project';
 import { pickText, type ProjectFormValues } from './project-form';
 
 interface PreviewFallbacks {
-  /** Что показать вместо пустого названия, пока его не ввели. */
+  /** Показывается, пока название не введено. */
   readonly title: string;
-  /** Что показать вместо пустого краткого описания. */
   readonly description: string;
 }
 
 /**
- * Собирает данные плитки из живого черновика формы: id технологий и коллабораторов
- * разрешаются в их названия по каталогам, пустые поля подменяются заглушками.
- *
- * Вынесено в модель, чтобы соответствие «поле формы → плитка» можно было проверить
- * тестом, не рендеря форму целиком.
+ * Собирает плитку из черновика формы. Лежит в модели, чтобы превью можно было проверить
+ * тестом, не рендеря всю форму.
  */
 export function formToTile(
   values: ProjectFormValues,
@@ -26,8 +22,8 @@ export function formToTile(
   locale: AppLanguage,
   fallbacks: PreviewFallbacks,
 ): ProjectTileData {
-  // Порядок — каталожный (глобальный `order`), а не порядок кликов: в нём же технологии
-  // и участники идут на публичной плитке, поэтому превью совпадает с сайтом.
+  // Берём порядок каталога, а не порядок кликов: так же технологии и участники идут на
+  // публичной плитке, и превью совпадает с сайтом.
   const technologyNames = technologies
     .filter((technology) => values.technologyIds.includes(technology.id))
     .map((technology) => technology.name);

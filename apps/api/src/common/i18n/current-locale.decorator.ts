@@ -4,15 +4,13 @@ import type { Request } from 'express';
 
 import { DEFAULT_LOCALE, LOCALES, type Locale } from './locale.types';
 
-// Извлекает локаль из первого языкового тега заголовка Accept-Language
-// (`en-US,en;q=0.9` → `en`), если он входит в список поддерживаемых.
+// Смотрим только на первый тег: из `en-US,en;q=0.9` получится `en`.
 function localeFromHeader(header: string | undefined): Locale | undefined {
   const tag = header?.split(',')[0]?.split(';')[0]?.split('-')[0]?.trim().toLowerCase();
   return LOCALES.includes(tag as Locale) ? (tag as Locale) : undefined;
 }
 
-// Определяет локаль ответа: приоритет у явного `?locale=`, затем заголовок
-// `Accept-Language` (его шлёт фронтенд через withLocale), иначе — ru по умолчанию.
+// `?locale=` важнее заголовка. Сам фронтенд шлёт Accept-Language через withLocale.
 export const CurrentLocale = createParamDecorator(
   (_data: unknown, ctx: ExecutionContext): Locale => {
     const request = ctx.switchToHttp().getRequest<Request>();

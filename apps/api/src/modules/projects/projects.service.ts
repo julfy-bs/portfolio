@@ -70,7 +70,7 @@ export class ProjectsService {
     return toProjectDetail(project, locale);
   }
 
-  // --- admin ---
+  // Админка
 
   async listAdmin(): Promise<ProjectAdminDto[]> {
     const projects = await this.prisma.project.findMany({
@@ -132,8 +132,7 @@ export class ProjectsService {
   }
 
   async update(id: string, dto: UpdateProjectDto): Promise<ProjectAdminDto> {
-    // Текущее значение нужно для мёржа локализованных полей: патч одной локали
-    // не должен затирать вторую (см. mergeText/mergeList).
+    // Текущий проект нужен, чтобы патч одной локали не затёр вторую.
     const current = await this.load(id);
     if (dto.slug !== undefined) await this.assertSlugFree(dto.slug, id);
     await this.assertRelations(dto.primaryLanguageId, dto.technologyIds, dto.contributorIds);
@@ -152,7 +151,7 @@ export class ProjectsService {
     if (dto.role !== undefined) data.role = mergeText(current.role, dto.role);
     if (dto.category !== undefined) data.category = dto.category;
     if (dto.period !== undefined) data.period = dto.period;
-    // Пустая строка из формы = «убрать цвет» → null (плитка станет нейтральной).
+    // Пустой цвет из формы сбрасываем в null, и плитка становится нейтральной.
     if (dto.tileColor !== undefined) data.tileColor = dto.tileColor || null;
     if (dto.links !== undefined) data.links = writeProjectLinks(dto.links);
     if (dto.runnable !== undefined) data.runnable = dto.runnable;
@@ -184,8 +183,7 @@ export class ProjectsService {
     await this.prisma.project.delete({ where: { id } });
   }
 
-  // Возвращает проект или бросает 404. Строку переиспользуют мёрж локалей в
-  // update и проверка существования в remove — вместо двух запросов.
+  // Бросает 404. Возвращает строку, чтобы update мог смёржить локали без второго запроса.
   private async load(id: string): Promise<Project> {
     const project = await this.prisma.project.findUnique({ where: { id } });
     if (!project) {
@@ -201,7 +199,7 @@ export class ProjectsService {
     }
   }
 
-  // Проверяем, что все переданные связи существуют, — иначе осмысленный 400 вместо 500.
+  // Без этой проверки несуществующий id упадёт в Prisma и превратится в 500 вместо 400.
   private async assertRelations(
     primaryLanguageId?: string,
     technologyIds?: string[],

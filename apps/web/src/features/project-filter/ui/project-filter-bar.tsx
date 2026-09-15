@@ -10,15 +10,11 @@ import styles from './project-filter-bar.module.css';
 
 interface ProjectFilterBarProps {
   readonly filter: ProjectFilter;
-  /** Пока проекты грузятся — фасеты показывают скелетон-чипы. */
+  /** Пока проекты грузятся, в фасетах скелетоны. */
   readonly isLoading?: boolean;
 }
 
-/**
- * Панель поиска и фильтров списка проектов: строка поиска (по названию/описанию)
- * и фасеты технологий/контрибьюторов на переключаемых чипах. Управляемая —
- * состояние живёт в контроллере `useProjectFilter`. Фасет без опций не рендерим.
- */
+/** Управляемая панель, состояние живёт в `useProjectFilter`. Фасет без опций не рендерим. */
 export function ProjectFilterBar({ filter, isLoading }: ProjectFilterBarProps) {
   const { t } = useTranslation();
 
@@ -48,7 +44,7 @@ export function ProjectFilterBar({ filter, isLoading }: ProjectFilterBarProps) {
         label={t('projects.sort.label')}
         value={filter.sortKey}
         onChange={(event) => {
-          // Значение всегда из PROJECT_SORT_KEYS — находим ключ без приведения типа.
+          // Значение всегда из PROJECT_SORT_KEYS, поэтому ключ находим без приведения типа.
           const key = PROJECT_SORT_KEYS.find((candidate) => candidate === event.target.value);
           if (key) filter.setSortKey(key);
         }}

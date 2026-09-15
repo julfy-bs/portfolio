@@ -20,7 +20,7 @@ function renderNavbar(props: Partial<Parameters<typeof Navbar>[0]> = {}) {
 describe('Navbar', () => {
   it('рендерит бренд-ссылку на главную', () => {
     renderNavbar();
-    // Доступное имя = «<бренд> — На главную» (видимый бренд включён для WCAG 2.5.3).
+    // Видимый бренд входит в доступное имя ссылки, этого требует WCAG 2.5.3.
     expect(screen.getByRole('link', { name: /На главную/ })).toHaveAttribute('href', '/');
   });
 

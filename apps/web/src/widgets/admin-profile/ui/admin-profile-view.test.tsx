@@ -54,7 +54,7 @@ describe('AdminProfileView', () => {
       name: { ru: 'Новое Имя' },
       roleTitle: { ru: 'Fullstack-разработчик' },
     });
-    // Второй аргумент — URL контактов Telegram/GitHub (отдельный ресурс).
+    // Контакты Telegram и GitHub на бэке отдельный ресурс, поэтому идут вторым аргументом.
     expect(onSave.mock.calls[0]?.[1]).toMatchObject({
       telegram: 'https://t.me/sutuzhko',
       github: 'https://github.com/sutuzhko',

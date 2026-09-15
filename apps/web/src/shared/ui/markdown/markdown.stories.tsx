@@ -42,12 +42,12 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Полный набор: заголовки, ссылки, код, списки, таск-листы, зачёркивание и таблица. */
+/** Заголовки, ссылки, код, списки, таск-листы, зачёркивание и таблица. */
 export const Playground: Story = {
   name: 'Все возможности',
 };
 
-/** GFM-таблица — главная причина плагина remark-gfm. */
+/** Ради таблиц в первую очередь и подключён remark-gfm. */
 export const Table: Story = {
   name: 'Таблица',
   args: {
@@ -71,7 +71,7 @@ export const WideTable: Story = {
   },
 };
 
-// Перехват «вики-ссылки» — демонстрация расширения через `components` (как в БЗ).
+// Так же через `components` база знаний подменяет ссылки на свои вики-ссылки.
 const wikiComponents: Components = {
   a: ({ node: _node, children, ...props }) => (
     <a {...props} target="_blank" rel="noopener noreferrer">
@@ -80,7 +80,6 @@ const wikiComponents: Components = {
   ),
 };
 
-/** Переопределение рендереров через проп `components`. */
 export const CustomComponents: Story = {
   name: 'Кастомные рендереры',
   args: {

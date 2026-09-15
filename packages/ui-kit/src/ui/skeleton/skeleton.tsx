@@ -9,14 +9,14 @@ export interface SkeletonProps {
   readonly width?: string;
   /** Высота блока (любое CSS-значение). */
   readonly height?: string;
-  /** Радиус скругления; по умолчанию — токен --radius-sm. */
+  /** Радиус скругления, по умолчанию --radius-sm. */
   readonly radius?: string;
   readonly className?: string;
 }
 
 /**
- * Базовый плейсхолдер загрузки. Декоративен: скрыт от скринридеров,
- * а статус загрузки сообщает контейнер данных через aria-busy/aria-live.
+ * Плейсхолдер загрузки. Скрыт от скринридеров: о загрузке сообщает контейнер данных
+ * через aria-busy или aria-live.
  */
 export function Skeleton({ width, height, radius, className }: SkeletonProps) {
   const style: CSSProperties = { width, height, borderRadius: radius };

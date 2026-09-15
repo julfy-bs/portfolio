@@ -18,13 +18,8 @@ import { ErrorState } from '@sutuzhko/ui-kit';
 import { AdminProfileView, type ProfileContacts } from './admin-profile-view';
 import { AdminProfileSkeleton } from './admin-profile-skeleton';
 
-/**
- * Контейнер вкладки «Профиль»: тянет админ-профиль (обе локали), сохраняет через
- * `PATCH /api/profile` с тостом об успехе/ошибке. Инвалидация тегов обновляет и
- * публичные экраны.
- */
 export interface AdminProfileProps {
-  /** Локаль редактирования из маршрута. */
+  /** Берётся из маршрута. */
   readonly locale: AppLanguage;
 }
 
@@ -48,8 +43,7 @@ export function AdminProfile({ locale }: AdminProfileProps) {
     return url;
   };
 
-  // Синк одного контакта по иконке: PATCH существующего или POST нового; пустой
-  // URL не трогаем (удаление контактов — в отдельном UI, вне профиля).
+  // Пустой URL не значит удаление: контакты удаляются в другом месте, не в профиле.
   const syncContact = async (
     contacts: readonly AdminContactLink[],
     icon: string,
@@ -67,7 +61,6 @@ export function AdminProfile({ locale }: AdminProfileProps) {
 
   const onSave = async (update: UpdateProfile | null, contacts: ProfileContacts): Promise<void> => {
     try {
-      // PATCH /profile — только если менялись поля профиля; контакты — по каждому URL.
       if (update !== null) await updateProfile(update).unwrap();
       if (profile) {
         await syncContact(profile.contacts, 'telegram', contacts.telegram);
@@ -89,8 +82,8 @@ export function AdminProfile({ locale }: AdminProfileProps) {
 
   return (
     <AdminProfileView
-      // Ремонтируем форму при смене языка И после сохранения (рефетч меняет профиль →
-      // ключ по содержимому пересобирает форму чистой, скрывая бар сохранения).
+      // Форма монтируется заново при смене языка и после сохранения: рефетч меняет профиль,
+      // вместе с ним меняется ключ, и бар сохранения прячется.
       key={`${locale}:${JSON.stringify(profile)}`}
       profile={profile}
       locale={locale}

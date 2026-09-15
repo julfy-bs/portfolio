@@ -4,7 +4,6 @@ import styles from './admin-projects.module.css';
 
 const ROWS = [0, 1, 2, 3];
 
-/** Скелетон списка проектов на время загрузки. */
 export function AdminProjectsSkeleton() {
   return (
     <div className={styles.card} aria-busy="true" aria-live="polite">

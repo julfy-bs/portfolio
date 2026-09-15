@@ -8,11 +8,7 @@ import { firstArticleSlug } from '../model/first-article';
 
 import { DatabasePageView } from './database-page-view';
 
-/**
- * Контейнер базы знаний: держит выбранную статью (по slug), тянет дерево и саму
- * статью, оркеструет переходы (клик по дереву, вики-ссылке, бэклинку). При первой
- * загрузке дерева автоматически открывает первую статью — экран не пустует.
- */
+/** При первой загрузке дерева сразу открываем первую статью, чтобы экран не был пустым. */
 export function DatabasePage() {
   const navigate = useNavigate();
   const {

@@ -6,25 +6,24 @@ import { Avatar, MenuItem } from '@sutuzhko/ui-kit';
 import styles from './profile-menu.module.css';
 
 export interface ProfileMenuViewProps {
-  /** Текущий пользователь или `undefined` для гостя. */
+  /** `undefined` для гостя. */
   readonly user: AuthUser | undefined;
-  /** Аватар из профиля (фото/цвет/имя для инициалов). До загрузки — undefined. */
+  /** Аватар из профиля, до его загрузки undefined. */
   readonly avatarName?: string;
   readonly avatarPhotoUrl?: string | null;
   readonly avatarColor?: string | null;
-  /** Идёт выход — блокируем повторное нажатие. */
+  /** Пока идёт выход, повторно нажать нельзя. */
   readonly isSigningOut?: boolean;
   readonly onSignIn: () => void;
-  /** Открыть приватный раздел (база знаний) — основное действие. */
+  /** Переход в базу знаний, основное действие меню. */
   readonly onOpenSection: () => void;
   readonly onOpenAdmin: () => void;
   readonly onSignOut: () => void;
 }
 
 /**
- * Презентационное содержимое меню профиля: гость видит «Войти», вошедший —
- * карточку пользователя и «Выйти». Рендерится внутри оверлея-меню навбара, поэтому
- * возвращает только пункты (без обёртки). Аватар декоративен — имя рядом текстом.
+ * Возвращает только пункты без обёртки, потому что рендерится внутри меню навбара.
+ * Аватар декоративный, имя стоит рядом текстом.
  */
 export function ProfileMenuView({
   user,
@@ -51,8 +50,7 @@ export function ProfileMenuView({
     <>
       <div className={styles.card}>
         <span aria-hidden="true">
-          {/* Аватар из профиля: загруженное фото или инициалы имени на выбранном цвете.
-              До загрузки профиля — инициалы логина как запасной вариант. */}
+          {/* Пока профиль не загрузился, показываем инициалы логина. */}
           <Avatar
             name={avatarName ?? user.username}
             src={avatarPhotoUrl ?? null}

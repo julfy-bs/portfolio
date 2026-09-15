@@ -18,8 +18,8 @@ export interface SegmentedProps<V extends string> {
 }
 
 /**
- * Сегментированный контрол (RU/EN, Dark/Light, edit/preview).
- * Семантика radiogroup: стрелки переключают сегменты, активный — в табуляции.
+ * Сегментированный контрол (RU/EN, Dark/Light, edit/preview) с семантикой radiogroup: стрелки
+ * переключают сегменты, в порядке табуляции только активный.
  */
 export function Segmented<V extends string>({
   options,

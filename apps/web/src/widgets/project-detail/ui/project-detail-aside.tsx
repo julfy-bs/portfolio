@@ -11,16 +11,12 @@ interface ProjectDetailAsideProps {
   readonly technologies: readonly string[];
   readonly contributors: readonly ProjectContributor[];
   readonly links: readonly ProjectLink[];
-  /** Обработчик запуска проекта — кнопка «▶ Запустить» рисуется только когда он есть. */
+  /** Кнопка запуска рисуется, только если передан обработчик. */
   readonly onRun?: () => void;
   readonly runHint: string | null;
 }
 
-/**
- * Боковая карточка детали: кнопка запуска (для runnable-проектов), роль, период,
- * стек, команда и внешние ссылки. Колонка залипающая (`position: sticky`), поэтому
- * кнопка «▶ Запустить» остаётся на виду при прокрутке длинного описания.
- */
+/** Сайдбар сделан sticky, чтобы кнопка запуска не терялась при прокрутке длинного описания. */
 export function ProjectDetailAside({
   role,
   period,
@@ -64,7 +60,7 @@ export function ProjectDetailAside({
             <div className={styles.metaLabel}>{t('project.team')}</div>
             <ul className={styles.team}>
               {contributors.map((person) => {
-                // Аватар + имя одинаковы для ссылки и обычной строки — не дублируем.
+                // Аватар и имя одинаковы для ссылки и обычной строки, выносим их один раз.
                 const body = (
                   <>
                     <Avatar name={person.name} src={person.image} color={person.color} size={28} />
@@ -112,7 +108,7 @@ export function ProjectDetailAside({
         </div>
       ) : null}
 
-      {/* Запуск — внизу: кнопка есть не у всех проектов, снизу она не сдвигает карточку. */}
+      {/* Кнопка запуска есть не у всех проектов, внизу она не сдвигает остальное. */}
       {onRun ? (
         <div className={styles.runBar}>
           <Button variant="primary" onClick={onRun}>

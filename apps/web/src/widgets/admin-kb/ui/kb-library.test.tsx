@@ -66,7 +66,7 @@ describe('KbLibrary', () => {
     if (!firstMenu) throw new Error('нет кнопки меню узла');
     await userEvent.click(firstMenu);
     await userEvent.click(screen.getByRole('menuitem', { name: 'Переименовать' }));
-    // Коммитим без изменения значения — мутация не должна уйти.
+    // Подтверждаем, ничего не меняя: мутация уйти не должна.
     await userEvent.click(screen.getByRole('button', { name: 'Переименовать' }));
     expect(props.onRenameFolder).not.toHaveBeenCalled();
   });

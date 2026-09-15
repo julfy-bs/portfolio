@@ -6,18 +6,16 @@ import styles from './page-intro.module.css';
 
 export interface PageIntroProps {
   /**
-   * Текст интро с бэкенда. `undefined` — ещё грузится (скелетон),
-   * `null` — интро нет (ничего не рендерим), строка — показываем абзац.
+   * Текст с бэкенда: `undefined` пока грузится (скелетон), `null` если интро нет,
+   * строка рендерится абзацем.
    */
   readonly intro?: string | null;
   readonly className?: string;
 }
 
 /**
- * Интро-абзац под заголовком экрана (Projects/Experience/Contact). Текст —
- * серверное поле профиля, поэтому пока грузится, вместо него скелетон из двух
- * строк, повторяющий высоту абзаца (без скачка вёрстки). Собран из UI Kit
- * (`Text` + `Skeleton`).
+ * Интро-абзац под заголовком экрана. Текст приходит с сервера, поэтому до загрузки на его месте
+ * скелетон той же высоты, чтобы вёрстка не прыгала.
  */
 export function PageIntro({ intro, className }: PageIntroProps) {
   if (intro === null) return null;

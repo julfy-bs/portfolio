@@ -8,15 +8,13 @@ interface HeroActionsProps {
   readonly onDownloadCv: () => void;
   readonly onProjects: () => void;
   readonly onContact: () => void;
-  /** Показывать CTA «Проекты» (скрыт, если страница проектов выключена). */
+  /** false, если страница проектов выключена. */
   readonly showProjects?: boolean;
-  /** Показывать CTA «Связаться» (скрыт, если страница контактов выключена). */
+  /** false, если страница контактов выключена. */
   readonly showContact?: boolean;
 }
 
-/** CTA-кнопки героя: скачать CV, перейти к проектам, к контактам. Это действия
- * (не данные), поэтому доступны сразу, без скелетона. Ссылки на выключенные
- * страницы не показываем. */
+/** Кнопки не зависят от данных, поэтому скелетона у них нет. */
 export function HeroActions({
   onDownloadCv,
   onProjects,

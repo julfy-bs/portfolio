@@ -24,7 +24,6 @@ import { SortableCategory } from './sortable-category';
 import { SortableChip } from './sortable-chip';
 import styles from './admin-stack.module.css';
 
-/** Дифф, собранный видом для пакетного сохранения. */
 export interface StackDiff {
   readonly techCategories: readonly TechCategory[];
   readonly chips: readonly TechChip[];
@@ -36,26 +35,19 @@ export interface StackDiff {
 }
 
 export interface AdminStackViewProps {
-  /** Категории технологий (редактируемые заголовки блоков). */
   readonly techCategories: readonly TechCategory[];
-  /** Технологии-чипы (привязаны к категориям по `categoryKey`). */
+  /** Связаны с категориями через `categoryKey`. */
   readonly chips: readonly TechChip[];
-  /** Строки языков из админ-данных. */
   readonly langRows: readonly LangRow[];
-  /** Навыки-чипы (плоский список без категорий). */
+  /** У навыков категорий нет, это плоский список. */
   readonly skillChips: readonly SkillChip[];
   readonly isBusy: boolean;
   readonly onSave: (diff: StackDiff) => void;
 }
 
 /**
- * Вид вкладки «Стек и языки» — прямое редактирование:
- * — заголовок категории переименовывается по карандашу (появляется при наведении);
- * — технология добавляется чип-кнопкой «+» в блоке → пустой инлайн-чип;
- * — новый блок-категория добавляется «+» у заголовка «Технологии»;
- * — навыки устроены так же (плоский блок без категорий);
- * — языки — редактируемые строки.
- * Всё копится локально и уходит одним «Сохранить» — контейнер считает разницу.
+ * Вкладка «Стек и языки» редактируется прямо на месте: категории переименовываются по
+ * карандашу, чипы добавляются инлайн. Все правки копятся локально до сохранения.
  */
 export function AdminStackView({
   techCategories: initialCategories,
@@ -73,13 +65,13 @@ export function AdminStackView({
   const [deletedTechIds, setDeletedTechIds] = useState<string[]>([]);
   const [deletedLangIds, setDeletedLangIds] = useState<string[]>([]);
   const [deletedSkillIds, setDeletedSkillIds] = useState<string[]>([]);
-  // Ключ чипа (технологии ИЛИ навыка), который сейчас вводится инлайн.
+  // Одно поле на технологии и навыки: инлайн вводится только один чип за раз.
   const [editingChipKey, setEditingChipKey] = useState<string | null>(null);
-  // Категория в режиме переименования + черновик её имени (имя не меняем до коммита).
+  // Имя категории держим в черновике, чтобы не менять его до подтверждения.
   const [editingCategoryKey, setEditingCategoryKey] = useState<string | null>(null);
   const [categoryDraft, setCategoryDraft] = useState('');
 
-  /* ---- категории ---- */
+  // Категории
   const addCategory = (): void => {
     const category = newTechCategory();
     setCategories((prev) => [...prev, category]);
@@ -102,22 +94,22 @@ export function AdminStackView({
     if (name !== '') {
       setCategories((prev) => prev.map((c) => (c.key === category.key ? { ...c, name } : c)));
     } else if (!chips.some((chip) => chip.categoryKey === category.key)) {
-      // Пустое имя у категории без чипов — просто убираем её (новый пустой блок).
+      // Категорию без имени и без чипов хранить незачем, убираем.
       setCategories((prev) => prev.filter((c) => c.key !== category.key));
     }
     closeRename();
   };
 
   const cancelCategory = (category: TechCategory): void => {
-    // Новую (ещё не названную) категорию без чипов отменой убираем.
+    // Отмена на только что добавленной пустой категории убирает её совсем.
     if (category.name === '' && !chips.some((chip) => chip.categoryKey === category.key)) {
       setCategories((prev) => prev.filter((c) => c.key !== category.key));
     }
     closeRename();
   };
 
-  // Удаление блока целиком: его сохранённые технологии уходят в deleted (на сейве
-  // будут удалены), локально блок и его чипы исчезают. Обратимо до «Сохранить».
+  // Сохранённые технологии блока запоминаем для удаления на сейве, так что до сохранения
+  // всё ещё можно отменить.
   const deleteCategory = (category: TechCategory): void => {
     const savedIds = chips
       .filter((chip) => chip.categoryKey === category.key && chip.id !== null)
@@ -128,7 +120,7 @@ export function AdminStackView({
     if (editingCategoryKey === category.key) closeRename();
   };
 
-  /* ---- чипы технологий ---- */
+  // Технологии
   const addTechChip = (categoryKey: string): void => {
     const chip = newTechChip(categoryKey);
     setChips((prev) => [...prev, chip]);
@@ -156,11 +148,9 @@ export function AdminStackView({
     setChips((prev) => prev.filter((item) => item.key !== chip.key));
   };
 
-  // Одни сенсоры на все списки (блоки, чипы каждой категории, навыки).
   const sensors = useSortableSensors();
 
-  // Перенос блока-категории: меняем порядок категорий (плоский `Technology.order`
-  // пересчитает контейнер на сохранении).
+  // Здесь меняем только порядок категорий, плоский `Technology.order` пересчитает контейнер.
   const onCategoryDragEnd = (event: DragEndEvent): void => {
     const { active, over } = event;
     if (over === null || active.id === over.id) return;
@@ -171,8 +161,7 @@ export function AdminStackView({
     });
   };
 
-  // Перенос чипа технологии — внутри своей категории (у каждой колонки свой DndContext,
-  // поэтому цель всегда из той же категории). Reorder блоков — отдельная ручка на заголовке.
+  // У каждой колонки свой DndContext, так что чип переносится только внутри своей категории.
   const onChipDragEnd = (event: DragEndEvent): void => {
     const { active, over } = event;
     if (over === null || active.id === over.id) return;
@@ -195,7 +184,7 @@ export function AdminStackView({
     });
   };
 
-  /* ---- чипы навыков ---- */
+  // Навыки
   const addSkillChip = (): void => {
     const chip = newSkillChip();
     setSkillChips((prev) => [...prev, chip]);
@@ -223,7 +212,7 @@ export function AdminStackView({
     setSkillChips((prev) => prev.filter((item) => item.key !== chip.key));
   };
 
-  /* ---- языки ---- */
+  // Языки
   const patchLang = (key: string, patch: Partial<LangRow>): void =>
     setLangRows((prev) => prev.map((row) => (row.key === key ? { ...row, ...patch } : row)));
 
@@ -234,7 +223,6 @@ export function AdminStackView({
 
   const addLang = (): void => setLangRows((prev) => [...prev, emptyLangRow()]);
 
-  // Отмена: вернуть все три списка (и служебные состояния) к загруженным.
   const cancel = (): void => {
     setCategories([...initialCategories]);
     setChips([...initialChips]);
@@ -248,7 +236,7 @@ export function AdminStackView({
     setCategoryDraft('');
   };
 
-  // Счётчик правок (для бара «N в диффе») = число мутаций, что уйдут на сохранении.
+  // Счётчик в баре должен совпадать с числом запросов, которые уйдут при сохранении.
   const changeCount = countStackChanges({
     initialCategories,
     initialChips,
@@ -338,10 +326,9 @@ export function AdminStackView({
                           )}
                         </div>
 
-                        {/* Свой DndContext на колонку: чипы сортируются только внутри
-                            своей категории, а клавиатурный reorder не «цепляется» за
-                            чужие блоки/чипы (иначе sortableKeyboardCoordinates ищет цель
-                            среди всех droppable). Reorder блоков — во внешнем DndContext. */}
+                        {/* Отдельный DndContext на колонку нужен для клавиатуры: иначе
+                            sortableKeyboardCoordinates ищет цель среди всех droppable и
+                            чип перескакивает в чужую категорию. */}
                         <DndContext
                           sensors={sensors}
                           collisionDetection={closestCenter}

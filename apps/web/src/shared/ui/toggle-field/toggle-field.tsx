@@ -4,19 +4,14 @@ import { SettingCard } from '../setting-card';
 
 export interface ToggleFieldProps {
   readonly title: string;
-  /** Пояснение под заголовком (опционально). */
   readonly description?: string;
-  /** Ведущая иконка (опционально, напр. `eye-off` для «скрыт»). */
+  /** Например, `eye-off` для скрытой записи. */
   readonly icon?: IconName;
   readonly checked: boolean;
   readonly onCheckedChange: (checked: boolean) => void;
   readonly disabled?: boolean;
 }
 
-/**
- * Карточка-тумблер: `SettingCard` с переключателем справа. Единый вид всех
- * тумблеров админки. Презентационный.
- */
 export function ToggleField({
   title,
   description,

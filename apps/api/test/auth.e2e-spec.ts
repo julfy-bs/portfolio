@@ -120,7 +120,7 @@ describe('Auth (e2e)', () => {
       .send({ currentPassword: password, newPassword })
       .expect(204);
 
-    // Старый пароль больше не подходит, новый — да.
+    // Старый пароль больше не подходит, а новый работает.
     await request(app.getHttpServer())
       .post('/api/auth/login')
       .send({ username, password })

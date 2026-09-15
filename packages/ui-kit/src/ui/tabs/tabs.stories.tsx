@@ -82,7 +82,7 @@ export const WithIcons: Story = {
   },
 };
 
-/** С привязанными панелями: панель — ответственность потребителя. */
+/** С привязанными панелями. Панели рендерит потребитель. */
 export const WithPanels: Story = {
   name: 'С привязанными панелями',
   render: () => {
@@ -106,7 +106,7 @@ export const WithPanels: Story = {
   },
 };
 
-/** Клавиатура: стрелки по кругу, Home/End — к краям. */
+/** Клавиатура: стрелки ходят по кругу, Home и End переводят к краям. */
 export const KeyboardNavigation: Story = {
   name: 'Клавиатурная навигация',
   render: () => {

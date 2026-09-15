@@ -6,16 +6,14 @@ import { Skeleton, Text } from '@sutuzhko/ui-kit';
 import styles from './footer.module.css';
 
 export interface FooterProps {
-  /** Имя владельца для копирайта — данные профиля с бэкенда. */
+  /** Имя владельца из профиля. */
   readonly owner?: string;
   readonly className?: string;
 }
 
 /**
- * Глобальный подвал (макет: `design/redesign` → FOOTER). Слева — копирайт с
- * именем владельца (из профиля), справа — подсказка про консоль. Подсказку с
- * клавиатурным ярлыком показываем только при наличии клавиатуры: на тач-устройствах
- * шорткатов нет — консоль открывается тапом по `>_` в шапке.
+ * Подвал сайта. Подсказку с шорткатом показываем только при наличии клавиатуры: на
+ * тач-устройствах консоль открывается тапом по `>_` в шапке.
  */
 export function Footer({ owner, className }: FooterProps) {
   const year = new Date().getFullYear();

@@ -74,7 +74,7 @@ export const Playground: Story = {
   },
 };
 
-/** Пять ролей рядом — быстрый обзор всех вариантов оформления. */
+/** Все пять вариантов оформления рядом. */
 export const Variants: Story = {
   name: 'Все варианты',
   render: (args) => (
@@ -117,10 +117,7 @@ export const Sizes: Story = {
   ),
 };
 
-/**
- * Исчерпывающая матрица «всё-сразу»: вариант × размер × (обычная / недоступная).
- * Одним взглядом видно каждую комбинацию, которую умеет компонент.
- */
+/** Все комбинации варианта и размера, в обычном и недоступном состоянии. */
 export const Matrix: Story = {
   name: 'Матрица: вариант × размер × состояние',
   parameters: { controls: { disable: true } },
@@ -185,7 +182,7 @@ export const WithIcon: Story = {
   ),
 };
 
-/** Обязательное доступное имя у icon-кнопки: без aria-label иконка «нема» для скринридера. */
+/** У icon-кнопки обязателен aria-label, иначе скринридеру нечего прочитать. */
 export const IconOnlyAccessibleName: Story = {
   name: 'Icon: доступное имя',
   args: { variant: 'icon', children: <Icon name="moon" />, 'aria-label': 'Сменить тему' },
@@ -195,14 +192,14 @@ export const IconOnlyAccessibleName: Story = {
   },
 };
 
-/** На всю ширину контейнера — типовой сабмит формы. */
+/** На всю ширину контейнера, как обычный сабмит формы. */
 export const FullWidth: Story = {
   name: 'Во всю ширину',
   decorators: [(Story) => <div style={{ width: 320 }}>{Story()}</div>],
   args: { fullWidth: true, children: 'Отправить' },
 };
 
-/** Недоступная кнопка не вызывает onClick — проверяем в play. */
+/** Недоступная кнопка не вызывает onClick, это проверяет play. */
 export const Disabled: Story = {
   name: 'Недоступна',
   args: { disabled: true },
@@ -215,7 +212,7 @@ export const Disabled: Story = {
   },
 };
 
-/** Активация с клавиатуры: фокус → Enter и Пробел срабатывают как клик. */
+/** С клавиатуры Enter и Пробел на кнопке в фокусе срабатывают как клик. */
 export const KeyboardActivation: Story = {
   name: 'Активация с клавиатуры',
   play: async ({ canvasElement, args, userEvent }) => {
@@ -229,7 +226,7 @@ export const KeyboardActivation: Story = {
   },
 };
 
-/** Край: длинная подпись — текст переносится/усекается по правилам потребителя, кнопка не ломает раскладку. */
+/** Край: длинная подпись не ломает раскладку, перенос или обрезку задаёт потребитель. */
 export const LongLabel: Story = {
   name: 'Край: длинная подпись',
   decorators: [(Story) => <div style={{ width: 260 }}>{Story()}</div>],
@@ -239,7 +236,7 @@ export const LongLabel: Story = {
   },
 };
 
-/** В контексте: пара CTA (главное + вторичное действие), как в hero. */
+/** В контексте: главное и вторичное действие рядом, как в hero. */
 export const InContext: Story = {
   name: 'В контексте: CTA-пара',
   parameters: { controls: { disable: true } },

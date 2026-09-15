@@ -16,12 +16,11 @@ import { StorageService } from './storage.service';
 
 const PROFILE_ID = 1;
 
-// Больше 10 скриншотов на проект не храним — держим галерею компактной и не даём
-// переполнить диск. Фронт тоже гейтит, но лимит должен жить и на бэке.
+// Чтобы галерея не разрасталась и не забивала диск. Фронт тоже это проверяет,
+// но на него одного полагаться нельзя.
 const MAX_GALLERY_ITEMS = 10;
 
-// Спецификации responsive-форматов галереи (ширина в px). Апскейла нет — sharp
-// не увеличивает изображения меньше указанной ширины.
+// Ширина в px. Картинки уже этой ширины sharp не растягивает.
 const GALLERY_FORMATS: ReadonlyArray<{
   name: 'thumbnail' | 'small' | 'medium' | 'large';
   width: number;
@@ -109,7 +108,7 @@ export class MediaService {
     });
     const url = await this.storage.save(processed.buffer, 'webp');
 
-    // Старые аватары и их файлы убираем — храним только актуальный.
+    // Аватар всегда один, так что старые записи удаляем вместе с файлами.
     const previous = await this.prisma.mediaAsset.findMany({ where: { type: 'AVATAR' } });
     await Promise.all(previous.map((asset) => this.removeFiles(asset)));
     await this.prisma.mediaAsset.deleteMany({ where: { type: 'AVATAR' } });

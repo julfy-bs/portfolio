@@ -160,7 +160,7 @@ export const EmptyFolder: Story = {
   },
 };
 
-/** Клавиатура: ↑↓ по видимым узлам. */
+/** Клавиатура: стрелки вверх и вниз ходят по видимым узлам. */
 export const KeyboardNavigation: Story = {
   name: 'Навигация ↑↓',
   render: () => {
@@ -177,7 +177,7 @@ export const KeyboardNavigation: Story = {
   },
   play: async ({ canvasElement, userEvent }) => {
     const canvas = within(canvasElement);
-    // Имя treeitem включает вложенные узлы — целимся через ярлык → ближайший li.
+    // Имя treeitem включает вложенные узлы, поэтому ищем ярлык и берём ближайший li.
     const first = canvas.getByText('Event loop').closest('li');
     if (!(first instanceof HTMLElement)) {
       throw new Error('Не найден узел дерева');
@@ -188,7 +188,7 @@ export const KeyboardNavigation: Story = {
   },
 };
 
-/** Клавиатура: → раскрывает свёрнутую папку, ← сворачивает. */
+/** Клавиатура: стрелка вправо раскрывает папку, влево сворачивает. */
 export const ExpandCollapse: Story = {
   name: 'Раскрытие ← →',
   render: () => {

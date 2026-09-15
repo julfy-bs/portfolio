@@ -4,21 +4,16 @@ import { initReactI18next } from 'react-i18next';
 
 import { defaultNamespace, fallbackLanguage, resources, supportedLanguages } from './resources';
 
-/** Ключ, под которым выбранный язык сохраняется в localStorage (кэш детектора). */
+/** Сюда же детектор i18next кэширует язык. */
 export const languageStorageKey = 'portfolio.lang';
 
 /**
- * Маркер ЯВНОГО выбора языка пользователем. Детектор i18next кэширует и
- * автоопределённый язык в `languageStorageKey`, поэтому по нему нельзя отличить
- * «гость ничего не выбирал» от «выбрал». Этот ключ ставится только при ручном
- * переключении — по нему гостю показываем язык сайта по умолчанию.
+ * Детектор сохраняет в `languageStorageKey` и автоопределённый язык, так что по нему не
+ * понять, выбирал ли гость язык сам. Этот ключ ставится только при ручном переключении.
  */
 export const languageChoiceKey = 'portfolio.lang.chosen';
 
-/**
- * Конфигурируем единственный экземпляр i18next.
- * Идемпотентно: повторный вызов (Storybook, тесты) не реинициализирует инстанс.
- */
+/** Повторный вызов (Storybook, тесты) вернёт уже настроенный инстанс. */
 export function setupI18n(): typeof i18n {
   if (i18n.isInitialized) {
     return i18n;
@@ -38,7 +33,7 @@ export function setupI18n(): typeof i18n {
         caches: ['localStorage'],
       },
       interpolation: {
-        // React сам экранирует значения — двойное экранирование не нужно.
+        // React и так экранирует значения.
         escapeValue: false,
       },
     });

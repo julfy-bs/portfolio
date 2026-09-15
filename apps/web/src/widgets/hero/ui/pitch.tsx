@@ -3,8 +3,7 @@ import { Skeleton, Text } from '@sutuzhko/ui-kit';
 
 import styles from './hero.module.css';
 
-/** Питч героя — данные профиля (`profile.headline`, локализовано бэкендом).
- * Длинное «обо мне» (`bioMarkdown`) живёт в отдельной секции About. */
+/** Короткий `profile.headline`. Длинное био (`bioMarkdown`) показывает секция About. */
 export function Pitch({ text }: { readonly text: string }) {
   return (
     <div className={styles.pitch}>
@@ -13,7 +12,7 @@ export function Pitch({ text }: { readonly text: string }) {
   );
 }
 
-/** Скелетон питча: три строки-заглушки ≈ высота абзаца питча (3 строки body). */
+/** Три строки заглушек примерно совпадают по высоте с абзацем питча. */
 export function PitchSkeleton() {
   return (
     <div className={cn(styles.pitch, styles.pitchSkeleton)}>

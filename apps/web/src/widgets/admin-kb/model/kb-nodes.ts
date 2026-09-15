@@ -1,36 +1,33 @@
 import type { ArticleStub, DatabaseTree, FolderNode } from '@/entities/kb';
 
-/** Строка-папка в плоском представлении дерева библиотеки. */
 export interface KbFolderRow {
   readonly kind: 'folder';
   readonly id: string;
   readonly label: string;
   readonly depth: number;
-  /** Родитель — чтобы исключить его из целей «Переместить в»; `null` — корень. */
+  /** Нужен, чтобы убрать родителя из вариантов «Переместить в». `null` значит корень. */
   readonly parentId: string | null;
-  /** Число статей прямо в папке (как счётчик в макете). */
+  /** Считаются только статьи прямо в папке, без вложенных. */
   readonly count: number;
   readonly expanded: boolean;
   readonly hasChildren: boolean;
 }
 
-/** Строка-статья в плоском представлении дерева библиотеки. */
 export interface KbArticleRow {
   readonly kind: 'article';
   readonly id: string;
   readonly slug: string;
   readonly label: string;
   readonly depth: number;
-  /** Текущая папка — чтобы исключить её из целей «Переместить в»; `null` — корень. */
+  /** Нужна, чтобы убрать текущую папку из вариантов «Переместить в». `null` значит корень. */
   readonly folderId: string | null;
 }
 
 export type KbRow = KbFolderRow | KbArticleRow;
 
 /**
- * Разворачивает дерево БЗ в плоский список строк для отрисовки: DFS, папки —
- * выше статей (как в дереве файлов). Дети раскрытой папки попадают в список,
- * свёрнутой — нет. `expanded` — множество id раскрытых папок.
+ * Обход в глубину, папки идут перед статьями, как в файловом менеджере. Содержимое
+ * свёрнутых папок в список не попадает.
  */
 export function flattenTree(tree: DatabaseTree, expanded: ReadonlySet<string>): KbRow[] {
   const rows: KbRow[] = [];
@@ -68,14 +65,13 @@ export function flattenTree(tree: DatabaseTree, expanded: ReadonlySet<string>): 
   return rows;
 }
 
-/** Пункт списка папок (для селекта родителя и меню «Переместить в»), с отступом по вложенности. */
 export interface FolderOption {
   readonly id: string;
   readonly label: string;
   readonly depth: number;
 }
 
-/** Все папки плоским списком в порядке дерева, с глубиной — для селектов и перемещения. */
+/** Все папки в порядке дерева, включая свёрнутые. Нужны для селекта родителя и перемещения. */
 export function folderOptions(tree: DatabaseTree): FolderOption[] {
   const options: FolderOption[] = [];
   const walk = (folders: readonly FolderNode[], depth: number): void => {
@@ -88,7 +84,6 @@ export function folderOptions(tree: DatabaseTree): FolderOption[] {
   return options;
 }
 
-/** Всего папок в дереве (включая вложенные) — для подписи в шапке библиотеки. */
 export function countFolders(tree: DatabaseTree): number {
   let total = 0;
   const walk = (folders: readonly FolderNode[]): void => {
@@ -101,7 +96,7 @@ export function countFolders(tree: DatabaseTree): number {
   return total;
 }
 
-/** Ищет id статьи по slug (нужен, когда выбор пришёл по slug — из дерева или вики-ссылки). */
+/** Выбор статьи из дерева или по вики-ссылке приходит по slug, а API нужен id. */
 export function findArticleIdBySlug(tree: DatabaseTree, slug: string): string | null {
   const inList = (list: readonly ArticleStub[]): string | null =>
     list.find((stub) => stub.slug === slug)?.id ?? null;
@@ -117,7 +112,6 @@ export function findArticleIdBySlug(tree: DatabaseTree, slug: string): string | 
   return inList(tree.rootArticles) ?? walk(tree.folders);
 }
 
-/** Всего статей в дереве (в корне и во всех папках) — для подписи в шапке библиотеки. */
 export function countArticles(tree: DatabaseTree): number {
   let total = tree.rootArticles.length;
   const walk = (folders: readonly FolderNode[]): void => {

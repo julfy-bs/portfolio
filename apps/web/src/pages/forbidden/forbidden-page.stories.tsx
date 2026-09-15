@@ -8,7 +8,7 @@ const meta = {
   title: 'Pages/Forbidden',
   component: ForbiddenPage,
   parameters: { layout: 'fullscreen' },
-  // Ссылка «на главную» использует роутер — даём контекст истории.
+  // Ссылка на главную работает через роутер, поэтому нужен его контекст.
   decorators: [
     (Story) => (
       <MemoryRouter>

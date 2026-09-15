@@ -5,9 +5,8 @@ import { routePaths } from '@/shared/config';
 import styles from './server-error-page.module.css';
 
 /**
- * Страница 500 — используется как `errorElement` роутера (ошибка рендера/лоадера
- * маршрута). Ссылка «на главную» — обычная `<a>`: полная перезагрузка сбрасывает
- * ошибочное состояние роутера.
+ * Используется как `errorElement` роутера. Ссылка на главную сделана обычной `<a>`:
+ * полная перезагрузка сбрасывает ошибочное состояние роутера.
  */
 export function ServerErrorPage() {
   const { t } = useTranslation();

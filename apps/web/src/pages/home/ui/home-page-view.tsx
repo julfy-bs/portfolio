@@ -20,8 +20,8 @@ import styles from './home-page.module.css';
 const noop = () => undefined;
 
 /**
- * Видимость секций главной (из настроек сайта). Отсутствующий/`true` флаг —
- * секция показывается; `false` — скрыта. Hero не выключается — это идентичность.
+ * Секция скрыта только при `false`, без флага она видна. Hero выключить нельзя,
+ * без него главная теряет смысл.
  */
 export interface HomeSectionVisibility {
   readonly highlights?: boolean;
@@ -38,15 +38,15 @@ export interface HomePageViewProps {
   readonly githubError?: boolean;
   readonly codewarsStats?: CodewarsStats;
   readonly codewarsError?: boolean;
-  /** Закреплённые проекты для секции «Избранное». */
+  /** Закреплённые проекты для «Избранного». */
   readonly featured?: readonly ProjectListItem[];
   /** Технологии стека (с категориями) для секции «Стек». */
   readonly technologies?: readonly Technology[];
-  /** Видимость секций (из настроек сайта). По умолчанию все показаны. */
+  /** Из настроек сайта, по умолчанию видны все секции. */
   readonly sections?: HomeSectionVisibility;
-  /** Видимость страниц-роутов — скрывает CTA на выключенные страницы. */
+  /** Нужна, чтобы скрыть CTA, ведущие на выключенные страницы. */
   readonly pages?: PageVisibility;
-  /** Профиль грузится — секции с данными профиля под скелетоном. */
+  /** Пока профиль грузится, секции с его данными под скелетоном. */
   readonly isLoading?: boolean;
   readonly isError?: boolean;
   readonly onRetry?: () => void;
@@ -59,12 +59,6 @@ export interface HomePageViewProps {
   readonly onContact?: () => void;
 }
 
-/**
- * Презентационный слой главной: раскладка секций из виджетов. Данные и флаги
- * приходят пропсами — запросы, скролл-шпион и навигацию оркеструет контейнер
- * `HomePage`. Благодаря разделению состояние загрузки (`isLoading`) наглядно
- * управляется в Storybook (видно, как страница ждёт данные с сервера).
- */
 export function HomePageView({
   profile,
   githubStats,
@@ -117,8 +111,8 @@ export function HomePageView({
       {sections?.stack !== false ? (
         <Stack id="stack" technologies={technologies} isLoading={isLoading} />
       ) : null}
-      {/* Пока грузится профиль — держим и карточки статистики в скелетоне,
-          чтобы страница показывала единое состояние загрузки. */}
+      {/* Пока грузится профиль, статистику тоже держим в скелетоне, чтобы страница
+          не загружалась по кускам. */}
       {sections?.activity !== false ? (
         <Activity
           id="activity"
@@ -137,8 +131,8 @@ export function HomePageView({
           showViewExperience={pages?.experience !== false}
         />
       ) : null}
-      {/* Избранное — витрина проектов: и «Все проекты», и плитки ведут на страницы
-          проектов. Если проекты выключены, ссылок быть не должно — скрываем блок. */}
+      {/* И «Все проекты», и плитки ведут на страницы проектов. Если проекты выключены,
+          таких ссылок быть не должно, поэтому блок скрываем. */}
       {sections?.featured !== false && pages?.projects !== false ? (
         <Featured
           id="featured"

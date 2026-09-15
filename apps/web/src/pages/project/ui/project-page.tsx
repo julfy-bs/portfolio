@@ -6,11 +6,6 @@ import { useRunner } from '@/widgets/runner';
 
 import { ProjectPageView } from './project-page-view';
 
-/**
- * Контейнер детали проекта: берёт slug из маршрута, запрашивает проект
- * (`entities/project`, локализованно), навигацию и запуск в раннере, отдаёт
- * `ProjectPageView`.
- */
 export function ProjectPage() {
   const navigate = useNavigate();
   const { open: openRunner } = useRunner();

@@ -8,7 +8,7 @@ interface ProjectDetailBannerProps {
   readonly color?: string | null;
 }
 
-/** Шапка детали проекта: градиентный фон-плитка с названием и подзаголовком. */
+/** Шапка проекта на градиентном фоне. */
 export function ProjectDetailBanner({ title, subtitle, color }: ProjectDetailBannerProps) {
   return (
     <div className={styles.banner}>

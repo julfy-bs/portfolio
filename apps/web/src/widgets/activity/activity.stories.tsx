@@ -61,19 +61,19 @@ export const Playground: Story = {
   },
 };
 
-/** Обе карточки грузятся — независимые скелетоны. */
+/** Обе карточки грузятся, у каждой свой скелетон. */
 export const Loading: Story = {
   name: 'Скелетоны загрузки',
   args: { github: undefined, codewars: undefined },
 };
 
-/** GitHub недоступен (503) — карточка деградирует в фолбэк, соседняя работает. */
+/** GitHub отвечает 503: карточка показывает фолбэк, соседняя работает. */
 export const GithubUnavailable: Story = {
   name: 'GitHub недоступен',
   args: { github: undefined, githubError: true },
 };
 
-/** Codewars недоступен — независимая деградация второй карточки. */
+/** Codewars недоступен, GitHub при этом работает. */
 export const CodewarsUnavailable: Story = {
   name: 'Codewars недоступен',
   args: { codewars: undefined, codewarsError: true },

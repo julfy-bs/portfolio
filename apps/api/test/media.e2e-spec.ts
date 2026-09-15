@@ -8,8 +8,8 @@ import { App } from 'supertest/types';
 
 import { AppModule } from './../src/app.module';
 
-// e2e медиа-загрузки (Фаза 4). Требует поднятую и засеянную БД (`pnpm backend:seed`).
-// Реально гоняет sharp на сгенерированном изображении.
+// Нужна поднятая и засеянная БД (`pnpm backend:seed`). sharp здесь не мокается,
+// картинку генерируем прямо в тесте.
 describe('Media upload (e2e)', () => {
   let app: INestApplication<App>;
 
@@ -96,7 +96,7 @@ describe('Media upload (e2e)', () => {
     expect(asset.mime).toBe('image/png');
     expect(asset.alt).toEqual({ ru: 'Скриншот', en: 'Screenshot' });
     expect(asset.formats.thumbnail?.width).toBe(160);
-    // large не апскейлит — остаётся шириной оригинала
+    // оригинал уже ширины large, растягивать его не должны
     expect(asset.formats.large?.width).toBe(1200);
 
     // появляется в галерее проекта

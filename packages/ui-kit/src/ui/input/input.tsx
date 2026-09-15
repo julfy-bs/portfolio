@@ -8,7 +8,7 @@ import styles from './input.module.css';
 export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'id'> {
   readonly label?: ReactNode;
   readonly hint?: ReactNode;
-  /** Текст ошибки. Если задан — поле помечается невалидным. */
+  /** Текст ошибки. Если задан, поле помечается невалидным. */
   readonly error?: ReactNode;
   readonly invalid?: boolean;
   /** Стиль подписи; по умолчанию терминальный `mono`. */

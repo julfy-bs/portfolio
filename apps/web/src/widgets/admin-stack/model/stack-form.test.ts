@@ -33,7 +33,7 @@ const baseArgs = {
 
 describe('planTechOrders', () => {
   it('удаление не перенумеровывает соседей — их order сохраняется', () => {
-    // React удалён: оставшиеся Vue(1)/Next(2) идут по возрастанию — план их не трогает.
+    // React удалили, а Vue(1) и Next(2) и так идут по порядку, трогать их не нужно.
     const plan = planTechOrders(categories, [chips[1], chips[2]]);
     expect(plan.get('v')).toBe(1);
     expect(plan.get('n')).toBe(2);
@@ -48,14 +48,14 @@ describe('planTechOrders', () => {
   });
 
   it('перенос последнего чипа в начало меняет порядок ТОЛЬКО у него (без каскада)', () => {
-    // React(0)/Vue(1)/Next(2) → Next в начало: [Next(2), React(0), Vue(1)].
+    // Было React(0), Vue(1), Next(2), переносим Next в начало.
     const moved = [chips[2], chips[0], chips[1]];
     const plan = planTechOrders(categories, moved);
-    // Якоря React/Vue сохраняют свой order; сдвинулся только Next (получил дробную позицию < 0).
+    // React и Vue остаются на месте, Next получает дробную позицию меньше нуля.
     expect(plan.get('r')).toBe(0);
     expect(plan.get('v')).toBe(1);
     expect(plan.get('n')).toBeLessThan(0);
-    // Ровно один чип поменял order → один PATCH, а не перенумерация всех.
+    // Поменялся порядок у одного чипа, значит и запрос должен быть один.
     const changed = [chips[2], chips[0], chips[1]].filter((c) => plan.get(c.key) !== c.order);
     expect(changed).toHaveLength(1);
   });

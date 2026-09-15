@@ -96,7 +96,7 @@ export const Disabled: Story = {
   args: { disabled: true },
 };
 
-/** Край: длинный список опций — прокрутка нативного пикера. */
+/** Край: длинный список опций прокручивается в нативном пикере. */
 export const ManyOptions: Story = {
   name: 'Край: много опций',
   render: (args) => (

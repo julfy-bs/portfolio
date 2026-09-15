@@ -16,10 +16,7 @@ interface CodewarsCardProps {
   readonly isError?: boolean;
 }
 
-/**
- * Карточка Codewars: бренд, бейдж ранга (kyu), метрики чести/ката/лидерборда и
- * прогресс до следующего ранга. Цвет ранга — по официальной палитре (`kyuColor`).
- */
+/** Карточка Codewars: бейдж ранга, метрики и прогресс до следующего ранга. */
 export function CodewarsCard({ data, isError }: CodewarsCardProps) {
   const { t } = useTranslation();
   const format = useNumberFormat();

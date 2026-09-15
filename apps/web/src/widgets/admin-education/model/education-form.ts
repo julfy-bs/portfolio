@@ -8,8 +8,8 @@ import type { AppLanguage } from '@/shared/config';
 import { isoToMonthInput, monthInputToIso } from '@/shared/lib';
 
 /**
- * Строка редактора образования (всегда редактируемая; `id: null` — новая запись).
- * Даты — значения `<input type="month">` (YYYY-MM, пустая строка — не задана).
+ * `id: null` у новой записи. Даты хранятся как значения `<input type="month">` в формате
+ * YYYY-MM, пустая строка значит, что дата не задана.
  */
 export interface EducationRow {
   readonly key: string;
@@ -26,46 +26,41 @@ const ERROR_KEYS = {
   endBeforeStart: 'admin.education.errors.endBeforeStart',
 } as const;
 
-/** Ключ i18n ошибки периода. */
 export type EducationErrorKey = (typeof ERROR_KEYS)[keyof typeof ERROR_KEYS];
 
-/** Ошибки периода строки по полям (ключи i18n). */
 export interface EducationRowErrors {
   readonly startMonth?: EducationErrorKey;
   readonly endMonth?: EducationErrorKey;
 }
 
-/** Значение локализованного текста в активной локали (фолбэк на ru). */
+// Без перевода на en показываем ru.
 function pick(text: EducationAdmin['degree'] | null, locale: AppLanguage): string {
   if (!text) return '';
   return (locale === 'en' ? text.en : text.ru) ?? text.ru ?? '';
 }
 
-// Ввод при создании: база ru всегда заполнена (публичный фолбэк идёт на ru),
-// при правке en значение дублируется в ru.
+// Публичная часть откатывается на ru, поэтому при создании из en-локали дублируем значение в ru.
 function localeInput(locale: AppLanguage, value: string): { ru: string; en?: string } {
   return locale === 'en' ? { ru: value, en: value } : { ru: value };
 }
 
-// Патч одной локали: в PATCH уходит только активный язык, второй мёржится на бэке.
+// Шлём только активный язык, второй бэк сохранит сам при мёрже.
 function localePatch(locale: AppLanguage, value: string): { ru?: string; en?: string } {
   return locale === 'en' ? { en: value } : { ru: value };
 }
 
 let counter = 0;
 
-/** Уникальный локальный ключ для новой строки (id ещё нет). */
+/** У новой строки ещё нет id, поэтому нужен локальный ключ. */
 export function newRowKey(): string {
   counter += 1;
   return `new-${counter}`;
 }
 
-/** Пустая строка для добавления записи заданного типа. */
 export function emptyRow(type: EducationType): EducationRow {
   return { key: newRowKey(), id: null, type, degree: '', place: '', startMonth: '', endMonth: '' };
 }
 
-/** Админ-записи → строки редактора в активной локали. */
 export function buildRows(items: readonly EducationAdmin[], locale: AppLanguage): EducationRow[] {
   return items.map((item) => ({
     key: item.id,
@@ -78,15 +73,14 @@ export function buildRows(items: readonly EducationAdmin[], locale: AppLanguage)
   }));
 }
 
-/** Уйдёт ли строка на сохранение: существующая — всегда, новая — только с названием. */
+/** Новая строка без названия на сохранение не уходит. */
 export function isSubmittable(row: EducationRow): boolean {
   return row.id !== null || row.degree.trim() !== '';
 }
 
 /**
- * Ошибки периода: дата начала обязательна (по ней сортируется таймлайн), окончание —
- * не раньше начала (YYYY-MM сравниваются как строки). Незаполненная новая строка не
- * проверяется — она и не уйдёт на сохранение.
+ * Дата начала обязательна, потому что по ней сортируется таймлайн. Даты в формате YYYY-MM
+ * можно сравнивать как строки. Пустую новую строку не проверяем, она всё равно не сохранится.
  */
 export function validateRow(row: EducationRow): EducationRowErrors {
   if (!isSubmittable(row)) return {};
@@ -97,13 +91,11 @@ export function validateRow(row: EducationRow): EducationRowErrors {
   return {};
 }
 
-/** Есть ли у строки ошибки периода (гейт «Сохранить»). */
 export function hasRowErrors(row: EducationRow): boolean {
   const errors = validateRow(row);
   return errors.startMonth !== undefined || errors.endMonth !== undefined;
 }
 
-/** Строка → тело создания записи. */
 export function rowToCreate(row: EducationRow, locale: AppLanguage): CreateEducation {
   const place = row.place.trim();
   return {
@@ -115,14 +107,13 @@ export function rowToCreate(row: EducationRow, locale: AppLanguage): CreateEduca
   };
 }
 
-/** Строка → тело обновления записи (мёрж локали на бэке). */
 export function rowToUpdate(row: EducationRow, locale: AppLanguage): UpdateEducation {
   return {
     type: row.type,
     degree: localePatch(locale, row.degree.trim()),
     place: localePatch(locale, row.place.trim()),
     startDate: monthInputToIso(row.startMonth),
-    // Пустое окончание снимает дату (null), а не означает «не менять».
+    // Пустое окончание отправляем как null: дата снимается, а не остаётся прежней.
     endDate: row.endMonth ? monthInputToIso(row.endMonth) : null,
   };
 }

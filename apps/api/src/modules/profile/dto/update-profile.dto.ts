@@ -14,8 +14,7 @@ import {
 import { LocalizedTextPatch } from '../../../common/i18n/localized.dto';
 import { ProfileHighlightInput } from './profile-highlight.dto';
 
-// PATCH профиля — все поля опциональны. Локализованные поля принимают одну или
-// обе локали: присланная накладывается на сохранённую (см. mergeText в сервисе).
+// Локализованные поля можно прислать с одной локалью, сервис смёржит её с сохранённой.
 export class UpdateProfileDto {
   @ApiPropertyOptional({ type: () => LocalizedTextPatch })
   @IsOptional()

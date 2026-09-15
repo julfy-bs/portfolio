@@ -12,9 +12,9 @@ const noop = () => undefined;
 
 export interface ContactPageViewProps {
   readonly contacts?: readonly ProfileContact[];
-  /** Интро-абзац экрана (серверное поле профиля). */
+  /** Интро-абзац, поле профиля с сервера. */
   readonly intro?: string | null;
-  /** Ссылка на PDF-резюме (серверное поле профиля) для баннера скачивания. */
+  /** Ссылка на PDF-резюме из профиля для баннера скачивания. */
   readonly cvUrl?: string | null;
   readonly isLoading?: boolean;
   readonly isError?: boolean;
@@ -23,11 +23,6 @@ export interface ContactPageViewProps {
   readonly onDownloadCv?: () => void;
 }
 
-/**
- * Презентационный слой экрана контактов: шапка-«крошка» и сетка каналов связи.
- * Контакты приходят пропсом (из профиля) — запрос и навигацию делает контейнер
- * `ContactPage`. Состояние загрузки управляется контролом в Storybook.
- */
 export function ContactPageView({
   contacts,
   intro,
@@ -64,8 +59,8 @@ export function ContactPageView({
       <Heading level="h1" className={styles.title}>
         {t('contact.title')}
       </Heading>
-      {/* Интро — серверное поле профиля. Скелетон рисуется, когда данных нет
-          (intro === undefined); при загрузке профиля контейнер отдаёт undefined. */}
+      {/* Скелетон рисуем только при intro === undefined, а пока профиль грузится,
+          контейнер именно его и отдаёт. */}
       <PageIntro intro={intro} />
 
       <ContactLinks contacts={contacts} isLoading={isLoading} />

@@ -91,7 +91,7 @@ export const Password: Story = {
   args: { label: 'Пароль', type: 'password', placeholder: '••••••••' },
 };
 
-/** Без видимой подписи — обязателен `aria-label`, иначе поле без доступного имени. */
+/** Без видимой подписи нужен `aria-label`, иначе у поля нет доступного имени. */
 export const WithoutLabel: Story = {
   name: 'Без подписи',
   args: { label: undefined, 'aria-label': 'Поиск', placeholder: 'Поиск…' },

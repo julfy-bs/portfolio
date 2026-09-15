@@ -12,9 +12,8 @@ import styles from './runner.module.css';
 export type RunnerWindowState = 'normal' | 'maximized' | 'minimized';
 
 /**
- * Статус встраивания проекта: грузится → загрузился / не удалось.
- * Кросс-доменный iframe не отдаёт `onError` при мёртвом хосте, поэтому провал
- * ловим по таймауту (см. `loadTimeoutMs`), а `onError` — как быстрый путь.
+ * Кросс-доменный iframe не шлёт `onError`, если хост мёртв, поэтому провал ловим по
+ * таймауту (`loadTimeoutMs`). `onError` остаётся быстрым путём, когда всё же приходит.
  */
 type RunnerStatus = 'loading' | 'ready' | 'error';
 
@@ -28,22 +27,17 @@ export interface RunnerViewProps {
   readonly onMinimize: () => void;
   readonly onToggleMaximize: () => void;
   readonly onRestore: () => void;
-  /** Вызывается один раз, когда запуск проваливается — контейнер шлёт тост. */
+  /** Вызывается один раз при неудачном запуске, контейнер показывает тост. */
   readonly onError: () => void;
-  /** Таймаут ожидания загрузки, мс. Проп ради тестов/историй; в приложении — дефолт. */
+  /** В миллисекундах. Задаётся в тестах и историях, приложение берёт значение по умолчанию. */
   readonly loadTimeoutMs?: number;
 }
 
 /**
- * Презентационный оверлей раннера — оконный «хром» со светофором, внутри которого
- * запущенный проект встроен через `<iframe>`. Всё состояние приходит пропами,
- * поэтому компонент управляем и документируется в Storybook.
- *
- * Пока проект грузится, поверх iframe показывается заглушка. Если за `loadTimeoutMs`
- * он так и не загрузился (переехал/офлайн) — вместо спиннера показываем bash-подобную
- * ошибку и уведомляем через `onError`, а не «висим» вечным спиннером. Встраивание
- * изолируем `sandbox`: скрипты и своё хранилище проекта разрешены, а выход за пределы
- * окна (навигация верхнего уровня, попапы) — нет.
+ * Окно раннера с проектом в `<iframe>`, всё состояние приходит пропами. Если проект не
+ * загрузился за `loadTimeoutMs`, показываем ошибку и зовём `onError`, чтобы не крутить
+ * спиннер вечно. `sandbox` разрешает проекту скрипты и своё хранилище, но не даёт
+ * уводить страницу и открывать попапы.
  */
 export function RunnerView({
   project,
@@ -63,20 +57,20 @@ export function RunnerView({
   const isMaximized = windowState === 'maximized';
   const active = windowState !== 'minimized';
 
-  // Новый проект — снова показываем заглушку и разрешаем повторное уведомление.
+  // Для нового проекта снова показываем заглушку и разрешаем уведомить ещё раз.
   useEffect(() => {
     setStatus('loading');
     notifiedRef.current = false;
   }, [project.embedUrl]);
 
-  // Пока грузится — заводим таймер провала; загрузка/размонтирование его снимают.
+  // Пока проект грузится, тикает таймер провала. Загрузка или размонтирование его снимают.
   useEffect(() => {
     if (status !== 'loading') return;
     const timer = window.setTimeout(() => setStatus('error'), loadTimeoutMs);
     return () => window.clearTimeout(timer);
   }, [status, project.embedUrl, loadTimeoutMs]);
 
-  // При провале уведомляем контейнер ровно один раз (тост живёт снаружи вида).
+  // Контейнер узнаёт о провале один раз, тост показывает уже он.
   useEffect(() => {
     if (status === 'error' && !notifiedRef.current) {
       notifiedRef.current = true;
@@ -84,7 +78,7 @@ export function RunnerView({
     }
   }, [status, onError]);
 
-  // Пока раннер открыт — блокируем прокрутку страницы.
+  // Пока раннер открыт, страница не скроллится.
   useEffect(() => {
     if (!active) return;
     const previous = document.body.style.overflow;
@@ -94,7 +88,7 @@ export function RunnerView({
     };
   }, [active]);
 
-  // После загрузки уводим фокус в iframe — чтобы игра сразу ловила клавиатуру.
+  // После загрузки переводим фокус в iframe, чтобы игра сразу слушала клавиатуру.
   useEffect(() => {
     if (active && status === 'ready') frameRef.current?.focus();
   }, [active, status, windowState]);

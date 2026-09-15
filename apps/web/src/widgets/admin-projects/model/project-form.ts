@@ -9,7 +9,7 @@ import type {
 } from '@/entities/project';
 import type { AppLanguage } from '@/shared/config';
 
-/** Палитра цветов плитки проекта (тёмная тема, совпадает с плитками главной). */
+/** Совпадает с цветами плиток на главной в тёмной теме. */
 export const TILE_COLORS: readonly string[] = [
   '#1d6f74',
   '#6b4ca8',
@@ -20,7 +20,7 @@ export const TILE_COLORS: readonly string[] = [
   '#c9752b',
 ];
 
-/** Цвета аватара для нового контрибьютора (яркие, в отличие от заливок плитки). */
+/** Для аватаров нужны цвета ярче, чем заливки плиток. */
 export const CONTRIBUTOR_COLORS: readonly string[] = [
   '#238636',
   '#8957e5',
@@ -34,9 +34,8 @@ export const CONTRIBUTOR_COLORS: readonly string[] = [
 type PublishStatus = ProjectAdmin['status'];
 
 /**
- * Схема формы проекта. Локализованные поля (название/описание/тело/роль/буллеты/
- * ссылки) правятся в активной локали; обязательность — только для базовой `ru`.
- * slug и технологии обязательны всегда. Сообщения локализуются → фабрика от `t`.
+ * Локализованные поля правятся в активной локали и обязательны только для `ru`. Slug и
+ * технологии обязательны всегда. Схема зависит от `t`, чтобы переводились сообщения.
  */
 export function createProjectSchema(t: TFunction, locale: AppLanguage) {
   const requiredForBase = (message: string) =>
@@ -72,7 +71,7 @@ export function createProjectSchema(t: TFunction, locale: AppLanguage) {
 
 export type ProjectFormValues = z.infer<ReturnType<typeof createProjectSchema>>;
 
-/** Значение локализованного текста в активной локали (фолбэк на ru). */
+/** Если перевода на en нет, возвращает ru. */
 export function pickText(text: ProjectAdmin['title'] | null, locale: AppLanguage): string {
   if (!text) return '';
   return (locale === 'en' ? text.en : text.ru) ?? text.ru ?? '';
@@ -106,7 +105,7 @@ function toLines(text: string): string[] {
     .filter((line) => line.length > 0);
 }
 
-// Ссылки: строка «Название | https://…» на строку ↔ массив {label, href}.
+// Каждая ссылка на своей строке в формате «Название | https://example.com».
 function parseLinks(text: string, locale: AppLanguage): ProjectLinkInput[] {
   return toLines(text)
     .map((line) => {
@@ -122,7 +121,6 @@ function linksToText(links: ProjectAdmin['links'], locale: AppLanguage): string 
   return links.map((link) => `${pickText(link.label, locale)} | ${link.href}`).join('\n');
 }
 
-/** Пустые значения формы для создания нового проекта. */
 export function emptyForm(): ProjectFormValues {
   return {
     slug: '',
@@ -148,7 +146,6 @@ export function emptyForm(): ProjectFormValues {
   };
 }
 
-/** Админ-проект → значения формы в активной локали. */
 export function projectToForm(project: ProjectAdmin, locale: AppLanguage): ProjectFormValues {
   return {
     slug: project.slug,
@@ -174,7 +171,6 @@ export function projectToForm(project: ProjectAdmin, locale: AppLanguage): Proje
   };
 }
 
-/** Значения формы → тело создания (`POST /api/projects`). */
 export function formToCreate(values: ProjectFormValues, locale: AppLanguage): CreateProject {
   const role = values.role.trim();
   const subtitle = values.subtitle.trim();
@@ -205,7 +201,6 @@ export function formToCreate(values: ProjectFormValues, locale: AppLanguage): Cr
   };
 }
 
-/** Значения формы → тело обновления (`PATCH /api/projects/:id`, мёрж локали). */
 export function formToUpdate(values: ProjectFormValues, locale: AppLanguage): UpdateProject {
   return {
     slug: values.slug.trim(),

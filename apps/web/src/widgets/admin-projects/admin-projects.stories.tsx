@@ -37,7 +37,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Список проектов: плитка, избранное, теги, статус. Форма — на своём маршруте. */
+/** Плитка, отметка избранного, теги и статус. Форма открывается на отдельном маршруте. */
 export const Default: Story = {
   name: 'Список',
   play: async ({ canvasElement, args }) => {
@@ -47,13 +47,13 @@ export const Default: Story = {
   },
 };
 
-/** Английская локаль — названия/статусы в переводе. */
+/** Названия и статусы на английском. */
 export const English: Story = {
   name: 'Локаль EN',
   args: { locale: 'en' },
 };
 
-/** Пустой список — только кнопка добавления. */
+/** Без проектов остаётся только кнопка добавления. */
 export const Empty: Story = {
   name: 'Пусто',
   args: { items: [] },

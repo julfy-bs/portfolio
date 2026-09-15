@@ -3,8 +3,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { useReveal } from './use-reveal';
 
-// Детерминизм: подменяем gsap заглушкой, которая «мгновенно завершает» появление
-// (снимает инлайновое скрытие), чтобы не гонять реальный rAF-тикер в jsdom.
+// Заглушка сразу снимает скрытие, чтобы не зависеть от rAF-тикера gsap в jsdom.
 vi.mock('gsap', () => ({
   gsap: {
     fromTo: (targets: readonly HTMLElement[]) => {
@@ -87,11 +86,10 @@ describe('useReveal', () => {
 
     render(<Harness />);
     const sectionA = screen.getByText('Секция A');
-    // До попадания в кадр секция скрыта и передана под наблюдение.
     expect(sectionA.style.opacity).toBe('0');
     expect(observed).toHaveLength(2);
 
-    // Имитируем вход секции в кадр — она должна раскрыться.
+    // Секция вошла в кадр.
     capturedCb?.(
       [{ isIntersecting: true, target: sectionA } as unknown as IntersectionObserverEntry],
       { unobserve: () => {} } as unknown as IntersectionObserver,

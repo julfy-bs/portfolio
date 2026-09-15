@@ -15,7 +15,7 @@ interface ToastTypeConfig {
   readonly live: 'polite' | 'assertive';
 }
 
-// Технические теги уровня (INFO/OK/WARN/ERROR) — не локализуемые константы, как уровни лога.
+// Теги уровня (INFO/OK/WARN/ERROR) не переводим, как уровни в логах.
 const typeConfig: Record<ToastType, ToastTypeConfig> = {
   info: { icon: 'info', tag: 'INFO', className: styles.info, role: 'status', live: 'polite' },
   success: {
@@ -42,11 +42,11 @@ export interface ToastProps {
   readonly onClose?: () => void;
   /** Доступная подпись кнопки закрытия (локализуется потребителем). */
   readonly closeLabel?: string;
-  /** Статичная полоса остатка 0–100 (напр. прогресс загрузки). */
+  /** Статичная полоса от 0 до 100, например прогресс загрузки. */
   readonly progress?: number;
   /**
-   * Длительность автозакрытия, мс — рисует анимированную полосу обратного отсчёта.
-   * Имеет приоритет над `progress`. Сам таймер закрытия ведёт Toaster (слой выше).
+   * Длительность автозакрытия в мс, рисует полосу обратного отсчёта и перекрывает `progress`.
+   * Сам таймер закрытия ведёт Toaster.
    */
   readonly duration?: number;
   /** Пауза анимации полосы (наведение мышью на стек тостов). */
@@ -54,7 +54,7 @@ export interface ToastProps {
   readonly className?: string;
 }
 
-/** Уведомление-тост. Логика автозакрытия живёт в Toaster (слой выше). */
+/** Уведомление-тост. Автозакрытием управляет Toaster. */
 export function Toast({
   type = 'info',
   title,
@@ -69,8 +69,7 @@ export function Toast({
   const config = typeConfig[type];
   const showCountdown = typeof duration === 'number' && duration > 0;
   const showProgress = !showCountdown && typeof progress === 'number';
-  // Длительность и пауза — данные конкретного тоста, поэтому inline (не токен);
-  // остальные свойства анимации заданы в CSS-классе `.countdown`.
+  // Длительность и пауза у каждого тоста свои, поэтому inline. Остальное в классе `.countdown`.
   const countdownStyle: CSSProperties = {
     animationDuration: `${String(duration)}ms`,
     animationPlayState: paused ? 'paused' : 'running',

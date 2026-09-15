@@ -10,17 +10,14 @@ import { KbTreeSkeleton } from './kb-tree-skeleton';
 import styles from './kb-tree.module.css';
 
 export interface KbTreeProps {
-  /** Дерево БЗ или `undefined`, пока грузится (тогда — скелетон). */
+  /** `undefined`, пока грузится, в этом случае рисуем скелетон. */
   readonly tree: DatabaseTree | undefined;
-  /** Slug выбранной статьи. */
   readonly selectedSlug?: string;
   readonly onSelectArticle: (slug: string) => void;
 }
 
 /**
- * Боковое дерево базы знаний: папки и статьи. Клик по статье выбирает её (`Tree`
- * сам разворачивает папки и ведёт клавиатурную навигацию). Презентационный —
- * данные и выбор приходят пропами.
+ * Боковое дерево базы знаний. Раскрытие папок и клавиатурную навигацию берёт на себя `Tree`.
  */
 export function KbTree({ tree, selectedSlug, onSelectArticle }: KbTreeProps) {
   const { t } = useTranslation();

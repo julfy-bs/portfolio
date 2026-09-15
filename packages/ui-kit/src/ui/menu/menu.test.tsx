@@ -25,7 +25,7 @@ function renderMenu(onSelect = vi.fn()) {
   );
 }
 
-// Открытие/навигация — поведение оверлея; play в menu.stories покрывает Escape.
+// Открытие и навигация относятся к оверлею, Escape проверяет play-сценарий в menu.stories.
 describe('Menu', () => {
   it('по умолчанию закрыто, панель не в документе', () => {
     renderMenu();

@@ -45,12 +45,11 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Создание нового проекта. */
 export const New: Story = {
   name: 'Создание',
 };
 
-/** Правка существующего проекта (поля заполнены из данных). */
+/** Поля заранее заполнены данными проекта. */
 export const Edit: Story = {
   name: 'Правка',
   args: { record: mockProjectsAdmin[0] ?? null },

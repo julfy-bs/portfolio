@@ -6,7 +6,7 @@ import { mockProfile } from '@/entities/profile/mocks';
 import type { ConsoleEntry } from './model/commands';
 import { ConsoleView } from './ui/console-view';
 
-// Пример «прожитой» сессии: приветствие, справка и пара выполненных команд.
+// Сессия, в которой уже поработали: приветствие, справка и пара команд.
 const history: readonly ConsoleEntry[] = [
   { id: 0, kind: 'welcome' },
   { id: 1, kind: 'input', text: 'help' },
@@ -83,7 +83,7 @@ export const Loading: Story = {
   args: { profile: undefined },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    // Ответы whoami/stack/location под скелетоном — имени профиля ещё нет.
+    // Профиль ещё не пришёл, поэтому ответы whoami/stack/location под скелетоном.
     await expect(canvas.queryByText(new RegExp(mockProfile.name))).not.toBeInTheDocument();
   },
 };
@@ -97,7 +97,7 @@ export const Minimized: Story = {
   name: 'Свёрнута в трей',
   args: { windowState: 'minimized' },
   play: async () => {
-    // Свёрнутая консоль порталится в трей (TrayPortal → document.body), поэтому
+    // Свёрнутая консоль порталится в трей (TrayPortal рендерит в document.body), поэтому
     // ищем пилюлю там, а не в canvasElement (он остаётся пустым).
     const body = within(document.body);
     await expect(body.getByRole('button', { name: /bash — ~/ })).toBeInTheDocument();

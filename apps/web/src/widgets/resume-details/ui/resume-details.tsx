@@ -14,11 +14,7 @@ export interface ResumeDetailsProps {
   readonly isLoading?: boolean;
 }
 
-/**
- * Нижний блок экрана опыта (макет: EDU + LANG + SKILLS): образование слева,
- * языки и навыки справа. Презентационен — данные приходят пропсами, каждая
- * карточка независимо показывает скелетон, пока грузится.
- */
+/** Низ страницы опыта. Каждая карточка грузится сама по себе и не ждёт соседей. */
 export function ResumeDetails({ education, languages, skills, isLoading }: ResumeDetailsProps) {
   return (
     <div className={styles.grid}>

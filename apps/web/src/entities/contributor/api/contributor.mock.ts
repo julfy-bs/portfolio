@@ -52,17 +52,15 @@ function buildInitial(): ContributorAdmin[] {
 // Состояние каталога мока: create добавляет запись между запросами одного прогона.
 let contributors: ContributorAdmin[] = buildInitial();
 
-/** Сбрасывает каталог контрибьюторов мока — для изоляции тестов. */
+/** Сбрасывает каталог контрибьюторов мока, чтобы тесты не зависели друг от друга. */
 export function resetMockContributors(): void {
   contributors = buildInitial();
 }
 
-/** Фикстура контрибьюторов (админ-вид) для тестов и историй. */
 export const mockContributorsAdmin: ContributorAdmin[] = buildInitial();
 
-/** MSW-обработчики контрибьюторов: список + CRUD (создание/правка/удаление). */
 export const contributorHandlers = [
-  // Как на бэке: каталог по возрастанию `order` (его меняет перетаскивание в админке).
+  // Как на бэке: сортируем по `order`, его меняет перетаскивание в админке.
   http.get(`${env.apiBaseUrl}/contributors/admin`, () =>
     HttpResponse.json([...contributors].sort((a, b) => a.order - b.order)),
   ),
@@ -88,13 +86,13 @@ export const contributorHandlers = [
       const patch = await request.json();
       const current = contributors.find((contributor) => contributor.id === params.id);
       if (!current) return new HttpResponse(null, { status: 404 });
-      // Как на бэке (writeText): имя ПЕРЕЗАПИСЫВАЕТСЯ целиком — фронт шлёт обе локали,
-      // поэтому потери перевода нет. Остальные поля заменяются, если присланы.
+      // Как writeText на бэке, имя перезаписываем целиком: фронт всё равно шлёт обе локали.
+      // Остальные поля меняем, только если они пришли.
       const updated: ContributorAdmin = {
         ...current,
         name: patch.name ? { ru: patch.name.ru, en: patch.name.en ?? null } : current.name,
         image: patch.image ?? current.image,
-        // Пустая строка = сброс цвета → null (как на бэке); undefined = не менять.
+        // Пустая строка сбрасывает цвет в null (как на бэке), undefined оставляет как есть.
         color: patch.color !== undefined ? patch.color || null : current.color,
         link: patch.link ?? current.link,
         order: patch.order ?? current.order,
